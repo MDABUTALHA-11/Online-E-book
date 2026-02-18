@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe - Shaifly Library</title>
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts: Bungee & Mina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #007bff;
+            --border-color: #007bff;
+            --en-font: 'Bungee', cursive;
+            --bn-font: 'Mina', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--bn-font);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .en-font,
+        .navbar-brand,
+        .nav-link,
+        button {
+            font-family: var(--en-font);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+
+        /* Subscribe Section */
+        .subscribe-section {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+        }
+
+        .subscribe-card {
+            background: #e3dddd;
+            border: 2px solid var(--border-color);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 10px 10px 0px var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .subscribe-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-control {
+            background: transparent;
+            border: 1px solid #555;
+            color: var(--text-color);
+            border-radius: 0;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-family: var(--bn-font);
+        }
+
+        .form-control:focus {
+            background: transparent;
+            border-color: var(--text-color);
+            color: var(--text-color);
+            box-shadow: none;
+        }
+
+        .btn-subscribe {
+            background: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-subscribe:hover {
+            background: #0056b3;
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 30px 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand en-font" href="../index.html">
+                    <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Bootstrap"
+                        width="50" height="44">
+                    <span class="fw-bold">SHAIFLY</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto en-font">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="About.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Categories.html">CATEGORIES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary ms-2 px-3" href="../Blog/Blog.html">READ</a>
+                        </li>
+                        <li class="nav-item ms-2 d-flex align-items-center">
+                            <a class="btn btn-primary active" href="Subscribe.html">SUBSCRIBE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Subscribe Content -->
+    <section class="subscribe-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="subscribe-card">
+                        <div class="text-center mb-4">
+                            <h2 class="mb-3">SUBSCRIBE</h2>
+                            <p class="text-muted small">Join our community to get the latest updates on new books and
+                                features.</p>
+                        </div>
+
+                        <form action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="6121516c-ba56-4554-81b1-1590baccc467">
+
+                            <div class="mb-3">
+                                <input type="text" name="name" class="form-control" placeholder="YOUR NAME" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="YOUR EMAIL" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <textarea name="message" class="form-control" rows="4" placeholder="MESSAGE (OPTIONAL)"
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-subscribe">SUBMIT FORM</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="en-font">&copy; 2025 SHAIFLY. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

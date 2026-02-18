@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Shaifly</title>
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Fonts: Bungee & Mina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #007bff;
+            --border-color: #007bff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Mina', sans-serif;
+            /* Default for Bangla & general text */
+            overflow-x: hidden;
+        }
+
+        /* English Header Font */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .en-font {
+            font-family: 'Bungee', cursive;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+
+
+        /* Hero Section */
+        .hero-section {
+            padding: 100px 0;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--border-color);
+            color: var(--accent-color);
+            font-family: 'Mina', sans-serif;
+            font-weight: 700;
+            padding: 10px 30px;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* Cards & Borders */
+        .card-custom {
+            background: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 5px 5px 0px var(--border-color);
+        }
+
+        .icon-box {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Stats */
+        .stat-number {
+            font-family: 'Bungee', cursive;
+            font-size: 3rem;
+            color: var(--text-color);
+        }
+
+        /* Team */
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--border-color);
+            object-fit: cover;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .team-card:hover .team-img {
+            filter: grayscale(0%);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 50px 0;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Utility */
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand en-font" href="../index.html">
+                    <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Bootstrap"
+                        width="50" height="44">
+                    <span class="fw-bold">SHAIFLY</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto en-font">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="About.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Categories.html">CATEGORIES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-primary ms-2 px-3" href="../Blog/Blog.html">READ</a>
+                        </li>
+                        <li class="nav-item ms-2 d-flex align-items-center">
+                            <a class="btn btn-primary" href="Subscribe.html">SUBSCRIBE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container" data-aos="fade-up">
+            <h1 class="hero-title bn-font" style="font-family: 'Mina', sans-serif;">সাহিফলি সম্পর্কে</h1>
+            <p class="lead mb-4" style="max-width: 700px; margin: 0 auto; font-family: 'Mina', sans-serif;">
+                জ্ঞান বিতরণের এক অনন্য মাধ্যম। আমরা বিশ্বাস করি বই সবার জন্য উন্মুক্ত হওয়া উচিত।
+            </p>
+            <a href="#vision" class="btn btn-outline-custom">আমাদের লক্ষ্য</a>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h2 class="mb-4">VISION & MISSION</h2>
+                    <h3 class="mb-3" style="font-family: 'Mina', sans-serif;">ভবিষ্যৎ পরিকল্পনা</h3>
+                    <p style="font-family: 'Mina', sans-serif; font-size: 1.1rem; line-height: 1.8;">
+                        আমাদের লক্ষ্য হলো বাংলা সাহিত্যের এক বিশাল ডিজিটাল আর্কাইভ তৈরি করা। যেখানে পৃথিবীর যেকোনো
+                        প্রান্ত থেকে পাঠকরা বিনামূল্যে বই পড়তে পারবে। আমরা এমন একটি প্ল্যাটফর্ম গড়তে চাই যা হবে সহজ,
+                        দ্রুত এবং সবার জন্য উন্মুক্ত।
+                    </p>
+                </div>
+                <div class="col-md-6 text-center" data-aos="fade-left">
+                    <div style="border: 2px solid white; padding: 20px; display: inline-block;">
+                        <i class="fas fa-eye fa-5x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="zoom-in">
+                <h2>OUR VALUES</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="flip-left">
+                    <div class="card-custom text-center h-100">
+                        <i class="fas fa-lock-open icon-box"></i>
+                        <h4>FREE ACCESS</h4>
+                        <p style="font-family: 'Mina', sans-serif;">বিনামূল্যে জ্ঞান চর্চার সুযোগ। কোনো সাবস্ক্রিপশন
+                            নেই।</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
+                    <div class="card-custom text-center h-100">
+                        <i class="fas fa-book icon-box"></i>
+                        <h4>HUGE AND LARGEST LIBRARY</h4>
+                        <p style="font-family: 'Mina', sans-serif;">হাজার হাজার পিডিএফ বইয়ের এক বিশাল সংগ্রহশালা।</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="flip-right" data-aos-delay="200">
+                    <div class="card-custom text-center h-100">
+                        <i class="fas fa-users icon-box"></i>
+                        <h4>COMMUNITY</h4>
+                        <p style="font-family: 'Mina', sans-serif;">পাঠকদের নিয়ে গড়ে তোলা এক সমৃদ্ধ কমিউনিটি।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-5 border-top border-bottom" style="border-color: #333 !important;">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4 mb-md-0" data-aos="fade-up">
+                    <div class="stat-number">5K+</div>
+                    <div class="en-font">BOOKS</div>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number">10K+</div>
+                    <div class="en-font">USERS</div>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number">100+</div>
+                    <div class="en-font">AUTHORS</div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number">24/7</div>
+                    <div class="en-font">SUPPORT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>THE CREATORS</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4 text-center team-card mb-4" data-aos="zoom-in">
+                    <img src="../Team Image/images (39).jpeg" alt="Team Member" class="team-img">
+                    <h4 style="font-family: 'Mina', sans-serif !important;">মোহাম্মদ আবু তালহা</h4>
+                    <p class="en-font text-muted">FOUNDER & CEO</p>
+                </div>
+                <div class="col-md-4 text-center team-card mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="../Team Image/muslim-woman-hijab-from-back-generative-ai_74760-1302.avif"
+                        alt="Team Member" class="team-img">
+                    <h4 style="font-family: 'Mina', sans-serif !important;">মিম খাতুন</h4>
+                    <p class="en-font text-muted">CTO & ARCHITECT</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h3 class="mb-3">SHAIFLY</h3>
+                    <p style="font-family: 'Mina', sans-serif; color: #aaa;">
+                        বই পড়ার অভ্যাস গড়ুন, নিজেকে সমৃদ্ধ করুন। সাহিফলি আপনার পাশে আছে।
+                    </p>
+                </div>
+                <div class="col-md-6 mb-4 text-md-end">
+                    <div class="mb-3">
+                        <a href="#" class="me-3 en-font">PRIVACY</a>
+                        <a href="#" class="me-3 en-font">TERMS</a>
+                        <a href="#" class="en-font">CONTACT</a>
+                    </div>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <small class="en-font" style="color: #666;">&copy; 2025 SHAIFLY. ALL RIGHTS RESERVED.</small>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
