@@ -282,7 +282,12 @@
                                     <h3 class="blog-title">নতুন বই পড়ার আনন্দ</h3>
                                     <p class="blog-excerpt">বই পড়া একটি চমৎকার অভ্যাস যা আমাদের মন ও আত্মাকে সমৃদ্ধ করে।
                                         আজকের ব্যস্ত জীবনে বই পড়ার গুরুত্ব...</p>
-                                    <a href="#" class="read-more-btn">READ MORE</a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#" class="read-more-btn" onclick="incrementView('blog_new_book')">READ
+                                            MORE</a>
+                                        <small class="text-muted"><i class="fas fa-eye me-1"></i><span
+                                                id="view-count-blog_new_book">...</span></small>
+                                    </div>
                                 </div>
                             </article>
                         </div>
@@ -299,7 +304,12 @@
                                     <h3 class="blog-title">ডিজিটাল লাইব্রেরির সুবিধা</h3>
                                     <p class="blog-excerpt">প্রযুক্তির উৎকর্ষে এখন লাইব্রেরি আমাদের হাতের মুঠোয়। পিডিএফ
                                         এবং ই-বুক কীভাবে শিক্ষার বিস্তার ঘটাচ্ছে...</p>
-                                    <a href="#" class="read-more-btn">READ MORE</a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#" class="read-more-btn"
+                                            onclick="incrementView('blog_digital_library')">READ MORE</a>
+                                        <small class="text-muted"><i class="fas fa-eye me-1"></i><span
+                                                id="view-count-blog_digital_library">...</span></small>
+                                    </div>
                                 </div>
                             </article>
                         </div>
@@ -316,7 +326,12 @@
                                     <h3 class="blog-title">লেখালিখি শুরু করার গাইড</h3>
                                     <p class="blog-excerpt">আপনি কি লেখক হতে চান? কীভাবে শুরু করবেন আপনার প্রথম গল্প বা
                                         উপন্যাস। নতুন লেখকদের জন্য কার্যকরী টিপস...</p>
-                                    <a href="#" class="read-more-btn">READ MORE</a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#" class="read-more-btn"
+                                            onclick="incrementView('blog_writing_guide')">READ MORE</a>
+                                        <small class="text-muted"><i class="fas fa-eye me-1"></i><span
+                                                id="view-count-blog_writing_guide">...</span></small>
+                                    </div>
                                 </div>
                             </article>
                         </div>
@@ -333,7 +348,12 @@
                                     <h3 class="blog-title">মনোযোগ বৃদ্ধির উপায়</h3>
                                     <p class="blog-excerpt">পড়াশোনায় মনোযোগ ধরে রাখা কঠিন হতে পারে। কিছু সহজ কৌশল
                                         অবলম্বন করে আপনি আপনার ফোকাস বাড়াতে পারেন...</p>
-                                    <a href="#" class="read-more-btn">READ MORE</a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#" class="read-more-btn" onclick="incrementView('blog_focus')">READ
+                                            MORE</a>
+                                        <small class="text-muted"><i class="fas fa-eye me-1"></i><span
+                                                id="view-count-blog_focus">...</span></small>
+                                    </div>
                                 </div>
                             </article>
                         </div>
@@ -433,6 +453,21 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 800 });
+    </script>
+    <!-- Firebase & View Counter Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/view-counter.js"></script>
+
+    <script>
+        // Initialize view counts for all blogs
+        document.addEventListener('DOMContentLoaded', () => {
+            initViewCount('blog_new_book');
+            initViewCount('blog_digital_library');
+            initViewCount('blog_writing_guide');
+            initViewCount('blog_focus');
+        });
     </script>
 </body>
 

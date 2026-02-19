@@ -27,6 +27,9 @@
             match /downloads/{document=**} {
               allow read, write: if true;
             }
+            match /views/{document=**} {
+              allow read, write: if true;
+            }
           }
         }
         ```
