@@ -286,11 +286,19 @@
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-between align-items-center mb-3 text-secondary w-100">
+                        <small><i class="fas fa-download me-1 text-primary"></i> <span id="count-jiboner_uddeshdho"
+                                class="fw-bold">...</span> বার ডাউনলোড</small>
+                        <small><i class="fas fa-eye me-1 text-primary"></i> <span class="fw-bold">6.7k</span> বার দেখা
+                            হয়েছে</small>
+                    </div>
+
                     <div class="d-flex flex-wrap align-items-center gap-4">
                         <span class="price-tag">৳০</span>
-                        <a href="https://wa.me/8801742761220?text=আসসালামু%20আলাইকুম%2C%20আমি%20‘আমাদের%20জীবনের%20উদ্দেশ্য%20কি’%20বইটি%20নিতে%20চাই"
-                            class="btn btn-whatsapp btn-lg px-5 rounded-pill fw-bold shadow" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i> নিতে চাই
+                        <a href="../Assets/pdf/আমাদের জীবনের উদ্দেশ্য কি.pdf" download
+                            onclick="incrementDownload('jiboner_uddeshdho')"
+                            class="btn btn-danger btn-lg px-5 rounded-pill fw-bold shadow">
+                            <i class="fas fa-file-pdf me-2"></i> ডাউনলোড করুন
                         </a>
                         <button class="btn btn-outline-dark btn-lg px-4 rounded-pill">
                             <i class="far fa-bookmark"></i> Save
@@ -516,6 +524,16 @@
             document.querySelectorAll('.fade-section').forEach(section => {
                 observer.observe(section);
             });
+        });
+    </script>
+    <!-- Download Counter Script (Firebase Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/download-counter.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initDownloadCount('jiboner_uddeshdho');
         });
     </script>
 </body>
