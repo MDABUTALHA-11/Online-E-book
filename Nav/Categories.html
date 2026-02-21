@@ -24,8 +24,9 @@
         :root {
             --bg-color: #ffffff;
             --text-color: #333333;
-            --accent-color: #007bff;
-            --border-color: #007bff;
+            --accent-color: #198754;
+            --border-color: #198754;
+            --hover-border: #dc3545;
             --en-font: 'Bungee', cursive;
             --bn-font: 'Mina', sans-serif;
         }
@@ -206,11 +207,12 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="Categories.html">CATEGORIES</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-primary ms-2 px-3" href="../Blog/Blog.html">READ</a>
+                        <li class="nav-item ms-lg-3 d-flex align-items-center">
+                            <a class="btn btn-success text-white px-4 shadow-sm fw-bold"
+                                href="../Blog/Blog.html">TIPS</a>
                         </li>
                         <li class="nav-item ms-2 d-flex align-items-center">
-                            <a class="btn btn-primary" href="Subscribe.html">SUBSCRIBE</a>
+                            <a class="btn btn-dark shadow-sm fw-bold" href="Subscribe.html">SUBSCRIBE</a>
                         </li>
                     </ul>
                 </div>
@@ -222,9 +224,9 @@
     <!-- Hero Section -->
     <section class="category-hero text-center">
         <div class="container">
-            <h1 class="display-4 mb-3">BROWSE LIBRARY</h1>
+            <h1 class="display-4 mb-3">BROWSE NOTES</h1>
             <p class="lead text-muted mb-4" style="max-width: 600px; margin: 0 auto;">
-                আপনার পছন্দের বই খুঁজে নিন আমাদের বিশাল সংগ্রহশালা থেকে। জ্ঞান হোক সবার জন্য উন্মুক্ত।
+                আপনার শ্রেণির প্রয়োজনীয় নোট খুঁজে নিন আমাদের বিষয়ভিত্তিক সংগ্রহশালা থেকে। প্রস্তুতি শুরু হোক এখনই।
             </p>
 
             <div class="search-container">
@@ -242,7 +244,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-5 section-title-wrapper"
                 data-aos="fade-right">
-                <h2 class="section-title">ALL CATEGORIES</h2>
+                <h2 class="section-title">SUBJECT CATEGORIES</h2>
                 <!-- Simple Filter -->
                 <div class="d-none d-md-block">
                     <button class="filter-btn active">All</button>
@@ -265,19 +267,20 @@
                 <div class="col-md-6 mb-4">
                     <h3 class="mb-3">SHAIFLY</h3>
                     <p style="font-family: 'Mina', sans-serif; color: #aaa;">
-                        বই পড়ার অভ্যাস গড়ুন, নিজেকে সমৃদ্ধ করুন। সাহিফলি আপনার পাশে আছে।
+                        নবম-দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য সেরা একাডেমিক নোট এবং গাইড লাইব্রেরি। সাহিফলি আপনার পাশে
+                        আছে।
                     </p>
                 </div>
                 <div class="col-md-6 mb-4 text-md-end">
                     <div class="mb-3">
-                        <a href="#" class="me-3 en-font">PRIVACY</a>
-                        <a href="#" class="me-3 en-font">TERMS</a>
-                        <a href="#" class="en-font">CONTACT</a>
+                        <a href="Privacy.html" class="me-3 en-font text-decoration-none text-muted">PRIVACY</a>
+                        <a href="Term-Condition.html" class="me-3 en-font text-decoration-none text-muted">TERMS</a>
+                        <a href="#" class="en-font text-decoration-none text-muted">CONTACT</a>
                     </div>
                     <div>
                         <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
                     </div>
                 </div>
             </div>
@@ -297,16 +300,15 @@
     <script>
         AOS.init({ once: true, duration: 800 });
 
-        // Minimal Category Data
         const categories = [
-            { id: 1, name: "উপন্যাস (Fiction)", icon: "book-open", count: "12K" },
-            { id: 2, name: "বিজ্ঞান (Science)", icon: "atom", count: "3K" },
-            { id: 3, name: "ইতিহাস (History)", icon: "landmark", count: "5K" },
-            { id: 4, name: "প্রযুক্তি (Tech)", icon: "laptop-code", count: "4.5K" },
-            { id: 5, name: "ধর্মীয় (Religious)", icon: "mosque", count: "6K" },
-            { id: 6, name: "রহস্য (Mystery)", icon: "user-secret", count: "4K" },
-            { id: 7, name: "জীবনী (Biography)", icon: "feather-alt", count: "2K" },
-            { id: 8, name: "আত্মউন্নয়ন (Self)", icon: "brain", count: "7K" },
+            { id: 1, name: "বিজ্ঞান (Science)", icon: "microscope", count: "500+", url: "../Science/Science.html" },
+            { id: 2, name: "গণিত (Math)", icon: "calculator", count: "400+", url: "../Math/Math.html" },
+            { id: 3, name: "পদার্থবিজ্ঞান (Physics)", icon: "atom", count: "350+", url: "../Physics/Physics.html" },
+            { id: 4, name: "রসায়ন (Chemistry)", icon: "flask", count: "300+", url: "../Chemistry/Chemistry.html" },
+            { id: 5, name: "উচ্চতর গণিত (Higher Math)", icon: "infinity", count: "250+", url: "../Higher-Math/Higher-Math.html" },
+            { id: 6, name: "জীববিজ্ঞান (Biology)", icon: "dna", count: "200+", url: "../Biology/Biology.html" },
+            { id: 7, name: "ইংরেজি (English)", icon: "language", count: "150+", url: "#" },
+            { id: 8, name: "বাঙলা (Bangla)", icon: "pen-nib", count: "100+", url: "#" },
         ];
 
         const container = document.getElementById('categoriesContainer');
@@ -321,13 +323,15 @@
                 col.setAttribute('data-aos-delay', index * 50);
 
                 col.innerHTML = `
-                    <div class="category-card text-center">
-                        <span class="book-count-badge">${cat.count}</span>
-                        <div class="category-icon">
-                            <i class="fas fa-${cat.icon}"></i>
+                    <a href="${cat.url}" class="text-decoration-none text-dark">
+                        <div class="category-card text-center">
+                            <span class="book-count-badge">${cat.count}</span>
+                            <div class="category-icon">
+                                <i class="fas fa-${cat.icon}"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">${cat.name}</h5>
                         </div>
-                        <h5 class="fw-bold mb-0">${cat.name}</h5>
-                    </div>
+                    </a>
                 `;
                 container.appendChild(col);
             });
