@@ -123,21 +123,31 @@
 
     <!-- Content Section -->
     <div class="container pb-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-5">
             <div class="col-lg-8">
-                <div class="input-group">
-                    <input type="text" id="noteSearch" class="form-control search-box"
-                        placeholder="আপনার প্রয়োজনীয় নোটটি খুঁজুন...">
-                </div>
+                <input type="text" id="noteSearch" class="form-control search-box"
+                    placeholder="আপনার প্রয়োজনীয় নোটটি খুঁজুন...">
             </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2" id="notesContainer">
-            <!-- Notes will be loaded here -->
+        <!-- SSC Section -->
+        <div class="mb-5">
+            <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">SSC - নবম-দশম শ্রেণির নোট</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="sscNotesContainer">
+                <!-- SSC Notes will be loaded here -->
+            </div>
+        </div>
+
+        <!-- HSC Section -->
+        <div class="mb-5">
+            <h2 class="fw-bold mb-4 border-start border-4 border-success ps-3">HSC - একাদশ-দ্বাদশ শ্রেণির নোট</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="hscNotesContainer">
+                <!-- HSC Notes will be loaded here -->
+            </div>
         </div>
     </div>
 
-    <!-- Footer Copy-pasted from index/standard -->
+    <!-- Footer -->
     <footer class="bg-dark text-white py-5 mt-5">
         <div class="container text-center">
             <h3 class="en-font mb-4">SHAIFLY</h3>
@@ -165,22 +175,36 @@
 
     <script>
         const subjectNotes = [
-            { id: 's1', title: "জীববিজ্ঞান: কোষ ও এর গঠন", author: "সাহিফলি নোট", fileSize: "3.2 MB", cover: "../Book-Image/download (21).jpg" },
-            { id: 's2', title: "সাধারণ বিজ্ঞান: পরিবেশ ও বাস্তুসংস্থান", author: "সাহিফলি এক্সপার্ট", fileSize: "4.5 MB", cover: "../Book-Image/download (19).jpg" },
-            { id: 's3', title: "বিজ্ঞান: শক্তির উৎস ও ব্যবহার", author: "একাডেমিক টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (22).jpg" },
-            { id: 's4', title: "মানুষের শরীর ও স্বাস্থ্য হ্যান্ডনোট", author: "সাহিফলি নোট", fileSize: "5.1 MB", cover: "../Book-Image/download (20).jpg" },
+            // SSC Notes from Table of Contents
+            { id: 's_ssc1', level: 'SSC', title: "১ম অধ্যায়: উন্নততর জীবনধারা", author: "সাহিফলি টিম", fileSize: "2.4 MB", cover: "../Book-Image/download (1).jpg" },
+            { id: 's_ssc2', level: 'SSC', title: "২য় অধ্যায়: জীবনের জন্য পানি", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (2).jpg" },
+            { id: 's_ssc3', level: 'SSC', title: "৩য় অধ্যায়: হৃদযন্ত্রের যত কথা", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (3).jpg" },
+            { id: 's_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: নবজীবনের সূচনা", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (4).jpg" },
+            { id: 's_ssc5', level: 'SSC', title: "৫ম অধ্যায়: দেখতে হলে আলো চাই", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (5).jpg" },
+            { id: 's_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: পলিমার", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (6).jpg" },
+            { id: 's_ssc7', level: 'SSC', title: "৭ম অধ্যায়: অম্ল, ক্ষারক ও লবণের ব্যবহার", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (7).jpg" },
+            { id: 's_ssc8', level: 'SSC', title: "৮ম অধ্যায়: আমাদের সম্পদ", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (8).jpg" },
+            { id: 's_ssc9', level: 'SSC', title: "৯ম অধ্যায়: দুর্যোগের সাথে বসবাস", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (9).jpg" },
+            { id: 's_ssc10', level: 'SSC', title: "১০ম অধ্যায়: এসো বলকে জানি", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (10).jpg" },
+            { id: 's_ssc11', level: 'SSC', title: "১১শ অধ্যায়: জীবপ্রযুক্তি", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (11).jpg" },
+            { id: 's_ssc12', level: 'SSC', title: "১২শ অধ্যায়: প্রত্যহিক জীবনে তড়িৎ", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (12).jpg" },
+            { id: 's_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: সবাই কাছাকাছি", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (13).jpg" },
+            { id: 's_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: জীবন বাঁচাতে বিজ্ঞান", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (14).jpg" },
+
+            // HSC Notes
+            { id: 's1', level: 'HSC', title: "জীববিজ্ঞান: কোষ ও এর গঠন", author: "সাহিফলি নোট", fileSize: "3.2 MB", cover: "../Book-Image/download (21).jpg" },
+            { id: 's2', level: 'HSC', title: "সাধারণ বিজ্ঞান: পরিবেশ ও বাস্তুসংস্থান", author: "সাহিফলি এক্সপার্ট", fileSize: "4.5 MB", cover: "../Book-Image/download (19).jpg" },
+            { id: 's3', level: 'HSC', title: "বিজ্ঞান: শক্তির উৎস ও ব্যবহার", author: "একাডেমিক টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (22).jpg" },
+            { id: 's4', level: 'HSC', title: "মানুষের শরীর ও স্বাস্থ্য হ্যান্ডনোট", author: "সাহিফলি নোট", fileSize: "5.1 MB", cover: "../Book-Image/download (20).jpg" },
         ];
 
-        function displayNotes(notes) {
-            const container = document.getElementById('notesContainer');
-            container.innerHTML = '';
-            notes.forEach(note => {
-                const col = document.createElement('div');
-                col.innerHTML = `
+        function createNoteCard(note) {
+            return `
+                <div class="col">
                     <div class="card h-100 card-custom shadow-sm border-0">
                         <img src="${note.cover}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${note.title}">
                         <div class="card-body p-4">
-                            <div class="mb-2"><span class="category-badge small">SCIENCE</span></div>
+                            <div class="mb-2"><span class="category-badge small">${note.level} SCIENCE</span></div>
                             <h5 class="card-title fw-bold mb-3">${note.title}</h5>
                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
@@ -189,11 +213,33 @@
                             </div>
                         </div>
                     </div>
-                `;
-                container.appendChild(col);
-                // Initialize download count display
+                </div>
+            `;
+        }
+
+        function displayNotes(notes) {
+            const sscContainer = document.getElementById('sscNotesContainer');
+            const hscContainer = document.getElementById('hscNotesContainer');
+
+            sscContainer.innerHTML = '';
+            hscContainer.innerHTML = '';
+
+            const sscNotes = notes.filter(n => n.level === 'SSC');
+            const hscNotes = notes.filter(n => n.level === 'HSC');
+
+            sscNotes.forEach(note => {
+                sscContainer.insertAdjacentHTML('beforeend', createNoteCard(note));
                 initDownloadCount(note.id);
             });
+
+            hscNotes.forEach(note => {
+                hscContainer.insertAdjacentHTML('beforeend', createNoteCard(note));
+                initDownloadCount(note.id);
+            });
+
+            if (sscNotes.length === 0 && hscNotes.length === 0) {
+                sscContainer.innerHTML = '<div class="col-12"><p class="text-muted">কোন নোট পাওয়া যায়নি।</p></div>';
+            }
         }
 
         displayNotes(subjectNotes);

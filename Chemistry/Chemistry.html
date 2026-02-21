@@ -124,17 +124,42 @@
 
     <!-- Content Section -->
     <div class="container pb-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-5">
             <div class="col-lg-8">
-                <div class="input-group">
-                    <input type="text" id="noteSearch" class="form-control search-box"
-                        placeholder="আপনার প্রয়োজনীয় নোটটি খুঁজুন...">
+                <input type="text" id="noteSearch" class="form-control search-box mb-3"
+                    placeholder="আপনার প্রয়োজনীয় নোটটি খুঁজুন...">
+
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#ssc-section" class="btn btn-danger px-4 py-2 rounded-3 fw-bold">SSC SECTION</a>
+                    <a href="#hsc1-section" class="btn btn-success px-4 py-2 rounded-3 fw-bold">HSC 1ST PART</a>
+                    <a href="#hsc2-section" class="btn btn-success px-4 py-2 rounded-3 fw-bold">HSC 2ND PART</a>
                 </div>
             </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2" id="notesContainer">
-            <!-- Notes will be loaded here -->
+        <!-- SSC Section -->
+        <div class="mb-5" id="ssc-section">
+            <h2 class="fw-bold mb-4 border-start border-4 border-primary ps-3">SSC - নবম-দশম শ্রেণির নোট</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="sscNotesContainer">
+                <!-- SSC Notes will be loaded here -->
+            </div>
+        </div>
+
+        <!-- HSC Section -->
+        <div class="mb-5" id="hsc1-section">
+            <h2 class="fw-bold mb-4 border-start border-4 border-success ps-3">HSC - একাদশ-দ্বাদশ শ্রেণির নোট (১ম পত্র)
+            </h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="hsc1NotesContainer">
+                <!-- HSC 1st Part Notes will be loaded here -->
+            </div>
+        </div>
+
+        <div class="mb-5" id="hsc2-section">
+            <h2 class="fw-bold mb-4 border-start border-4 border-info ps-3">HSC - একাদশ-দ্বাদশ শ্রেণির নোট (২য় পত্র)
+            </h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="hsc2NotesContainer">
+                <!-- HSC 2nd Part Notes will be loaded here -->
+            </div>
         </div>
     </div>
 
@@ -166,22 +191,34 @@
 
     <script>
         const subjectNotes = [
-            { id: 'c1', title: "জৈব রসায়ন (Organic Chemistry)", author: "সাহিফলি নোট", fileSize: "6.2 MB", cover: "../Book-Image/download (21).jpg" },
-            { id: 'c2', title: "রসায়ন: পদার্থের অবস্থা", author: "সাহিফলি এক্সপার্ট", fileSize: "3.5 MB", cover: "../Book-Image/download (19).jpg" },
-            { id: 'c3', title: "পর্যায় সারণি ও রাসায়নিক বন্ধন", author: "একাডেমিক টিম", fileSize: "4.8 MB", cover: "../Book-Image/download (22).jpg" },
-            { id: 'c4', title: "তড়িৎ রসায়ন ও জারণ-বিজারণ", author: "সাহিফলি নোট", fileSize: "5.1 MB", cover: "../Book-Image/download (20).jpg" },
+            // SSC Notes from Table of Contents
+            { id: 'c_ssc1', level: 'SSC', title: "১ম অধ্যায়: রসায়নের ধারণা", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (1).jpg" },
+            { id: 'c_ssc2', level: 'SSC', title: "২য় অধ্যায়: পদার্থের অবস্থা", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (2).jpg" },
+            { id: 'c_ssc3', level: 'SSC', title: "৩য় অধ্যায়: পদার্থের গঠন", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (3).jpg" },
+            { id: 'c_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: পর্যায় সারণি", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (4).jpg" },
+            { id: 'c_ssc5', level: 'SSC', title: "৫ম অধ্যায়: রাসায়নিক বন্ধন", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (5).jpg" },
+            { id: 'c_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: মোলের ধারণা ও রাসায়নিক গণনা", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (6).jpg" },
+            { id: 'c_ssc7', level: 'SSC', title: "৭ম অধ্যায়: রাসায়নিক বিক্রিয়া", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (7).jpg" },
+            { id: 'c_ssc8', level: 'SSC', title: "৮ম অধ্যায়: রসায়ন ও শক্তি", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (8).jpg" },
+            { id: 'c_ssc9', level: 'SSC', title: "৯ম অধ্যায়: এসিড-ক্ষারক সমতা", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (9).jpg" },
+            { id: 'c_ssc10', level: 'SSC', title: "১০ম অধ্যায়: খনিজ সম্পদ: ধাতু-অধাতু", author: "সাহিফলি টিম", fileSize: "3.7 MB", cover: "../Book-Image/download (10).jpg" },
+            { id: 'c_ssc11', level: 'SSC', title: "১১শ অধ্যায়: খনিজ সম্পদ: জীবাশ্ম", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (11).jpg" },
+            { id: 'c_ssc12', level: 'SSC', title: "১২শ অধ্যায়: আমাদের জীবনে রসায়ন", author: "সাহিফলি টিম", fileSize: "3.0 MB", cover: "../Book-Image/download (12).jpg" },
+
+            // HSC Notes
+            { id: 'c1', level: 'HSC', part: 2, title: "জৈব রসায়ন (Organic Chemistry)", author: "সাহিফলি নোট", fileSize: "6.2 MB", cover: "../Book-Image/download (21).jpg" },
+            { id: 'c2', level: 'HSC', part: 1, title: "রসায়ন: পদার্থের অবস্থা", author: "সাহিফলি এক্সপার্ট", fileSize: "3.5 MB", cover: "../Book-Image/download (19).jpg" },
+            { id: 'c3', level: 'HSC', part: 1, title: "পর্যায় সারণি ও রাসায়নিক বন্ধন", author: "একাডেমিক টিম", fileSize: "4.8 MB", cover: "../Book-Image/download (22).jpg" },
+            { id: 'c4', level: 'HSC', part: 2, title: "তড়িৎ রসায়ন ও জারণ-বিজারণ", author: "সাহিফলি নোট", fileSize: "5.1 MB", cover: "../Book-Image/download (20).jpg" },
         ];
 
-        function displayNotes(notes) {
-            const container = document.getElementById('notesContainer');
-            container.innerHTML = '';
-            notes.forEach(note => {
-                const col = document.createElement('div');
-                col.innerHTML = `
+        function createNoteCard(note) {
+            return `
+                <div class="col">
                     <div class="card h-100 card-custom shadow-sm border-0">
                         <img src="${note.cover}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${note.title}">
                         <div class="card-body p-4">
-                            <div class="mb-2"><span class="category-badge small">CHEMISTRY</span></div>
+                            <div class="mb-2"><span class="category-badge small">${note.level} CHEMISTRY</span></div>
                             <h5 class="card-title fw-bold mb-3">${note.title}</h5>
                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
@@ -190,11 +227,41 @@
                             </div>
                         </div>
                     </div>
-                `;
-                container.appendChild(col);
-                // Initialize download count display
+                </div>
+            `;
+        }
+
+        function displayNotes(notes) {
+            const sscContainer = document.getElementById('sscNotesContainer');
+            const hsc1Container = document.getElementById('hsc1NotesContainer');
+            const hsc2Container = document.getElementById('hsc2NotesContainer');
+
+            sscContainer.innerHTML = '';
+            hsc1Container.innerHTML = '';
+            hsc2Container.innerHTML = '';
+
+            const sscNotes = notes.filter(n => n.level === 'SSC');
+            const hsc1Notes = notes.filter(n => n.level === 'HSC' && n.part === 1);
+            const hsc2Notes = notes.filter(n => n.level === 'HSC' && n.part === 2);
+
+            sscNotes.forEach(note => {
+                sscContainer.insertAdjacentHTML('beforeend', createNoteCard(note));
                 initDownloadCount(note.id);
             });
+
+            hsc1Notes.forEach(note => {
+                hsc1Container.insertAdjacentHTML('beforeend', createNoteCard(note));
+                initDownloadCount(note.id);
+            });
+
+            hsc2Notes.forEach(note => {
+                hsc2Container.insertAdjacentHTML('beforeend', createNoteCard(note));
+                initDownloadCount(note.id);
+            });
+
+            if (sscNotes.length === 0 && hsc1Notes.length === 0 && hsc2Notes.length === 0) {
+                sscContainer.innerHTML = '<div class="col-12"><p class="text-muted">কোন নোট পাওয়া যায়নি।</p></div>';
+            }
         }
 
         displayNotes(subjectNotes);

@@ -63,16 +63,19 @@
             color: #ffd700;
         }
 
-        /* Fade-in animation for sections */
+        /* Simplified Visibility Fix */
         .fade-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
         }
 
-        .fade-section.active {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-section,
+        .video-section,
+        .trending-section,
+        .categories-section {
+            opacity: 1 !important;
+            visibility: visible !important;
         }
 
         /* Existing styles */
@@ -548,8 +551,8 @@
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand en-font" href="#">
-                    <img src="./Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Bootstrap"
+                <a class="navbar-brand en-font" href="index.html">
+                    <img src="Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Bootstrap"
                         width="50" height="44">
                     <span class="fw-bold">SHAIFLY</span>
                 </a>
@@ -593,7 +596,7 @@
     </a>
 -->
     <!-- Hero Section -->
-    <section class="hero-section fade-section bg-white" style="font-family: 'Mina', sans-serif;">
+    <section class="hero-section bg-white" style="font-family: 'Mina', sans-serif;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -608,7 +611,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
-                    <img src="./Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" alt="Study illustration"
+                    <img src="Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" alt="Study illustration"
                         class="img-fluid rounded-4 shadow-sm">
                 </div>
             </div>
@@ -616,7 +619,7 @@
     </section>
 
     <!-- Video Section -->
-    <section class="video-section py-5 fade-section bg-white">
+    <section class="video-section py-5 bg-white">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -630,7 +633,7 @@
     </section>
 
     <!-- Search Section -->
-    <section class="search-section py-5 bg-light fade-section" style="font-family: 'Mina', sans-serif;">
+    <section class="search-section py-5 bg-light" style="font-family: 'Mina', sans-serif;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -648,10 +651,10 @@
 
 
     <!-- Trending Books: 2×2 Grid -->
-    <section class="trending-section py-5 bg-light fade-section" style="font-family: 'Mina', sans-serif;">
+    <section class="trending-section py-5 bg-light" style="font-family: 'Mina', sans-serif;">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 id="resultsTitle">নবম-দ্বাদশ শ্রেণির শীর্ষ নোট</h2>
+                <h2 id="resultsTitle">এই সপ্তাহের সেরা হ্যান্ডনোটসমূহ</h2>
                 <a href="./Nav/Categories.html" class="btn btn-outline-success">সবগুলো দেখুন</a>
             </div>
 
@@ -664,7 +667,7 @@
 
     <!-- Featured Categories -->
     <!-- Featured Categories - Horizontal Scroll -->
-    <section class="categories-section py-5 fade-section" style="font-family: 'Mina', sans-serif;">
+    <section class="categories-section py-5" style="font-family: 'Mina', sans-serif;">
         <div class="container">
             <h2 class="text-center mb-5 fw-bold">শ্রেণি ভিত্তিক নোট সমুহ</h2>
 
@@ -674,7 +677,7 @@
                     style="scroll-snap-type: x mandatory;">
 
                     <!-- Science Card -->
-                    <div class="flex-shrink-0 fade-section delay-1" style="scroll-snap-align: start; width: 180px;">
+                    <div class="flex-shrink-0" style="scroll-snap-align: start; width: 180px;">
                         <div class="category-card text-center p-4 rounded-3 shadow-sm h-100 bg-white">
                             <div class="icon-wrapper mb-3">
                                 <i class="fas fa-microscope fa-3x text-success"></i>
@@ -686,7 +689,7 @@
                     </div>
 
                     <!-- Math Card -->
-                    <div class="flex-shrink-0 fade-section delay-2" style="scroll-snap-align: start; width: 180px;">
+                    <div class="flex-shrink-0" style="scroll-snap-align: start; width: 180px;">
                         <div class="category-card text-center p-4 rounded-3 shadow-sm h-100 bg-white">
                             <div class="icon-wrapper mb-3">
                                 <i class="fas fa-calculator fa-3x text-success"></i>
@@ -698,7 +701,7 @@
                     </div>
 
                     <!-- Physics Card -->
-                    <div class="flex-shrink-0 fade-section delay-3" style="scroll-snap-align: start; width: 180px;">
+                    <div class="flex-shrink-0" style="scroll-snap-align: start; width: 180px;">
                         <div class="category-card text-center p-4 rounded-3 shadow-sm h-100 bg-white">
                             <div class="icon-wrapper mb-3">
                                 <i class="fas fa-atom fa-3x text-success"></i>
@@ -710,7 +713,7 @@
                     </div>
 
                     <!-- Chemistry Card -->
-                    <div class="flex-shrink-0 fade-section delay-4" style="scroll-snap-align: start; width: 180px;">
+                    <div class="flex-shrink-0" style="scroll-snap-align: start; width: 180px;">
                         <div class="category-card text-center p-4 rounded-3 shadow-sm h-100 bg-white">
                             <div class="icon-wrapper mb-3">
                                 <i class="fas fa-flask fa-3x text-success"></i>
@@ -722,7 +725,7 @@
                     </div>
 
                     <!-- Higher Math Card -->
-                    <div class="flex-shrink-0 fade-section delay-5" style="scroll-snap-align: start; width: 180px;">
+                    <div class="flex-shrink-0" style="scroll-snap-align: start; width: 180px;">
                         <div class="category-card text-center p-4 rounded-3 shadow-sm h-100 bg-white">
                             <div class="icon-wrapper mb-3">
                                 <i class="fas fa-infinity fa-3x text-danger"></i>
@@ -735,7 +738,7 @@
                     </div>
 
                     <!-- Biology Card -->
-                    <div class="flex-shrink-0 fade-section delay-1" style="scroll-snap-align: start; width: 180px;">
+                    <div class="flex-shrink-0" style="scroll-snap-align: start; width: 180px;">
                         <div class="category-card text-center p-4 rounded-3 shadow-sm h-100 bg-white">
                             <div class="icon-wrapper mb-3">
                                 <i class="fas fa-dna fa-3x text-primary"></i>
@@ -751,10 +754,10 @@
         </div>
     </section>
 
-    <section class="read-book-simple py-5 text-center fade-section" style="font-family: 'Mina', sans-serif;">
+    <section class="read-book-simple py-5 text-center" style="font-family: 'Mina', sans-serif;">
         <div class="container">
             <h2 class="mb-4 fw-bold">আমাদের বিশেষ নোটসমূহ দেখুন</h2>
-            <a href="/Page/book.html" class="btn btn-lg btn-success px-5 py-3 rounded-pill shadow-sm">
+            <a href="./Page/Page2.html" class="btn btn-lg btn-success px-5 py-3 rounded-pill shadow-sm">
                 <i class="fas fa-book-open me-2"></i> আরও পড়ুন
             </a>
         </div>
@@ -783,10 +786,9 @@
 
                     <!-- Rectangle Mini Pagination -->
                     <div class="mini-pagination-dark mt-4">
-                        <span class="page-rect-dark">1</span>
-                        <span class="page-rect-dark">2</span>
-                        <span class="page-rect-dark active">3</span>
-
+                        <a href="index.html" class="page-rect-dark active">1</a>
+                        <a href="./Page/Page2.html" class="page-rect-dark">2</a>
+                        <a href="#" class="page-rect-dark">3</a>
                     </div>
 
                 </div>
@@ -839,10 +841,10 @@
                 <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
                     <h5 class="mb-4">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white-50">Home</a></li>
-                        <li class="mb-2"><a href="/Nav/Categories.html" class="text-white-50">Categories</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50">About</a></li>
-                        <li class="mb-2"><a href="#" class="text-white-50">Contact</a></li>
+                        <li class="mb-2"><a href="index.html" class="text-white-50">Home</a></li>
+                        <li class="mb-2"><a href="./Nav/Categories.html" class="text-white-50">Categories</a></li>
+                        <li class="mb-2"><a href="./Nav/About.html" class="text-white-50">About</a></li>
+                        <li class="mb-2"><a href="./Nav/Subscribe.html" class="text-white-50">Subscribe</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
@@ -944,7 +946,7 @@
                 genre: "Physics",
                 description: "নিউটনিয়ান বলবিদ্যার পূর্ণাঙ্গ আলোচনা ও সমস্যা সমাধান।",
                 coverImage: "Physics/Image/download (29).jpg",
-                pdfUrl: "#",
+                pdfUrl: "Physics/PDF/Classical_Mechanics_Fundamentals.pdf",
                 fileSize: "4.9 MB",
                 price: "৳০",
                 trending: true
@@ -956,7 +958,7 @@
                 genre: "Chemistry",
                 description: "তড়িৎ রসায়নের জটিল বিষয়গুলোর সহজ ব্যাখ্যা।",
                 coverImage: "Physics/Image/download (30).jpg",
-                pdfUrl: "#",
+                pdfUrl: "Physics/PDF/Electrochemistry_Research_Handbook.pdf",
                 fileSize: "4.2 MB",
                 price: "৳০",
                 trending: true
@@ -971,19 +973,22 @@
 
         // Initial load - show trending books
         document.addEventListener('DOMContentLoaded', function () {
-            displayBooks(books.filter(book => book.trending));
-
-            // Event listeners
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    performSearch();
+            try {
+                console.log("Initializing application...");
+                if (typeof displayBooks === 'function') {
+                    displayBooks(books.filter(book => book.trending));
                 }
-            });
 
-            // Initialize fade animations
-            // We use a slight delay to ensure everything is rendered
-            setTimeout(initFadeAnimations, 100);
+                // Initialize events
+                if (searchButton) searchButton.addEventListener('click', performSearch);
+                if (searchInput) {
+                    searchInput.addEventListener('keypress', function (e) {
+                        if (e.key === 'Enter') performSearch();
+                    });
+                }
+            } catch (e) {
+                console.error("Initialization error:", e);
+            }
         });
 
         // Perform search function
@@ -1016,9 +1021,14 @@
 
         // Display books function with PDF download buttons
         function displayBooks(booksToDisplay) {
+            if (!booksContainer) {
+                console.error("Books container not found");
+                return;
+            }
+
             booksContainer.innerHTML = '';
 
-            if (booksToDisplay.length === 0) {
+            if (!booksToDisplay || booksToDisplay.length === 0) {
                 booksContainer.innerHTML = `
                     <div class="col-12 text-center py-5">
                         <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
@@ -1030,48 +1040,50 @@
             }
 
             booksToDisplay.forEach(book => {
-                const bookCard = document.createElement('div');
-                bookCard.className = 'col';
+                try {
+                    const bookCard = document.createElement('div');
+                    bookCard.className = 'col';
 
-                // Initialize count with "..." (will be updated by Firebase)
-                let count = "...";
+                    // Initialize count
+                    let count = "0";
 
-                bookCard.innerHTML = `
-                    <div class="card h-100 shadow-sm book-card border-0 rounded-3 overflow-hidden">
-                        <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height: 220px; object-fit: cover;" loading="lazy">
-                        <div class="card-body d-flex flex-column p-3">
-                            <h5 class="card-title fs-6 fw-semibold mb-2">${book.title}</h5>
-                            <p class="text-muted small mb-3">${book.author}</p>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="badge bg-success">${book.genre}</span>
-                                <span class="badge bg-secondary">${book.fileSize}</span>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${book.id}">${count}</span> বার ডাউনলোড</small>
-                            </div>
+                    bookCard.innerHTML = `
+                        <div class="card h-100 shadow-sm book-card border-0 rounded-3 overflow-hidden">
+                            <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" 
+                                 style="height: 220px; object-fit: cover;" 
+                                 onerror="this.src='https://via.placeholder.com/300x220?text=No+Image'">
+                            <div class="card-body d-flex flex-column p-3">
+                                <h5 class="card-title fs-6 fw-semibold mb-2">${book.title}</h5>
+                                <p class="text-muted small mb-3">${book.author}</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-success">${book.genre}</span>
+                                    <span class="badge bg-secondary">${book.fileSize}</span>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${book.id}">0</span> বার ডাউনলোড</small>
+                                </div>
 
-                            <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
-                                <span class="price-tag fs-6">${book.price}</span>
-                                <a href="${book.pdfUrl}" 
-                                   class="btn btn-danger btn-sm flex-grow-1" 
-                                   download 
-                                   onclick="incrementDownload('${book.id}')">
-                                    <i class="fas fa-file-pdf me-1"></i> ডাউনলোড
-                                </a>
+                                <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
+                                    <span class="price-tag fs-6">${book.price}</span>
+                                    <a href="${book.pdfUrl}" 
+                                       class="btn btn-danger btn-sm flex-grow-1" 
+                                       download
+                                       onclick="if(typeof incrementDownload === 'function') incrementDownload('${book.id}')">
+                                        <i class="fas fa-file-pdf me-1"></i> ডাউনলোড
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                booksContainer.appendChild(bookCard);
+                    `;
+                    booksContainer.appendChild(bookCard);
 
-                // Initialize real-time counter from Firebase
-                if (window.initDownloadCount) {
-                    try {
+                    // Initialize real-time counter
+                    if (window.initDownloadCount) {
                         window.initDownloadCount(book.id);
-                    } catch (e) {
-                        console.error("Counter init failed for", book.id, e);
                     }
+                } catch (err) {
+                    console.error("Error rendering book:", book, err);
                 }
             });
         }

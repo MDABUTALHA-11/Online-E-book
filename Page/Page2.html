@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaifly - Page 2</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="বাংলা পিডিএফ বই ডাউনলোড করুন সম্পূর্ণ বিনামূল্যে। ইসলামিক বই, বিজ্ঞান, সাহিত্য, উপন্যাস, কবিতা, আত্ম-উন্নয়ন ও শিক্ষামূলক বই সহজেই পড়ুন এবং ডাউনলোড করুন।">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Bungee & Mina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --en-font: 'Bungee', cursive;
+            --bn-font: 'Mina', sans-serif;
+        }
+
+        body {
+            font-family: var(--bn-font);
+        }
+
+        .en-font {
+            font-family: var(--en-font) !important;
+            letter-spacing: 1px;
+        }
+
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #ffd700;
+        }
+
+        /* Fade-in animation for sections */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .category-card {
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .book-card {
+            transition: all 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        /* Custom CSS for Smooth Scroll & Hide Scrollbar */
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .overflow-x-auto-custom {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 991px) {
+            .horizontal-scroll-wrapper {
+                justify-content: flex-start !important;
+                padding-bottom: 15px;
+            }
+        }
+
+        .category-card {
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 576px) {
+            .flex-shrink-0 {
+                width: 150px !important;
+            }
+
+            .category-card h5 {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Pagination Styles */
+        .pre-footer-dark {
+            background: black;
+            font-family: var(--bn-font);
+            border-top: 1px solid #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        .rect-badge-dark {
+            width: 50px;
+            height: 50px;
+            background: #333;
+            color: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .mini-pagination-dark {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .page-rect-dark {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            background: #1f1f1f;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #333;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .page-rect-dark.active {
+            background: #198754;
+            color: white;
+            border-color: #198754;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.4);
+        }
+
+        .page-rect-dark:hover:not(.active) {
+            background: #2a2a2a;
+            color: white;
+            border-color: #555;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body style="font-family: 'Mina', sans-serif;">
+
+    <!-- Header -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand en-font" href="../index.html">
+                    <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Logo"
+                        width="50" height="44">
+                    <span class="fw-bold">SHAIFLY</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto en-font">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Nav/About.html">ABOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Nav/Categories.html">CATEGORIES</a>
+                        </li>
+                        <li class="nav-item ms-lg-3 d-flex align-items-center">
+                            <a class="btn btn-success text-white px-4 shadow-sm fw-bold"
+                                href="../Blog/Blog.html">TIPS</a>
+                        </li>
+                        <li class="nav-item ms-2 d-flex align-items-center">
+                            <a class="btn btn-dark shadow-sm fw-bold" href="../Nav/Subscribe.html">SUBSCRIBE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Subject Hero -->
+    <section class="hero-section text-center fade-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">আরও নতুন <span class="text-success">শিক্ষা উপকরণ</span></h1>
+            <p class="lead">লাইব্রেরির দ্বিতীয় পাতায় আপনাকে স্বাগতম। এখানে আরও এক্সক্লুসিভ নোট খুঁজে পাবেন।</p>
+        </div>
+    </section>
+
+    <!-- Trending Books: Page 2 Content -->
+    <section class="trending-section py-5 bg-light fade-section">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="resultsTitle">এক্সক্লুসিভ নোটসমূহ (পৃষ্ঠা ২)</h2>
+            </div>
+
+            <!-- Books Container -->
+            <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-4" id="booksContainer">
+                <!-- Books will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Footer Pagination -->
+    <section class="pre-footer-dark py-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="d-inline-flex align-items-center gap-3 mb-4">
+                        <div class="rect-badge-dark">?</div>
+                        <h3 class="mb-0 fw-bold text-white">আরও পৃষ্ঠা আছে?</h3>
+                    </div>
+                    <p class="lead text-light mb-4">
+                        আমাদের লাইব্রেরিতে সকল বিষয়ের মানসম্মত নোট রয়েছে।
+                    </p>
+
+                    <div class="mini-pagination-dark mt-4">
+                        <a href="../index.html" class="page-rect-dark">1</a>
+                        <a href="#" class="page-rect-dark active">2</a>
+                        <a href="#" class="page-rect-dark">3</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white py-5 fade-section" style="font-family: 'Mina', sans-serif;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4"><i class="fas fa-book-open me-2"></i> সাহিফলি</h5>
+                    <p>নবম-দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য সেরা একাডেমিক নোট এবং গাইড লাইব্রেরি।</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="../index.html" class="text-white-50">Home</a></li>
+                        <li class="mb-2"><a href="../Nav/Categories.html" class="text-white-50">Categories</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4 mb-md-0">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <p class="text-white-50 mb-2"><i class="fas fa-envelope me-2"></i> info@shaifly.com</p>
+                    <p class="text-white-50"><i class="fab fa-whatsapp me-2"></i> +8801742761220</p>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 border-secondary">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <p class="small text-white-50 mb-0">© 2026 সাহিফলি. All rights reserved.</p>
+                <div class="d-flex gap-3">
+                    <a href="../Nav/Privacy.html" class="text-white-50 small text-decoration-none">Privacy Policy</a>
+                    <a href="../Nav/Term-Condition.html" class="text-white-50 small text-decoration-none">Terms &
+                        Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/download-counter.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const books = [
+            {
+                id: 101,
+                title: "জীববিজ্ঞান: প্রাণীর টিস্যুতন্ত্র",
+                author: "সাহিফলি স্পেশাল",
+                genre: "Biology",
+                fileSize: "4.8 MB",
+                coverImage: "../Book-Image/download (20).jpg",
+                pdfUrl: "#",
+                price: "৳০",
+                trending: true
+            },
+            {
+                id: 102,
+                title: "ইংরেজিগ্রামার: Tense Mastery",
+                author: "সাহিফলি ইংলিশ",
+                genre: "English",
+                fileSize: "3.5 MB",
+                coverImage: "../Book-Image/download (17).jpg",
+                pdfUrl: "#",
+                price: "৳০",
+                trending: true
+            },
+            {
+                id: 103,
+                title: "রসায়ন: কোষ রসায়ন",
+                author: "সাহিফলি কেমিস্ট্রি",
+                genre: "Chemistry",
+                fileSize: "5.1 MB",
+                coverImage: "../Book-Image/download (18).jpg",
+                pdfUrl: "#",
+                price: "৳০",
+                trending: true
+            }
+        ];
+
+        function displayBooks(booksToDisplay) {
+            const container = document.getElementById('booksContainer');
+            container.innerHTML = '';
+            booksToDisplay.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'col';
+
+                // Initialize count with "..." (will be updated by Firebase)
+                let count = "...";
+
+                bookCard.innerHTML = `
+                    <div class="card h-100 shadow-sm book-card border-0 rounded-3 overflow-hidden">
+                        <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height: 220px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column p-3">
+                            <h5 class="card-title fs-6 fw-semibold mb-2">${book.title}</h5>
+                            <p class="text-muted small mb-3">${book.author}</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-success">${book.genre}</span>
+                                <span class="badge bg-secondary">${book.fileSize}</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${book.id}">${count}</span> বার ডাউনলোড</small>
+                            </div>
+
+                            <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
+                                <span class="price-tag fs-6">${book.price}</span>
+                                <a href="${book.pdfUrl}" 
+                                   class="btn btn-danger btn-sm flex-grow-1" 
+                                   download 
+                                   onclick="incrementDownload('${book.id}')">
+                                    <i class="fas fa-file-pdf me-1"></i> ডাউনলোড
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(bookCard);
+
+                // Initialize real-time counter from Firebase
+                if (window.initDownloadCount) {
+                    try {
+                        window.initDownloadCount(book.id);
+                    } catch (e) {
+                        console.error("Counter init failed for", book.id, e);
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayBooks(books);
+            const fadeSections = document.querySelectorAll('.fade-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            fadeSections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+
+</html>
