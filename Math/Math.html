@@ -117,7 +117,7 @@
     <section class="hero-section text-center">
         <div class="container">
             <h1 class="display-4 fw-bold mb-3"><i class="fas fa-calculator me-3"></i>গণিত নোটসমূহ</h1>
-            <p class="lead">নবম-দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য সাধারণ গণিতের সকল অধ্যায়ের পূর্ণাঙ্গ হ্যান্ডনোট।</p>
+            <p class="lead">নবম-দশম শ্রেণির শিক্ষার্থীদের জন্য সাধারণ গণিতের সকল অধ্যা্যের পূর্ণাঙ্গ হ্যান্ডনোট।</p>
         </div>
     </section>
 
@@ -129,9 +129,7 @@
                     placeholder="আপনার প্রয়োজনীয় নোটটি খুঁজুন...">
 
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="#ssc-section" class="btn btn-danger px-4 py-2 rounded-3 fw-bold">SSC SECTION</a>
-                    <a href="#hsc1-section" class="btn btn-success px-4 py-2 rounded-3 fw-bold">HSC 1ST PART</a>
-                    <a href="#hsc2-section" class="btn btn-success px-4 py-2 rounded-3 fw-bold">HSC 2ND PART</a>
+                    <!-- <a href="#ssc-section" class="btn btn-danger px-4 py-2 rounded-3 fw-bold"></a> -->
                 </div>
             </div>
         </div>
@@ -144,29 +142,13 @@
             </div>
         </div>
 
-        <!-- HSC Section -->
-        <div class="mb-5" id="hsc1-section">
-            <h2 class="fw-bold mb-4 border-start border-4 border-success ps-3">HSC - একাদশ-দ্বাদশ শ্রেণির নোট (১ম পত্র)
-            </h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="hsc1NotesContainer">
-                <!-- HSC 1st Part Notes will be loaded here -->
-            </div>
-        </div>
-
-        <div class="mb-5" id="hsc2-section">
-            <h2 class="fw-bold mb-4 border-start border-4 border-info ps-3">HSC - একাদশ-দ্বাদশ শ্রেণির নোট (২য় পত্র)
-            </h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="hsc2NotesContainer">
-                <!-- HSC 2nd Part Notes will be loaded here -->
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-5 mt-5">
         <div class="container text-center">
             <h3 class="en-font mb-4">SHAIFLY</h3>
-            <p class="mb-4">নবম-দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য সেরা একাডেমিক নোট এবং গাইড লাইব্রেরি।</p>
+            <p class="mb-4">নবম-দশম শ্রেণির শিক্ষার্থীদের জন্য সেরা একাডেমিক নোট এবং গাইড লাইব্রেরি।</p>
             <div class="d-flex justify-content-center gap-3 mb-4">
                 <a href="#" class="text-white"><i class="fab fa-facebook fa-2x"></i></a>
                 <a href="#" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
@@ -191,32 +173,27 @@
     <script>
         const subjectNotes = [
             // SSC Notes from Table of Contents
-            { id: 'm_ssc1', level: 'SSC', title: "১ম অধ্যায়: বাস্তব সংখ্যা", author: "সাহিফলি টিম", fileSize: "2.5 MB", cover: "../Book-Image/download (1).jpg" },
-            { id: 'm_ssc2', level: 'SSC', title: "২য় অধ্যায়: সেট ও ফাংশন", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (2).jpg" },
-            { id: 'm_ssc3', level: 'SSC', title: "৩য় অধ্যায়: বীজগাণিতিক রাশি", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (3).jpg" },
-            { id: 'm_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: সূচক ও লগারিদম", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (4).jpg" },
-            { id: 'm_ssc5', level: 'SSC', title: "৫ম অধ্যায়: এক চলকবিশিষ্ট সমীকরণ", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (5).jpg" },
-            { id: 'm_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: রেখা, কোণ ও ত্রিভুজ", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (6).jpg" },
-            { id: 'm_ssc7', level: 'SSC', title: "৭ম অধ্যায়: ব্যবহারিক জ্যামিতি", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (7).jpg" },
-            { id: 'm_ssc8', level: 'SSC', title: "৮ম অধ্যায়: বৃত্ত", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (8).jpg" },
-            { id: 'm_ssc9', level: 'SSC', title: "৯ম অধ্যায়: ত্রিকোণমিতিক অনুপাত", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (9).jpg" },
-            { id: 'm_ssc10', level: 'SSC', title: "১০ম অধ্যায়: দূরত্ব ও উচ্চতা", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (10).jpg" },
-            { id: 'm_ssc11', level: 'SSC', title: "১১শ অধ্যায়: বীজগাণিতিক অনুপাত ও সমানুপাত", author: "সাহিফলি টিম", fileSize: "3.3 MB", cover: "../Book-Image/download (11).jpg" },
-            { id: 'm_ssc12', level: 'SSC', title: "১২শ অধ্যায়: দুই চলকবিশিষ্ট সরল সহসমীকরণ", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (12).jpg" },
-            { id: 'm_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: সসীম ধারা", author: "সাহিফলি টিম", fileSize: "3.0 MB", cover: "../Book-Image/download (13).jpg" },
-            { id: 'm_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: অনুপাত, সদৃশতা ও প্রতিসমতা", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (14).jpg" },
-            { id: 'm_ssc15', level: 'SSC', title: "১৫শ অধ্যায়: ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Book-Image/download (15).jpg" },
-            { id: 'm_ssc16', level: 'SSC', title: "১৬শ অধ্যায়: পরিমিতি", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (16).jpg" },
-            { id: 'm_ssc17', level: 'SSC', title: "১৭শ অধ্যায়: পরিসংখ্যান", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (17).jpg" },
-
-            // HSC Notes
-            { id: 'm1', level: 'HSC', part: 1, title: "গণিত: বীজগণিতীয় রাশি", author: "সাহিফলি নোট", fileSize: "3.2 MB", cover: "../Book-Image/download (21).jpg" },
-            { id: 'm2', level: 'HSC', part: 1, title: "জ্যামিতি: বৃত্ত ও চতুর্ভুজ", author: "সাহিফলি এক্সপার্ট", fileSize: "4.5 MB", cover: "../Book-Image/download (19).jpg" },
-            { id: 'm3', level: 'HSC', part: 2, title: "ত্রিকোণমিতি ও পরিমিতি নোট", author: "একাডেমিক টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (22).jpg" },
-            { id: 'm4', level: 'HSC', part: 2, title: "গণিত: সেট ও ফাংশন", author: "সাহিফলি নোট", fileSize: "5.1 MB", cover: "../Book-Image/download (20).jpg" },
+            { id: 'm_ssc1', level: 'SSC', title: "১ম অধ্যায়: বাস্তব সংখ্যা", author: "সাহিফলি টিম", fileSize: "2.5 MB", cover: "../Math/Image/ideogram-v3.0_Glowing_real_numbers_floating_in_dark_space_number_line_stretching_infinitely_in-0.jpg", downloadUrl: "#" },
+            { id: 'm_ssc2', level: 'SSC', title: "২য় অধ্যায়: সেট ও ফাংশন", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Math/Image/image.png", downloadUrl: "#" },
+            { id: 'm_ssc3', level: 'SSC', title: "৩য় অধ্যায়: বীজগাণিতিক রাশি", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Math/Image/image copy.png", downloadUrl: "#" },
+            { id: 'm_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: সূচক ও লগারিদম", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Math/Image/image copy 2.png", downloadUrl: "#" },
+            { id: 'm_ssc5', level: 'SSC', title: "৫ম অধ্যায়: এক চলকবিশিষ্ট সমীকরণ", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Math/Image/image copy 3.png", downloadUrl: "#" },
+            { id: 'm_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: রেখা, কোণ ও ত্রিভুজ", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Math/Image/image copy 4.png", downloadUrl: "#" },
+            { id: 'm_ssc7', level: 'SSC', title: "৭ম অধ্যায়: ব্যবহারিক জ্যামিতি", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Math/Image/image copy 5.png", downloadUrl: "#" },
+            { id: 'm_ssc8', level: 'SSC', title: "৮ম অধ্যায়: বৃত্ত", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Math/Image/image copy 6.png", downloadUrl: "#" },
+            { id: 'm_ssc9', level: 'SSC', title: "৯ম অধ্যায়: ত্রিকোণমিতিক অনুপাত", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Math/Image/image copy 7.png", downloadUrl: "#" },
+            { id: 'm_ssc10', level: 'SSC', title: "১০ম অধ্যায়: দূরত্ব ও উচ্চতা", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Math/Image/image copy 8.png", downloadUrl: "#" },
+            { id: 'm_ssc11', level: 'SSC', title: "১১শ অধ্যায়: বীজগাণিতিক অনুপাত ও সমানুপাত", author: "সাহিফলি টিম", fileSize: "3.3 MB", cover: "../Math/Image/image copy 9.png", downloadUrl: "#" },
+            { id: 'm_ssc12', level: 'SSC', title: "১২শ অধ্যায়: দুই চলকবিশিষ্ট সরল সহসমীকরণ", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Math/Image/image copy 10.png", downloadUrl: "#" },
+            { id: 'm_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: সসীম ধারা", author: "সাহিফলি টিম", fileSize: "3.0 MB", cover: "../Math/Image/image copy 11.png", downloadUrl: "#" },
+            { id: 'm_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: অনুপাত, সদৃশতা ও প্রতিসমতা", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Math/Image/lucid-origin_Two_similar_triangles_side_by_side_mirror_symmetry_reflection_effect_proportiona-0.jpg", downloadUrl: "#" },
+            { id: 'm_ssc15', level: 'SSC', title: "১৫শ অধ্যায়: ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Math/Image/image copy 12.png", downloadUrl: "#" },
+            { id: 'm_ssc16', level: 'SSC', title: "১৬শ অধ্যায়: পরিমিতি", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Math/Image/image copy 13.png", downloadUrl: "#" },
+            { id: 'm_ssc17', level: 'SSC', title: "১৭শ অধ্যায়: পরিসংখ্যান", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Math/Image/image copy 14.png", downloadUrl: "#" },
         ];
 
         function createNoteCard(note) {
+            const downloadUrl = note.downloadUrl !== '#' ? note.downloadUrl : `https://wa.me/8801742761220?text=I%20want%20to%20buy%20this%20note:%20${encodeURIComponent(note.title)}`;
             return `
                 <div class="col">
                     <div class="card h-100 card-custom shadow-sm border-0">
@@ -227,7 +204,7 @@
                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${note.id}">...</span></small>
-                                <a href="#" class="btn btn-success btn-success-custom en-font" onclick="incrementDownload('${note.id}')">DOWNLOAD</a>
+                                <a href="${downloadUrl}" class="btn btn-success btn-success-custom en-font" onclick="incrementDownload('${note.id}')" ${note.downloadUrl !== '#' ? 'download' : 'target="_blank"'}>DOWNLOAD</a>
                             </div>
                         </div>
                     </div>
@@ -237,33 +214,16 @@
 
         function displayNotes(notes) {
             const sscContainer = document.getElementById('sscNotesContainer');
-            const hsc1Container = document.getElementById('hsc1NotesContainer');
-            const hsc2Container = document.getElementById('hsc2NotesContainer');
-
             sscContainer.innerHTML = '';
-            hsc1Container.innerHTML = '';
-            hsc2Container.innerHTML = '';
 
             const sscNotes = notes.filter(n => n.level === 'SSC');
-            const hsc1Notes = notes.filter(n => n.level === 'HSC' && n.part === 1);
-            const hsc2Notes = notes.filter(n => n.level === 'HSC' && n.part === 2);
 
             sscNotes.forEach(note => {
                 sscContainer.insertAdjacentHTML('beforeend', createNoteCard(note));
                 initDownloadCount(note.id);
             });
 
-            hsc1Notes.forEach(note => {
-                hsc1Container.insertAdjacentHTML('beforeend', createNoteCard(note));
-                initDownloadCount(note.id);
-            });
-
-            hsc2Notes.forEach(note => {
-                hsc2Container.insertAdjacentHTML('beforeend', createNoteCard(note));
-                initDownloadCount(note.id);
-            });
-
-            if (sscNotes.length === 0 && hsc1Notes.length === 0 && hsc2Notes.length === 0) {
+            if (sscNotes.length === 0) {
                 sscContainer.innerHTML = '<div class="col-12"><p class="text-muted">কোন নোট পাওয়া যায়নি।</p></div>';
             }
         }

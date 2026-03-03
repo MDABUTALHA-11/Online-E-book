@@ -139,7 +139,117 @@
             color: #fff;
         }
 
-        /* Utility */
+        /* Features Section */
+        .feature-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(25, 137, 84, 0.1);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover .feature-icon-wrapper {
+            background: var(--accent-color);
+            color: white;
+            transform: rotate(10deg);
+        }
+
+        .founders-section {
+            background: #f8f9fa;
+            border-radius: 30px;
+            padding: 60px;
+            margin: 40px 0;
+            border: 1px solid #eee;
+        }
+
+        .founder-img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .founder-img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Animated Learning Features */
+        .ani-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #eee;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ani-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(25, 135, 84, 0.05) 0%, rgba(25, 137, 84, 0) 100%);
+            z-index: -1;
+        }
+
+        .ani-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-color);
+        }
+
+        .floating-ani {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .pulse-ani {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
         .text-justify {
             text-align: justify;
         }
@@ -219,34 +329,87 @@
         </div>
     </section>
 
-    <!-- Values Grid -->
+    <!-- Standout Features -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="en-font text-success">WHY CHOOSE US</h6>
+                <h2 class="fw-bold">STANDOUT FEATURES</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="fade-up">
+                    <div class="feature-card p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                        <div class="feature-icon-wrapper">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h5 class="fw-bold">FAST ACCESS</h5>
+                        <p class="text-muted small">আমাদের প্ল্যাটফর্মে নোট ডাউনলোড করা একদম সহজ এবং দ্রুত। কোনো ঝামেলা
+                            ছাড়াই সরাসরি এক্সেস।</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                        <div class="feature-icon-wrapper">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h5 class="fw-bold">LIVE SUPPORT</h5>
+                        <p class="text-muted small">যেকোনো প্রয়োজনে সরাসরি আমাদের হোয়াটসঅ্যাপে নক দিয়ে সহায়তা নিতে
+                            পারেন। আমরা ২৪/৭ সক্রিয়।</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                        <div class="feature-icon-wrapper">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h5 class="fw-bold">EXPERT VERIFIED</h5>
+                        <p class="text-muted small">প্রতিটি নোট অভিজ্ঞ শিক্ষক ও বিষয়ের বিশেষজ্ঞ দ্বারা যাচাইকৃত, যা
+                            নির্ভুল পড়াশোনা নিশ্চিত করে।</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                        <div class="feature-icon-wrapper">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h5 class="fw-bold">MOBILE FRIENDLY</h5>
+                        <p class="text-muted small">আপনার স্মার্টফোনেই যেকোনো সময় নোট পড়তে বা রিভিশন দিতে ফাইলগুলো
+                            অপ্টিমাইজ করা হয়েছে।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Grid (Optimized) -->
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5" data-aos="zoom-in">
-                <h2>OUR VALUES</h2>
+                <h2>OUR CORE VALUES</h2>
             </div>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="flip-left">
-                    <div class="card-custom text-center h-100">
+                    <div class="card-custom text-center h-100 text-white rounded-4">
                         <i class="fas fa-lock-open icon-box"></i>
-                        <h4>FREE ACCESS</h4>
+                        <h4 class="fw-bold">FREE ACCESS</h4>
                         <p style="font-family: 'Mina', sans-serif;">বিনামূল্যে জ্ঞান চর্চার সুযোগ। কোনো সাবস্ক্রিপশন
                             নেই।</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
-                    <div class="card-custom text-center h-100">
+                    <div class="card-custom text-center h-100 text-white rounded-4">
                         <i class="fas fa-book icon-box"></i>
-                        <h4>HUGE NOTE LIBRARY</h4>
+                        <h4 class="fw-bold">HUGE NOTE LIBRARY</h4>
                         <p style="font-family: 'Mina', sans-serif;">বিজ্ঞান, গণিত ও অন্যান্য বিষয়ের বিস্তারিত নোটের এক
                             বিশাল সংগ্রহশালা।</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="flip-right" data-aos-delay="200">
-                    <div class="card-custom text-center h-100">
+                    <div class="card-custom text-center h-100 text-white rounded-4">
                         <i class="fas fa-users icon-box"></i>
-                        <h4>COMMUNITY</h4>
-                        <p style="font-family: 'Mina', sans-serif;">পাঠকদের নিয়ে গড়ে তোলা এক সমৃদ্ধ কমিউনিটি।</p>
+                        <h4 class="fw-bold">COMMUNITY</h4>
+                        <p style="font-family: 'Mina', sans-serif;">পাঠকদের নিয়ে গড়ে তোলা এক সমৃদ্ধ ও সহযোগী কমিউনিটি।
+                        </p>
                     </div>
                 </div>
             </div>
@@ -277,22 +440,70 @@
         </div>
     </section>
 
-    <!-- Team -->
-    <section class="py-5">
+    <!-- Creators Section (Modernized) -->
+    <!-- Animated Learning Section (Replaced Creators) -->
+    <section class="py-5 overflow-hidden">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2>THE CREATORS</h2>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="en-font text-success">NEXT-GEN EDUCATION</h6>
+                <h2 class="fw-bold">ANIMATED LEARNING FEATURES</h2>
+                <p class="text-muted" style="font-family: 'Mina', sans-serif;">আমরা পড়াশোনাকে আরও প্রাণবন্ত করতে যুক্ত
+                    করেছি অত্যাধুনিক অ্যানিমেশন টেকনোলজি।</p>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-4 text-center team-card mb-4" data-aos="zoom-in">
-                    <img src="../Book-Image/download (31).jpg" alt="Team Member" class="team-img">
-                    <h4 style="font-family: 'Mina', sans-serif !important;">মোহাম্মদ আবু তালহা</h4>
-                    <p class="en-font text-muted">FOUNDER & CEO</p>
+
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="ani-card mb-4 shadow-sm border-start border-4 border-success">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="feature-icon-wrapper floating-ani mb-0 shadow-sm" style="background: #e8f5e9;">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-1">INTERACTIVE DIAGRAMS</h4>
+                                <p class="text-muted small mb-0" style="font-family: 'Mina', sans-serif;">জটিল বৈজ্ঞানিক
+                                    চিত্রগুলো এখন আপনি নিজেই এক্সপ্লোর করতে পারবেন অ্যানিমেশনের মাধ্যমে।</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ani-card mb-4 shadow-sm border-start border-4 border-primary">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="feature-icon-wrapper pulse-ani mb-0 shadow-sm"
+                                style="background: #e3f2fd; color: #0d6efd;">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-1">STEP-BY-STEP FLOW</h4>
+                                <p class="text-muted small mb-0" style="font-family: 'Mina', sans-serif;">গণিতের কঠিন
+                                    সমাধান বা ফিজিক্সের সূত্রগুলোর প্রতিটি ধাপ এখন চোখের সামনে জীবন্ত হয়ে উঠবে।</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ani-card shadow-sm border-start border-4 border-warning">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="feature-icon-wrapper floating-ani mb-0 shadow-sm"
+                                style="background: #fff8e1; color: #ffc107;">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-1">VISUAL REMINDERS</h4>
+                                <p class="text-muted small mb-0" style="font-family: 'Mina', sans-serif;">অ্যানিমেটেড
+                                    ভিজ্যুয়াল মেমোরি টেকনিক ব্যবহার করে পড়া মনে রাখা এখন অনেক সহজ।</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 text-center team-card mb-4" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="../Book-Image/download (32).jpg" alt="Team Member" class="team-img">
-                    <h4 style="font-family: 'Mina', sans-serif !important;"> খাতুন</h4>
-                    <p class="en-font text-muted">CTO & ARCHITECT</p>
+
+                <div class="col-lg-6 text-center" data-aos="fade-left">
+                    <div class="position-relative">
+                        <div class="bg-success opacity-10 position-absolute rounded-circle"
+                            style="width: 400px; height: 400px; top: -50px; left: 50%; transform: translateX(-50%); filter: blur(60px);">
+                        </div>
+                        <img src="../Book-Image/ezgif-7589679cb19f1875.gif" alt="Animation Concept"
+                            class="img-fluid rounded-5 shadow-lg floating-ani position-relative z-index-1"
+                            style="max-height: 450px;">
+                    </div>
                 </div>
             </div>
         </div>

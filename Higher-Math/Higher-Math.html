@@ -192,29 +192,49 @@
     <script>
         const subjectNotes = [
             // SSC Notes from Table of Contents
-            { id: 'hm_ssc1', level: 'SSC', title: "১ম অধ্যায়: সেট ও ফাংশন", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (1).jpg" },
-            { id: 'hm_ssc2', level: 'SSC', title: "২য় অধ্যায়: বীজগাণিতিক রাশি", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (2).jpg" },
-            { id: 'hm_ssc3', level: 'SSC', title: "৩য় অধ্যায়: জ্যামিতি", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (3).jpg" },
-            { id: 'hm_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: জ্যামিতিক অঙ্কন", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (4).jpg" },
-            { id: 'hm_ssc5', level: 'SSC', title: "৫ম অধ্যায়: সমীকরণ", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (5).jpg" },
-            { id: 'hm_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: অসমতা", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (6).jpg" },
-            { id: 'hm_ssc7', level: 'SSC', title: "৭ম অধ্যায়: অসীম ধারা", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (7).jpg" },
-            { id: 'hm_ssc8', level: 'SSC', title: "৮ম অধ্যায়: ত্রিকোণমিতি", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (8).jpg" },
-            { id: 'hm_ssc9', level: 'SSC', title: "৯ম অধ্যায়: সূচকীয় ও লগারিদমীয় ফাংশন", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (9).jpg" },
-            { id: 'hm_ssc10', level: 'SSC', title: "১০ম অধ্যায়: দ্বিপদী বিস্তৃতি", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (10).jpg" },
-            { id: 'hm_ssc11', level: 'SSC', title: "১১শ অধ্যায়: স্থানাঙ্ক জ্যামিতি", author: "সাহিফলি টিম", fileSize: "3.3 MB", cover: "../Book-Image/download (11).jpg" },
-            { id: 'hm_ssc12', level: 'SSC', title: "১২শ অধ্যায়: সমতলীয় ভেক্টর", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (12).jpg" },
-            { id: 'hm_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: ঘন জ্যামিতি", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (13).jpg" },
-            { id: 'hm_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: সম্ভাবনা", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (14).jpg" },
+            { id: 'hm_ssc1', level: 'SSC', title: "১ম অধ্যায়: সেট ও ফাংশন", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (1).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc2', level: 'SSC', title: "২য় অধ্যায়: বীজগাণিতিক রাশি", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (2).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc3', level: 'SSC', title: "৩য় অধ্যায়: জ্যামিতি", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (3).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: জ্যামিতিক অঙ্কন", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (4).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc5', level: 'SSC', title: "৫ম অধ্যায়: সমীকরণ", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (5).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: অসমতা", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (6).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc7', level: 'SSC', title: "৭ম অধ্যায়: অসীম ধারা", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (7).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc8', level: 'SSC', title: "৮ম অধ্যায়: ত্রিকোণমিতি", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (8).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc9', level: 'SSC', title: "৯ম অধ্যায়: সূচকীয় ও লগারিদমীয় ফাংশন", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (9).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc10', level: 'SSC', title: "১০ম অধ্যায়: দ্বিপদী বিস্তৃতি", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (10).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc11', level: 'SSC', title: "১১শ অধ্যায়: স্থানাঙ্ক জ্যামিতি", author: "সাহিফলি টিম", fileSize: "3.3 MB", cover: "../Book-Image/download (11).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc12', level: 'SSC', title: "১২শ অধ্যায়: সমতলীয় ভেক্টর", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (12).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: ঘন জ্যামিতি", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (13).jpg", downloadUrl: "#" },
+            { id: 'hm_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: সম্ভাবনা", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (14).jpg", downloadUrl: "#" },
 
             // HSC Notes
-            { id: 'hm1', level: 'HSC', part: 1, title: "অন্তরীকরণ (Differentiation) গাইড", author: "সাহিফলি নোট", fileSize: "4.5 MB", cover: "../Book-Image/download (21).jpg" },
-            { id: 'hm2', level: 'HSC', part: 1, title: "যৌগজীকরণ (Integration) হ্যান্ডনোট", author: "সাহিফলি এক্সপার্ট", fileSize: "5.2 MB", cover: "../Book-Image/download (19).jpg" },
-            { id: 'hm3', level: 'HSC', part: 2, title: "ত্রিকোণমিতি (Trigonometry) ২য় পত্র", author: "একাডেমিক টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (22).jpg" },
-            { id: 'hm4', level: 'HSC', part: 1, title: "জটিল সংখ্যা ও বহুপদী", author: "সাহিফলি নোট", fileSize: "4.1 MB", cover: "../Book-Image/download (20).jpg" },
+            // HSC 1st Part Notes
+            { id: 'hm_hsc1_1', level: 'HSC', part: 1, title: "১ম অধ্যায়: ম্যাট্রিক্স ও নির্ণায়ক", author: "সাহিফলি নোট", fileSize: "4.2 MB", cover: "../Book-Image/download (20).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_2', level: 'HSC', part: 1, title: "২য় অধ্যায়: ভেক্টর", author: "সাহিফলি নোট", fileSize: "3.5 MB", cover: "../Book-Image/download (19).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_3', level: 'HSC', part: 1, title: "৩য় অধ্যায়: সরলরেখা", author: "সাহিফলি নোট", fileSize: "3.8 MB", cover: "../Book-Image/download (18).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_4', level: 'HSC', part: 1, title: "৪র্থ অধ্যায়: বৃত্ত", author: "সাহিফলি নোট", fileSize: "4.1 MB", cover: "../Book-Image/download (17).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_5', level: 'HSC', part: 1, title: "৫ম অধ্যায়: বিন্যাস ও সমাবেশ", author: "সাহিফলি নোট", fileSize: "3.9 MB", cover: "../Book-Image/download (16).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_6', level: 'HSC', part: 1, title: "৬ষ্ঠ অধ্যায়: ত্রিকোণমিতিক অনুপাত", author: "সাহিফলি নোট", fileSize: "4.3 MB", cover: "../Book-Image/download (15).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_7', level: 'HSC', part: 1, title: "৭ম অধ্যায়: সংযুক্ত কোণের ত্রিকোণমিতিক অনুপাত", author: "সাহিফলি নোট", fileSize: "4.6 MB", cover: "../Book-Image/download (14).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_8', level: 'HSC', part: 1, title: "৮ম অধ্যায়: ফাংশন ও ফাংশনের লেখচিত্র", author: "সাহিফলি নোট", fileSize: "3.7 MB", cover: "../Book-Image/download (13).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_9', level: 'HSC', part: 1, title: "৯ম অধ্যায়: অন্তরীকরণ", author: "সাহিফলি নোট", fileSize: "5.2 MB", cover: "../Book-Image/download (12).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc1_10', level: 'HSC', part: 1, title: "১০ম অধ্যায়: যোগজীকরণ", author: "সাহিফলি নোট", fileSize: "5.5 MB", cover: "../Book-Image/download (11).jpg", downloadUrl: "#" },
+
+            // HSC 2nd Part Notes
+            { id: 'hm_hsc2_1', level: 'HSC', part: 2, title: "১ম অধ্যায়: বাস্তব সংখ্যা ও অসমতা", author: "সাহিফলি নোট", fileSize: "3.2 MB", cover: "../Book-Image/download (1).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_2', level: 'HSC', part: 2, title: "২য় অধ্যায়: ভেক্টর", author: "সাহিফলি নোট", fileSize: "3.5 MB", cover: "../Book-Image/download (2).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_3', level: 'HSC', part: 2, title: "৩য় অধ্যায়: জটিল সংখ্যা", author: "সাহিফলি নোট", fileSize: "3.8 MB", cover: "../Book-Image/download (3).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_4', level: 'HSC', part: 2, title: "৪র্থ অধ্যায়: বহুপদী ও বহুপদী সমীকরণ", author: "সাহিফলি নোট", fileSize: "4.1 MB", cover: "../Book-Image/download (4).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_5', level: 'HSC', part: 2, title: "৫ম অধ্যায়: বিন্যাস ও সমাবেশ", author: "সাহিফলি নোট", fileSize: "3.9 MB", cover: "../Book-Image/download (5).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_6', level: 'HSC', part: 2, title: "৬ষ্ঠ অধ্যায়: কনিক", author: "সাহিফলি নোট", fileSize: "4.3 MB", cover: "../Book-Image/download (6).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_7', level: 'HSC', part: 2, title: "৭ম অধ্যায়: বিপরীত ত্রিকোণমিতিক ফাংশন ও ত্রিকোণমিতিক সমীকরণ", author: "সাহিফলি নোট", fileSize: "4.6 MB", cover: "../Book-Image/download (7).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_8', level: 'HSC', part: 2, title: "৮ম অধ্যায়: স্থিতিবিদ্যা", author: "সাহিফলি নোট", fileSize: "3.7 MB", cover: "../Book-Image/download (8).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_9', level: 'HSC', part: 2, title: "৯ম অধ্যায়: সমাকলন - যোগজীকরণ", author: "সাহিফলি নোট", fileSize: "5.2 MB", cover: "../Book-Image/download (9).jpg", downloadUrl: "#" },
+            { id: 'hm_hsc2_10', level: 'HSC', part: 2, title: "১০ম অধ্যায়: সম্ভাবনা", author: "সাহিফলি নোট", fileSize: "5.5 MB", cover: "../Book-Image/download (10).jpg", downloadUrl: "#" },
         ];
 
         function createNoteCard(note) {
+            const downloadUrl = note.downloadUrl !== '#' ? note.downloadUrl : `https://wa.me/8801742761220?text=I%20want%20to%20buy%20this%20note:%20${encodeURIComponent(note.title)}`;
             return `
                 <div class="col">
                     <div class="card h-100 card-custom shadow-sm border-0">
@@ -225,7 +245,7 @@
                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${note.id}">...</span></small>
-                                <a href="#" class="btn btn-danger btn-danger-custom en-font" onclick="incrementDownload('${note.id}')">DOWNLOAD</a>
+                                <a href="${downloadUrl}" class="btn btn-danger btn-danger-custom en-font" onclick="incrementDownload('${note.id}')" ${note.downloadUrl !== '#' ? 'download' : 'target="_blank"'}>DOWNLOAD</a>
                             </div>
                         </div>
                     </div>

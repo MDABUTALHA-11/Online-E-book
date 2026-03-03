@@ -191,52 +191,53 @@
     <script>
         const subjectNotes = [
             // SSC Notes from Table of Contents
-            { id: 'p_ssc1', level: 'SSC', title: "১ম অধ্যায়: ভৌত রাশি এবং পরিমাপ", author: "সাহিফলি টিম", fileSize: "2.5 MB", cover: "../Book-Image/download (1).jpg" },
-            { id: 'p_ssc2', level: 'SSC', title: "২য় অধ্যায়: গতি", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (2).jpg" },
-            { id: 'p_ssc3', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (3).jpg" },
-            { id: 'p_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (4).jpg" },
-            { id: 'p_ssc5', level: 'SSC', title: "৫ম অধ্যায়: পদার্থের অবস্থা ও চাপ", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (5).jpg" },
-            { id: 'p_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: বস্তুর ওপর তাপের প্রভাব", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (6).jpg" },
-            { id: 'p_ssc7', level: 'SSC', title: "৭ম অধ্যায়: তরঙ্গ ও শব্দ", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (7).jpg" },
-            { id: 'p_ssc8', level: 'SSC', title: "৮ম অধ্যায়: আলোর প্রতিফলন", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (8).jpg" },
-            { id: 'p_ssc9', level: 'SSC', title: "৯ম অধ্যায়: আলোর প্রতিসরণ", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (9).jpg" },
-            { id: 'p_ssc10', level: 'SSC', title: "১০ম অধ্যায়: স্থির বিদ্যুৎ", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (10).jpg" },
-            { id: 'p_ssc11', level: 'SSC', title: "১১শ অধ্যায়: চল বিদ্যুৎ", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (11).jpg" },
-            { id: 'p_ssc12', level: 'SSC', title: "১২শ অধ্যায়: বিদ্যুতের চৌম্বক ক্রিয়া", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (12).jpg" },
-            { id: 'p_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: আধুনিক পদার্থবিজ্ঞান ও ইলেকট্রনিক্স", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (13).jpg" },
-            { id: 'p_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: জীবন বাঁচাতে পদার্থবিজ্ঞান", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (14).jpg" },
+            { id: 'p_ssc1', level: 'SSC', title: "১ম অধ্যায়: ভৌত রাশি এবং পরিমাপ", author: "সাহিফলি টিম", fileSize: "2.5 MB", cover: "../Book-Image/download (1).jpg", downloadUrl: "#" },
+            { id: 'p_ssc2', level: 'SSC', title: "২য় অধ্যায়: গতি", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (2).jpg", downloadUrl: "#" },
+            { id: 'p_ssc3', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (3).jpg", downloadUrl: "#" },
+            { id: 'p_ssc4', level: 'SSC', title: "৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (4).jpg", downloadUrl: "#" },
+            { id: 'p_ssc5', level: 'SSC', title: "৫ম অধ্যায়: পদার্থের অবস্থা ও চাপ", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (5).jpg", downloadUrl: "#" },
+            { id: 'p_ssc6', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: বস্তুর ওপর তাপের প্রভাব", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (6).jpg", downloadUrl: "#" },
+            { id: 'p_ssc7', level: 'SSC', title: "৭ম অধ্যায়: তরঙ্গ ও শব্দ", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (7).jpg", downloadUrl: "#" },
+            { id: 'p_ssc8', level: 'SSC', title: "৮ম অধ্যায়: আলোর প্রতিফলন", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (8).jpg", downloadUrl: "#" },
+            { id: 'p_ssc9', level: 'SSC', title: "৯ম অধ্যায়: আলোর প্রতিসরণ", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (9).jpg", downloadUrl: "#" },
+            { id: 'p_ssc10', level: 'SSC', title: "১০ম অধ্যায়: স্থির বিদ্যুৎ", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (10).jpg", downloadUrl: "#" },
+            { id: 'p_ssc11', level: 'SSC', title: "১১শ অধ্যায়: চল বিদ্যুৎ", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (11).jpg", downloadUrl: "#" },
+            { id: 'p_ssc12', level: 'SSC', title: "১২শ অধ্যায়: বিদ্যুতের চৌম্বক ক্রিয়া", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (12).jpg", downloadUrl: "#" },
+            { id: 'p_ssc13', level: 'SSC', title: "১৩শ অধ্যায়: আধুনিক পদার্থবিজ্ঞান ও ইলেকট্রনিক্স", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (13).jpg", downloadUrl: "#" },
+            { id: 'p_ssc14', level: 'SSC', title: "১৪শ অধ্যায়: জীবন বাঁচাতে পদার্থবিজ্ঞান", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (14).jpg", downloadUrl: "#" },
 
             // HSC 1st Part Notes from Table of Contents
-            { id: 'p_hsc1_c1', level: 'HSC', part: 1, title: "১ম অধ্যায়: ভৌত জগৎ ও পরিমাপ", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (1).jpg" },
-            { id: 'p_hsc1_c2', level: 'HSC', part: 1, title: "২য় অধ্যায়: ভেক্টর", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (2).jpg" },
-            { id: 'p_hsc1_c3', level: 'HSC', part: 1, title: "৩য় অধ্যায়: গতিবিদ্যা", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (3).jpg" },
-            { id: 'p_hsc1_c4', level: 'HSC', part: 1, title: "৪র্থ অধ্যায়: নিউটনীয় বলবিদ্যা", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (4).jpg" },
-            { id: 'p_hsc1_c5', level: 'HSC', part: 1, title: "৫ম অধ্যায়: কাজ, শক্তি ও ক্ষমতা", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Book-Image/download (5).jpg" },
-            { id: 'p_hsc1_c6', level: 'HSC', part: 1, title: "৬ষ্ঠ অধ্যায়: মহাকর্ষ ও অভিকর্ষ", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (6).jpg" },
-            { id: 'p_hsc1_c7', level: 'HSC', part: 1, title: "৭ম অধ্যায়: পদার্থের গাঠনিক ধর্ম", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (7).jpg" },
-            { id: 'p_hsc1_c8', level: 'HSC', part: 1, title: "৮ম অধ্যায়: পর্যাবৃত্তিক গতি", author: "সাহিফলি টিম", fileSize: "3.7 MB", cover: "../Book-Image/download (8).jpg" },
-            { id: 'p_hsc1_c9', level: 'HSC', part: 1, title: "৯ম অধ্যায়: তরঙ্গ", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (9).jpg" },
-            { id: 'p_hsc1_c10', level: 'HSC', part: 1, title: "১০ম অধ্যায়: আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব", author: "সাহিফলি টিম", fileSize: "4.3 MB", cover: "../Book-Image/download (10).jpg" },
+            { id: 'p_hsc1_c1', level: 'HSC', part: 1, title: "১ম অধ্যায়: ভৌত জগৎ ও পরিমাপ", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (1).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c2', level: 'HSC', part: 1, title: "২য় অধ্যায়: ভেক্টর", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (2).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c3', level: 'HSC', part: 1, title: "৩য় অধ্যায়: গতিবিদ্যা", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (3).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c4', level: 'HSC', part: 1, title: "৪র্থ অধ্যায়: নিউটনীয় বলবিদ্যা", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (4).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c5', level: 'HSC', part: 1, title: "৫ম অধ্যায়: কাজ, শক্তি ও ক্ষমতা", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Book-Image/download (5).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c6', level: 'HSC', part: 1, title: "৬ষ্ঠ অধ্যায়: মহাকর্ষ ও অভিকর্ষ", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (6).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c7', level: 'HSC', part: 1, title: "৭ম অধ্যায়: পদার্থের গাঠনিক ধর্ম", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (7).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c8', level: 'HSC', part: 1, title: "৮ম অধ্যায়: পর্যাবৃত্তিক গতি", author: "সাহিফলি টিম", fileSize: "3.7 MB", cover: "../Book-Image/download (8).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c9', level: 'HSC', part: 1, title: "৯ম অধ্যায়: তরঙ্গ", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Book-Image/download (9).jpg", downloadUrl: "#" },
+            { id: 'p_hsc1_c10', level: 'HSC', part: 1, title: "১০ম অধ্যায়: আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব", author: "সাহিফলি টিম", fileSize: "4.3 MB", cover: "../Book-Image/download (10).jpg", downloadUrl: "#" },
 
             // HSC 2nd Part Notes from Table of Contents
-            { id: 'p_hsc2_c1', level: 'HSC', part: 2, title: "১ম অধ্যায়: স্থির তড়িৎ", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (11).jpg" },
-            { id: 'p_hsc2_c2', level: 'HSC', part: 2, title: "২য় অধ্যায়: তড়িৎ প্রবাহ ও বর্তনী", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (12).jpg" },
-            { id: 'p_hsc2_c3', level: 'HSC', part: 2, title: "৩য় অধ্যায়: তড়িৎ প্রবাহের তাপীয় ও রাসায়নিক ক্রিয়া", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (13).jpg" },
-            { id: 'p_hsc2_c4', level: 'HSC', part: 2, title: "৪র্থ অধ্যায়: তড়িৎ প্রবাহের চৌম্বক ক্রিয়া", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (14).jpg" },
-            { id: 'p_hsc2_c5', level: 'HSC', part: 2, title: "৫ম অধ্যায়: চৌম্বক পদার্থ ও ভূ-চুম্বকত্ব", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (15).jpg" },
-            { id: 'p_hsc2_c6', level: 'HSC', part: 2, title: "৬ষ্ঠ অধ্যায়: তড়িৎ চৌম্বক আবেশ ও দিকপরিবর্তী প্রবাহ", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (16).jpg" },
-            { id: 'p_hsc2_c7', level: 'HSC', part: 2, title: "৭ম অধ্যায়: তড়িৎ চুম্বকীয় তরঙ্গ", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (17).jpg" },
-            { id: 'p_hsc2_c8', level: 'HSC', part: 2, title: "৮ম অধ্যায়: আলোর প্রতিফলন", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Book-Image/download (18).jpg" },
-            { id: 'p_hsc2_c9', level: 'HSC', part: 2, title: "৯ম অধ্যায়: আলোর প্রতিসরণ", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (19).jpg" },
-            { id: 'p_hsc2_c10', level: 'HSC', part: 2, title: "১০ম অধ্যায়: আলোক যন্ত্র", author: "সাহিফলি টিম", fileSize: "3.3 MB", cover: "../Book-Image/download (20).jpg" },
-            { id: 'p_hsc2_c11', level: 'HSC', part: 2, title: "১১শ অধ্যায়: আলোর তরঙ্গ তত্ত্ব", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (21).jpg" },
-            { id: 'p_hsc2_c12', level: 'HSC', part: 2, title: "১২শ অধ্যায়: ইলেকট্রন ও ফোটন", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (22).jpg" },
-            { id: 'p_hsc2_c13', level: 'HSC', part: 2, title: "১৩শ অধ্যায়: পরমাণু", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (23).jpg" },
-            { id: 'p_hsc2_c14', level: 'HSC', part: 2, title: "১৪শ অধ্যায়: ইলেক্ট্রনিক", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (24).jpg" },
-            { id: 'p_hsc2_c15', level: 'HSC', part: 2, title: "১৫শ অধ্যায়: আপেক্ষিক তত্ত্ব ও জ্যোতিপদার্থবিদ্যা", author: "সাহিফলি টিম", fileSize: "4.4 MB", cover: "../Book-Image/download (25).jpg" },
+            { id: 'p_hsc2_c1', level: 'HSC', part: 2, title: "১ম অধ্যায়: স্থির তড়িৎ", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Book-Image/download (11).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c2', level: 'HSC', part: 2, title: "২য় অধ্যায়: তড়িৎ প্রবাহ ও বর্তনী", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "../Book-Image/download (12).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c3', level: 'HSC', part: 2, title: "৩য় অধ্যায়: তড়িৎ প্রবাহের তাপীয় ও রাসায়নিক ক্রিয়া", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (13).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c4', level: 'HSC', part: 2, title: "৪র্থ অধ্যায়: তড়িৎ প্রবাহের চৌম্বক ক্রিয়া", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "../Book-Image/download (14).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c5', level: 'HSC', part: 2, title: "৫ম অধ্যায়: চৌম্বক পদার্থ ও ভূ-চুম্বকত্ব", author: "সাহিফলি টিম", fileSize: "2.7 MB", cover: "../Book-Image/download (15).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c6', level: 'HSC', part: 2, title: "৬ষ্ঠ অধ্যায়: তড়িৎ চৌম্বক আবেশ ও দিকপরিবর্তী প্রবাহ", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "../Book-Image/download (16).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c7', level: 'HSC', part: 2, title: "৭ম অধ্যায়: তড়িৎ চুম্বকীয় তরঙ্গ", author: "সাহিফলি টিম", fileSize: "3.1 MB", cover: "../Book-Image/download (17).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c8', level: 'HSC', part: 2, title: "৮ম অধ্যায়: আলোর প্রতিফলন", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Book-Image/download (18).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c9', level: 'HSC', part: 2, title: "৯ম অধ্যায়: আলোর প্রতিসরণ", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "../Book-Image/download (19).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c10', level: 'HSC', part: 2, title: "১০ম অধ্যায়: আলোক যন্ত্র", author: "সাহিফলি টিম", fileSize: "3.3 MB", cover: "../Book-Image/download (20).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c11', level: 'HSC', part: 2, title: "১১শ অধ্যায়: আলোর তরঙ্গ তত্ত্ব", author: "সাহিফলি টিম", fileSize: "2.8 MB", cover: "../Book-Image/download (21).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c12', level: 'HSC', part: 2, title: "১২শ অধ্যায়: ইলেকট্রন ও ফোটন", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Book-Image/download (22).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c13', level: 'HSC', part: 2, title: "১৩শ অধ্যায়: পরমাণু", author: "সাহিফলি টিম", fileSize: "2.9 MB", cover: "../Book-Image/download (23).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c14', level: 'HSC', part: 2, title: "১৪শ অধ্যায়: ইলেক্ট্রনিক", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Book-Image/download (24).jpg", downloadUrl: "#" },
+            { id: 'p_hsc2_c15', level: 'HSC', part: 2, title: "১৫শ অধ্যায়: আপেক্ষিক তত্ত্ব ও জ্যোতিপদার্থবিদ্যা", author: "সাহিফলি টিম", fileSize: "4.4 MB", cover: "../Book-Image/download (25).jpg", downloadUrl: "#" },
         ];
 
         function createNoteCard(note) {
+            const downloadUrl = note.downloadUrl !== '#' ? note.downloadUrl : `https://wa.me/8801742761220?text=I%20want%20to%20buy%20this%20note:%20${encodeURIComponent(note.title)}`;
             return `
                 <div class="col">
                     <div class="card h-100 card-custom shadow-sm border-0">
@@ -247,7 +248,7 @@
                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${note.id}">...</span></small>
-                                <a href="#" class="btn btn-success btn-success-custom en-font" onclick="incrementDownload('${note.id}')">DOWNLOAD</a>
+                                <a href="${downloadUrl}" class="btn btn-success btn-success-custom en-font" onclick="incrementDownload('${note.id}')" ${note.downloadUrl !== '#' ? 'download' : 'target="_blank"'}>DOWNLOAD</a>
                             </div>
                         </div>
                     </div>
