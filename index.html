@@ -34,7 +34,9 @@
     <!-- Google Fonts: Bungee & Mina -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
 
 
 
@@ -339,81 +341,220 @@
 
         /* Pop Up*/
 
-        .popup-overlay {
+        /* Full-Page Premium Survey Onboarding */
+        .survey-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            width: 100vw;
+            height: 100vh;
+            background: #f8fafc url('SurveyAssets/bg.png') no-repeat center center/cover;
             display: flex;
+            opacity: 0;
+            visibility: hidden;
             justify-content: center;
             align-items: center;
-            z-index: 1050;
+            z-index: 9999;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
-        .popup-content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
+        .survey-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .survey-container {
             position: relative;
-            animation: fadeIn 0.5s ease-out;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            z-index: 2;
+            text-align: center;
         }
 
-        @keyframes fadeIn {
-            from {
+        .survey-step {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .survey-step.active {
+            display: flex;
+            animation: slideUpSurvey 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        @keyframes slideUpSurvey {
+            0% {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: translateY(40px) scale(0.95);
             }
 
-            to {
+            100% {
                 opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .survey-illust {
+            width: 280px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+            animation: floatingIllust 4s ease-in-out infinite;
+        }
+
+        @keyframes floatingIllust {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .survey-title {
+            font-family: var(--bn-font);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 35px;
+            text-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .survey-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .survey-choice-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .survey-choice-card i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .survey-choice-card h5 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #334155;
+            margin: 0;
+        }
+
+        .survey-choice-card:hover {
+            background: #ffffff;
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.15);
+            border-color: #10b981;
+        }
+
+        .survey-choice-card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Pulse Shimmer for "GIF Style" feel */
+        .survey-choice-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: rotate(45deg);
+            transition: 0.8s;
+            opacity: 0;
+        }
+
+        .survey-choice-card:hover::after {
+            opacity: 1;
+            left: 100%;
+            top: 100%;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.1);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.15);
+            }
+
+            60% {
                 transform: scale(1);
             }
         }
 
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-            transition: color 0.3s;
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
         }
 
-        .popup-close:hover {
-            color: #333;
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            transition: all 0.3s ease;
         }
 
-        .popup-image {
-            max-width: 120px;
-            height: auto;
-            margin-bottom: 15px;
-            border-radius: 5px;
+        .progress-dot.active {
+            background: #22c55e;
+            width: 24px;
         }
 
-        .popup-button {
-            background: linear-gradient(45deg, #e2136e, #a40a50);
+        .survey-btn-finish {
+            background: #22c55e;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            margin-top: 10px;
+            transition: all 0.2s ease;
+            margin-top: 20px;
+            width: 100%;
         }
 
-        .popup-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(226, 19, 110, 0.3);
+        .survey-btn-finish:hover {
+            background: #16a34a;
+            box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3);
+            transform: translateY(-2px);
         }
 
         /* Animation delay classes for staggered effects */
@@ -806,18 +947,85 @@
             <a href="./Page/book.html" class="btn btn-light btn-lg px-5">আপনার বই আপলোড করুন</a>
         </div>
     </section>-->
-    <!-- Pop-up Modal Start -->
-    <!--  <div id="welcomePopup" class="popup-overlay" style="display: none;">
-        <div class="popup-content">
-            <span class="popup-close" onclick="closePopup()">&times;</span>
-            <img src="./Image/dreamina-2025-08-25-1107-Give_an_Islamic_book_that_stabilizes_ver...-removebg-preview.png"
-                alt="Holy Quran" class="popup-image">
-            <h2 style="font-family: 'Hind Siliguri', sans-serif; margin-top: 15px;">সাইটটিতে আপনাকে স্বাগতম!</h2>
-            <p style="font-family: 'Hind Siliguri', sans-serif;">পবিত্র কুরআন দিয়ে আপনার জ্ঞানের যাত্রা শুরু করুন।
-                আমাদের ওয়েবসাইটে বিনামূল্যে বাংলা পিডিএফ বইয়ের বিশাল সংগ্রহ অন্বেষণ করুন।</p>
-            <button onclick="closePopup()" class="popup-button">ব্রাউজ করুন</button>
+    <!-- Full-Page Survey Onboarding Start -->
+    <div id="surveyPopup" class="survey-overlay">
+        <div class="survey-container">
+
+            <!-- Step 0: Welcome -->
+            <div id="surveyStep0" class="survey-step active">
+                <div class="mb-4">
+                    <img src="Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" alt="Logo" class="rounded-4 shadow-sm"
+                        style="width: 120px; animation: heartbeat 2s infinite;">
+                </div>
+                <h1 class="survey-title">সাহিফলি লাইব্রেরিতে স্বাগতম!</h1>
+                <p class="text-secondary lead mb-5">আপনার জন্য সঠিক নোট খুঁজে পেতে আমাদের ছোট একটি তথ্য দিন।</p>
+                <button onclick="nextSurveyStep(0, 1)" class="survey-btn-finish shadow-lg"
+                    style="width: auto; padding: 15px 50px;">আরম্ভ করুন <i class="fas fa-arrow-right ms-2"></i></button>
+            </div>
+
+            <!-- Step 1: Class Selection -->
+            <div id="surveyStep1" class="survey-step">
+                <img src="./Book-Image/ezgif-7589679cb19f1875.gif" alt="Student" class="survey-illust">
+                <h3 class="survey-title">আপনার শ্রেণি কোনটি?</h3>
+                <div class="survey-card-grid mx-auto">
+                    <div class="survey-choice-card" onclick="selectSurveyClass('SSC')">
+                        <i class="fas fa-user-graduate"></i>
+                        <h5>SSC</h5>
+                    </div>
+                    <div class="survey-choice-card" onclick="selectSurveyClass('HSC')">
+                        <i class="fas fa-university"></i>
+                        <h5>HSC</h5>
+                    </div>
+                </div>
+                <div class="progress-indicator">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
+            </div>
+
+            <!-- Step 2: Science Interest -->
+            <div id="surveyStep2" class="survey-step">
+                <img src="SurveyAssets/science.png" alt="Science" class="survey-illust">
+                <h3 class="survey-title">আপনি কি বিজ্ঞান পছন্দ করেন?</h3>
+                <div class="survey-card-grid mx-auto">
+                    <div class="survey-choice-card" onclick="selectSurveyScience('Yes')">
+                        <i class="fas fa-vial"></i>
+                        <h5>হ্যাঁ, ভালোবাসি</h5>
+                    </div>
+                    <div class="survey-choice-card" onclick="selectSurveyScience('No')">
+                        <i class="fas fa-book-reader"></i>
+                        <h5>না, অন্য বিভাগ</h5>
+                    </div>
+                </div>
+                <div class="progress-indicator">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation -->
+            <div id="surveyStep3" class="survey-step">
+                <div class="mb-5">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-lg"
+                        style="width: 120px; height: 120px;">
+                        <i class="fas fa-check fa-4x"></i>
+                    </div>
+                </div>
+                <h3 class="survey-title">সব তৈরি!</h3>
+                <p class="text-secondary lead mb-5">ধন্যবাদ তথ্য প্রদান করার জন্য। আপনার লাইব্রেরি প্রস্তুত।</p>
+                <button onclick="finishSurvey()" class="survey-btn-finish shadow-lg">প্রবেশ করুন <i
+                        class="fas fa-door-open ms-2"></i></button>
+                <div class="progress-indicator">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot active"></div>
+                </div>
+            </div>
         </div>
-    </div> -->
+    </div>
+    <!-- Full-Page Survey Onboarding End -->
 
 
 
@@ -1111,33 +1319,69 @@
         }
 
 
-        // Function to display the pop-up
-        function showPopup() {
-            // Check if the pop-up has already been shown in this session
-            if (!sessionStorage.getItem('popupShown')) {
-                document.getElementById('welcomePopup').style.display = 'flex';
-                // Set a flag in session storage so it doesn't show again
-                sessionStorage.setItem('popupShown', 'true');
-            }
-        }
-
-        // Function to close the pop-up
-        function closePopup() {
-            document.getElementById('welcomePopup').style.display = 'none';
-        }
-
-        // Show the pop-up when the page is fully loaded
-        window.onload = function () {
-            // A small delay can make the pop-up feel less intrusive
-            setTimeout(showPopup, 1000); // 1-second delay
+        // Onboarding Survey Logic
+        let surveyData = {
+            studentClass: '',
+            likesScience: ''
         };
 
-        // Optional: Close the pop-up if the user clicks outside the content area
-        document.getElementById('welcomePopup').addEventListener('click', function (event) {
-            if (event.target === this) {
-                closePopup();
+        function showSurvey() {
+            const surveyAnswered = localStorage.getItem('survey_v4_final');
+            const surveyPopup = document.getElementById('surveyPopup');
+
+            if (!surveyAnswered && surveyPopup) {
+                surveyPopup.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            } else if (surveyPopup) {
+                surveyPopup.style.display = 'none';
             }
-        });
+        }
+
+        function nextSurveyStep(current, next) {
+            const currentEl = document.getElementById('surveyStep' + current);
+            const nextEl = document.getElementById('surveyStep' + next);
+            if (currentEl && nextEl) {
+                currentEl.classList.remove('active');
+                nextEl.classList.add('active');
+            }
+        }
+
+        function selectSurveyClass(className) {
+            surveyData.studentClass = className;
+            nextSurveyStep(1, 2);
+        }
+
+        function selectSurveyScience(answer) {
+            surveyData.likesScience = answer;
+            nextSurveyStep(2, 3);
+        }
+
+        function finishSurvey() {
+            localStorage.setItem('survey_v4_final', 'true');
+            localStorage.setItem('student_survey_result', JSON.stringify(surveyData));
+
+            const surveyPopup = document.getElementById('surveyPopup');
+            if (surveyPopup) {
+                surveyPopup.classList.remove('show');
+
+                setTimeout(() => {
+                    surveyPopup.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 800);
+            }
+        }
+
+        // Robust Initialization
+        function initApp() {
+            showSurvey();
+            if (typeof initFadeAnimations === 'function') initFadeAnimations();
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initApp();
+        } else {
+            document.addEventListener('DOMContentLoaded', initApp);
+        }
     </script>
 </body>
 
