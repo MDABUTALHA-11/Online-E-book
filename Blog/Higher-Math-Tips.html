@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>উচ্চতর গণিতে ভালো করার উপায় - Shaifly</title>
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Bungee & Mina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent-color: #198754;
+            --secondary-color: #f8f9fa;
+            --text-muted: #6c757d;
+            --en-font: 'Bungee', cursive;
+            --bn-font: 'Mina', sans-serif;
+        }
+
+        body {
+            font-family: var(--bn-font);
+            background-color: #fff;
+            color: #333;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .en-font {
+            font-family: var(--en-font) !important;
+        }
+
+        /* Navbar Style */
+        .navbar {
+            background: white !important;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Post Hero */
+        .post-hero {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-hero h1 {
+            font-weight: 700;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        /* Post Content Container */
+        .post-main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .post-hero {
+                padding: 50px 0;
+            }
+
+            .post-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .post-main {
+                padding: 30px 15px;
+            }
+
+            .tip-box {
+                padding: 15px;
+            }
+
+            .cta-section {
+                padding: 30px 20px;
+            }
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            font-family: var(--en-font);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .category-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Content Styling */
+        .post-body h3 {
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .tip-box {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-box:hover {
+            border-color: var(--accent-color);
+            box-shadow: 5px 5px 0px var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .tip-box strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Footer CTA */
+        .cta-section {
+            background: #111;
+            color: white;
+            padding: 60px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .btn-accent {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 0;
+            font-family: var(--en-font);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.9;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand en-font fw-bold" href="../index.html" style="color: var(--accent-color);">
+                <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" alt="Logo" width="40" height="40"
+                    class="me-2 rounded">
+                SHAIFLY
+            </a>
+            <div class="ms-auto">
+                <a href="Blog.html"
+                    class="en-font text-dark text-decoration-none small border-bottom border-dark pb-1">BACK TO TIPS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Post Hero -->
+    <header class="post-hero">
+        <div class="container">
+            <span class="category-badge en-font mb-3">MATHEMATICS</span>
+            <h1>উচ্চতর গণিতে ভালো করার উপায়</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar-alt me-2"></i>FEB 18, 2026</span>
+                <span><i class="far fa-eye me-2"></i><span id="view-count-blog_math_tricks">0 views</span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="post-main">
+        <img src="Image/higher-math-success.png" alt="Math Success" class="featured-image">
+
+        <div class="post-body">
+            <p class="lead">উচ্চতর গণিত অনেক শিক্ষার্থীর কাছে ভীতির কারণ হলেও সঠিক কৌশলের মাধ্যমে এটি খুব সহজে আয়ত্ত করা
+                সম্ভব। ক্যালকুলাস থেকে ত্রিকোণমিতি—সবকিছুতেই ভালো করার ৫টি গোপন কৌশল নিচে দেওয়া হলো।</p>
+
+            <div class="tip-box">
+                <strong>১. বেসিক কনসেপ্টে গুরুত্ব</strong>
+                সূত্র মুখস্থ করার আগে সেটি কীভাবে এলো তা বোঝার চেষ্টা করুন। উচ্চতর গণিতে কনসেপ্ট ক্লিয়ার থাকলে যেকোনো
+                সৃজনশীল প্রশ্ন সমাধান করা সহজ হয়ে যায়।
+            </div>
+
+            <div class="tip-box">
+                <strong>২. ক্যালকুলাস ও ত্রিকোণমিতির মাস্টার হওয়া</strong>
+                এইচএসসি গণিতে এই দুটি অংশ থেকে সবচেয়ে বেশি প্রশ্ন আসে। তাই শুরু থেকেই নিয়মিত ক্যালকুলাসের মেথড ও
+                ত্রিকোণমিতির সূত্রগুলো প্র্যাকটিস করুন।
+            </div>
+
+            <h3>অংক করার সঠিক নিয়ম</h3>
+            <p>শুধু অংক করলেই হবে না, সেটি মনে রাখার জন্য বৈজ্ঞানিক পদ্ধতি অবলম্বন করতে হবে।</p>
+
+            <div class="tip-box">
+                <strong>৩. নিয়মিত প্র্যাকটিস ও ক্যালকুলেশন দক্ষতা</strong>
+                প্রতিদিন অন্তত ২ ঘণ্টা গণিত প্র্যাকটিস করুন। ক্যালকুলেটরের ওপর শতভাগ নির্ভর না হয়ে সাধারণ হিসাবগুলো হাতে
+                করার চেষ্টা করুন, যা আপনার মস্তিষ্কের গতি বাড়াবে।
+            </div>
+
+            <div class="tip-box">
+                <strong>৪. চিত্র ও গ্রাফের ব্যবহার</strong>
+                স্থানাঙ্ক জ্যামিতি এবং ফাংশনের অংকগুলো চিত্র বা গ্রাফের মাধ্যমে করার চেষ্টা করুন। ভিজ্যুয়ালি অংক করলে
+                সেটি মনে রাখা এবং ভুল সংশোধন করা সহজ হয়।
+            </div>
+
+            <div class="tip-box">
+                <strong>৫. পরীক্ষার সময় ব্যবস্থাপনা</strong>
+                গণিত পরীক্ষায় অনেক সময় বড় অংক করতে গিয়ে সময় শেষ হয়ে যায়। তাই বাসায় টাইম সেট করে মডেল টেস্ট দিন এবং দ্রুত
+                অংক শেষ করার অভ্যাস গড়ে তুলুন।
+            </div>
+
+            <div class="cta-section">
+                <h3 class="text-white">গণিত হোক আপনার প্রিয় বিষয়</h3>
+                <p>সব গাণিতিক শর্টকাট ও এক্সক্লুসিভ গাইড পেতে জয়েন করুন আমাদের প্রিমিয়াম ব্যাচে।</p>
+                <a href="../Nav/Subscribe.html" class="btn-accent">EXPLORE COURSES</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-top py-5">
+        <div class="container text-center">
+            <h5 class="en-font mb-4">SHAIFLY LIBRARY</h5>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-dark"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="text-muted small en-font">© 2026 SHAIFLY. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/view-counter.js"></script>
+    <script src="../js/bubble-popup.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blogId = 'blog_math_tricks';
+            incrementView(blogId);
+            initViewCount(blogId);
+        });
+    </script>
+</body>
+
+</html>

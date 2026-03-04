@@ -33,10 +33,25 @@
         }
 
         .hero-section {
-            background: linear-gradient(135deg, #2dce89 0%, #2d89ce 100%);
+            background: linear-gradient(135deg, #198754 0%, #0d6efd 100%);
             color: white;
             padding: 60px 0;
             margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 15px;
+                margin-bottom: 25px;
+            }
+
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
         }
 
         .card-custom {
@@ -187,6 +202,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="../js/firebase-config.js"></script>
     <script src="../js/download-counter.js"></script>
+    <script src="../js/bubble-popup.js"></script>
 
     <script>
         const subjectNotes = [
@@ -235,23 +251,31 @@
         ];
 
         function createNoteCard(note) {
-            const downloadUrl = note.downloadUrl !== '#' ? note.downloadUrl : `https://wa.me/8801742761220?text=I%20want%20to%20buy%20this%20note:%20${encodeURIComponent(note.title)}`;
+            const isAvailable = note.downloadUrl !== '#';
+            const downloadAttr = isAvailable ? `href="${note.downloadUrl}" download` : `href="javascript:void(0)" onclick="showComingSoon('${note.title}')"`;
+
             return `
-                <div class="col">
-                    <div class="card h-100 card-custom shadow-sm border-0">
-                        <img src="${note.cover}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${note.title}">
-                        <div class="card-body p-4">
-                            <div class="mb-2"><span class="category-badge small">${note.level} BIOLOGY</span></div>
-                            <h5 class="card-title fw-bold mb-3">${note.title}</h5>
-                            <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
-                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${note.id}">...</span></small>
-                                <a href="${downloadUrl}" class="btn btn-success btn-success-custom en-font" onclick="incrementDownload('${note.id}')" ${note.downloadUrl !== '#' ? 'download' : 'target="_blank"'}>DOWNLOAD</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                 <div class="col">
+                     <div class="card h-100 card-custom shadow-sm border-0">
+                         <img src="${note.cover}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${note.title}">
+                         <div class="card-body p-4">
+                             <div class="mb-2"><span class="category-badge small">${note.level} BIOLOGY</span></div>
+                             <h5 class="card-title fw-bold mb-3">${note.title}</h5>
+                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
+                             <div class="d-flex justify-content-between align-items-center mt-3">
+                                 <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${note.id}">...</span></small>
+                                 <a ${downloadAttr} class="btn ${isAvailable ? 'btn-success' : 'btn-secondary'} btn-success-custom en-font" onclick="${isAvailable ? `incrementDownload('${note.id}')` : ''}">
+                                     ${isAvailable ? 'DOWNLOAD' : 'SOON'}
+                                 </a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             `;
+        }
+
+        function showComingSoon(title) {
+            showBubblePopup(`"${title}" নোটটি শীঘ্রই আসছে!`);
         }
 
         function displayNotes(notes) {

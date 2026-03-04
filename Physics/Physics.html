@@ -39,6 +39,21 @@
             margin-bottom: 40px;
         }
 
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 15px;
+                margin-bottom: 25px;
+            }
+
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+        }
+
         .card-custom {
             border: none;
             border-radius: 15px;
@@ -187,6 +202,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="../js/firebase-config.js"></script>
     <script src="../js/download-counter.js"></script>
+    <script src="../js/bubble-popup.js"></script>
 
     <script>
         const subjectNotes = [
@@ -210,13 +226,13 @@
             { id: 'p_hsc1_c1', level: 'HSC', part: 1, title: "১ম অধ্যায়: ভৌত জগৎ ও পরিমাপ", author: "সাহিফলি টিম", fileSize: "3.5 MB", cover: "Chapters/p_hsc1_c1.png", downloadUrl: "#" },
             { id: 'p_hsc1_c2', level: 'HSC', part: 1, title: "২য় অধ্যায়: ভেক্টর", author: "সাহিফলি টিম", fileSize: "4.2 MB", cover: "Chapters/p_hsc1_c2.png", downloadUrl: "#" },
             { id: 'p_hsc1_c3', level: 'HSC', part: 1, title: "৩য় অধ্যায়: গতিবিদ্যা", author: "সাহিফলি টিম", fileSize: "3.8 MB", cover: "Chapters/p_hsc1_c3.png", downloadUrl: "#" },
-            { id: 'p_hsc1_c4', level: 'HSC', part: 1, title: "৪র্থ অধ্যায়: নিউটনীয় বলবিদ্যা", author: "সাহিফলি টিম", fileSize: "4.5 MB", cover: "Chapters/p_hsc1_c4.png", downloadUrl: "#" },
+            { id: 'p_hsc1_c4', level: 'HSC', part: 1, title: "৪র্থ অধ্যায়: নিউটনীয় বলবিদ্যা", author: "সাহিফলি টিম", fileSize: "14.5 MB", cover: "Chapters/p_hsc1_c4.png", downloadUrl: "PDF/Classical_Mechanics_Fundamentals.pdf" },
             { id: 'p_hsc1_c5', level: 'HSC', part: 1, title: "৫ম অধ্যায়: কাজ, শক্তি ও ক্ষমতা", author: "সাহিফলি টিম", fileSize: "3.9 MB", cover: "../Physics/Image/image.png", downloadUrl: "#" },
             { id: 'p_hsc1_c6', level: 'HSC', part: 1, title: "৬ষ্ঠ অধ্যায়: মহাকর্ষ ও অভিকর্ষ", author: "সাহিফলি টিম", fileSize: "3.6 MB", cover: "../Physics/Image/image copy.png", downloadUrl: "#" },
             { id: 'p_hsc1_c7', level: 'HSC', part: 1, title: "৭ম অধ্যায়: পদার্থের গাঠনিক ধর্ম", author: "সাহিফলি টিম", fileSize: "4.1 MB", cover: "../Physics/Image/image copy 2.png", downloadUrl: "#" },
             { id: 'p_hsc1_c8', level: 'HSC', part: 1, title: "৮ম অধ্যায়: পর্যাবৃত্তিক গতি", author: "সাহিফলি টিম", fileSize: "3.7 MB", cover: "../Physics/Image/image copy 3.png", downloadUrl: "#" },
             { id: 'p_hsc1_c9', level: 'HSC', part: 1, title: "৯ম অধ্যায়: তরঙ্গ", author: "সাহিফলি টিম", fileSize: "3.4 MB", cover: "../Physics/Image/image copy 4.png", downloadUrl: "#" },
-            { id: 'p_hsc1_c10', level: 'HSC', part: 1, title: "১০ম অধ্যায়: আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব", author: "সাহিফলি টিম", fileSize: "4.3 MB", cover: "../Physics/Image/image copy 5.png", downloadUrl: "#" },
+            { id: 'p_hsc1_c10', level: 'HSC', part: 1, title: "১০ম অধ্যায়: আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব", author: "সাহিফলি টিম", fileSize: "15.3 MB", cover: "../Physics/Image/image copy 5.png", downloadUrl: "PDF/Thermal_Physics_Handnote.pdf" },
 
             // HSC 2nd Part Notes from Table of Contents
             { id: 'p_hsc2_c1', level: 'HSC', part: 2, title: "১ম অধ্যায়: স্থির তড়িৎ", author: "সাহিফলি টিম", fileSize: "3.2 MB", cover: "../Physics/Image/image copy 6.png", downloadUrl: "#" },
@@ -237,7 +253,9 @@
         ];
 
         function createNoteCard(note) {
-            const downloadUrl = note.downloadUrl !== '#' ? note.downloadUrl : `https://wa.me/8801742761220?text=I%20want%20to%20buy%20this%20note:%20${encodeURIComponent(note.title)}`;
+            const isAvailable = note.downloadUrl !== '#';
+            const downloadAttr = isAvailable ? `href="${note.downloadUrl}" download` : `href="javascript:void(0)" onclick="showComingSoon('${note.title}')"`;
+
             return `
                 <div class="col">
                     <div class="card h-100 card-custom shadow-sm border-0">
@@ -248,12 +266,18 @@
                             <p class="text-muted small mb-4">লেখক: ${note.author} | সাইজ: ${note.fileSize}</p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <small class="text-muted"><i class="fas fa-download me-1"></i><span id="count-${note.id}">...</span></small>
-                                <a href="${downloadUrl}" class="btn btn-success btn-success-custom en-font" onclick="incrementDownload('${note.id}')" ${note.downloadUrl !== '#' ? 'download' : 'target="_blank"'}>DOWNLOAD</a>
+                                <a ${downloadAttr} class="btn ${isAvailable ? 'btn-success' : 'btn-secondary'} btn-success-custom en-font" onclick="${isAvailable ? `incrementDownload('${note.id}')` : ''}">
+                                    ${isAvailable ? 'DOWNLOAD' : 'SOON'}
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
+        }
+
+        function showComingSoon(title) {
+            showBubblePopup(`"${title}" নোটটি শীঘ্রই আসছে!`);
         }
 
         function displayNotes(notes) {

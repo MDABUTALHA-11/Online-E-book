@@ -220,6 +220,9 @@
         <div class="container">
             <h1 class="display-4 fw-bold mb-4">আরও নতুন <span class="text-success">শিক্ষা উপকরণ</span></h1>
             <p class="lead">লাইব্রেরির দ্বিতীয় পাতায় আপনাকে স্বাগতম। এখানে আরও এক্সক্লুসিভ নোট খুঁজে পাবেন।</p>
+            <div class="alert alert-warning d-inline-block px-4 py-2 rounded-pill mt-3">
+                <i class="fas fa-info-circle me-2"></i> এই পৃষ্ঠার নোটগুলো আপলোড করার কাজ চলছে...
+            </div>
         </div>
     </section>
 
@@ -252,8 +255,8 @@
 
                     <div class="mini-pagination-dark mt-4">
                         <a href="../index.html" class="page-rect-dark">1</a>
-                        <a href="#" class="page-rect-dark active">2</a>
-                        <a href="#" class="page-rect-dark">3</a>
+                        <a href="javascript:void(0)" class="page-rect-dark active">2</a>
+                        <a href="javascript:void(0)" onclick="showComingSoon('৩য় পৃষ্ঠা')" class="page-rect-dark">3</a>
                     </div>
                 </div>
             </div>
@@ -297,6 +300,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="../js/firebase-config.js"></script>
     <script src="../js/download-counter.js"></script>
+    <script src="../js/bubble-popup.js"></script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -348,6 +352,9 @@
                 // Initialize count with "..." (will be updated by Firebase)
                 let count = "...";
 
+                const isAvailable = book.pdfUrl !== '#';
+                const downloadAttr = isAvailable ? `href="${book.pdfUrl}" download` : `href="javascript:void(0)" onclick="showComingSoon('${book.title}')"`;
+
                 bookCard.innerHTML = `
                     <div class="card h-100 shadow-sm book-card border-0 rounded-3 overflow-hidden">
                         <img src="${book.coverImage}" class="card-img-top" alt="${book.title}" style="height: 220px; object-fit: cover;">
@@ -365,11 +372,10 @@
 
                             <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
                                 <span class="price-tag fs-6">${book.price}</span>
-                                <a href="${book.pdfUrl}" 
-                                   class="btn btn-danger btn-sm flex-grow-1" 
-                                   download 
-                                   onclick="incrementDownload('${book.id}')">
-                                    <i class="fas fa-file-pdf me-1"></i> ডাউনলোড
+                                <a ${downloadAttr} 
+                                   class="btn ${isAvailable ? 'btn-danger' : 'btn-secondary opacity-75'} btn-sm flex-grow-1" 
+                                   onclick="${isAvailable ? `incrementDownload('${book.id}')` : ''}">
+                                    <i class="fas ${isAvailable ? 'fa-file-pdf' : 'fa-clock'} me-1"></i> ${isAvailable ? 'ডাউনলোড' : 'COMING SOON'}
                                 </a>
                             </div>
                         </div>
@@ -386,6 +392,10 @@
                     }
                 }
             });
+        }
+
+        function showComingSoon(title) {
+            showBubblePopup(`"${title}" শীঘ্রই আসছে! আমরা নতুন নোট আপলোড করার কাজ করছি।`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
