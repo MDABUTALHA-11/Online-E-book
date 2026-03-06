@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept Clear - Shaifly AI</title>
+    <meta name="description"
+        content="পড়াশোনার যেকোনো কঠিন টপিক বা কনসেপ্ট সহজে বুঝতে সার্চ করুন এবং ৩টি শক্তিশালী AI থেকে সেরা সমাধান পান।">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #f8fafc;
+            --accent-green: #198754;
+            --accent-dark: #1e293b;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --en-font: 'Bungee', cursive;
+            --bn-font: 'Mina', sans-serif;
+            --gemini-color: #4285f4;
+        }
+
+        body {
+            font-family: var(--bn-font);
+            background-color: var(--primary-bg);
+            color: var(--accent-dark);
+            overflow-x: hidden;
+        }
+
+        .en-font {
+            font-family: var(--en-font) !important;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Styling */
+        .concept-hero {
+            padding: 80px 0 40px;
+            background: radial-gradient(circle at top right, rgba(25, 135, 84, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(25, 135, 84, 0.05), transparent);
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 30px;
+            padding-right: 140px;
+            border-radius: 50px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 35px rgba(25, 135, 84, 0.15);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            bottom: 8px;
+            padding: 0 25px;
+            border-radius: 40px;
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #157347;
+            transform: scale(1.02);
+        }
+
+        /* Results Styling */
+        .results-section {
+            padding: 20px 0 100px;
+            display: none;
+        }
+
+        /* AI Card Styling */
+        .gemini-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 40px auto;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+        }
+
+        .gemini-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4285f4, #9b51e0, #4285f4);
+            background-size: 200% auto;
+            animation: gradient-flow 3s linear infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .gemini-sparkle {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #4285f4, #9b51e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: sparkle-pulse 2s infinite;
+        }
+
+        @keyframes sparkle-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .gemini-color {
+            color: #4285f4;
+        }
+
+        .ai-response-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .ai-loading {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .dot-pulse {
+            width: 6px;
+            height: 6px;
+            background-color: #64748b;
+            border-radius: 50%;
+            display: inline-block;
+            animation: dot-pulse 1.2s infinite ease-in-out;
+        }
+
+        .dot-pulse:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot-pulse:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dot-pulse {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .btn-ai {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-gemini {
+            background: linear-gradient(45deg, #4285f4, #9b51e0);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-ai:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Google Link */
+        .btn-google {
+            background: #fff;
+            color: #4285F4;
+            border: 2px solid #4285F4;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-google:hover {
+            background: #4285F4;
+            color: white;
+        }
+
+        header .navbar {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Visual Lab Grid */
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .visual-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 150px;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .visual-item:hover {
+            border-color: var(--accent-green);
+            transform: scale(1.03);
+        }
+
+        .visual-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .visual-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* AI Recommendation Card */
+        .recommendation-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendation-card::after {
+            content: '\f0eb';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 8rem;
+            opacity: 0.05;
+        }
+
+        .ai-pill {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Smart Badges */
+        .badge-video {
+            background: #ff0000;
+            color: white;
+        }
+
+        .badge-image {
+            background: #4285f4;
+            color: white;
+        }
+
+        .badge-ai {
+            background: #198754;
+            color: white;
+        }
+
+        .resource-card {
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+            <div class="container">
+                <a class="navbar-brand en-font" href="../index.html">
+                    <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Shaifly"
+                        width="50" height="44">
+                    <span class="fw-bold">SHAIFLY</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto en-font">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Nav/About.html">ABOUT</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../Nav/Categories.html">CATEGORIES</a></li>
+                        <li class="nav-item ms-lg-3 d-flex align-items-center">
+                            <a class="btn btn-success text-white px-4 shadow-sm fw-bold"
+                                href="../Blog/Blog.html">TIPS</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="concept-hero text-center position-relative">
+        <div class="container" data-aos="fade-up">
+            <div class="mb-5">
+                <div class="mb-5">
+                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold mb-3">AI POWERED
+                        CLEARANCE</span>
+                    <h1 class="display-3 fw-bold mb-3">আপনার পড়াকে করুন <span class="text-success">আরও সহজ</span></h1>
+                    <p class="lead text-secondary mx-auto" style="max-width: 600px;">যেকোনো টপিক লিখুন, আমরা জেমিনি এআই
+                        থেকে সেরা আলোচনা খুঁজে দেব।</p>
+                </div>
+            </div>
+
+            <div class="search-container mb-5">
+                <div class="search-input-wrapper glass-card">
+                    <input type="text" id="topicInput" class="search-input"
+                        placeholder="যেমন: জারণ-বিজারণ, বোর পরমাণু মডেল..." autocomplete="off">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-microscope me-2"></i>
+                        <span class="d-none d-sm-inline">Analyze Concept</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="resultsSection" class="results-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">CONCEPT DASHBOARD</span>
+                <h2 class="fw-bold display-5" id="topicDisplay">Topic Name</h2>
+            </div>
+
+            <div class="row g-4">
+                <!-- Left Column: Visuals & Videos -->
+                <div class="col-lg-7">
+                    <!-- Visual Lab -->
+                    <div class="card glass-card p-4 mb-4" data-aos="fade-right">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-image text-primary me-2 fs-4"></i>
+                            <h4 class="fw-bold mb-0">Visual Lab (Diagrams)</h4>
+                        </div>
+                        <p class="text-muted small">See how it works through visual representations.</p>
+                        <div id="visualGrid" class="visual-grid">
+                            <!-- Dynamically loaded images -->
+                        </div>
+                        <div class="mt-3 text-end">
+                            <a href="#" id="googleImages" target="_blank" class="text-decoration-none small fw-bold">
+                                More Diagrams <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Watch & Learn -->
+                    <div class="card glass-card p-4" data-aos="fade-right" data-aos-delay="200">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fab fa-youtube text-danger me-2 fs-4"></i>
+                            <h4 class="fw-bold mb-0">Watch & Learn (Videos)</h4>
+                        </div>
+                        <div id="videoContainer" class="ratio ratio-16x9 rounded-4 overflow-hidden mb-3"
+                            style="background: #000;">
+                            <!-- Placeholder or Iframe -->
+                            <div class="d-flex align-items-center justify-content-center text-white flex-column">
+                                <i class="fab fa-youtube fa-3x mb-2"></i>
+                                <span id="videoStatus">Search YouTube for ${topic}</span>
+                            </div>
+                        </div>
+                        <a href="#" id="youtubeLink" target="_blank" class="btn btn-danger w-100 rounded-pill fw-bold">
+                            <i class="fab fa-youtube me-2"></i> Open Best Video Tutorial
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: AI Analysis -->
+                <div class="col-lg-5">
+                    <!-- Smart AI Recommendation -->
+                    <div id="aiRecommendation" class="recommendation-card mb-4" data-aos="fade-left">
+                        <span id="aiPlatformPill" class="ai-pill bg-success">RECOMMENDED PLATFORM</span>
+                        <h3 id="aiPlatformName" class="fw-bold mb-2">Gemini Pro</h3>
+                        <p id="aiPlatformReason" class="text-light opacity-75 small mb-4">Best for logical reasoning and
+                            step-by-step scientific explanations.</p>
+                        <a href="#" id="aiPlatformLink" target="_blank"
+                            class="btn btn-light w-100 rounded-pill fw-bold text-dark">
+                            <i class="fas fa-robot me-2"></i> Start Lab Discussion
+                        </a>
+                    </div>
+
+                    <!-- Gemini Analysis -->
+                    <div class="gemini-card shadow-lg m-0 w-100" data-aos="fade-left" data-aos-delay="200">
+                        <div class="ai-header">
+                            <i class="fas fa-sparkles gemini-sparkle"></i>
+                            <h5 class="fw-bold mb-0">Gemini Quick Overview</h5>
+                        </div>
+                        <div id="loading-gemini" class="ai-loading mb-3">
+                            <span class="text-primary fw-bold small">Analyzing...</span>
+                        </div>
+                        <div id="resp-gemini" class="ai-response-text small mb-4" style="min-height: 100px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-success rounded-pill px-5" onclick="resetSearch()">
+                    <i class="fas fa-redo me-2"></i> Test Another Concept
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        const topicInput = document.getElementById('topicInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const topicDisplay = document.getElementById('topicDisplay');
+        const googleLink = document.getElementById('googleLink');
+
+        const responses = {
+            "gemini": {
+                "জারণ বিজারণ": "জারণ-বিজারণ (Redox) হলো ইলেকট্রন স্থানান্তরের প্রক্রিয়া। জারণ মানে ইলেকট্রন বর্জন, যা পরমাণুর জারণ সংখ্যা বৃদ্ধি করে। বিজারণ মানে ইলেকট্রন গ্রহণ, যা জারণ সংখ্যা হ্রাস করে। এটি রাসায়নিক বিক্রিয়ার মৌলিক ভিত্তি।",
+                "বোর পরমাণু মডেল": "নীলস বোর ১৯১৩ সালে এই মডেল দেন। এর প্রধান বৈশিষ্ট্য হলো কক্ষপথের ধারণা। ইলেকট্রন নির্দিষ্ট শক্তিস্তরে থাকে এবং এক স্তর থেকে অন্য স্তরে যাওয়ার সময় নির্দিষ্ট পরিমাণ শক্তি শোষণ বা বিকিরণ করে। এটি পরমাণুর স্থায়িত্ব ব্যাখ্যা করে।",
+                "কোষ বিভাজন": "কোষ বিভাজন প্রক্রিয়া প্রধানত দুই প্রকার: মাইটোসিস ও মিয়োসিস। মাইটোসিসে মাতৃকোষের সমান গুণসম্পন্ন দুইটি অপত্য কোষ সৃষ্টি হয় (দেহের বৃদ্ধি), আর মিয়োসিসে ক্রোমোজোম সংখ্যা অর্ধেক হয়ে চারটি কোষ তৈরি হয় (জনন)।",
+                "নিউটনের গতিসূত্র": "নিউটনের তিনটি সূত্র গতির ভিত্তি। ১ম সূত্র: জড়তা (বল ছাড়া অবস্থা পরিবর্তন হয় না)। ২য় সূত্র: F=ma (বল ভর ও ত্বরণের গুণফলের সমান)। ৩য় সূত্র: প্রতিক্রিয়া (প্রত্যেক ক্রিয়ার সমান ও বিপরীত প্রতিক্রিয়া আছে)।",
+                "default": "এই বিষয়টি আপনার একাডেমিক সিলেবাসের জন্য খুবই গুরুত্বপূর্ণ। জেমিনি এআই আপনাকে এর গাণিতিক বিশ্লেষণ এবং বিস্তারিত ডায়াগ্রাম বুঝতে সহায়তা করতে পারে। আপনি সরাসরি জেমিনিতে এটি নিয়ে প্রশ্ন করতে পারেন।"
+            }
+        };
+
+        const aiMetadata = {
+            "Chemistry": { platform: "Gemini", reason: "Best for complex chemical balancing and orbital visualizations.", link: "https://gemini.google.com/" },
+            "Physics": { platform: "ChatGPT", reason: "Best for real-world analogies and solving mathematical problems.", link: "https://chat.openai.com/" },
+            "Biology": { platform: "Grok", reason: "Best for exploring the latest scientific research and DNA data.", link: "https://x.com/i/grok" },
+            "General": { platform: "Gemini", reason: "Best all-around AI for general academic queries and notes.", link: "https://gemini.google.com/" }
+        };
+
+        function typeWriter(id, text, i = 0) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (i < text.length) {
+                el.innerHTML = text.substring(0, i + 1);
+                setTimeout(() => typeWriter(id, text, i + 1), 15);
+            }
+        }
+
+        function performSearch() {
+            const topic = topicInput.value.trim();
+            if (!topic) return;
+
+            topicDisplay.innerText = topic;
+            resultsSection.style.display = 'block';
+
+            // 1. Setup Links
+            document.getElementById('googleImages').href = `https://www.google.com/search?q=${encodeURIComponent(topic + " diagram ssc hsc")}&tbm=isch`;
+            document.getElementById('youtubeLink').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(topic + " ssc hsc bangla explanation")}`;
+
+            // 2. Load Visual Lab (Placeholders for demo)
+            const visualGrid = document.getElementById('visualGrid');
+            visualGrid.innerHTML = '';
+            const imgKeywords = ["diagram", "structure", "experiment"];
+            imgKeywords.forEach(kw => {
+                const item = document.createElement('div');
+                item.className = 'visual-item';
+                item.innerHTML = `
+                    <img src="https://source.unsplash.com/featured/?${encodeURIComponent(topic + "," + kw)}" alt="${kw}" onerror="this.src='https://via.placeholder.com/200x150?text=${topic}+${kw}'">
+                    <div class="visual-overlay">${topic} ${kw}</div>
+                `;
+                visualGrid.appendChild(item);
+            });
+
+            // 3. Smart AI Recommendation
+            let category = "General";
+            if (topic.includes("জারণ") || topic.includes("রসায়ন") || topic.includes("মডেল")) category = "Chemistry";
+            if (topic.includes("গতি") || topic.includes("বল") || topic.includes("পদার্থ")) category = "Physics";
+            if (topic.includes("ভাজণ") || topic.includes("উদ্ভিদ") || topic.includes("জীবন")) category = "Biology";
+
+            const meta = aiMetadata[category];
+            document.getElementById('aiPlatformName').innerText = meta.platform;
+            document.getElementById('aiPlatformReason').innerText = meta.reason;
+            document.getElementById('aiPlatformLink').href = meta.link;
+
+            const pill = document.getElementById('aiPlatformPill');
+            if (meta.platform === "Gemini") pill.style.background = "#4285f4";
+            else if (meta.platform === "ChatGPT") pill.style.background = "#10a37f";
+            else pill.style.background = "#000";
+
+            window.scrollTo({ top: resultsSection.offsetTop - 50, behavior: 'smooth' });
+
+            // 4. Gemini Overview
+            const sys = 'gemini';
+            document.getElementById(`resp-${sys}`).innerHTML = "";
+            document.getElementById(`loading-${sys}`).style.display = "flex";
+
+            setTimeout(() => {
+                document.getElementById(`loading-${sys}`).style.display = "none";
+                const text = responses[sys][topic] || responses[sys]["default"];
+                typeWriter(`resp-${sys}`, text);
+            }, 1200);
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        topicInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+
+        function resetSearch() {
+            topicInput.value = "";
+            resultsSection.style.display = "none";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
