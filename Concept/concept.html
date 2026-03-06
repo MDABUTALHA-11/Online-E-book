@@ -514,8 +514,27 @@
         }
 
         async function callGroq(prompt, output) {
-            const key = window.APP_CONFIG?.GROQ_API_KEY || localStorage.getItem('GROQ_KEY');
-            if (!key) { output.innerHTML = "API Key not found. Go to 'API Configuration' in sidebar."; return; }
+            let key = window.APP_CONFIG?.GROQ_API_KEY || localStorage.getItem('GROQ_KEY');
+
+            if (!key) {
+                const setupKey = confirm("API Key খুঁজে পাওয়া যায়নি। আপনি কি এখনই এটি সেট করতে চান? (গিটহাবে হোস্ট করলে এটি একবার করতে হবে)");
+                if (setupKey) {
+                    manageApiKey();
+                    key = localStorage.getItem('GROQ_KEY');
+                }
+
+                if (!key) {
+                    output.innerHTML = `
+                        <div class="alert alert-warning border-0 small m-0 p-3 shadow-sm rounded-3">
+                            <i class="fas fa-key me-2 text-warning"></i><strong>এপিআই কী সরাসরি যুক্ত করা নেই!</strong><br>
+                            নিরাপত্তার স্বার্থে আপনার প্রধান কী-টি গিটহাবে গোপন রাখা হয়েছে।<br><br>
+                            ১. <a href="https://console.groq.com/keys" target="_blank" class="fw-bold text-dark">এখানে ক্লিক করে</a> একটি ফ্রি কী (API Key) নিন।<br>
+                            ২. সাইডবারের <b>API Configuration</b> বাটনে সেটি সেভ করুন।<br>
+                            <i>(এটি মাত্র একবার করলেই হবে এবং এটি সম্পূর্ণ ফ্রি!)</i>
+                        </div>`;
+                    return;
+                }
+            }
 
             try {
                 const res = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.groq.com/openai/v1/chat/completions"), {
