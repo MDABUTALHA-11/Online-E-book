@@ -1,0 +1,11 @@
+# API Keys and Secrets
+js/config.js
+.env
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/

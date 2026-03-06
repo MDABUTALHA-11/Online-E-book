@@ -4,627 +4,556 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concept Clear - Shaifly AI</title>
-    <meta name="description"
-        content="পড়াশোনার যেকোনো কঠিন টপিক বা কনসেপ্ট সহজে বুঝতে সার্চ করুন এবং ৩টি শক্তিশালী AI থেকে সেরা সমাধান পান।">
+    <title>Shaifly AI Chat - Concept Builder</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Bungee&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mina:wght@400;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
         :root {
-            --primary-bg: #f8fafc;
-            --accent-green: #198754;
-            --accent-dark: #1e293b;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --en-font: 'Bungee', cursive;
-            --bn-font: 'Mina', sans-serif;
-            --gemini-color: #4285f4;
+            --bs-primary: #10a37f;
+            --bs-primary-hover: #0d8a6a;
+            --bn-font: 'Hind Siliguri', 'Mina', sans-serif;
+            --en-font: 'Inter', sans-serif;
         }
 
         body {
             font-family: var(--bn-font);
-            background-color: var(--primary-bg);
-            color: var(--accent-dark);
-            overflow-x: hidden;
-        }
-
-        .en-font {
-            font-family: var(--en-font) !important;
-        }
-
-        /* Glassmorphism Classes */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Hero Styling */
-        .concept-hero {
-            padding: 80px 0 40px;
-            background: radial-gradient(circle at top right, rgba(25, 135, 84, 0.05), transparent),
-                radial-gradient(circle at bottom left, rgba(25, 135, 84, 0.05), transparent);
-        }
-
-        .search-container {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .search-input-wrapper {
-            position: relative;
-            z-index: 10;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 20px 30px;
-            padding-right: 140px;
-            border-radius: 50px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-green);
-            box-shadow: 0 15px 35px rgba(25, 135, 84, 0.15);
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 8px;
-            top: 8px;
-            bottom: 8px;
-            padding: 0 25px;
-            border-radius: 40px;
-            background: var(--accent-green);
-            color: white;
-            border: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .search-btn:hover {
-            background: #157347;
-            transform: scale(1.02);
-        }
-
-        /* Results Styling */
-        .results-section {
-            padding: 20px 0 100px;
-            display: none;
-        }
-
-        /* AI Card Styling */
-        .gemini-card {
-            background: white;
-            border-radius: 30px;
-            padding: 40px;
-            text-align: left;
-            position: relative;
+            background-color: #ffffff;
+            height: 100vh;
             overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            max-width: 800px;
-            margin: 40px auto;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
         }
 
-        .gemini-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #4285f4, #9b51e0, #4285f4);
-            background-size: 200% auto;
-            animation: gradient-flow 3s linear infinite;
+        /* Sidebar Offcanvas Customization */
+        .offcanvas {
+            width: 280px !important;
+            background-color: #f9f9f9;
+            border-right: 1px solid #e5e5e5;
         }
 
-        @keyframes gradient-flow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            100% {
-                background-position: 200% 50%;
-            }
+        .history-item {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            color: #333;
+            text-decoration: none;
         }
 
-        .ai-header {
+        .history-item:hover {
+            background-color: #ececec;
+        }
+
+        /* Main Layout */
+        .main-content {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 160px;
+            /* Space for input box */
+        }
+
+        /* Message Styling */
+        .msg-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .msg-ai {
+            background-color: #f7f7f8;
+        }
+
+        .avatar-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .gemini-sparkle {
-            font-size: 2rem;
-            background: linear-gradient(45deg, #4285f4, #9b51e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: sparkle-pulse 2s infinite;
-        }
-
-        @keyframes sparkle-pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        .gemini-color {
-            color: #4285f4;
-        }
-
-        .ai-response-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #334155;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        .ai-loading {
-            display: none;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: #64748b;
-        }
-
-        .dot-pulse {
-            width: 6px;
-            height: 6px;
-            background-color: #64748b;
-            border-radius: 50%;
-            display: inline-block;
-            animation: dot-pulse 1.2s infinite ease-in-out;
-        }
-
-        .dot-pulse:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .dot-pulse:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes dot-pulse {
-
-            0%,
-            80%,
-            100% {
-                transform: scale(0);
-            }
-
-            40% {
-                transform: scale(1);
-            }
-        }
-
-        .btn-ai {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .btn-gemini {
-            background: linear-gradient(45deg, #4285f4, #9b51e0);
+            justify-content: center;
+            flex-shrink: 0;
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-            border: none;
+            font-size: 1.1rem;
         }
 
-        .btn-ai:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            color: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        .bg-user {
+            background-color: #5d5d5d;
         }
 
-        /* Google Link */
-        .btn-google {
-            background: #fff;
-            color: #4285F4;
-            border: 2px solid #4285F4;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
+        .bg-ai {
+            background-color: transparent;
         }
 
-        .btn-google:hover {
-            background: #4285F4;
-            color: white;
-        }
-
-        header .navbar {
-            background: rgba(255, 255, 255, 0.9) !important;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Visual Lab Grid */
-        .visual-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .visual-item {
-            border-radius: 15px;
-            overflow: hidden;
-            height: 150px;
-            position: relative;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .visual-item:hover {
-            border-color: var(--accent-green);
-            transform: scale(1.03);
-        }
-
-        .visual-item img {
+        .bg-ai img {
             width: 100%;
             height: 100%;
+            border-radius: 4px;
             object-fit: cover;
         }
 
-        .visual-overlay {
-            position: absolute;
+        .msg-content {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        /* Input Area - Fixed Bottom */
+        .input-area-fixed {
+            position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
+            background: linear-gradient(transparent, white 20%);
+            padding: 20px 15px 30px;
+            z-index: 100;
+        }
+
+        .input-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            padding: 8px 12px;
+        }
+
+        #chatInput {
+            border: none;
+            resize: none;
+            max-height: 150px;
             padding: 8px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            font-size: 1rem;
+        }
+
+        #chatInput:focus {
+            box-shadow: none;
+        }
+
+        .send-btn-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background-color: var(--bs-primary);
             color: white;
-            font-size: 0.8rem;
-            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
         }
 
-        /* AI Recommendation Card */
-        .recommendation-card {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: white;
-            border-radius: 24px;
-            padding: 30px;
-            margin-top: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+        .send-btn-circle:disabled {
+            opacity: 0.3;
         }
 
-        .recommendation-card::after {
-            content: '\f0eb';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: -20px;
-            bottom: -20px;
-            font-size: 8rem;
-            opacity: 0.05;
+        /* Preview Area */
+        .preview-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
         }
 
-        .ai-pill {
+        .preview-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        /* Welcome UI */
+        .welcome-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .suggestion-btn {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            text-align: left;
+            padding: 12px 15px;
+            transition: all 0.2s;
+            height: 100%;
+            width: 100%;
+        }
+
+        .suggestion-btn:hover {
+            background: #f7f7f8;
+        }
+
+        /* Typing Animation */
+        .typing-char {
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            opacity: 0;
+            animation: charReveal 0.1s forwards linear;
         }
 
-        /* Smart Badges */
-        .badge-video {
-            background: #ff0000;
-            color: white;
+        @keyframes charReveal {
+            to {
+                opacity: 1;
+            }
         }
 
-        .badge-image {
-            background: #4285f4;
-            color: white;
+        /* Highlights */
+        .important-tag {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid #ffeeba;
         }
 
-        .badge-ai {
-            background: #198754;
-            color: white;
+        .critical-tag {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid #f5c6cb;
         }
 
-        .resource-card {
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
+        /* Mobile Adjustments */
+        @media (max-width: 576px) {
+            .msg-wrapper {
+                padding: 15px 10px;
+                gap: 10px;
+            }
 
-        .resource-card:hover {
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            .msg-content {
+                font-size: 0.95rem;
+            }
+
+            .avatar-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 0.9rem;
+            }
+
+            .welcome-hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .input-area-fixed {
+                padding: 10px 10px 20px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-            <div class="container">
-                <a class="navbar-brand en-font" href="../index.html">
-                    <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" class="rounded-3" alt="Shaifly"
-                        width="50" height="44">
-                    <span class="fw-bold">SHAIFLY</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
+    <!-- Sidebar (Bootstrap Offcanvas) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2">
+                <img src="../Logo/ChatGPT Image Feb 18, 2026, 12_46_28 PM.png" width="25" alt="Logo">
+                Shaifly AI
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <button
+                class="btn btn-outline-dark w-100 mb-4 rounded-3 d-flex align-items-center justify-content-center gap-2"
+                onclick="location.reload()">
+                <i class="fas fa-plus small"></i> New Chat
+            </button>
+            <p class="text-muted small fw-bold mb-2">History</p>
+            <div id="historyList" class="d-flex flex-column gap-1">
+                <!-- History populate -->
+            </div>
+
+            <div class="mt-auto pt-3 border-top">
+                <button class="btn btn-light w-100 text-start d-flex align-items-center gap-2" onclick="manageApiKey()">
+                    <i class="fas fa-cog"></i> API Configuration
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto en-font">
-                        <li class="nav-item"><a class="nav-link" href="../index.html">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Nav/About.html">ABOUT</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../Nav/Categories.html">CATEGORIES</a></li>
-                        <li class="nav-item ms-lg-3 d-flex align-items-center">
-                            <a class="btn btn-success text-white px-4 shadow-sm fw-bold"
-                                href="../Blog/Blog.html">TIPS</a>
-                        </li>
-                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <nav class="navbar navbar-light bg-white border-bottom px-3 sticky-top">
+            <div class="container-fluid p-0">
+                <button class="btn border-0 p-0 me-3" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebarMenu">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+                <div class="navbar-brand m-0 fw-bold d-flex align-items-center gap-2">
+                    <img src="../Logo/shaifly_ai_avatar.png" width="35" class="rounded-circle" alt="Logo">
+                    Shaifly AI
                 </div>
+                <a href="../index.html" class="btn btn-sm btn-dark rounded-pill px-3 ms-auto">Exit</a>
             </div>
         </nav>
-    </header>
 
-    <main class="concept-hero text-center position-relative">
-        <div class="container" data-aos="fade-up">
-            <div class="mb-5">
-                <div class="mb-5">
-                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold mb-3">AI POWERED
-                        CLEARANCE</span>
-                    <h1 class="display-3 fw-bold mb-3">আপনার পড়াকে করুন <span class="text-success">আরও সহজ</span></h1>
-                    <p class="lead text-secondary mx-auto" style="max-width: 600px;">যেকোনো টপিক লিখুন, আমরা জেমিনি এআই
-                        থেকে সেরা আলোচনা খুঁজে দেব।</p>
+        <!-- Chat Display -->
+        <div id="chatBody" class="chat-container">
+            <div id="welcomeScreen" class="welcome-hero">
+                <img src="../Logo/shaifly_ai_avatar.png" width="80" class="mb-3 rounded-circle" alt="Logo">
+                <h2 class="fw-bold px-3">আমি কীভাবে আপনাকে সাহায্য করতে পারি?</h2>
+                <div class="container mt-4" style="max-width: 650px;">
+                    <div class="row g-3">
+                        <div class="col-6 col-sm-6">
+                            <button class="suggestion-btn" onclick="autoInput('পরমাণুর গঠন সম্পর্কে জানতে চাই')">
+                                <span class="fw-bold small">Chemistry</span>
+                                <p class="m-0 small text-muted text-truncate">পরমাণুর গঠন ও ইলেকট্রন বিন্যাস সম্পর্কে
+                                    জানুন।</p>
+                            </button>
+                        </div>
+                        <div class="col-6 col-sm-6">
+                            <button class="suggestion-btn" onclick="autoInput('কোষ বিভাজন সম্পর্কে জানতে চাই')">
+                                <span class="fw-bold small">Biology</span>
+                                <p class="m-0 small text-muted text-truncate">মাইটোসিস ও মিয়োসিস প্রক্রিয়া সম্পর্কে
+                                    জানুন।</p>
+                            </button>
+                        </div>
+                        <div class="col-6 col-sm-6">
+                            <button class="suggestion-btn" onclick="autoInput('বলের সূত্র সম্পর্কে জানতে চাই')">
+                                <span class="fw-bold small">Physics</span>
+                                <p class="m-0 small text-muted text-truncate">নিউটনের গতি ও মহাকর্ষ সূত্র সম্পর্কে
+                                    জানুন।</p>
+                            </button>
+                        </div>
+                        <div class="col-6 col-sm-6">
+                            <button class="suggestion-btn" onclick="autoInput('হাতে লেখা নোট বিশ্লেষণ')">
+                                <span class="fw-bold small">Analysis</span>
+                                <p class="m-0 small text-muted text-truncate">বইয়ের ছবি থেকে নোট তৈরি করুন।</p>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="search-container mb-5">
-                <div class="search-input-wrapper glass-card">
-                    <input type="text" id="topicInput" class="search-input"
-                        placeholder="যেমন: জারণ-বিজারণ, বোর পরমাণু মডেল..." autocomplete="off">
-                    <button id="searchBtn" class="search-btn">
-                        <i class="fas fa-microscope me-2"></i>
-                        <span class="d-none d-sm-inline">Analyze Concept</span>
+        <!-- Sticky Input Box -->
+        <div class="input-area-fixed">
+            <div class="input-box container-fluid">
+                <div id="previewPane" class="preview-scroll mb-2" style="display: none;"></div>
+                <div class="d-flex align-items-end gap-2">
+                    <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
+                    <button class="btn p-1 text-muted" onclick="document.getElementById('imageUpload').click()"
+                        title="Upload Image">
+                        <i class="fas fa-camera fa-lg"></i>
+                    </button>
+                    <textarea id="chatInput" class="form-control" placeholder="একটি মেসেজ লিখুন..." rows="1"></textarea>
+                    <button id="sendBtn" class="btn send-btn-circle border-0" disabled>
+                        <i class="fas fa-arrow-up"></i>
                     </button>
                 </div>
             </div>
-        </div>
-    </main>
-
-    <section id="resultsSection" class="results-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">CONCEPT DASHBOARD</span>
-                <h2 class="fw-bold display-5" id="topicDisplay">Topic Name</h2>
-            </div>
-
-            <div class="row g-4">
-                <!-- Left Column: Visuals & Videos -->
-                <div class="col-lg-7">
-                    <!-- Visual Lab -->
-                    <div class="card glass-card p-4 mb-4" data-aos="fade-right">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-image text-primary me-2 fs-4"></i>
-                            <h4 class="fw-bold mb-0">Visual Lab (Diagrams)</h4>
-                        </div>
-                        <p class="text-muted small">See how it works through visual representations.</p>
-                        <div id="visualGrid" class="visual-grid">
-                            <!-- Dynamically loaded images -->
-                        </div>
-                        <div class="mt-3 text-end">
-                            <a href="#" id="googleImages" target="_blank" class="text-decoration-none small fw-bold">
-                                More Diagrams <i class="fas fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Watch & Learn -->
-                    <div class="card glass-card p-4" data-aos="fade-right" data-aos-delay="200">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fab fa-youtube text-danger me-2 fs-4"></i>
-                            <h4 class="fw-bold mb-0">Watch & Learn (Videos)</h4>
-                        </div>
-                        <div id="videoContainer" class="ratio ratio-16x9 rounded-4 overflow-hidden mb-3"
-                            style="background: #000;">
-                            <!-- Placeholder or Iframe -->
-                            <div class="d-flex align-items-center justify-content-center text-white flex-column">
-                                <i class="fab fa-youtube fa-3x mb-2"></i>
-                                <span id="videoStatus">Search YouTube for ${topic}</span>
-                            </div>
-                        </div>
-                        <a href="#" id="youtubeLink" target="_blank" class="btn btn-danger w-100 rounded-pill fw-bold">
-                            <i class="fab fa-youtube me-2"></i> Open Best Video Tutorial
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right Column: AI Analysis -->
-                <div class="col-lg-5">
-                    <!-- Smart AI Recommendation -->
-                    <div id="aiRecommendation" class="recommendation-card mb-4" data-aos="fade-left">
-                        <span id="aiPlatformPill" class="ai-pill bg-success">RECOMMENDED PLATFORM</span>
-                        <h3 id="aiPlatformName" class="fw-bold mb-2">Gemini Pro</h3>
-                        <p id="aiPlatformReason" class="text-light opacity-75 small mb-4">Best for logical reasoning and
-                            step-by-step scientific explanations.</p>
-                        <a href="#" id="aiPlatformLink" target="_blank"
-                            class="btn btn-light w-100 rounded-pill fw-bold text-dark">
-                            <i class="fas fa-robot me-2"></i> Start Lab Discussion
-                        </a>
-                    </div>
-
-                    <!-- Gemini Analysis -->
-                    <div class="gemini-card shadow-lg m-0 w-100" data-aos="fade-left" data-aos-delay="200">
-                        <div class="ai-header">
-                            <i class="fas fa-sparkles gemini-sparkle"></i>
-                            <h5 class="fw-bold mb-0">Gemini Quick Overview</h5>
-                        </div>
-                        <div id="loading-gemini" class="ai-loading mb-3">
-                            <span class="text-primary fw-bold small">Analyzing...</span>
-                        </div>
-                        <div id="resp-gemini" class="ai-response-text small mb-4" style="min-height: 100px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <button class="btn btn-outline-success rounded-pill px-5" onclick="resetSearch()">
-                    <i class="fas fa-redo me-2"></i> Test Another Concept
-                </button>
+            <div class="text-center mt-2">
+                <small class="text-muted" style="font-size: 0.7rem;">Shaifly AI ভুল তথ্য দিতে পারে। গুরুত্বপূর্ণ তথ্য
+                    যাচাই করে নিন।</small>
             </div>
         </div>
-    </section>
+    </div>
 
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Config & Groq logic integration -->
+    <script src="../js/config.js"></script>
+
     <script>
-        AOS.init({ duration: 800, once: true });
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatBody = document.getElementById('chatBody');
+        const imageUpload = document.getElementById('imageUpload');
+        const previewPane = document.getElementById('previewPane');
 
-        const topicInput = document.getElementById('topicInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const resultsSection = document.getElementById('resultsSection');
-        const topicDisplay = document.getElementById('topicDisplay');
-        const googleLink = document.getElementById('googleLink');
+        let selectedImages = [];
+        let chatHistory = [{
+            role: "system",
+            content: `You are Shaifly AI, a highly intelligent and friendly educational assistant specifically designed for Bangladeshi SSC and HSC students. Your expertise covers Physics, Chemistry, Biology, Higher Math, and General Science according to the NCTB curriculum.
 
-        const responses = {
-            "gemini": {
-                "জারণ বিজারণ": "জারণ-বিজারণ (Redox) হলো ইলেকট্রন স্থানান্তরের প্রক্রিয়া। জারণ মানে ইলেকট্রন বর্জন, যা পরমাণুর জারণ সংখ্যা বৃদ্ধি করে। বিজারণ মানে ইলেকট্রন গ্রহণ, যা জারণ সংখ্যা হ্রাস করে। এটি রাসায়নিক বিক্রিয়ার মৌলিক ভিত্তি।",
-                "বোর পরমাণু মডেল": "নীলস বোর ১৯১৩ সালে এই মডেল দেন। এর প্রধান বৈশিষ্ট্য হলো কক্ষপথের ধারণা। ইলেকট্রন নির্দিষ্ট শক্তিস্তরে থাকে এবং এক স্তর থেকে অন্য স্তরে যাওয়ার সময় নির্দিষ্ট পরিমাণ শক্তি শোষণ বা বিকিরণ করে। এটি পরমাণুর স্থায়িত্ব ব্যাখ্যা করে।",
-                "কোষ বিভাজন": "কোষ বিভাজন প্রক্রিয়া প্রধানত দুই প্রকার: মাইটোসিস ও মিয়োসিস। মাইটোসিসে মাতৃকোষের সমান গুণসম্পন্ন দুইটি অপত্য কোষ সৃষ্টি হয় (দেহের বৃদ্ধি), আর মিয়োসিসে ক্রোমোজোম সংখ্যা অর্ধেক হয়ে চারটি কোষ তৈরি হয় (জনন)।",
-                "নিউটনের গতিসূত্র": "নিউটনের তিনটি সূত্র গতির ভিত্তি। ১ম সূত্র: জড়তা (বল ছাড়া অবস্থা পরিবর্তন হয় না)। ২য় সূত্র: F=ma (বল ভর ও ত্বরণের গুণফলের সমান)। ৩য় সূত্র: প্রতিক্রিয়া (প্রত্যেক ক্রিয়ার সমান ও বিপরীত প্রতিক্রিয়া আছে)।",
-                "default": "এই বিষয়টি আপনার একাডেমিক সিলেবাসের জন্য খুবই গুরুত্বপূর্ণ। জেমিনি এআই আপনাকে এর গাণিতিক বিশ্লেষণ এবং বিস্তারিত ডায়াগ্রাম বুঝতে সহায়তা করতে পারে। আপনি সরাসরি জেমিনিতে এটি নিয়ে প্রশ্ন করতে পারেন।"
-            }
-        };
+            Guidelines for Communication:
+            1. Language: Always communicate in a polite, standard, and easy-to-understand Bengali (প্রমিত বাংলা). Use English scientific terms in brackets if necessary for clarity.
+            2. Structured Content: Provide answers in a structured format:
+               - [Executive Summary]: A quick 2-3 sentence overview.
+               - [Key Breakdown]: Use bullet points to explain complex concepts.
+               - [Exam Insights]: Specific tips for board exams.
+            3. Tags: 
+               - Use [IMPORTANT] at the beginning of lines that are key concepts.
+               - Use [CRITICAL] for information that is must-know for exams.
+            4. Image Analysis: If the user uploads a book page or handwritten note image, analyze the visible text/diagrams carefully and convert them into organized study notes.
+            5. Personality: Be encouraging and helpful. If a concept is hard, simplify it using daily-life examples familiar to Bangladeshi students (e.g., using a rickshaw to explain Newton's laws).
+            6. Accuracy: Prioritize data accuracy and logical reasoning above all else.`
+        }];
 
-        const aiMetadata = {
-            "Chemistry": { platform: "Gemini", reason: "Best for complex chemical balancing and orbital visualizations.", link: "https://gemini.google.com/" },
-            "Physics": { platform: "ChatGPT", reason: "Best for real-world analogies and solving mathematical problems.", link: "https://chat.openai.com/" },
-            "Biology": { platform: "Grok", reason: "Best for exploring the latest scientific research and DNA data.", link: "https://x.com/i/grok" },
-            "General": { platform: "Gemini", reason: "Best all-around AI for general academic queries and notes.", link: "https://gemini.google.com/" }
-        };
+        // Auto-resize input
+        chatInput.addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            sendBtn.disabled = this.value.trim() === "" && selectedImages.length === 0;
+        });
 
-        function typeWriter(id, text, i = 0) {
-            const el = document.getElementById(id);
-            if (!el) return;
-            if (i < text.length) {
-                el.innerHTML = text.substring(0, i + 1);
-                setTimeout(() => typeWriter(id, text, i + 1), 15);
-            }
+        function autoInput(text) {
+            chatInput.value = text;
+            chatInput.dispatchEvent(new Event('input'));
         }
 
-        function performSearch() {
-            const topic = topicInput.value.trim();
-            if (!topic) return;
-
-            topicDisplay.innerText = topic;
-            resultsSection.style.display = 'block';
-
-            // 1. Setup Links
-            document.getElementById('googleImages').href = `https://www.google.com/search?q=${encodeURIComponent(topic + " diagram ssc hsc")}&tbm=isch`;
-            document.getElementById('youtubeLink').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(topic + " ssc hsc bangla explanation")}`;
-
-            // 2. Load Visual Lab (Placeholders for demo)
-            const visualGrid = document.getElementById('visualGrid');
-            visualGrid.innerHTML = '';
-            const imgKeywords = ["diagram", "structure", "experiment"];
-            imgKeywords.forEach(kw => {
-                const item = document.createElement('div');
-                item.className = 'visual-item';
-                item.innerHTML = `
-                    <img src="https://source.unsplash.com/featured/?${encodeURIComponent(topic + "," + kw)}" alt="${kw}" onerror="this.src='https://via.placeholder.com/200x150?text=${topic}+${kw}'">
-                    <div class="visual-overlay">${topic} ${kw}</div>
-                `;
-                visualGrid.appendChild(item);
+        // Image Handling
+        imageUpload.addEventListener('change', (e) => {
+            Array.from(e.target.files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    selectedImages.push(ev.target.result);
+                    renderPreviews();
+                };
+                reader.readAsDataURL(file);
             });
+            sendBtn.disabled = false;
+        });
 
-            // 3. Smart AI Recommendation
-            let category = "General";
-            if (topic.includes("জারণ") || topic.includes("রসায়ন") || topic.includes("মডেল")) category = "Chemistry";
-            if (topic.includes("গতি") || topic.includes("বল") || topic.includes("পদার্থ")) category = "Physics";
-            if (topic.includes("ভাজণ") || topic.includes("উদ্ভিদ") || topic.includes("জীবন")) category = "Biology";
-
-            const meta = aiMetadata[category];
-            document.getElementById('aiPlatformName').innerText = meta.platform;
-            document.getElementById('aiPlatformReason').innerText = meta.reason;
-            document.getElementById('aiPlatformLink').href = meta.link;
-
-            const pill = document.getElementById('aiPlatformPill');
-            if (meta.platform === "Gemini") pill.style.background = "#4285f4";
-            else if (meta.platform === "ChatGPT") pill.style.background = "#10a37f";
-            else pill.style.background = "#000";
-
-            window.scrollTo({ top: resultsSection.offsetTop - 50, behavior: 'smooth' });
-
-            // 4. Gemini Overview
-            const sys = 'gemini';
-            document.getElementById(`resp-${sys}`).innerHTML = "";
-            document.getElementById(`loading-${sys}`).style.display = "flex";
-
-            setTimeout(() => {
-                document.getElementById(`loading-${sys}`).style.display = "none";
-                const text = responses[sys][topic] || responses[sys]["default"];
-                typeWriter(`resp-${sys}`, text);
-            }, 1200);
+        function renderPreviews() {
+            previewPane.style.display = selectedImages.length > 0 ? 'flex' : 'none';
+            previewPane.innerHTML = '';
+            selectedImages.forEach((src, i) => {
+                const div = document.createElement('div');
+                div.className = 'position-relative';
+                div.innerHTML = `<img src="${src}" class="preview-thumb"><button class="btn btn-danger btn-sm rounded-circle position-absolute top-0 start-100 translate-middle p-0" style="width:18px;height:18px;font-size:10px;" onclick="removeImg(${i})">×</button>`;
+                previewPane.appendChild(div);
+            });
         }
 
-        searchBtn.addEventListener('click', performSearch);
-        topicInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+        function removeImg(i) {
+            selectedImages.splice(i, 1);
+            renderPreviews();
+            sendBtn.disabled = chatInput.value.trim() === "" && selectedImages.length === 0;
+        }
 
-        function resetSearch() {
-            topicInput.value = "";
-            resultsSection.style.display = "none";
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Messaging
+        async function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text && selectedImages.length === 0) return;
+
+            document.getElementById('welcomeScreen').style.display = 'none';
+            addMessage(text || "Images sent for analysis", 'user');
+
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+            sendBtn.disabled = true;
+
+            const aiBox = addMessage("", 'ai', true);
+            await callGroq(text, aiBox);
+        }
+
+        sendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } });
+
+        function addMessage(text, role, loading = false) {
+            const wrap = document.createElement('div');
+            wrap.className = `msg-wrapper ${role === 'ai' ? 'msg-ai' : ''}`;
+
+            const avatar = `<div class="avatar-icon bg-${role}">${role === 'user' ? '<i class="fas fa-user"></i>' : '<img src="../Logo/shaifly_ai_avatar.png" alt="AI">'}</div>`;
+            const content = `<div class="msg-content w-100">${loading ? '<div class="spinner-grow spinner-grow-sm text-success"></div> <span class="small text-muted">Analyzing...</span>' : formatContent(text)}</div>`;
+
+            wrap.innerHTML = avatar + content;
+            chatBody.appendChild(wrap);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            return wrap.querySelector('.msg-content');
+        }
+
+        function formatContent(text) {
+            return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\[IMPORTANT\]/g, '<span class="important-tag">IMPORTANT</span>')
+                .replace(/\[CRITICAL\]/g, '<span class="critical-tag">CRITICAL</span>');
+        }
+
+        async function typeMessage(text, container) {
+            const formatted = formatContent(text).replace(/\n/g, '<br>');
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = formatted;
+
+            const nodes = Array.from(tempDiv.childNodes);
+            container.innerHTML = '';
+
+            for (const node of nodes) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const textContent = node.textContent;
+                    const textNode = document.createTextNode("");
+                    container.appendChild(textNode);
+
+                    for (let i = 0; i < textContent.length; i++) {
+                        textNode.textContent += textContent[i];
+                        await new Promise(r => setTimeout(r, 7)); // Faster and smoother
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }
+                } else {
+                    const clone = node.cloneNode(true);
+                    container.appendChild(clone);
+                    await new Promise(r => setTimeout(r, 20));
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }
+            }
+        }
+
+        async function callGroq(prompt, output) {
+            const key = window.APP_CONFIG?.GROQ_API_KEY || localStorage.getItem('GROQ_KEY');
+            if (!key) { output.innerHTML = "API Key not found. Go to 'API Configuration' in sidebar."; return; }
+
+            try {
+                const res = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.groq.com/openai/v1/chat/completions"), {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${key}` },
+                    body: JSON.stringify({
+                        model: "llama-3.1-8b-instant",
+                        messages: [...chatHistory, { role: "user", content: prompt + (selectedImages.length ? " (User provided images)" : "") }]
+                    })
+                });
+
+                const data = await res.json();
+                const aiMsg = data.choices[0].message.content;
+                chatHistory.push({ role: "assistant", content: aiMsg });
+
+                // Clear loading spinner and start typing
+                output.innerHTML = "";
+                await typeMessage(aiMsg, output);
+
+                // Add to history sidebar
+                const hist = document.getElementById('historyList');
+                const hItem = document.createElement('a');
+                hItem.className = 'history-item';
+                hItem.innerHTML = `<i class="far fa-message me-2 small"></i> ${prompt.substring(0, 25) || "Image Analysis"}...`;
+                hist.prepend(hItem);
+
+                // Clear images
+                selectedImages = [];
+                renderPreviews();
+
+            } catch (err) {
+                output.innerHTML = "Network/API Connection Error.";
+            }
+        }
+
+        function manageApiKey() {
+            const key = prompt("Enter Groq API Key:", localStorage.getItem('GROQ_KEY') || "");
+            if (key) localStorage.setItem('GROQ_KEY', key);
         }
     </script>
 </body>
