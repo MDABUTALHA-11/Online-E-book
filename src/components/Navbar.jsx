@@ -9,8 +9,8 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
-  // Unified Dark Hero detection for Home, Categories, and Subject pages
-  const hasDarkHero = ['/', '/categories'].includes(location.pathname) || location.pathname.startsWith('/subject');
+  // Unified Dark Hero detection for Home, Categories, Subject, and Quiz pages
+  const hasDarkHero = ['/', '/categories'].includes(location.pathname) || location.pathname.startsWith('/subject') || location.pathname.startsWith('/quiz');
   const isLightAtTop = !hasDarkHero;
 
   useEffect(() => {
@@ -35,6 +35,7 @@ const Navbar = () => {
     { name: 'CATEGORIES', path: '/categories' },
     { name: 'ABOUT', path: '/about' },
     { name: 'VIP PLANS', path: '/subscription' },
+    { name: 'QUIZ', path: '/quiz' },
   ];
 
   const isActive = (path) => {
@@ -125,10 +126,10 @@ const Navbar = () => {
         </div>
 
         {/* Full-Screen Mobile Menu Overlay */}
-        <div className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen bg-slate-950/98 backdrop-blur-3xl z-[90] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-center ${
+        <div className={`md:hidden fixed inset-0 top-0 left-0 w-full h-screen bg-slate-950/98 backdrop-blur-3xl z-[90] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-start justify-center overflow-y-auto pb-10 ${
           isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full pointer-events-none'
         }`}>
-          <div className="flex flex-col items-center gap-12 w-full max-w-sm px-10">
+          <div className="flex flex-col items-center gap-8 w-full max-w-sm px-10 min-h-max pt-20">
             <Link to="/" className="no-underline" onClick={() => setIsOpen(false)}>
                 <div className="w-20 h-20 bg-primary rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-primary/40">
                    <BookOpen className="w-10 h-10 text-white" />

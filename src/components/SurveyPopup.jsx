@@ -35,7 +35,7 @@ const SurveyPopup = () => {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: -20 }}
-          className="bg-white w-full max-w-xl rounded-[3rem] p-10 md:p-14 shadow-2xl relative overflow-hidden"
+          className="bg-white w-full max-w-xl rounded-[2rem] md:rounded-[3rem] p-6 md:p-14 shadow-2xl relative overflow-hidden"
         >
           {/* Progress Indicator */}
           <div className="absolute top-0 left-0 w-full h-2 bg-slate-100">

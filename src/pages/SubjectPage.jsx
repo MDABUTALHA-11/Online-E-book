@@ -63,7 +63,7 @@ const SubjectPage = () => {
   return (
     <div className="min-h-screen pb-40 bg-slate-50/50">
       {/* Hero Section - Starts at top to support transparent navbar */}
-      <section className="relative bg-slate-950 px-6 pt-32 md:pt-48 pb-24 md:pb-40 overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] mb-20">
+      <section className="relative bg-slate-950 px-6 pt-32 md:pt-48 pb-20 md:pb-40 overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] mb-12 md:mb-20">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] -mr-80 -mt-80 animate-pulse-soft" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px] -ml-40 -mb-40 animate-pulse-soft delay-1000" />
         
@@ -170,7 +170,7 @@ const SubjectPage = () => {
         </AnimatePresence>
 
         {/* Call to Action Wrapper */}
-        <div className="mt-60 p-12 md:p-32 bg-slate-950 rounded-[6rem] text-center text-white relative overflow-hidden shadow-premium border border-white/5">
+        <div className="mt-40 md:mt-60 p-8 md:p-32 bg-slate-950 rounded-[3rem] md:rounded-[6rem] text-center text-white relative overflow-hidden shadow-premium border border-white/5">
            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none" />
            <div className="max-w-4xl mx-auto relative z-10">
               <div className="inline-block p-6 bg-white/5 rounded-[2.5rem] mb-16 ring-1 ring-white/10 animate-float shadow-2xl">

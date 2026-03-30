@@ -35,7 +35,7 @@ export const ComingSoonProvider = ({ children }) => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-white rounded-[3.5rem] p-10 md:p-14 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden"
+              className="relative w-full max-w-lg bg-white rounded-[2rem] md:rounded-[3.5rem] p-6 md:p-14 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden"
             >
               {/* Background Glow */}
               <div className="absolute -top-24 -right-24 w-60 h-60 bg-primary/10 rounded-full blur-[80px]" />
@@ -44,9 +44,9 @@ export const ComingSoonProvider = ({ children }) => {
               {/* Close Button */}
               <button 
                 onClick={closeComingSoon}
-                className="absolute top-8 right-8 w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 hover:text-primary hover:bg-white hover:scale-110 shadow-lg transition-all duration-300"
+                className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 hover:text-primary hover:bg-white hover:scale-110 shadow-lg transition-all duration-300"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               {/* Icon Section */}
@@ -77,8 +77,8 @@ export const ComingSoonProvider = ({ children }) => {
                 <h2 className="text-4xl md:text-5xl font-bn font-black mb-6 leading-tight italic">
                   আমরা এটি নিয়ে <span className="text-primary underline decoration-primary/20 decoration-8 underline-offset-8">কাজ করছি!</span>
                 </h2>
-                <div className="bg-slate-50 p-6 rounded-3xl border border-dashed border-slate-200 mb-6">
-                  <p className="text-slate-500 text-lg leading-relaxed">
+                <div className="bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-dashed border-slate-200 mb-6">
+                  <p className="text-slate-500 text-base md:text-lg leading-relaxed">
                     আগ্রহী হওয়ার জন্য ধন্যবাদ! 
                     {contentTitle ? (
                       <span className="text-slate-800 font-bold block mt-2">"{contentTitle}"-এর </span>

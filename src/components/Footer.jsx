@@ -4,11 +4,11 @@ import { Facebook, Youtube, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-white py-24 mt-20 relative overflow-hidden">
+    <footer className="bg-slate-950 text-white py-16 md:py-24 mt-12 md:mt-20 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 pb-16 border-b border-white/5 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 pb-12 md:pb-16 border-b border-white/5 mb-12 md:mb-16">
           <div className="lg:col-span-2">
              <Link to="/" className="text-4xl font-black en-font mb-6 block tracking-tighter no-underline text-white">Shaifly<span className="text-primary italic">.</span></Link>
              <p className="text-slate-400 max-w-sm font-bn italic text-lg leading-relaxed mb-8">

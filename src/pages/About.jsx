@@ -43,9 +43,9 @@ const About = () => {
               <p className="text-xl text-slate-500 leading-relaxed mb-10 text-justify">
               শাইফলি (Shaifly) একটি ওপেন-সোর্স লাইব্রেরি যা বাংলাদেশের নবম-দ্বাদশ শ্রেণির শিক্ষার্থীদের কথা মাথায় রেখে তৈরি করা হয়েছে। আমাদের লক্ষ্য হচ্ছে সল্প খরচে বা বিনামূল্যে মানসম্মত ডিজিটাল একাডেমিক কন্টেন্ট সকলের হাতের নাগালে পৌঁছে দেওয়া। বিশেষ করে যারা গ্রামে থাকে বা ভালো শিক্ষকের সান্নিধ্য পায় না—তারা যেন পিছিয়ে না থাকে, সেটাই শাইফলির মূল উদ্দেশ্য।
               </p>
-              <div className="flex flex-col sm:flex-row gap-6">
-                <button className="btn btn-primary btn-lg rounded-2xl px-10 shadow-lg shadow-primary/20">শাইফলি সম্পর্কে জানুন</button>
-                <button className="btn btn-outline btn-lg rounded-2xl px-10 group">অফিসিয়াল ভিডিও <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></button>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                <button className="btn btn-primary btn-lg w-full sm:w-auto rounded-2xl px-6 md:px-10 shadow-lg shadow-primary/20">শাইফলি সম্পর্কে জানুন</button>
+                <button className="btn btn-outline btn-lg w-full sm:w-auto rounded-2xl px-6 md:px-10 group justify-center">অফিসিয়াল ভিডিও <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></button>
               </div>
             </motion.div>
             
@@ -72,25 +72,25 @@ const About = () => {
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-20 md:mb-32">
             {stats.map((stat, i) => (
               <motion.div 
                 key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white p-10 rounded-[3rem] shadow-xl text-center border border-slate-100 hover:shadow-2xl transition-all hover:border-primary/20"
+                className="bg-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-xl text-center border border-slate-100 hover:shadow-2xl transition-all hover:border-primary/20"
               >
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-slate-50 ${stat.color} shadow-sm`}>
-                  <stat.icon className="w-7 h-7" />
+                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 bg-slate-50 ${stat.color} shadow-sm`}>
+                  <stat.icon className="w-6 h-6 md:w-7 md:h-7" />
                  </div>
-                <h4 className="text-4xl font-black mb-2 text-slate-800">{stat.value}</h4>
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">{stat.label}</p>
+                <h4 className="text-2xl md:text-4xl font-black mb-2 text-slate-800">{stat.value}</h4>
+                <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] md:text-xs">{stat.label}</p>
               </motion.div>
             ))}
           </div>
 
-          <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl">
+          <div className="bg-slate-900 rounded-[3rem] md:rounded-[4rem] p-8 md:p-24 text-white relative overflow-hidden shadow-2xl">
              <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-20">
                   <h2 className="text-4xl md:text-6xl font-bn font-black mb-6 italic">কেন আপনি শাইফলি <span className="text-primary italic">বেছে নিবেন?</span></h2>

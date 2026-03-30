@@ -38,8 +38,8 @@ const Hero = () => {
       </div>
 
       {/* Floating Blobs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse-soft" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] animate-pulse-soft delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-[500px] md:h-[500px] bg-primary/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse-soft pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-[400px] md:h-[400px] bg-secondary/10 rounded-full blur-[60px] md:blur-[100px] animate-pulse-soft delay-1000 pointer-events-none" />
 
       <div className="container relative z-10 mx-auto max-w-7xl">
         <div className="max-w-5xl mx-auto text-center">
@@ -80,25 +80,25 @@ const Hero = () => {
             <input 
                type="text" 
                placeholder="বিষয়ের নাম বা নোটের নাম লিখুন..." 
-               className="w-full h-20 pl-20 pr-10 rounded-[2.5rem] glass-dark text-white border-2 border-white/10 focus:border-primary focus:bg-white/5 transition-all font-bn px-8 italic text-xl shadow-2xl group-hover:bg-white/5"
+               className="w-full h-16 md:h-20 pl-14 md:pl-20 pr-4 md:pr-10 rounded-[2rem] md:rounded-[2.5rem] glass-dark text-white border-2 border-white/10 focus:border-primary focus:bg-white/5 transition-all font-bn text-lg md:text-xl shadow-2xl group-hover:bg-white/5"
                value={searchValue}
                onChange={(e) => setSearchValue(e.target.value)}
                onKeyDown={handleSearch}
             />
-            <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-primary w-8 h-8 group-focus-within:scale-110 transition-transform" />
+            <Search className="absolute left-5 md:left-8 top-1/2 -translate-y-1/2 text-primary w-6 h-6 md:w-8 md:h-8 group-focus-within:scale-110 transition-transform" />
             <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-[10px] font-bold text-white/40 uppercase tracking-widest">
                 Press Enter
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Link to="/subscription" className="btn btn-primary btn-lg w-full sm:w-auto h-20 px-12 group rounded-3xl">
-              <span className="text-xl">VIP এক্সেস নিন</span>
-              <Rocket className="w-7 h-7 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            <Link to="/subscription" className="btn btn-primary btn-lg w-full sm:w-auto h-16 md:h-20 px-8 md:px-12 group rounded-3xl">
+              <span className="text-lg md:text-xl">VIP এক্সেস নিন</span>
+              <Rocket className="w-6 h-6 md:w-7 md:h-7 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
-            <Link to="/categories" className="btn btn-white btn-lg w-full sm:w-auto h-20 px-12 rounded-3xl border-none">
-              <span className="text-xl">সকল বিভাগ দেখুন</span>
-              <BookOpen className="w-7 h-7" />
+            <Link to="/categories" className="btn btn-white btn-lg w-full sm:w-auto h-16 md:h-20 px-8 md:px-12 rounded-3xl border-none">
+              <span className="text-lg md:text-xl">সকল বিভাগ দেখুন</span>
+              <BookOpen className="w-6 h-6 md:w-7 md:h-7" />
             </Link>
           </div>
         </div>
