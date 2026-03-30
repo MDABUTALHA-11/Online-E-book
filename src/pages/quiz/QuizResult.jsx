@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Target, Award, ArrowRight, Activity, Zap, ShieldCheck } from 'lucide-react';
 import { physicsQuestions } from '../../data/physicsQuestions';
+import { db } from '../../lib/firebase';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 const QuizResult = () => {
   const navigate = useNavigate();
@@ -34,25 +36,63 @@ const QuizResult = () => {
       timestamp: new Date().getTime()
     };
     
-    // Check if already saved (React 18 Strict Mode prevents duplicate pushes)
-    let scores = JSON.parse(localStorage.getItem("scores")) || [];
-    const isDuplicate = scores.find(s => s.name === parsedData.name && s.score === parsedData.score && (parsedData.timestamp - s.timestamp < 5000));
-    
-    if (!isDuplicate) {
-       scores.push(parsedData);
-       localStorage.setItem("scores", JSON.stringify(scores));
-    }
+    const saveAndCalculateRank = async () => {
+      // Check if already saved locally (React 18 Strict Mode prevents duplicate pushes)
+      let scores = JSON.parse(localStorage.getItem("scores")) || [];
+      const isDuplicate = scores.find(s => s.name === parsedData.name && s.score === parsedData.score && (parsedData.timestamp - s.timestamp < 5000));
+      
+      if (!isDuplicate) {
+         scores.push(parsedData);
+         localStorage.setItem("scores", JSON.stringify(scores));
+         
+         // Push to Firebase
+         try {
+           await addDoc(collection(db, 'quiz_scores'), parsedData);
+         } catch (error) {
+           console.error("Error pushing to firebase scores:", error);
+         }
+      }
 
-    // Sort to find the current rank locally
-    const allScores = JSON.parse(localStorage.getItem("scores")) || scores;
-    const sorted = allScores.sort((a, b) => b.score - a.score);
-    const myRank = sorted.findIndex(s => s.name === parsedData.name && s.score === parsedData.score) + 1;
-    
-    parsedData.rank = myRank;
-    setResult(parsedData);
-    
-    // Clear answers storage from localStorage
-    localStorage.removeItem('quiz_answers');
+      // Read ranks from Firebase for accurate global rank
+      try {
+        const querySnapshot = await getDocs(collection(db, 'quiz_scores'));
+        
+        const uniqueMap = new Map();
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const key = `${data.name}-${data.school}`;
+          if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
+            uniqueMap.set(key, data);
+          }
+        });
+        
+        // Include current user in case they didn't get saved due to error
+        const myKey = `${parsedData.name}-${parsedData.school}`;
+        if (!uniqueMap.has(myKey) || uniqueMap.get(myKey).score < parsedData.score) {
+          uniqueMap.set(myKey, parsedData);
+        }
+
+        const sorted = Array.from(uniqueMap.values()).sort((a, b) => b.score - a.score);
+        const myRank = sorted.findIndex(s => s.name === parsedData.name && s.score === parsedData.score) + 1;
+        
+        parsedData.rank = myRank > 0 ? myRank : 1;
+        setResult(parsedData);
+      } catch (error) {
+        console.error("Error fetching firebase scores for rank:", error);
+        // Fallback to local
+        const allScores = JSON.parse(localStorage.getItem("scores")) || scores;
+        const sorted = allScores.sort((a, b) => b.score - a.score);
+        const myRank = sorted.findIndex(s => s.name === parsedData.name && s.score === parsedData.score) + 1;
+        
+        parsedData.rank = myRank > 0 ? myRank : 1;
+        setResult(parsedData);
+      }
+      
+      // Clear answers storage from localStorage
+      localStorage.removeItem('quiz_answers');
+    };
+
+    saveAndCalculateRank();
 
   }, [navigate]);
 

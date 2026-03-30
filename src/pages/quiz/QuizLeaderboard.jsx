@@ -1,22 +1,68 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, MapPin, Search, ArrowRight, Activity, Zap } from 'lucide-react';
+import { Trophy, Medal, MapPin, Search, ArrowRight, Activity, Zap, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../lib/firebase';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 
 const QuizLeaderboard = () => {
   const [scores, setScores] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('scores')) || [];
-    // Sort descending by score, if tie, sort by percentage ascending (as secondary filter if we tracked time but we don't, so just sort by score)
-    const sorted = data.sort((a, b) => b.score - a.score);
-    setScores(sorted);
-    
     // Load current user profile from storage
     const loggedUser = JSON.parse(localStorage.getItem('user'));
     setCurrentUser(loggedUser);
+
+    const scoresRef = collection(db, 'quiz_scores');
+    const q = query(scoresRef, orderBy('score', 'desc'));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      // Deduplicate by name + school, keeping highest score
+      const uniqueMap = new Map();
+      
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const key = `${data.name}-${data.school}`;
+        if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
+          uniqueMap.set(key, data);
+        }
+      });
+      
+      let finalScores = Array.from(uniqueMap.values()).sort((a, b) => b.score - a.score);
+      
+      if (finalScores.length === 0) {
+        // Fallback to local storage if firebase fails or is empty initially
+        const local = JSON.parse(localStorage.getItem('scores')) || [];
+        const localUniqueMap = new Map();
+        local.forEach((data) => {
+          const key = `${data.name}-${data.school}`;
+          if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
+            localUniqueMap.set(key, data);
+          }
+        });
+        finalScores = Array.from(localUniqueMap.values()).sort((a, b) => b.score - a.score);
+      }
+      
+      setScores(finalScores);
+      setLoading(false);
+    }, (error) => {
+      console.error("Firebase error fetching leaderboard:", error);
+      const local = JSON.parse(localStorage.getItem('scores')) || [];
+      const localUniqueMap = new Map();
+      local.forEach((data) => {
+        const key = `${data.name}-${data.school}`;
+        if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
+          localUniqueMap.set(key, data);
+        }
+      });
+      setScores(Array.from(localUniqueMap.values()).sort((a, b) => b.score - a.score));
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const getRankBadge = (idx) => {
@@ -57,8 +103,13 @@ const QuizLeaderboard = () => {
         </div>
 
         {/* Board */}
-        <div className="bg-slate-900/50 backdrop-blur-3xl rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-2xl overflow-hidden p-6 md:p-12">
-           {scores.length === 0 ? (
+        <div className="bg-slate-900/50 backdrop-blur-3xl rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-2xl overflow-hidden p-6 md:p-12 min-h-[400px]">
+           {loading ? (
+             <div className="flex flex-col items-center justify-center h-full py-32 opacity-70">
+               <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
+               <p className="text-xl font-bn italic text-slate-400">Loading Leaderboard...</p>
+             </div>
+           ) : scores.length === 0 ? (
              <div className="py-32 text-center text-white/50 font-bn italic text-3xl font-black">
                 এখনো কেউ কুইজ শেষ করেনি। আপনিই প্রথম হন!
              </div>
