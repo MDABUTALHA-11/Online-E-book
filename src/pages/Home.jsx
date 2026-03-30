@@ -77,29 +77,59 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quiz Direct Access Widget */}
+      {/* Quiz Direct Access Widget - Eye Catching Premium Redesign */}
       <section className="mb-20 md:mb-32 relative overflow-hidden">
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
-          <div className="bg-gradient-to-br from-slate-900 to-slate-950 p-8 md:p-20 rounded-[3rem] md:rounded-[4rem] shadow-2xl border border-white/10 relative overflow-hidden text-center group">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -mr-40 pointer-events-none" />
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <div className="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617] p-8 md:p-16 lg:p-20 rounded-[3rem] md:rounded-[4rem] shadow-[0_40px_100px_-20px_rgba(16,185,129,0.2)] border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-12 group relative overflow-hidden">
             
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-black uppercase tracking-widest text-[10px] md:text-xs mb-8">
-              <Gamepad2 className="w-4 h-4 animate-pulse" /> Play & Learn
+            {/* Background Animations */}
+            <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] group-hover:bg-primary/30 transition-all duration-1000 pointer-events-none" />
+            <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] group-hover:bg-blue-500/20 transition-all duration-1000 pointer-events-none" />
+
+            {/* Left Content */}
+            <div className="text-center lg:text-left max-w-2xl relative z-20 flex-1">
+               <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-black uppercase tracking-[0.2em] text-[10px] md:text-xs mb-8 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+                 <Rocket className="w-4 h-4 animate-bounce" /> Skill Test
+               </div>
+               <h2 className="text-5xl md:text-[5.5rem] font-bn font-black text-white italic mb-6 leading-[1.1] tracking-tighter drop-shadow-2xl">
+                 SSC <span className="text-primary drop-shadow-[0_0_15px_rgba(16,185,129,0.4)]">Super Group</span> Quiz
+               </h2>
+               <p className="text-slate-300 font-bn text-xl md:text-2xl italic leading-relaxed drop-shadow-md">
+                  আপনার প্রস্তুতি যাচাই করার সবচেয়ে আধুনিক এবং স্মার্ট উপায়। হাজারো শিক্ষার্থীর সাথে প্রতিযোগিতা করুন এবং লিডারবোর্ডে নিজের স্থান নিশ্চিত করুন!
+               </p>
             </div>
 
-            <h2 className="text-4xl md:text-7xl font-bn font-black text-white italic mb-6 leading-tight">SSC <span className="text-primary">Super Group</span> Quiz</h2>
-            <p className="text-slate-400 font-bn text-lg md:text-2xl italic max-w-2xl mx-auto mb-12">
-               আপনার প্রস্তুতি যাচাই করতে এখনই কুইজে অংশগ্রহণ করুন। মেনুর জন্য অপেক্ষা না করে সরাসরি এখান থেকেই শুরু করতে পারবেন!
-            </p>
+            {/* Right Side Mode Cards (Buttons) */}
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-6 w-full lg:w-auto relative z-20 shrink-0">
+               {/* Practice Mode Card */}
+               <button 
+                 onClick={() => navigate('/quiz/start?mode=practice')} 
+                 className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left justify-between p-6 md:p-8 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/30 rounded-[2rem] md:rounded-[2.5rem] group/btn transition-all shadow-xl hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.2)] w-full lg:w-[400px]"
+               >
+                 <div className="mb-4 sm:mb-0">
+                    <h3 className="text-2xl md:text-3xl text-blue-300 font-bn italic font-black mb-1 group-hover/btn:text-blue-200 transition-colors">Practice Mode</h3>
+                    <p className="text-blue-100/70 font-en text-[10px] md:text-xs uppercase tracking-[0.15em] font-bold">No Timer • Immediate Answers</p>
+                 </div>
+                 <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center shrink-0 border border-blue-500/20 group-hover/btn:-rotate-12 transition-transform">
+                    <Search className="w-6 h-6 text-blue-400" />
+                 </div>
+               </button>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 relative z-20">
-              <button onClick={() => navigate('/quiz/start?mode=practice')} className="btn btn-outline border-white/20 text-white hover:bg-white/10 w-full sm:w-auto h-16 md:h-20 px-8 rounded-[2rem] text-xl font-bn italic shadow-xl">
-                Practice Mode <ArrowRight className="w-6 h-6 ml-2" />
-              </button>
-              <button onClick={() => navigate('/quiz/start?mode=exam')} className="btn btn-primary w-full sm:w-auto h-16 md:h-20 px-10 rounded-[2rem] text-xl md:text-2xl font-bn italic shadow-[0_20px_50px_-15px_rgba(16,185,129,0.5)] active:scale-95 group-hover:scale-105 transition-transform">
-                Start Exam <Zap className="w-6 h-6 ml-2" />
-              </button>
+               {/* Exam Mode Card */}
+               <button 
+                 onClick={() => navigate('/quiz/start?mode=exam')} 
+                 className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left justify-between p-6 md:p-8 bg-gradient-to-r from-primary/10 to-transparent hover:from-primary/20 hover:to-emerald-900/40 border border-primary/30 hover:border-primary rounded-[2rem] md:rounded-[2.5rem] group/btn transition-all shadow-[0_10px_30px_rgba(16,185,129,0.1)] hover:shadow-[0_30px_60px_rgba(16,185,129,0.3)] w-full lg:w-[400px] transform hover:-translate-y-1"
+               >
+                 <div className="mb-4 sm:mb-0">
+                    <h3 className="text-2xl md:text-4xl text-emerald-300 font-bn italic font-black mb-1 group-hover/btn:text-emerald-200 transition-colors">Start Live Exam</h3>
+                    <p className="text-emerald-100/70 font-en text-[10px] md:text-xs uppercase tracking-[0.15em] font-bold">30 Mins • Global Leaderboard</p>
+                 </div>
+                 <div className="w-12 h-12 bg-primary rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/40 group-hover/btn:scale-110 transition-transform">
+                    <Zap className="w-6 h-6 text-white" />
+                 </div>
+               </button>
             </div>
+
           </div>
         </div>
       </section>
@@ -155,7 +185,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-10 max-w-4xl mx-auto">
             {trendingBooks.map((book, index) => (
               <motion.div 
                 key={book.id}
