@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { GraduationCap, Keyboard, Rocket, ArrowRight } from 'lucide-react';
+import { useQuizCount } from '../../hooks/useQuizCount';
 
 const QuizStart = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const QuizStart = () => {
   
   const [formData, setFormData] = useState({ name: '', school: '' });
   const [error, setError] = useState('');
+  const { incrementCount } = useQuizCount();
 
   const handleStart = (e) => {
     e.preventDefault();
@@ -18,6 +20,10 @@ const QuizStart = () => {
       return;
     }
     setError('');
+    
+    // Increment the count in Firebase
+    incrementCount();
+    
     // Store user data
     localStorage.setItem("user", JSON.stringify({ ...formData, mode }));
     // Redirect to quiz play

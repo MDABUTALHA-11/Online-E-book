@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Rocket, Trophy, BookOpen, Clock, Activity, ArrowRight, Zap } from 'lucide-react';
+import { Rocket, Trophy, BookOpen, Clock, Activity, ArrowRight, Zap, Users } from 'lucide-react';
+import { useQuizCount } from '../../hooks/useQuizCount';
 
 const QuizHome = () => {
   const navigate = useNavigate();
+  const { count } = useQuizCount();
 
   const handleStart = (mode) => {
     navigate(`/quiz/start?mode=${mode}`);
@@ -21,8 +23,19 @@ const QuizHome = () => {
         animate={{ opacity: 1, y: 0 }}
         className="container mx-auto px-6 max-w-5xl text-center relative z-10"
       >
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-black uppercase tracking-widest text-xs mb-8 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-          <Activity className="w-4 h-4 animate-pulse" /> The Ultimate Challenge
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+            <Activity className="w-4 h-4 animate-pulse" /> The Ultimate Challenge
+          </div>
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(99,102,241,0.2)]"
+          >
+            <Users className="w-4 h-4" /> 
+            {count > 0 ? `${count.toLocaleString()} Students Joined` : 'Be the first to join!'}
+          </motion.div>
         </div>
 
         <h1 className="text-white text-6xl md:text-[7rem] font-bn font-black italic leading-[0.9] tracking-tighter mb-8">
