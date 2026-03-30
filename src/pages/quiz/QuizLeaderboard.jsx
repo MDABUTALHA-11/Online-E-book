@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, MapPin, Search, ArrowRight, Activity, Zap, Loader2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Trophy, Medal, MapPin, Search, ArrowRight, Activity, Zap, Loader2, BookOpen } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { db } from '../../lib/firebase';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 
@@ -10,6 +10,10 @@ const QuizLeaderboard = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const subjectId = params.get('subject') || 'physics';
 
   useEffect(() => {
     // Load current user profile from storage
@@ -25,9 +29,11 @@ const QuizLeaderboard = () => {
       
       snapshot.forEach((doc) => {
         const data = doc.data();
-        const key = `${data.name}-${data.school}`;
-        if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
-          uniqueMap.set(key, data);
+        if ((data.subject || 'physics') === subjectId) {
+          const key = `${data.name}-${data.school}`;
+          if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
+            uniqueMap.set(key, data);
+          }
         }
       });
       
@@ -38,9 +44,11 @@ const QuizLeaderboard = () => {
         const local = JSON.parse(localStorage.getItem('scores')) || [];
         const localUniqueMap = new Map();
         local.forEach((data) => {
-          const key = `${data.name}-${data.school}`;
-          if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
-            localUniqueMap.set(key, data);
+          if ((data.subject || 'physics') === subjectId) {
+            const key = `${data.name}-${data.school}`;
+            if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
+              localUniqueMap.set(key, data);
+            }
           }
         });
         finalScores = Array.from(localUniqueMap.values()).sort((a, b) => b.score - a.score);
@@ -53,9 +61,11 @@ const QuizLeaderboard = () => {
       const local = JSON.parse(localStorage.getItem('scores')) || [];
       const localUniqueMap = new Map();
       local.forEach((data) => {
-        const key = `${data.name}-${data.school}`;
-        if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
-          localUniqueMap.set(key, data);
+        if ((data.subject || 'physics') === subjectId) {
+          const key = `${data.name}-${data.school}`;
+          if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
+            localUniqueMap.set(key, data);
+          }
         }
       });
       setScores(Array.from(localUniqueMap.values()).sort((a, b) => b.score - a.score));
@@ -87,6 +97,9 @@ const QuizLeaderboard = () => {
            <h1 className="text-5xl md:text-[6rem] font-bn font-black text-white italic leading-none mb-6 tracking-tighter">
              সেরাদের <span className="text-yellow-400 italic">তালিকা</span>
            </h1>
+           <div className="inline-flex items-center gap-2 px-5 py-2 mb-6 rounded-full border border-primary/20 bg-primary/10 text-primary font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+             <BookOpen className="w-4 h-4" /> {subjectId.replace('-', ' ')}
+           </div>
            <p className="text-2xl text-slate-400 font-bn italic leading-relaxed">
              SSC Super Group Quiz-এর সকল প্রতিযোগীর লাইভ র‍্যাঙ্কিং। যারা সেরা, তাদের নাম সবসময় উপরে!
            </p>

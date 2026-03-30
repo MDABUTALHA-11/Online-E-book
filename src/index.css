@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&family=Bungee&display=swap');
 
 :root {
   /* Colors */
@@ -24,6 +24,7 @@
   --font-body: 'Hind Siliguri', sans-serif;
   --font-bn: 'Mina', sans-serif;
   --font-en: 'Outfit', sans-serif;
+  --font-brand: 'Bungee', cursive;
 }
 
 * {
@@ -48,6 +49,7 @@ body {
 /* Typography Hub */
 .font-bn { font-family: var(--font-bn); }
 .font-en { font-family: var(--font-en); }
+.font-brand { font-family: var(--font-brand); }
 
 .title-xl {
   font-family: var(--font-bn);

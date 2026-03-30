@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Target, Award, ArrowRight, Activity, Zap, ShieldCheck } from 'lucide-react';
 import { physicsQuestions } from '../../data/physicsQuestions';
+import { chemistryQuestions } from '../../data/chemistryQuestions';
+import { higherMathQuestions } from '../../data/higherMathQuestions';
+import { biologyQuestions } from '../../data/biologyQuestions';
 import { db } from '../../lib/firebase';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 
 const QuizResult = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [result, setResult] = useState(null);
 
   useEffect(() => {
@@ -19,9 +23,20 @@ const QuizResult = () => {
       return;
     }
 
+    const params = new URLSearchParams(location.search);
+    const subjectId = params.get('subject') || 'physics';
+
+    const questionsMap = {
+      'physics': physicsQuestions,
+      'chemistry': chemistryQuestions,
+      'higher-math': higherMathQuestions,
+      'biology': biologyQuestions
+    };
+    const questions = questionsMap[subjectId] || physicsQuestions;
+
     // Calculate score
     let calculatedScore = 0;
-    physicsQuestions.forEach((q, index) => {
+    questions.forEach((q, index) => {
       if (answers[index] === q.answer) {
         calculatedScore++;
       }
@@ -31,8 +46,9 @@ const QuizResult = () => {
       name: user.name, 
       school: user.school, 
       score: calculatedScore, 
-      total: physicsQuestions.length,
+      total: questions.length,
       mode: user.mode || 'exam',
+      subject: subjectId,
       timestamp: new Date().getTime()
     };
     
@@ -153,7 +169,11 @@ const QuizResult = () => {
              ব্যাক টু হোম
            </button>
            <button 
-             onClick={() => navigate('/quiz/leaderboard')}
+             onClick={() => {
+               const params = new URLSearchParams(location.search);
+               const subjectId = params.get('subject') || 'physics';
+               navigate(`/quiz/leaderboard?subject=${subjectId}`);
+             }}
              className="btn btn-primary w-full h-20 rounded-[2rem] text-xl font-bn font-black italic flex items-center justify-center gap-3 shadow-2xl shadow-primary/20 hover:scale-105 transition-transform"
            >
              লিডারবোর্ড দেখুন <Award className="w-6 h-6" />

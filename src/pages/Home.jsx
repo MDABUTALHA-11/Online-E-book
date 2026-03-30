@@ -19,15 +19,23 @@ import {
   Calculator,
   Dna,
   Gamepad2,
-  Zap
+  Zap,
+  Play,
+  Trophy,
+  Clock,
+  Activity
 } from 'lucide-react';
 import { categories, books } from '../data/books';
 import BookCard from '../components/BookCard';
 import Hero from '../components/Hero';
 import usePageSEO from '../hooks/usePageSEO';
+import { useQuizCount } from '../hooks/useQuizCount';
+
+const quizSubjects = [];
 
 const Home = () => {
   const navigate = useNavigate();
+  const { count } = useQuizCount();
   const [searchValue, setSearchValue] = React.useState('');
 
   usePageSEO({
@@ -77,7 +85,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Quiz Direct Access Widget - Eye Catching Premium Redesign */}
+      {/* Quiz Direct Access Widget - Single Call to Action */}
       <section className="mb-20 md:mb-32 relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#020617] p-8 md:p-16 lg:p-20 rounded-[3rem] md:rounded-[4rem] shadow-[0_40px_100px_-20px_rgba(16,185,129,0.2)] border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-12 group relative overflow-hidden">
@@ -100,32 +108,18 @@ const Home = () => {
             </div>
 
             {/* Right Side Mode Cards (Buttons) */}
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-6 w-full lg:w-auto relative z-20 shrink-0">
-               {/* Practice Mode Card */}
+            <div className="flex flex-col gap-6 w-full lg:w-auto relative z-20 shrink-0">
+               {/* Exam Mode Card ONLY */}
                <button 
-                 onClick={() => navigate('/quiz/start?mode=practice')} 
-                 className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left justify-between p-6 md:p-8 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400/30 rounded-[2rem] md:rounded-[2.5rem] group/btn transition-all shadow-xl hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.2)] w-full lg:w-[400px]"
+                 onClick={() => navigate('/quiz')} 
+                 className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left justify-between p-6 md:p-10 bg-gradient-to-r from-primary/10 to-transparent hover:from-primary/20 hover:to-emerald-900/40 border border-primary/30 hover:border-primary rounded-[2rem] md:rounded-[2.5rem] group/btn transition-all shadow-[0_10px_30px_rgba(16,185,129,0.1)] hover:shadow-[0_30px_60px_rgba(16,185,129,0.3)] w-full lg:w-[450px] transform hover:-translate-y-2"
                >
                  <div className="mb-4 sm:mb-0">
-                    <h3 className="text-2xl md:text-3xl text-blue-300 font-bn italic font-black mb-1 group-hover/btn:text-blue-200 transition-colors">Practice Mode</h3>
-                    <p className="text-blue-100/70 font-en text-[10px] md:text-xs uppercase tracking-[0.15em] font-bold">No Timer • Immediate Answers</p>
+                    <h3 className="text-3xl md:text-5xl text-emerald-300 font-bn italic font-black mb-2 group-hover/btn:text-emerald-200 transition-colors">Start Live Exam</h3>
+                    <p className="text-emerald-100/70 font-en text-xs md:text-sm uppercase tracking-[0.15em] font-bold">50 Questions • Global Leaderboard</p>
                  </div>
-                 <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center shrink-0 border border-blue-500/20 group-hover/btn:-rotate-12 transition-transform">
-                    <Search className="w-6 h-6 text-blue-400" />
-                 </div>
-               </button>
-
-               {/* Exam Mode Card */}
-               <button 
-                 onClick={() => navigate('/quiz/start?mode=exam')} 
-                 className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left justify-between p-6 md:p-8 bg-gradient-to-r from-primary/10 to-transparent hover:from-primary/20 hover:to-emerald-900/40 border border-primary/30 hover:border-primary rounded-[2rem] md:rounded-[2.5rem] group/btn transition-all shadow-[0_10px_30px_rgba(16,185,129,0.1)] hover:shadow-[0_30px_60px_rgba(16,185,129,0.3)] w-full lg:w-[400px] transform hover:-translate-y-1"
-               >
-                 <div className="mb-4 sm:mb-0">
-                    <h3 className="text-2xl md:text-4xl text-emerald-300 font-bn italic font-black mb-1 group-hover/btn:text-emerald-200 transition-colors">Start Live Exam</h3>
-                    <p className="text-emerald-100/70 font-en text-[10px] md:text-xs uppercase tracking-[0.15em] font-bold">30 Mins • Global Leaderboard</p>
-                 </div>
-                 <div className="w-12 h-12 bg-primary rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/40 group-hover/btn:scale-110 transition-transform">
-                    <Zap className="w-6 h-6 text-white" />
+                 <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-primary/40 group-hover/btn:scale-110 group-hover:btn:rotate-12 transition-transform">
+                    <Rocket className="w-8 h-8 text-white" />
                  </div>
                </button>
             </div>

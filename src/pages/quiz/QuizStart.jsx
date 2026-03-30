@@ -8,6 +8,7 @@ const QuizStart = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const mode = searchParams.get('mode') || 'exam';
+  const subjectId = searchParams.get('subject') || 'physics';
   
   const [formData, setFormData] = useState({ name: '', school: '' });
   const [error, setError] = useState('');
@@ -27,7 +28,7 @@ const QuizStart = () => {
     // Store user data
     localStorage.setItem("user", JSON.stringify({ ...formData, mode }));
     // Redirect to quiz play
-    navigate('/quiz/play');
+    navigate(`/quiz/play?subject=${subjectId}`);
   };
 
   return (
@@ -95,7 +96,7 @@ const QuizStart = () => {
              type="submit"
              className="w-full h-16 mt-12 btn btn-primary flex justify-center items-center text-xl font-bn font-black italic rounded-[1.5rem] shadow-[0_20px_50px_-15px_rgba(16,185,129,0.5)] group hover:scale-105 transition-transform"
            >
-             Quiz শুরু করুন <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
+             Start Exam <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
            </button>
          </form>
 

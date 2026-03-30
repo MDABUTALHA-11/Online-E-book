@@ -1,19 +1,78 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Rocket, Trophy, BookOpen, Clock, Activity, ArrowRight, Zap, Users } from 'lucide-react';
+import { Trophy, Clock, Zap, Users, Activity, FlaskConical, Sigma, Dna, Play } from 'lucide-react';
 import { useQuizCount } from '../../hooks/useQuizCount';
+
+const quizSubjects = [
+  {
+    id: 'physics',
+    titleEn: 'Physics 1.0',
+    titleBn: 'পদার্থবিজ্ঞান',
+    desc: 'Fundamentals of Physics',
+    icon: Zap,
+    gradient: 'from-blue-600/10 to-indigo-900/10',
+    hoverGradient: 'group-hover:from-blue-600/20 group-hover:to-indigo-900/20',
+    iconBg: 'bg-blue-500/20',
+    iconColor: 'text-blue-400',
+    borderColor: 'border-blue-500/20 group-hover:border-blue-500/50',
+    shadow: 'hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.3)]',
+    btnBg: 'bg-blue-600 hover:bg-blue-500 shadow-blue-500/30'
+  },
+  {
+    id: 'chemistry',
+    titleEn: 'Chemistry 1.0',
+    titleBn: 'রসায়ন',
+    desc: 'Basic Concepts of Chemistry',
+    icon: FlaskConical,
+    gradient: 'from-emerald-600/10 to-teal-900/10',
+    hoverGradient: 'group-hover:from-emerald-600/20 group-hover:to-teal-900/20',
+    iconBg: 'bg-emerald-500/20',
+    iconColor: 'text-emerald-400',
+    borderColor: 'border-emerald-500/20 group-hover:border-emerald-500/50',
+    shadow: 'hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.3)]',
+    btnBg: 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-500/30'
+  },
+  {
+    id: 'higher-math',
+    titleEn: 'Higher Math 1.0',
+    titleBn: 'উচ্চতর গণিত',
+    desc: 'Advanced Mathematics',
+    icon: Sigma,
+    gradient: 'from-orange-600/10 to-red-900/10',
+    hoverGradient: 'group-hover:from-orange-600/20 group-hover:to-red-900/20',
+    iconBg: 'bg-orange-500/20',
+    iconColor: 'text-orange-400',
+    borderColor: 'border-orange-500/20 group-hover:border-orange-500/50',
+    shadow: 'hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.3)]',
+    btnBg: 'bg-orange-600 hover:bg-orange-500 shadow-orange-500/30'
+  },
+  {
+    id: 'biology',
+    titleEn: 'Biology 1.0',
+    titleBn: 'জীববিজ্ঞান',
+    desc: 'Life Sciences',
+    icon: Dna,
+    gradient: 'from-green-600/10 to-emerald-900/10',
+    hoverGradient: 'group-hover:from-green-600/20 group-hover:to-emerald-900/20',
+    iconBg: 'bg-green-500/20',
+    iconColor: 'text-green-400',
+    borderColor: 'border-green-500/20 group-hover:border-green-500/50',
+    shadow: 'hover:shadow-[0_0_40px_-10px_rgba(34,197,94,0.3)]',
+    btnBg: 'bg-green-600 hover:bg-green-500 shadow-green-500/30'
+  }
+];
 
 const QuizHome = () => {
   const navigate = useNavigate();
   const { count } = useQuizCount();
 
-  const handleStart = (mode) => {
-    navigate(`/quiz/start?mode=${mode}`);
+  const handleStart = (subjectId) => {
+    navigate(`/quiz/start?subject=${subjectId}&mode=exam`);
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 pt-32 pb-20 relative overflow-hidden flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-slate-950 pt-32 pb-20 relative overflow-hidden flex flex-col items-center">
       {/* Background Decorators */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse-soft pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] animate-pulse-soft delay-1000 pointer-events-none" />
@@ -21,7 +80,7 @@ const QuizHome = () => {
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container mx-auto px-6 max-w-5xl text-center relative z-10"
+        className="container mx-auto px-6 max-w-6xl relative z-10"
       >
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(16,185,129,0.2)]">
@@ -38,61 +97,66 @@ const QuizHome = () => {
           </motion.div>
         </div>
 
-        <h1 className="text-white text-6xl md:text-[7rem] font-bn font-black italic leading-[0.9] tracking-tighter mb-8">
-          SSC Super <br /> <span className="text-primary italic">Group</span> Quiz System
-        </h1>
-        
-        <p className="text-slate-400 font-bn text-xl md:text-3xl italic max-w-3xl mx-auto leading-relaxed mb-16">
-          "Test your Physics knowledge" — পদার্থবিজ্ঞানের ৫০টি গুরুত্বপূর্ণ প্রশ্নের সমন্বয়ে গঠিত এই কুইজে অংশগ্রহণ করে যাচাই করুন আপনার প্রস্তুতি।
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {/* Practice Mode */}
-          <motion.div 
-            whileHover={{ y: -10 }}
-            className="rounded-[3rem] p-10 bg-slate-900 border border-slate-800 hover:border-primary/40 transition-all shadow-xl text-center relative overflow-hidden group"
-          >
-            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="w-20 h-20 mx-auto bg-slate-800 rounded-[2rem] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 mb-8 border border-white/5 shadow-2xl group-hover:rotate-6">
-              <BookOpen className="w-10 h-10" />
-            </div>
-            <h3 className="text-3xl font-bn font-black text-white italic mb-4">Practice Mode</h3>
-            <p className="text-slate-400 font-bn italic mb-8">কোনো টাইম লিমিট নেই! প্রতি প্রশ্নের উত্তর সাথে সাথেই দেখা যাবে। অনুশীলন করার জন্য দারুণ একটি মাধ্যম।</p>
-            <button 
-              onClick={() => handleStart('practice')}
-              className="btn btn-outline border-slate-700 text-white w-full h-16 rounded-[1.5rem] group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all text-xl font-bn font-black italic"
-            >
-              Practice শুরু করুন <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </motion.div>
-
-          {/* Exam Mode */}
-          <motion.div 
-            whileHover={{ y: -10 }}
-            className="rounded-[3rem] p-10 bg-gradient-to-br from-primary to-emerald-700 border border-primary/40 transition-all shadow-[0_30px_60px_-15px_rgba(16,185,129,0.4)] text-center relative overflow-hidden group"
-          >
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 blur-3xl rounded-full" />
-            <div className="w-20 h-20 mx-auto bg-white/10 rounded-[2rem] flex items-center justify-center text-white backdrop-blur-md transition-all duration-500 mb-8 border border-white/20 shadow-2xl group-hover:rotate-6">
-              <Zap className="w-10 h-10 animate-pulse" />
-            </div>
-            <h3 className="text-3xl font-bn font-black text-white italic mb-4">Exam Mode</h3>
-            <p className="text-white/80 font-bn italic mb-8">৩০ মিনিট টাইমার! পরীক্ষা শেষে একসাথে ফলাফল ও সম্পূর্ণ লিডারবোর্ড র‍্যাঙ্কিং দেখা যাবে। একদম রিয়েল পরীক্ষার ফিল!</p>
-            <button 
-              onClick={() => handleStart('exam')}
-              className="btn bg-white text-primary w-full h-16 rounded-[1.5rem] hover:bg-slate-100 transition-all text-xl font-bn font-black italic shadow-2xl shadow-primary/40"
-            >
-              Start Full Exam <Rocket className="w-6 h-6 ml-2 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </motion.div>
+        <div className="text-center mb-16">
+          <h1 className="text-white text-5xl md:text-7xl font-bn font-black italic leading-[1.1] tracking-tighter mb-4">
+            SSC Super <span className="text-primary">Group</span> Quiz
+          </h1>
+          <p className="text-slate-400 font-bn text-xl md:text-3xl italic max-w-3xl mx-auto leading-relaxed">
+            Choose your subject and start the challenge. Real exam environment with timer and live leaderboard.
+          </p>
         </div>
 
-        <div className="mt-12 text-center">
-           <button 
-             onClick={() => navigate('/quiz/leaderboard')}
-             className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all font-bn italic text-xl shadow-lg"
-           >
-             <Trophy className="w-6 h-6 text-yellow-500" /> View Leaderboard Rankings
-           </button>
+        {/* 2x2 Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {quizSubjects.map((subject) => {
+            const Icon = subject.icon;
+            
+            return (
+              <motion.div 
+                key={subject.id}
+                whileHover={{ y: -5 }}
+                className={`rounded-[2.5rem] p-8 md:p-10 bg-gradient-to-br ${subject.gradient} ${subject.hoverGradient} border ${subject.borderColor} transition-all duration-300 ${subject.shadow} relative overflow-hidden group backdrop-blur-sm bg-slate-900/50 flex flex-col`}
+              >
+                {/* Decorative element */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full blur-2xl" />
+
+                <div className="flex items-start justify-between mb-8">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${subject.iconBg} ${subject.iconColor} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="w-8 h-8" />
+                  </div>
+                  
+                  <div className="text-right">
+                    <h3 className="text-2xl font-black text-white tracking-tight">{subject.titleEn}</h3>
+                    <p className="text-slate-400 text-sm tracking-wide">{subject.desc}</p>
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <h4 className="text-4xl font-bn font-black italic text-white mb-2">{subject.titleBn}</h4>
+                  <div className="flex items-center gap-4 text-slate-300">
+                    <div className="flex items-center gap-1.5 bg-black/20 px-3 py-1.5 rounded-lg border border-white/5">
+                      <Activity className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-bold">{subject.questions} Quiz</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-black/20 px-3 py-1.5 rounded-lg border border-white/5">
+                      <Clock className="w-4 h-4 text-orange-400" />
+                      <span className="text-sm font-bold">{subject.time} Minutes</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                  <button 
+                    onClick={() => handleStart(subject.id)}
+                    className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-white font-bold transition-all shadow-lg text-lg group/btn ${subject.btnBg}`}
+                  >
+                    <Play className="w-5 h-5 group-hover/btn:scale-110 transition-transform" fill="currentColor" />
+                    Enter Exam
+                  </button>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
     </div>

@@ -1,11 +1,27 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Flag, Zap, Check } from 'lucide-react';
 import { physicsQuestions } from '../../data/physicsQuestions';
+import { chemistryQuestions } from '../../data/chemistryQuestions';
+import { higherMathQuestions } from '../../data/higherMathQuestions';
+import { biologyQuestions } from '../../data/biologyQuestions';
 
 const QuizPlay = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const subjectId = queryParams.get('subject') || 'physics';
+
+  const questionsMap = {
+    'physics': physicsQuestions,
+    'chemistry': chemistryQuestions,
+    'higher-math': higherMathQuestions,
+    'biology': biologyQuestions
+  };
+
+  const questions = questionsMap[subjectId] || physicsQuestions;
+
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState({});
   const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes
@@ -85,9 +101,9 @@ const QuizPlay = () => {
   const handleSelect = useCallback((option) => {
     if (user?.mode === 'practice' && answers[currentIdx]) return; // disable change in practice mode if already answered
     
-    // Play interaction sound
+      // Play interaction sound
     if (user?.mode === 'practice') {
-      playSound(physicsQuestions[currentIdx].answer === option ? 'correct' : 'wrong');
+      playSound(questions[currentIdx].answer === option ? 'correct' : 'wrong');
     } else {
       playSound('click');
     }
@@ -97,14 +113,14 @@ const QuizPlay = () => {
       localStorage.setItem('quiz_answers', JSON.stringify(updated));
       return updated;
     });
-  }, [user, answers, currentIdx, playSound]);
+  }, [user, answers, currentIdx, playSound, questions]);
 
   const handleNext = useCallback(() => {
-    if (currentIdx < physicsQuestions.length - 1) {
+    if (currentIdx < questions.length - 1) {
       playSound('click');
       setCurrentIdx(prev => prev + 1);
     }
-  }, [currentIdx, playSound]);
+  }, [currentIdx, playSound, questions.length]);
 
   const handlePrev = useCallback(() => {
     if (currentIdx > 0) {
@@ -115,12 +131,12 @@ const QuizPlay = () => {
 
   const handleSubmit = useCallback(() => {
     playSound('click');
-    navigate('/quiz/result');
-  }, [navigate, playSound]);
+    navigate(`/quiz/result?subject=${subjectId}`);
+  }, [navigate, playSound, subjectId]);
 
   const getOptionStyle = useCallback((opt) => {
     if (!user) return '';
-    const currentQ = physicsQuestions[currentIdx];
+    const currentQ = questions[currentIdx];
     const isSelected = answers[currentIdx] === opt;
     const isCorrect = currentQ.answer === opt;
     
@@ -132,13 +148,13 @@ const QuizPlay = () => {
 
     if (isSelected) return 'bg-primary border-primary text-white shadow-lg shadow-primary/20 scale-[1.02]';
     return 'bg-slate-900 border-slate-800 text-slate-300 hover:border-primary/50 hover:bg-slate-800 hover:-translate-y-1 transform';
-  }, [answers, currentIdx, user]);
+  }, [answers, currentIdx, user, questions]);
 
   if (!user) return null;
 
-  const currentQ = physicsQuestions[currentIdx];
-  const isLast = currentIdx === physicsQuestions.length - 1;
-  const progress = ((currentIdx + 1) / physicsQuestions.length) * 100;
+  const currentQ = questions[currentIdx];
+  const isLast = currentIdx === questions.length - 1;
+  const progress = ((currentIdx + 1) / questions.length) * 100;
   
   const formatTime = (secs) => {
     const m = Math.floor(secs / 60);
@@ -159,8 +175,8 @@ const QuizPlay = () => {
                <Flag className="w-8 h-8 text-primary" />
              </div>
              <div>
-               <p className="text-slate-500 uppercase tracking-widest text-[10px] md:text-xs font-black en-font mb-1">Question Progress</p>
-               <h3 className="text-3xl md:text-5xl font-bn font-black text-white italic tracking-tight">{currentIdx + 1} <span className="text-slate-600 text-xl md:text-3xl">/ {physicsQuestions.length}</span></h3>
+               <p className="text-slate-500 uppercase tracking-widest text-[10px] md:text-xs font-black en-font mb-1">Question Progress ({subjectId.replace('-', ' ').toUpperCase()})</p>
+               <h3 className="text-3xl md:text-5xl font-bn font-black text-white italic tracking-tight">{currentIdx + 1} <span className="text-slate-600 text-xl md:text-3xl">/ {questions.length}</span></h3>
              </div>
           </div>
           
