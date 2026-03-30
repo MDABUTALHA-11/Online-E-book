@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /Nav/
+Disallow: /Science/
+
+Sitemap: https://shaifly.com/sitemap.xml
