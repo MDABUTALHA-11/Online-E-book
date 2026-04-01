@@ -60,11 +60,11 @@ const Navbar = () => {
           <div className={`flex justify-between items-center transition-all duration-500 ${getGlassStyle()}`}>
             {/* Brand Logo */}
           <Link to="/" className="flex items-center gap-3 no-underline group shrink-0">
-            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-500 bg-primary shadow-[0_0_20px_rgba(16,185,129,0.4)] group-hover:rotate-12 group-hover:scale-110`}>
-              <BookOpen className="text-white w-5 h-5 md:w-6 md:h-6" />
+            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-500 bg-primary/20 backdrop-blur-md border border-primary/30 shadow-[0_0_20px_rgba(16,185,129,0.4)] group-hover:rotate-12 group-hover:scale-110 overflow-hidden`}>
+              <img src="/favicon.ico" alt="Logo" className="w-6 h-6 md:w-8 md:h-8 object-contain" />
             </div>
-            <span className={`text-2xl md:text-4xl font-brand tracking-wide transition-colors duration-500 ${scrolled ? 'text-white' : (isLightAtTop ? 'text-slate-900' : 'text-white')} drop-shadow-lg`}>
-              Shaifly<span className="text-primary text-4xl md:text-5xl leading-none">.</span>
+            <span className={`text-2xl md:text-3xl font-brand tracking-tight transition-colors duration-500 ${scrolled ? 'text-white' : (isLightAtTop ? 'text-slate-900' : 'text-white')} drop-shadow-md`}>
+              Shaifly<span className="text-primary">.</span>
             </span>
           </Link>
 
@@ -111,11 +111,11 @@ const Navbar = () => {
       }`}>
           <div className="flex flex-col items-center gap-8 w-full max-w-sm px-10 min-h-max pt-20">
             <Link to="/" className="no-underline group" onClick={() => setIsOpen(false)}>
-                <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-primary/40 group-hover:rotate-6 transition-transform">
-                   <BookOpen className="w-10 h-10 text-white" />
+                <div className="w-20 h-20 bg-primary/10 backdrop-blur-2xl rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-primary/40 group-hover:rotate-6 transition-transform overflow-hidden border border-primary/20">
+                   <img src="/favicon.ico" alt="Logo" className="w-12 h-12 object-contain" />
                 </div>
-                <h2 className="text-5xl font-brand text-white text-center tracking-wide">Shaifly<span className="text-primary">.</span></h2>
-                <p className="text-center text-slate-500 text-[10px] tracking-[0.3em] uppercase mt-4">Academic Library</p>
+                <h2 className="text-5xl font-brand text-white text-center tracking-tight">Shaifly<span className="text-primary">.</span></h2>
+                <p className="text-center text-slate-500 text-[10px] tracking-[0.4em] uppercase mt-4">Academic Library</p>
             </Link>
             
             <div className="w-full flex flex-col gap-4">

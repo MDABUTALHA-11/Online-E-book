@@ -214,7 +214,7 @@ const QuizPlay = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-slate-900/50 backdrop-blur-xl p-8 md:p-14 rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-2xl relative"
+              className="bg-slate-900/50 backdrop-blur-xl p-6 md:p-14 rounded-[2rem] md:rounded-[4rem] border border-white/10 shadow-2xl relative"
             >
               <div className="absolute top-0 right-10 -translate-y-1/2 px-6 py-2 bg-slate-800 text-white/50 text-xs font-black uppercase tracking-widest rounded-full border border-white/10 shadow-xl en-font select-none">
                  Q-{currentIdx + 1}
@@ -278,24 +278,24 @@ const QuizPlay = () => {
           <button
             onClick={handlePrev}
             disabled={currentIdx === 0}
-            className={`h-16 md:h-20 px-8 md:px-12 rounded-[2rem] font-bn font-black italic text-xl transition-all flex items-center gap-4 ${currentIdx === 0 ? 'bg-white/5 text-slate-600 cursor-not-allowed border border-white/5' : 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 shadow-xl shadow-black/20 group'}`}
+            className={`h-14 md:h-20 px-5 md:px-12 rounded-[1.5rem] md:rounded-[2rem] font-bn font-black italic text-lg md:text-xl transition-all flex items-center gap-2 md:gap-4 ${currentIdx === 0 ? 'bg-white/5 text-slate-600 cursor-not-allowed border border-white/5' : 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 shadow-xl shadow-black/20 group'}`}
           >
-            <ChevronLeft className={`w-6 h-6 md:w-8 md:h-8 ${currentIdx === 0 ? '' : 'group-hover:-translate-x-2 transition-transform'}`} /> আগের প্রশ্ন
+            <ChevronLeft className={`w-5 h-5 md:w-8 md:h-8 ${currentIdx === 0 ? '' : 'group-hover:-translate-x-2 transition-transform'}`} /> <span className="hidden sm:inline">আগের প্রশ্ন</span><span className="inline sm:hidden">আগে</span>
           </button>
 
           {!isLast ? (
             <button
               onClick={handleNext}
-              className="h-16 md:h-20 px-8 md:px-12 rounded-[2rem] bg-white text-slate-900 hover:bg-slate-100 font-bn font-black italic text-xl transition-all flex items-center gap-4 shadow-xl shadow-white/10 group"
+              className="h-14 md:h-20 px-5 md:px-12 rounded-[1.5rem] md:rounded-[2rem] bg-white text-slate-900 hover:bg-slate-100 font-bn font-black italic text-lg md:text-xl transition-all flex items-center gap-2 md:gap-4 shadow-xl shadow-white/10 group"
             >
-              পরের প্রশ্ন <ChevronRight className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-2 transition-transform" />
+              <span className="hidden sm:inline">পরের প্রশ্ন</span><span className="inline sm:hidden">পরে</span> <ChevronRight className="w-5 h-5 md:w-8 md:h-8 group-hover:translate-x-2 transition-transform" />
             </button>
           ) : (
             <button
               onClick={handleSubmit}
-              className="h-16 md:h-20 px-10 md:px-16 rounded-[2rem] btn-primary hover:scale-105 font-bn font-black italic text-xl md:text-2xl transition-all flex items-center gap-4 shadow-2xl shadow-primary/40 group active:scale-95"
+              className="h-14 md:h-20 px-6 md:px-16 rounded-[1.5rem] md:rounded-[2rem] btn-primary hover:scale-105 font-bn font-black italic text-lg md:text-2xl transition-all flex items-center gap-2 md:gap-4 shadow-2xl shadow-primary/40 group active:scale-95"
             >
-              ফলাফল দেখুন <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8" />
+              <span className="hidden sm:inline">ফলাফল দেখুন</span><span className="inline sm:hidden">ফলাফল</span> <CheckCircle2 className="w-5 h-5 md:w-8 md:h-8" />
             </button>
           )}
         </div>

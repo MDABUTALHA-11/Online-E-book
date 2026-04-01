@@ -5,7 +5,7 @@ import { books, categories } from '../data/books';
 import BookCard from '../components/BookCard';
 import { useViewCount } from '../hooks/useViewCount';
 import usePageSEO from '../hooks/usePageSEO';
-import { Search, ArrowLeft, BookOpen, Filter, Sparkles, GraduationCap, Eye, Download, Info } from 'lucide-react';
+import { Search, ArrowLeft, BookOpen, GraduationCap, Eye, Info, ChevronRight } from 'lucide-react';
 
 const SubjectPage = () => {
   const { subjectId } = useParams();
@@ -16,179 +16,159 @@ const SubjectPage = () => {
   const subjectBooks = useMemo(() => books.filter(b => b.subject === subjectId), [subjectId]);
 
   usePageSEO({
-    title: subject ? `${subject.name} লাইব্রেরি` : 'বিষয় খুঁজে পাওয়া যায়নি',
-    description: `নবম থেকে দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য ${subject?.name || ''} বিষয়ের সকল অধ্যায়ের বিস্তারিত নোটসমূহ এখানে পাওয়া যাবে।`,
-    keywords: `${subject?.name || ''} নোট, ${subject?.name || ''} গাইড`
+    title: subject ? `${subject.name} — Shaifly Library` : 'বিষয় পাওয়া যায়নি',
+    description: `SSC ও HSC শিক্ষার্থীদের জন্য ${subject?.name || ''} বিষয়ের সকল হ্যান্ডনোট।`,
+    keywords: `${subject?.name || ''} নোট, SSC, HSC, Shaifly`,
   });
 
   const { count: viewCount, incrementView } = useViewCount(subjectId, 'subject_views');
 
   React.useEffect(() => {
-    if (subjectId) {
-      incrementView();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (subjectId) { incrementView(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   }, [subjectId]);
 
   const filteredBooks = useMemo(() => {
     return subjectBooks.filter(book => {
-      const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase());
-      if (activeTab === 'All') return matchesSearch;
-      if (activeTab === 'SSC') return matchesSearch && book.level === 'SSC';
-      if (activeTab === 'HSC 1') return matchesSearch && book.level === 'HSC' && book.part === 1;
-      if (activeTab === 'HSC 2') return matchesSearch && book.level === 'HSC' && book.part === 2;
-      return matchesSearch;
+      const ok = book.title.toLowerCase().includes(searchTerm.toLowerCase());
+      if (activeTab === 'All') return ok;
+      if (activeTab === 'SSC') return ok && book.level === 'SSC';
+      if (activeTab === 'HSC 1') return ok && book.level === 'HSC' && book.part === 1;
+      if (activeTab === 'HSC 2') return ok && book.level === 'HSC' && book.part === 2;
+      return ok;
     });
   }, [subjectBooks, searchTerm, activeTab]);
 
-  if (!subject) {
-    return (
-      <div className="pt-40 min-h-screen px-6 text-center bg-slate-50/50">
-        <div className="w-24 h-24 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-10 shadow-2xl animate-float">
-           <Info className="w-12 h-12" />
-        </div>
-        <h2 className="text-5xl font-bn font-black italic text-slate-800 mb-8">বিষয়টি খুঁজে পাওয়া যায়নি!</h2>
-        <Link to="/categories" className="btn btn-primary h-20 px-12 text-xl rounded-3xl">ক্যাটাগরি দেখুন</Link>
+  if (!subject) return (
+    <div className="min-h-[60vh] flex items-center justify-center flex-col gap-5">
+      <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+        <Info className="w-8 h-8 text-[#334155]" />
       </div>
-    );
-  }
+      <h2 className="text-white text-xl font-black font-bn">বিষয়টি খুঁজে পাওয়া যায়নি!</h2>
+      <Link to="/categories" className="font-black text-[14px] px-6 py-3 rounded-xl no-underline text-white transition-all" style={{ background:'#22C55E' }}>ক্যাটাগরি দেখুন</Link>
+    </div>
+  );
 
   const tabs = [
-    { id: 'All', label: 'সকল নোট' },
-    { id: 'SSC', label: 'SSC' },
-    { id: 'HSC 1', label: 'HSC ১ম পত্র' },
-    { id: 'HSC 2', label: 'HSC ২য় পত্র' },
+    { id:'All',   label:'সকল নোট' },
+    { id:'SSC',   label:'SSC' },
+    { id:'HSC 1', label:'HSC ১ম পত্র' },
+    { id:'HSC 2', label:'HSC ২য় পত্র' },
   ];
 
   return (
-    <div className="min-h-screen pb-40 bg-slate-50/50">
-      {/* Hero Section - Starts at top to support transparent navbar */}
-      <section className="relative bg-slate-950 px-6 pt-32 md:pt-48 pb-20 md:pb-40 overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] mb-12 md:mb-20">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] -mr-80 -mt-80 animate-pulse-soft" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[120px] -ml-40 -mb-40 animate-pulse-soft delay-1000" />
-        
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <Link to="/categories" className="inline-flex items-center gap-3 text-white/40 hover:text-primary transition-all mb-12 font-black en-font text-[10px] tracking-[0.2em] uppercase no-underline group">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Categories
+    <div className="min-h-screen pb-12">
+
+      {/* ── Hero ── */}
+      <div className="relative rounded-2xl overflow-hidden mb-7 px-8 py-10 flex flex-col md:flex-row items-center gap-7" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+        <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background:'rgba(34,197,94,0.06)', filter:'blur(60px)' }} />
+
+        <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center shrink-0" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.2)' }}>
+          <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-[#22C55E]" />
+        </div>
+
+        <div className="relative z-10 text-center md:text-left">
+          <Link to="/categories" className="inline-flex items-center gap-2 text-[14px] font-black uppercase tracking-widest no-underline transition-colors mb-4 group font-en italic" style={{ color:'#64748b' }}
+            onMouseEnter={e=>e.currentTarget.style.color='#22C55E'} onMouseLeave={e=>e.currentTarget.style.color='#64748b'}>
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" /> সকল বিষয়
           </Link>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24"
-          >
-            <div className="w-32 h-32 md:w-56 md:h-56 bg-white/5 backdrop-blur-3xl rounded-[3rem] flex items-center justify-center border border-white/10 shadow-2xl animate-float ring-1 ring-white/10 flex-shrink-0">
-               <BookOpen className="w-16 h-16 md:w-28 md:h-28 text-primary drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]" />
+          <h1 className="text-white text-[42px] md:text-[72px] font-bn font-black leading-[0.9] mb-4 italic tracking-tighter">
+            {subject.name} <span style={{ color:'#22C55E' }}>লাইব্রেরি</span>
+          </h1>
+          <p className="text-[18px] md:text-[22px] font-bn leading-relaxed max-w-xl font-bold italic text-slate-400">
+            SSC ও HSC পরীক্ষার্থীদের জন্য {subject.name} বিষয়ের সকল হ্যান্ডনোট ও গাইড।
+          </p>
+          <div className="flex items-center gap-3 mt-4 flex-wrap justify-center md:justify-start">
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-black text-[#22C55E]" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.15)' }}>
+              <Eye className="w-3.5 h-3.5" /> {viewCount.toLocaleString()} Views
             </div>
-            <div className="text-center lg:text-left">
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
-                <span className="px-6 py-2 bg-primary/10 text-primary rounded-full text-[10px] font-black tracking-widest uppercase border border-primary/20 shadow-lg en-font">Library System</span>
-                <div className="flex items-center gap-2 px-6 py-2 bg-white/5 text-slate-400 rounded-full text-[10px] font-black tracking-widest uppercase border border-white/10 shadow-sm en-font">
-                   <Eye className="w-5 h-5 text-primary" /> {viewCount.toLocaleString()} Views
-                </div>
-              </div>
-              <h1 className="text-white text-6xl md:text-[8rem] font-bn font-black mb-10 italic leading-none tracking-tighter">
-                {subject.name} <span className="text-primary italic">লাইব্রেরি</span>
-              </h1>
-              <p className="text-2xl md:text-3xl text-slate-400 max-w-3xl leading-relaxed italic font-bn">
-                নবম থেকে দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য {subject.name} বিষয়ের সকল অধ্যায়ের বিস্তারিত নোটসমূহ এখানে পাওয়া যাবে। প্রস্তুতি নিন সেরা ভাবে।
-              </p>
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-black text-[#22C55E]" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.15)' }}>
+              <BookOpen className="w-3.5 h-3.5" /> {subjectBooks.length} Notes
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="container mx-auto max-w-7xl px-6">
-        {/* Smart Filtering & Search Overlay */}
-        <div className="flex flex-col lg:flex-row gap-8 mb-20 items-center justify-between sticky top-28 z-40 bg-white/70 backdrop-blur-3xl p-8 rounded-[3rem] border border-white/40 shadow-2xl shadow-slate-200/50 -mt-32 relative">
-          <div className="relative w-full lg:w-[500px] group">
-            <input 
-              type="text" 
-              placeholder="অধ্যায় বা নোটের নাম দিয়ে সার্চ করুন..." 
-              className="w-full h-20 pl-20 pr-10 rounded-3xl bg-slate-50 border-2 border-transparent focus:border-primary focus:bg-white focus:outline-none shadow-inner transition-all font-bn italic text-xl"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Search className="absolute left-7 top-1/2 -translate-y-1/2 text-slate-400 w-8 h-8 transition-colors group-focus-within:text-primary" />
           </div>
-
-          <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-3xl overflow-x-auto no-scrollbar w-full lg:w-auto">
-            {tabs.map((tab) => (
-              <button 
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-10 py-5 rounded-[1.25rem] font-black en-font text-xs tracking-[0.1em] uppercase transition-all whitespace-nowrap flex items-center gap-3 ${activeTab === tab.id ? 'bg-white text-primary shadow-xl ring-1 ring-slate-200 scale-105' : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'}`}
-              >
-                {tab.id !== 'All' && <GraduationCap className="w-5 h-5" />}
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Results Info */}
-        <div className="mb-12 flex items-center gap-6">
-           <div className="h-px flex-1 bg-slate-200" />
-           <span className="text-slate-400 font-bn text-sm italic font-bold tracking-widest uppercase">Showing {filteredBooks.length} High-End Notes</span>
-           <div className="h-px flex-1 bg-slate-200" />
-        </div>
-
-        {/* Book Grid */}
-        <AnimatePresence mode="popLayout">
-          {filteredBooks.length > 0 ? (
-            <motion.div 
-              layout
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12"
-            >
-              {filteredBooks.map((book) => (
-                <motion.div 
-                  layout
-                  key={book.id}
-                  initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <BookCard book={book} />
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-40 bg-white rounded-[5rem] border-2 border-dashed border-slate-200 shadow-inner"
-            >
-              <div className="w-32 h-32 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-10 shadow-2xl">
-                <BookOpen className="w-16 h-16 text-slate-300" />
-              </div>
-              <h2 className="text-4xl font-bn font-black text-slate-400 italic mb-6">দুঃখিত, কোনো নোট পাওয়া যায়নি।</h2>
-              <p className="text-xl text-slate-300 font-bn italic">অন্য কোনো কি-ওয়ার্ড দিয়ে চেষ্টা করুন।</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Call to Action Wrapper */}
-        <div className="mt-40 md:mt-60 p-8 md:p-32 bg-slate-950 rounded-[3rem] md:rounded-[6rem] text-center text-white relative overflow-hidden shadow-premium border border-white/5">
-           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none" />
-           <div className="max-w-4xl mx-auto relative z-10">
-              <div className="inline-block p-6 bg-white/5 rounded-[2.5rem] mb-16 ring-1 ring-white/10 animate-float shadow-2xl">
-                <Sparkles className="w-16 h-16 text-primary" />
-              </div>
-              <h2 className="text-5xl md:text-[6.5rem] font-bn font-black mb-12 italic leading-none tracking-tighter">আপনার পাঠদান <span className="text-primary italic">সহজ</span> করুন!</h2>
-              <p className="text-2xl md:text-3xl text-slate-400 italic font-bn leading-relaxed mb-24 max-w-3xl mx-auto">
-                আমরা প্রতিদিন নতুন নতুন অধ্যায় এবং হ্যান্ডনোট আপডেট করছি। সেরা সব শিক্ষকের গোছানো লেকচার নোট এখন আপনার হাতের মুঠোয়।
-              </p>
-              <div className="flex flex-wrap justify-center gap-8">
-                 <Link to="/subscription" className="btn btn-primary h-24 px-16 text-2xl rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(16,185,129,0.5)] hover:scale-110 transition-transform">VIP মেম্বারশিপ নিন</Link>
-                 <a href="#" className="btn glass-dark h-24 px-16 text-2xl rounded-[2.5rem] border border-white/10 hover:bg-white/10 transition-all font-bn italic flex items-center gap-4">
-                    YouTube Channel <ArrowLeft className="w-8 h-8 rotate-180" />
-                 </a>
-              </div>
-           </div>
         </div>
       </div>
+
+      {/* ── Search + Filter ── */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-7 p-4 rounded-2xl" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color:'#334155' }} />
+          <input
+            type="text"
+            placeholder="অধ্যায় বা নোটের নাম দিয়ে সার্চ করুন..."
+            className="w-full h-[44px] pl-11 pr-4 rounded-xl text-[13.5px] font-bn placeholder:text-[#334155] outline-none transition-all"
+            style={{ background:'#112236', border:'1.5px solid #1e3a5f', color:'#f1f5f9' }}
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            onFocus={e => e.target.style.borderColor = 'rgba(34,197,94,0.4)'}
+            onBlur={e => e.target.style.borderColor = '#1e3a5f'}
+          />
+        </div>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          {tabs.map(tab => (
+            <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+              className="h-[44px] px-4 rounded-xl font-black text-[12.5px] transition-all whitespace-nowrap"
+              style={activeTab === tab.id
+                ? { background:'#22C55E', color:'white', boxShadow:'0 4px 12px rgba(34,197,94,0.25)' }
+                : { background:'#112236', border:'1.5px solid #1e3a5f', color:'#64748b' }
+              }
+            >
+              {tab.id !== 'All' && <GraduationCap className="w-3.5 h-3.5 inline mr-1.5" />}
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Count ── */}
+      <div className="flex items-center gap-3 mb-5">
+        <div className="h-px flex-1" style={{ background:'#1e3a5f' }} />
+        <span className="font-bold text-[11px] uppercase tracking-widest whitespace-nowrap" style={{ color:'#334155' }}>
+          {filteredBooks.length} টি নোট পাওয়া গেছে
+        </span>
+        <div className="h-px flex-1" style={{ background:'#1e3a5f' }} />
+      </div>
+
+      {/* ── Grid ── */}
+      <AnimatePresence mode="popLayout">
+        {filteredBooks.length > 0 ? (
+          <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+            {filteredBooks.map((book, i) => (
+              <motion.div layout key={book.id}
+                initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
+                transition={{ delay:i*0.04, duration:0.3 }}
+              >
+                <BookCard book={book} />
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }}
+            className="text-center py-20 rounded-2xl" style={{ background:'#0d1b2a', border:'1px dashed #1e3a5f' }}
+          >
+            <BookOpen className="w-10 h-10 mx-auto mb-3" style={{ color:'#1e3a5f' }} />
+            <h2 className="text-[#334155] text-lg font-black font-bn">দুঃখিত, কোনো নোট পাওয়া যায়নি।</h2>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── CTA ── */}
+      {filteredBooks.length > 0 && (
+        <div className="mt-12 rounded-2xl px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+          <div className="absolute right-0 top-0 w-48 h-48 rounded-full pointer-events-none" style={{ background:'rgba(34,197,94,0.06)', filter:'blur(50px)' }} />
+          <div className="relative z-10">
+            <h3 className="text-white text-[20px] font-black font-bn mb-1">আরও নোট দেখতে চান?</h3>
+            <p className="text-[13.5px] font-bn" style={{ color:'#64748b' }}>সকল বিষয়ের নোট আমাদের লাইব্রেরিতে পাওয়া যাচ্ছে।</p>
+          </div>
+          <div className="flex gap-3 shrink-0 relative z-10">
+            <Link to="/categories" className="flex items-center gap-2 font-black text-[13.5px] px-5 py-3 rounded-xl no-underline text-white" style={{ background:'#22C55E' }}>
+              সব বিষয় <ChevronRight className="w-4 h-4" />
+            </Link>
+            <Link to="/subscription" className="flex items-center gap-2 font-black text-[13.5px] px-5 py-3 rounded-xl no-underline" style={{ background:'#112236', border:'1.5px solid #1e3a5f', color:'#64748b' }}>
+              VIP মেম্বারশিপ
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

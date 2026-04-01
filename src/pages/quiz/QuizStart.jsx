@@ -40,7 +40,7 @@ const QuizStart = () => {
        <motion.div 
          initial={{ opacity: 0, scale: 0.9, y: 30 }}
          animate={{ opacity: 1, scale: 1, y: 0 }}
-         className="w-full max-w-lg glass-dark p-10 md:p-14 rounded-[3.5rem] shadow-2xl relative z-10 border border-white/10"
+         className="w-full max-w-lg glass-dark p-6 md:p-14 rounded-[2rem] md:rounded-[3.5rem] shadow-2xl relative z-10 border border-white/10"
        >
          <div className="w-24 h-24 bg-primary/10 rounded-[2.5rem] mx-auto flex items-center justify-center mb-8 border border-primary/20 shadow-xl shadow-primary/20 rotate-6" >
             <GraduationCap className="w-12 h-12 text-primary" />

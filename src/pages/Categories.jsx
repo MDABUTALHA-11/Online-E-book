@@ -3,138 +3,134 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { categories } from '../data/books';
 import CategoryCard from '../components/CategoryCard';
-import { BookOpen, Sparkles, Filter, Search, ArrowLeft, Lightbulb } from 'lucide-react';
+import { BookOpen, Search, ArrowLeft, Lightbulb, Zap } from 'lucide-react';
 import usePageSEO from '../hooks/usePageSEO';
 
-const Categories = () => {
+const tabs = ['All', 'SSC', 'HSC', 'Admission'];
+
+export default function Categories() {
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState('All');
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
 
   usePageSEO({
-    title: 'সকল ক্যাটাগরি - শাইফলি অনলাইন লাইব্রেরি',
-    description: 'আপনার প্রয়োজনীয় সকল একাডেমিক হ্যান্ডনোট এবং গাইড বই এখন আলাদা আলাদা ভাবে সাজানো রয়েছে।',
-    keywords: 'SSC, HSC, Science, Math, Physics, Chemistry'
+    title: 'সকল বিষয় — Shaifly Library',
+    description: 'বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সকল একাডেমিক হ্যান্ডনোট।',
+    keywords: 'SSC, HSC, Science, Math, Physics, Chemistry, Shaifly',
   });
 
   useEffect(() => {
-    const query = searchParams.get('q');
-    if (query) setSearchTerm(query);
+    const q = searchParams.get('q');
+    if (q) setSearchTerm(q);
   }, [searchParams]);
 
-  const tabs = ['All', 'SSC', 'HSC', 'Admission'];
-
-  const filteredCategories = categories.filter(category => {
-    const matchesSearch = category.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSearch;
-  });
+  const filteredCategories = categories.filter(c =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-40">
-      {/* Premium Dark Hero for Categories */}
-      <section className="relative bg-slate-950 px-6 pt-32 md:pt-48 pb-24 md:pb-40 overflow-hidden shadow-2xl mb-24">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -mr-64 -mt-64 animate-pulse-soft" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] -ml-40 -mb-40 animate-pulse-soft delay-1000" />
-        
-        <div className="container mx-auto max-w-7xl relative z-10 text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-5xl mx-auto"
+    <div className="min-h-screen pb-12" style={{ color:'#f1f5f9' }}>
+
+      {/* ── Hero ── */}
+      <div className="relative rounded-2xl overflow-hidden mb-7 px-8 py-12" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+        <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background:'rgba(34,197,94,0.06)', filter:'blur(60px)' }} />
+        <div className="relative z-10 text-center">
+          <Link to="/" className="inline-flex items-center gap-1.5 text-[12px] font-black uppercase tracking-widest no-underline mb-4 transition-colors group"
+            style={{ color:'#334155' }}
+            onMouseEnter={e=>e.currentTarget.style.color='#22C55E'} onMouseLeave={e=>e.currentTarget.style.color='#334155'}
           >
-            <div className="inline-flex items-center gap-3 px-6 py-2 bg-white/5 text-primary rounded-full text-[10px] font-black en-font mb-10 border border-white/10 tracking-[0.2em] uppercase shadow-2xl">
-               <Sparkles className="w-5 h-5 animate-pulse" /> Global Academic Hub
+            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> হোম
+          </Link>
+          <h1 className="text-white text-[28px] md:text-[44px] font-bn font-black leading-tight mb-3">
+            সকল <span style={{ color:'#22C55E' }}>বিষয়সমূহ</span>
+          </h1>
+          <p className="font-bn text-[14px] max-w-md mx-auto leading-relaxed mb-5" style={{ color:'#64748b' }}>
+            তোমার পছন্দের বিষয় বেছে নাও। SSC ও HSC-র সবচেয়ে গোছানো হ্যান্ডনোট সংগ্রহ।
+          </p>
+          <div className="flex items-center gap-3 justify-center flex-wrap">
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-black" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.15)', color:'#22C55E' }}>
+              <BookOpen className="w-3.5 h-3.5" /> {categories.length} বিষয়
             </div>
-            
-            <h1 className="text-white text-6xl md:text-[8rem] font-bn font-black mb-10 italic leading-none tracking-tighter">
-               আপনার <span className="text-primary italic">পছন্দের</span> বিষয়গুলো
-            </h1>
-            
-            <p className="text-2xl text-slate-400 font-bn italic leading-relaxed max-w-3xl mx-auto">
-              আপনার প্রয়োজনীয় সকল হ্যান্ডনোট এখন একটি কেন্দ্রীয় ড্যাশবোর্ডে। সঠিক বিভাগটি বেছে নিন।
-            </p>
-          </motion.div>
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-black" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.15)', color:'#22C55E' }}>
+              <Zap className="w-3.5 h-3.5" /> সম্পূর্ণ বিনামূল্যে
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <div className="container mx-auto max-w-7xl px-6">
-        <section className="pb-20">
-          {/* Premium Filter & Search Bar - Elevated */}
-          <div className="flex flex-col lg:flex-row gap-8 items-center justify-center bg-white p-8 rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-slate-100 -mt-32 relative z-20 mb-24">
-            <div className="relative w-full lg:w-[450px] group">
-              <input 
-                type="text" 
-                placeholder="বিষয় খুঁজুন..." 
-                className="w-full h-16 pl-16 pr-8 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-primary focus:bg-white focus:outline-none shadow-inner transition-all font-bn italic text-lg"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 w-7 h-7 group-focus-within:text-primary transition-colors" />
-            </div>
-
-            <div className="flex items-center gap-3 bg-slate-50 p-2 rounded-2xl overflow-x-auto no-scrollbar w-full lg:w-auto">
-              {tabs.map((tab) => (
-                <button 
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-10 py-4 rounded-xl font-black en-font text-xs tracking-[0.1em] uppercase transition-all whitespace-nowrap ${activeTab === tab ? 'bg-white text-primary shadow-lg ring-1 ring-slate-200 scale-105' : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'}`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <AnimatePresence mode="popLayout">
-            <motion.div 
-              layout
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12"
+      {/* ── Search + Filter ── */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-7 p-4 rounded-2xl" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color:'#334155' }} />
+          <input
+            type="text"
+            placeholder="বিষয় খুঁজুন..."
+            className="w-full h-[44px] pl-11 pr-4 rounded-xl text-[13.5px] font-bn placeholder:text-[#334155] outline-none transition-all"
+            style={{ background:'#112236', border:'1.5px solid #1e3a5f', color:'#f1f5f9' }}
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            onFocus={e => e.target.style.borderColor = 'rgba(34,197,94,0.4)'}
+            onBlur={e => e.target.style.borderColor = '#1e3a5f'}
+          />
+        </div>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          {tabs.map(tab => (
+            <button key={tab} onClick={() => setActiveTab(tab)}
+              className="h-[44px] px-5 rounded-xl font-black text-[13px] transition-all whitespace-nowrap"
+              style={activeTab === tab
+                ? { background:'#22C55E', color:'white', boxShadow:'0 4px 12px rgba(34,197,94,0.25)' }
+                : { background:'#112236', border:'1.5px solid #1e3a5f', color:'#64748b' }
+              }
             >
-              {filteredCategories.map((category, index) => (
-                <motion.div
-                  layout
-                  key={category.id}
-                  initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ delay: index * 0.05, duration: 0.4 }}
-                >
-                   <CategoryCard category={category} />
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
 
-          {/* Special Instruction Section */}
-          <div className="mt-40 p-12 md:p-32 bg-slate-950 rounded-[5rem] text-center text-white relative overflow-hidden shadow-premium border border-white/5 group">
-            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] -mr-80 -mt-80 animate-pulse-soft" />
-            
-            <div className="max-w-4xl mx-auto relative z-10">
-              <div className="w-24 h-24 bg-white/10 backdrop-blur-3xl rounded-3xl flex items-center justify-center mx-auto mb-12 border border-white/20 shadow-2xl animate-float">
-                 <Lightbulb className="w-12 h-12 text-primary" />
-              </div>
-              <h2 className="text-5xl md:text-8xl font-bn font-black mb-10 italic leading-tight tracking-tighter">আরও নতুন <span className="text-primary italic">ক্যাটাগরি</span> আসছে!</h2>
-              <p className="text-2xl text-slate-400 font-bn italic max-w-2xl mx-auto leading-relaxed mb-20">
-                আমরা প্রতিদিন আপনাদের পড়াশোনা সহজ করতে নতুন নতুন বিষয়ের হ্যান্ডনোট এবং গাইড যোগ করছি। শীঘ্রই আসবে আরও অনেক কিছু।
-              </p>
-              
-              <div className="flex flex-wrap justify-center gap-8">
-                 <Link to="/" className="btn btn-primary h-20 px-16 text-xl rounded-3xl hover:scale-110 transition-transform flex items-center gap-4 shadow-2xl">
-                    একটু দেখা যাক <ArrowLeft className="w-8 h-8 rotate-180" />
-                 </Link>
-                 <a href="#" className="btn glass-dark h-20 px-16 text-xl rounded-3xl border border-white/10 hover:bg-white/10 transition-all font-bn italic flex items-center gap-4">
-                    মতামত দিন
-                 </a>
-              </div>
-            </div>
+      {/* ── Count ── */}
+      <div className="flex items-center gap-3 mb-5">
+        <div className="h-px flex-1" style={{ background:'#1e3a5f' }} />
+        <span className="font-bold text-[11px] uppercase tracking-widest whitespace-nowrap" style={{ color:'#334155' }}>
+          {filteredCategories.length} টি বিষয় পাওয়া গেছে
+        </span>
+        <div className="h-px flex-1" style={{ background:'#1e3a5f' }} />
+      </div>
+
+      {/* ── Grid ── */}
+      <AnimatePresence mode="popLayout">
+        <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-6">
+          {filteredCategories.map((category, i) => (
+            <motion.div layout key={category.id}
+              initial={{ opacity:0, scale:0.9 }} animate={{ opacity:1, scale:1 }}
+              exit={{ opacity:0, scale:0.9 }} transition={{ delay:i*0.04, duration:0.3 }}
+            >
+              <CategoryCard category={category} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── CTA ── */}
+      <div className="mt-12 rounded-2xl px-7 py-8 flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden" style={{ background:'linear-gradient(135deg,#22C55E,#16a34a)', boxShadow:'0 10px 40px rgba(34,197,94,0.25)' }}>
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background:'rgba(255,255,255,0.15)' }}>
+            <Lightbulb className="w-6 h-6 text-white" />
           </div>
-        </section>
+          <div>
+            <h3 className="text-white text-[18px] font-black font-bn">আরও নতুন বিষয় আসছে!</h3>
+            <p className="text-white/80 font-bn text-[13px]">প্রতিদিন নতুন হ্যান্ডনোট ও গাইড যোগ করা হচ্ছে।</p>
+          </div>
+        </div>
+        <div className="flex gap-3 shrink-0">
+          <Link to="/" className="bg-white font-black text-[13.5px] px-6 py-3 rounded-xl no-underline transition-all hover:bg-slate-50" style={{ color:'#16a34a' }}>
+            হোমে ফিরুন
+          </Link>
+          <a href="#" className="font-black text-[13.5px] px-6 py-3 rounded-xl no-underline" style={{ background:'rgba(255,255,255,0.15)', color:'white', border:'1.5px solid rgba(255,255,255,0.2)' }}>
+            মতামত দিন
+          </a>
+        </div>
       </div>
     </div>
   );
-};
-
-export default Categories;
+}
