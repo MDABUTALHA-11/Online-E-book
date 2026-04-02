@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Target, Award, ArrowRight, Activity, Zap, ShieldCheck } from 'lucide-react';
+import { Target, Award, ArrowRight, Activity, Zap, ShieldCheck, Trophy, Home } from 'lucide-react';
 import { physicsQuestions } from '../../data/physicsQuestions';
 import { chemistryQuestions } from '../../data/chemistryQuestions';
 import { higherMathQuestions } from '../../data/higherMathQuestions';
 import { biologyQuestions } from '../../data/biologyQuestions';
+import { scienceQuestions } from '../../data/scienceQuestions';
+import { mathQuestions } from '../../data/mathQuestions';
 import { db } from '../../lib/firebase';
-import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 const QuizResult = () => {
   const navigate = useNavigate();
@@ -30,7 +32,9 @@ const QuizResult = () => {
       'physics': physicsQuestions,
       'chemistry': chemistryQuestions,
       'higher-math': higherMathQuestions,
-      'biology': biologyQuestions
+      'biology': biologyQuestions,
+      'science': scienceQuestions,
+      'math': mathQuestions,
     };
     const questions = questionsMap[subjectId] || physicsQuestions;
 
@@ -76,9 +80,11 @@ const QuizResult = () => {
         const uniqueMap = new Map();
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          const key = `${data.name}-${data.school}`;
-          if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
-            uniqueMap.set(key, data);
+          if ((data.subject || 'physics') === subjectId) {
+            const key = `${data.name}-${data.school}`;
+            if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
+              uniqueMap.set(key, data);
+            }
           }
         });
         
@@ -110,7 +116,7 @@ const QuizResult = () => {
 
     saveAndCalculateRank();
 
-  }, [navigate]);
+  }, [navigate, location.search]);
 
   if (!result) return null;
 
@@ -119,64 +125,75 @@ const QuizResult = () => {
   const isPass = percentage >= 40;
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 relative overflow-hidden pt-20 pb-20">
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse-soft" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 relative overflow-hidden pt-32 pb-40">
+      {/* Background Decorator */}
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#22C55E]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
 
       <motion.div 
-        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="w-full max-w-2xl glass-dark p-10 md:p-16 rounded-[4rem] shadow-2xl text-center border border-white/10 relative z-10"
+        className="w-full max-w-3xl p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative z-10 text-center"
+        style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
       >
-        <div className="w-32 h-32 mx-auto bg-gradient-to-br from-primary to-emerald-600 rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(16,185,129,0.5)] flex items-center justify-center mb-10 rotate-6 border border-white/20">
-          <Target className="w-16 h-16 text-white" />
+        {/* Animated Trophy Icon */}
+        <div className="relative mb-10">
+           <motion.div 
+             initial={{ scale: 0 }}
+             animate={{ scale: 1 }}
+             transition={{ type: 'spring', damping: 12, stiffness: 200, delay: 0.2 }}
+             className="w-28 h-28 md:w-36 md:h-36 mx-auto bg-[#22C55E]/10 rounded-[2.5rem] md:rounded-[3rem] shadow-lg flex items-center justify-center rotate-6 border border-[#22C55E]/20"
+           >
+             <Trophy className="w-14 h-14 md:w-18 md:h-18 text-[#22C55E] drop-shadow-md" />
+           </motion.div>
         </div>
 
-        <div className="mb-12">
-           <h2 className="text-slate-400 font-bn text-xl italic font-bold tracking-widest uppercase mb-2">Quiz Completed</h2>
-           <h1 className="text-5xl md:text-7xl font-bn font-black text-white italic mb-4 leading-none tracking-tighter">
-             Congratulations, <span className="text-primary italic block mt-2">{result.name}</span>
+        <div className="mb-10 text-center">
+           <div className="sf-label text-[#22C55E] tracking-[0.3em] uppercase text-[11px] mb-4">EXAM COMPLETED</div>
+           <h1 className="text-4xl md:text-7xl sf-headline text-white mb-4 italic tracking-tighter leading-none">
+             অভিনন্দন, <span className="text-[#22C55E]">{result.name}</span>!
            </h1>
-           <p className="text-slate-500 font-bn text-2xl italic">{result.school}</p>
+           <p className="text-xl md:text-2xl font-bn text-slate-400 italic">
+              সেরাদের তালিকায় তুমি এখন <span className="text-white font-black italic">#{result.rank}</span> অবস্থানে।
+           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-           <div className="bg-slate-900/80 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col items-center justify-center relative overflow-hidden group hover:border-primary/50 transition-all">
-              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100" />
-              <Activity className="w-8 h-8 text-secondary mb-4" />
-              <p className="text-4xl md:text-5xl font-bn font-black text-white italic">{result.score}<span className="text-2xl text-slate-500">/{result.total}</span></p>
-              <span className="text-[10px] md:text-sm font-black en-font tracking-[0.2em] text-slate-400 uppercase mt-4">Score</span>
+        {/* Results Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12">
+           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: '#112236', border: '1.5px solid #1e3a5f' }}>
+              <Activity className="w-8 h-8 text-[#22C55E] mb-3 opacity-50" />
+              <div className="text-3xl md:text-4xl sf-headline text-white italic">{result.score}<span className="text-xl text-slate-700 italic">/{result.total}</span></div>
+              <div className="sf-label text-[10px] tracking-widest text-slate-600 uppercase mt-2">Score</div>
            </div>
 
-           <div className={`border p-8 rounded-[2.5rem] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl ${isGood ? 'bg-primary/20 border-primary/30 shadow-primary/20' : (isPass ? 'bg-yellow-500/20 border-yellow-500/30' : 'bg-red-500/20 border-red-500/30')}`}>
-              <Zap className={`w-8 h-8 mb-4 ${isGood ? 'text-primary' : (isPass ? 'text-yellow-400' : 'text-red-400')}`} />
-              <p className={`text-4xl md:text-5xl font-bn font-black italic ${isGood ? 'text-primary' : (isPass ? 'text-yellow-400' : 'text-red-400')}`}>{percentage}%</p>
-              <span className={`text-[10px] md:text-sm font-black en-font tracking-[0.2em] uppercase mt-4 ${isGood ? 'text-primary/70' : 'text-white/50'}`}>Accuracy</span>
+           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-xl" style={{ 
+             background: isGood ? '#22C55E' : (isPass ? '#eab308' : '#ef4444'),
+             border: '1.5px solid rgba(255,255,255,0.2)'
+           }}>
+              <Zap className="w-8 h-8 text-white mb-3" />
+              <div className="text-3xl md:text-4xl sf-headline text-white italic">{percentage}%</div>
+              <div className="sf-label text-[10px] tracking-widest uppercase text-white/70 mt-2">Accuracy</div>
            </div>
 
-           <div className="bg-gradient-to-br from-indigo-500/20 to-purple-600/20 border border-indigo-500/30 p-8 rounded-[2.5rem] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl shadow-indigo-500/20">
-              <Award className="w-8 h-8 text-indigo-400 mb-4" />
-              <p className="text-4xl md:text-5xl font-bn font-black italic text-indigo-400">#{result.rank}</p>
-              <span className="text-[10px] md:text-sm font-black en-font tracking-[0.2em] uppercase mt-4 text-indigo-400/80">Current Rank</span>
+           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: '#112236', border: '1.5px solid #1e3a5f' }}>
+              <Award className="w-8 h-8 text-indigo-400 mb-3 opacity-50" />
+              <div className="text-3xl md:text-4xl sf-headline text-indigo-400 italic">#{result.rank}</div>
+              <div className="sf-label text-[10px] tracking-widest uppercase text-slate-600 mt-2">Rank</div>
            </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 mt-16 pt-12 border-t border-white/5">
+        {/* Buttons Action Area */}
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-12 pt-10 border-t border-[#1e3a5f]">
            <button 
              onClick={() => navigate('/quiz')}
-             className="btn btn-outline border-white/10 text-white w-full h-20 rounded-[2rem] hover:bg-white/5 transition-all text-xl font-bn font-black italic flex items-center justify-center gap-3"
+             className="w-full h-16 rounded-2xl bg-[#112236] hover:bg-[#1a2e4a] border border-[#1e3a5f] text-slate-400 hover:text-white transition-all sf-headline text-lg italic flex items-center justify-center gap-3"
            >
-             ব্যাক টু হোম
+             <Home className="w-5 h-5" /> ঘরে ফিরুন
            </button>
            <button 
-             onClick={() => {
-               const params = new URLSearchParams(location.search);
-               const subjectId = params.get('subject') || 'physics';
-               navigate(`/quiz/leaderboard?subject=${subjectId}`);
-             }}
-             className="btn btn-primary w-full h-20 rounded-[2rem] text-xl font-bn font-black italic flex items-center justify-center gap-3 shadow-2xl shadow-primary/20 hover:scale-105 transition-transform"
+             onClick={() => navigate(`/quiz/leaderboard?subject=${result.subject}`)}
+             className="w-full h-16 rounded-2xl bg-[#22C55E] hover:bg-[#16a34a] text-white sf-headline text-lg italic flex items-center justify-center gap-3 shadow-lg border-b-4 border-[#15803d] hover:scale-[1.02] active:scale-95 transition-all"
            >
-             লিডারবোর্ড দেখুন <Award className="w-6 h-6" />
+             লিডারবোর্ড দেখুন <Award className="w-5 h-5" />
            </button>
         </div>
       </motion.div>
@@ -185,3 +202,5 @@ const QuizResult = () => {
 };
 
 export default QuizResult;
+
+

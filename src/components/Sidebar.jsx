@@ -17,11 +17,11 @@ const navSections = [
   {
     label: 'STUDY',
     items: [
-      { name: 'SSC',      path: '/subject/ssc',      icon: GraduationCap },
-      { name: 'HSC',      path: '/subject/hsc',       icon: BookOpen },
-      { name: 'Science',  path: '/subject/science',   icon: FlaskConical },
-      { name: 'Arts',     path: '/subject/arts',      icon: Palette },
-      { name: 'Commerce', path: '/subject/commerce',  icon: Briefcase },
+      { name: 'জীববিজ্ঞান',   path: '/subject/biology',     icon: GraduationCap },
+      { name: 'পদার্থবিজ্ঞান', path: '/subject/physics',     icon: FlaskConical },
+      { name: 'রসায়ন',        path: '/subject/chemistry',   icon: BookOpen },
+      { name: 'উচ্চতর গণিত',  path: '/subject/higher-math', icon: Briefcase },
+      { name: 'সাধারণ বিজ্ঞান', path: '/subject/science',   icon: Palette },
     ],
   },
   {

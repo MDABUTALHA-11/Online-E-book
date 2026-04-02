@@ -1,305 +1,332 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Flag, Zap, Check } from 'lucide-react';
-import { physicsQuestions } from '../../data/physicsQuestions';
-import { chemistryQuestions } from '../../data/chemistryQuestions';
-import { higherMathQuestions } from '../../data/higherMathQuestions';
-import { biologyQuestions } from '../../data/biologyQuestions';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Clock, ChevronRight, ChevronLeft, AlertCircle, Zap, CheckCircle2 } from "lucide-react";
+import { physicsQuestions } from "../../data/physicsQuestions";
+import { chemistryQuestions } from "../../data/chemistryQuestions";
+import { higherMathQuestions } from "../../data/higherMathQuestions";
+import { biologyQuestions } from "../../data/biologyQuestions";
+import { scienceQuestions } from "../../data/scienceQuestions";
+import { mathQuestions } from "../../data/mathQuestions";
+import { hscPhysics1Questions } from "../../data/hscPhysics1Questions";
+import { hscChemistry1Questions } from "../../data/hscChemistry1Questions";
+import { hscHigherMath1Questions } from "../../data/hscHigherMath1Questions";
+import { hscBiology1Questions } from "../../data/hscBiology1Questions";
+import { hscIctQuestions } from "../../data/hscIctQuestions";
+
+const QUIZ_DURATION = 30 * 60;
+
+const questionsMap = {
+  physics: physicsQuestions,
+  chemistry: chemistryQuestions,
+  "higher-math": higherMathQuestions,
+  biology: biologyQuestions,
+  science: scienceQuestions,
+  math: mathQuestions,
+  "hsc-physics-1": hscPhysics1Questions,
+  "hsc-chemistry-1": hscChemistry1Questions,
+  "hsc-higher-math-1": hscHigherMath1Questions,
+  "hsc-biology-1": hscBiology1Questions,
+  "hsc-ict": hscIctQuestions,
+};
 
 const QuizPlay = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const subjectId = queryParams.get('subject') || 'physics';
-
-  const questionsMap = {
-    'physics': physicsQuestions,
-    'chemistry': chemistryQuestions,
-    'higher-math': higherMathQuestions,
-    'biology': biologyQuestions
-  };
-
+  const [searchParams] = useSearchParams();
+  const subjectId = searchParams.get("subject") || "physics";
   const questions = questionsMap[subjectId] || physicsQuestions;
 
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [timeLeft, setTimeLeft] = useState(1800); // 30 minutes
-  const [user, setUser] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(QUIZ_DURATION);
+  const [submitted, setSubmitted] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const timerRef = useRef(null);
 
   useEffect(() => {
-    let userData = JSON.parse(localStorage.getItem('user'));
-    
-    // Auto-login as Guest if accessed directly
-    if (!userData) {
-      userData = { name: "Guest User", school: "Guest School", mode: "exam" };
-      localStorage.setItem('user', JSON.stringify(userData));
-    }
-    
-    setUser(userData);
-    
-    // Initialize empty answers from local storage if exists
-    const saved = JSON.parse(localStorage.getItem('quiz_answers')) || {};
-    setAnswers(saved);
-  }, []);
-
-  useEffect(() => {
-    if (!user || user.mode === 'practice') return;
-
-    if (timeLeft <= 0) {
-      handleSubmit();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft(prev => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, user]);
-
-  // Web Audio Synthesis for crisp, instant sound effects
-  const playSound = useCallback((type) => {
-    try {
-      const authCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = authCtx.createOscillator();
-      const gainNode = authCtx.createGain();
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(authCtx.destination);
-      
-      if (type === 'click') {
-        oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(600, authCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(800, authCtx.currentTime + 0.1);
-        gainNode.gain.setValueAtTime(0.1, authCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, authCtx.currentTime + 0.1);
-        oscillator.start(authCtx.currentTime);
-        oscillator.stop(authCtx.currentTime + 0.1);
-      } else if (type === 'correct') {
-        oscillator.type = 'triangle';
-        oscillator.frequency.setValueAtTime(400, authCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(800, authCtx.currentTime + 0.2);
-        gainNode.gain.setValueAtTime(0.1, authCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, authCtx.currentTime + 0.2);
-        oscillator.start(authCtx.currentTime);
-        oscillator.stop(authCtx.currentTime + 0.2);
-      } else if (type === 'wrong') {
-        oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(300, authCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(150, authCtx.currentTime + 0.3);
-        gainNode.gain.setValueAtTime(0.1, authCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, authCtx.currentTime + 0.3);
-        oscillator.start(authCtx.currentTime);
-        oscillator.stop(authCtx.currentTime + 0.3);
-      }
-    } catch (e) {
-      // Ignored if browser blocks audio
-    }
-  }, []);
-
-  const handleSelect = useCallback((option) => {
-    if (user?.mode === 'practice' && answers[currentIdx]) return; // disable change in practice mode if already answered
-    
-      // Play interaction sound
-    if (user?.mode === 'practice') {
-      playSound(questions[currentIdx].answer === option ? 'correct' : 'wrong');
-    } else {
-      playSound('click');
-    }
-    
-    setAnswers(prev => {
-      const updated = { ...prev, [currentIdx]: option };
-      localStorage.setItem('quiz_answers', JSON.stringify(updated));
-      return updated;
-    });
-  }, [user, answers, currentIdx, playSound, questions]);
-
-  const handleNext = useCallback(() => {
-    if (currentIdx < questions.length - 1) {
-      playSound('click');
-      setCurrentIdx(prev => prev + 1);
-    }
-  }, [currentIdx, playSound, questions.length]);
-
-  const handlePrev = useCallback(() => {
-    if (currentIdx > 0) {
-      playSound('click');
-      setCurrentIdx(prev => prev - 1);
-    }
-  }, [currentIdx, playSound]);
+    const user = localStorage.getItem("user");
+    if (!user) navigate("/quiz");
+  }, [navigate]);
 
   const handleSubmit = useCallback(() => {
-    playSound('click');
-    navigate(`/quiz/result?subject=${subjectId}`);
-  }, [navigate, playSound, subjectId]);
+    clearInterval(timerRef.current);
+    setSubmitted(true);
+    localStorage.setItem("quiz_answers", JSON.stringify(answers));
+    navigate("/quiz/result?subject=" + subjectId);
+  }, [answers, navigate, subjectId]);
 
-  const getOptionStyle = useCallback((opt) => {
-    if (!user) return '';
-    const currentQ = questions[currentIdx];
-    const isSelected = answers[currentIdx] === opt;
-    const isCorrect = currentQ.answer === opt;
-    
-    if (user.mode === 'practice' && answers[currentIdx]) {
-      if (isCorrect) return 'bg-primary border-primary text-white shadow-lg shadow-primary/20 scale-[1.02]';
-      if (isSelected && !isCorrect) return 'bg-red-500 border-red-500 text-white shadow-lg shadow-red-500/20 scale-[1.02]';
-      return 'bg-white/5 border-white/10 text-slate-500 opacity-50'; // unselected disabled lookup
-    }
+  useEffect(() => {
+    if (submitted) return;
+    timerRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current);
+          handleSubmit();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timerRef.current);
+  }, [submitted, handleSubmit]);
 
-    if (isSelected) return 'bg-primary border-primary text-white shadow-lg shadow-primary/20 scale-[1.02]';
-    return 'bg-slate-900 border-slate-800 text-slate-300 hover:border-primary/50 hover:bg-slate-800 hover:-translate-y-1 transform';
-  }, [answers, currentIdx, user, questions]);
-
-  if (!user) return null;
-
-  const currentQ = questions[currentIdx];
-  const isLast = currentIdx === questions.length - 1;
-  const progress = ((currentIdx + 1) / questions.length) * 100;
-  
   const formatTime = (secs) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    const m = Math.floor(secs / 60).toString().padStart(2, "0");
+    const s = (secs % 60).toString().padStart(2, "0");
+    return m + ":" + s;
   };
 
+  const isCritical = timeLeft <= 120;
+  const progress = ((currentIndex + 1) / questions.length) * 100;
+  const answeredCount = Object.keys(answers).length;
+  const currentQ = questions[currentIndex];
+
+  const handleOptionSelect = (option) => {
+    if (submitted) return;
+    setAnswers((prev) => ({ ...prev, [currentIndex]: option }));
+  };
+
+  const goNext = () => {
+    if (currentIndex < questions.length - 1) setCurrentIndex((i) => i + 1);
+  };
+
+  const goPrev = () => {
+    if (currentIndex > 0) setCurrentIndex((i) => i - 1);
+  };
+
+  const jumpTo = (idx) => setCurrentIndex(idx);
+
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col p-6 pt-32 pb-40 overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="w-full max-w-4xl mx-auto relative z-10 flex flex-col min-h-[70vh]">
-        {/* Header Dashboard */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 bg-slate-900/50 p-6 md:p-8 rounded-[2rem] md:rounded-[3.5rem] border border-white/5 backdrop-blur-xl shadow-2xl">
-          <div className="flex items-center gap-4 group">
-             <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 shadow-inner group-hover:rotate-6 transition-transform">
-               <Flag className="w-8 h-8 text-primary" />
-             </div>
-             <div>
-               <p className="text-slate-500 uppercase tracking-widest text-[10px] md:text-xs font-black en-font mb-1">Question Progress ({subjectId.replace('-', ' ').toUpperCase()})</p>
-               <h3 className="text-3xl md:text-5xl font-bn font-black text-white italic tracking-tight">{currentIdx + 1} <span className="text-slate-600 text-xl md:text-3xl">/ {questions.length}</span></h3>
-             </div>
-          </div>
-          
-          <div className="flex items-center gap-6">
-             {user.mode === 'exam' ? (
-                <div className={`flex items-center gap-4 px-6 md:px-8 py-4 rounded-[2rem] border shadow-2xl transition-colors duration-1000 ${timeLeft < 300 ? 'bg-red-500/10 border-red-500 text-red-500 animate-pulse' : 'bg-primary/10 border-primary/30 text-primary'}`}>
-                  <Clock className="w-6 h-6 md:w-8 md:h-8" />
-                  <span className="text-3xl md:text-5xl font-bn font-black italic">{formatTime(timeLeft)}</span>
-                </div>
-             ) : (
-                <div className="flex items-center gap-3 px-6 md:px-8 py-4 rounded-[2rem] bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
-                  <Zap className="w-6 h-6 md:w-8 md:h-8" />
-                  <span className="text-2xl md:text-4xl font-bn font-black italic tracking-widest uppercase">Practice Mode</span>
-                </div>
-             )}
-          </div>
+    <div className="min-h-screen pb-40 text-[#f1f5f9]">
+      {/* Top Bar */}
+      <div
+        className="sticky top-0 z-50 flex items-center justify-between px-5 py-4 mb-8 rounded-2xl"
+        style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+      >
+        <div className="flex flex-col gap-1 min-w-0">
+          <span className="text-[10px] font-black uppercase tracking-widest text-[#22C55E]">
+            {subjectId.toUpperCase()} QUIZ
+          </span>
+          <span className="text-white font-black text-[15px] font-bn italic">
+            {currentIndex + 1} / {questions.length}
+          </span>
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-full h-3 bg-slate-900 rounded-full mb-12 overflow-hidden border border-white/5 shadow-inner">
-           <motion.div 
-             className="h-full bg-gradient-to-r from-primary to-emerald-400"
-             initial={{ width: 0 }}
-             animate={{ width: `${progress}%` }}
-             transition={{ duration: 0.5, ease: "easeOut" }}
-           />
+        <div
+          className="flex items-center gap-2 px-4 py-2 rounded-xl font-black text-[18px] transition-all"
+          style={
+            isCritical
+              ? { background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }
+              : { background: "#112236", color: "#22C55E", border: "1px solid #1e3a5f" }
+          }
+        >
+          <Clock className="w-4 h-4" />
+          {formatTime(timeLeft)}
         </div>
 
-        {/* Question Container */}
-        <div className="flex-1 flex flex-col justify-center">
+        <button
+          onClick={() => setShowConfirm(true)}
+          className="flex items-center gap-2 px-5 py-3 rounded-xl font-black text-[13px] text-white transition-all hover:scale-105"
+          style={{ background: "#22C55E", boxShadow: "0 4px 16px rgba(34,197,94,0.3)" }}
+        >
+          <Zap className="w-4 h-4" />
+          জমা দিন
+        </button>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="h-1.5 rounded-full mb-8 overflow-hidden" style={{ background: "#112236" }}>
+        <motion.div
+          className="h-full rounded-full"
+          style={{ background: "#22C55E" }}
+          animate={{ width: progress + "%" }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-6">
+        {/* Question Card */}
+        <div>
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentIdx}
-              initial={{ opacity: 0, x: 20 }}
+              key={currentIndex}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-slate-900/50 backdrop-blur-xl p-6 md:p-14 rounded-[2rem] md:rounded-[4rem] border border-white/10 shadow-2xl relative"
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.25 }}
+              className="rounded-2xl p-7 md:p-10 mb-6"
+              style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
             >
-              <div className="absolute top-0 right-10 -translate-y-1/2 px-6 py-2 bg-slate-800 text-white/50 text-xs font-black uppercase tracking-widest rounded-full border border-white/10 shadow-xl en-font select-none">
-                 Q-{currentIdx + 1}
+              <div className="flex items-center gap-3 mb-6">
+                <span
+                  className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-[14px] text-white"
+                  style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)" }}
+                >
+                  {currentIndex + 1}
+                </span>
+                <div className="h-px flex-1" style={{ background: "#1e3a5f" }} />
               </div>
 
-              <h2 className="text-3xl md:text-[2.5rem] font-bn font-black text-white italic leading-relaxed mb-12">
-                <span className="text-primary mr-4 block md:inline mb-4 md:mb-0 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">প্রশ্ন: </span> 
+              <h2 className="text-[20px] md:text-[26px] font-black font-bn text-white leading-relaxed mb-9 italic">
                 {currentQ.question}
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                {currentQ.options.map((opt, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleSelect(opt)}
-                    className={`flex items-center p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-2 transition-all duration-300 text-left font-bn text-xl md:text-2xl italic group ${getOptionStyle(opt)}`}
-                  >
-                    <span className="w-10 h-10 md:w-12 md:h-12 rounded-2xl md:rounded-[1.25rem] bg-white/10 flex items-center justify-center mr-6 font-black uppercase text-sm md:text-base en-font shrink-0 group-hover:scale-110 transition-transform">
-                      {String.fromCharCode(65 + i)}
-                    </span>
-                    {opt}
-                    
-                    {/* Practice Mode Feedback Icons */}
-                    {user.mode === 'practice' && answers[currentIdx] === opt && currentQ.answer === opt && (
-                      <CheckCircle2 className="w-8 h-8 ml-auto text-white" />
-                    )}
-                    {user.mode === 'practice' && answers[currentIdx] === opt && currentQ.answer !== opt && (
-                      <XCircle className="w-8 h-8 ml-auto text-white" />
-                    )}
-                  </button>
-                ))}
+              <div className="flex flex-col gap-3">
+                {currentQ.options.map((option, idx) => {
+                  const isSelected = answers[currentIndex] === option;
+                  const letter = ["\u0995", "\u0996", "\u0997", "\u0998"][idx];
+                  return (
+                    <motion.button
+                      key={option}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleOptionSelect(option)}
+                      className="w-full flex items-center gap-4 px-6 py-5 rounded-xl text-left transition-all duration-200 font-bn font-black text-[16px] italic"
+                      style={
+                        isSelected
+                          ? { background: "rgba(34,197,94,0.12)", border: "2px solid #22C55E", color: "#22C55E", boxShadow: "0 4px 20px rgba(34,197,94,0.15)" }
+                          : { background: "#112236", border: "1.5px solid #1e3a5f", color: "#94a3b8" }
+                      }
+                    >
+                      <span
+                        className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-[13px] shrink-0"
+                        style={
+                          isSelected
+                            ? { background: "#22C55E", color: "white" }
+                            : { background: "#0d1b2a", color: "#475569", border: "1px solid #1e3a5f" }
+                        }
+                      >
+                        {letter}
+                      </span>
+                      <span className={isSelected ? "text-white" : ""}>{option}</span>
+                      {isSelected && <CheckCircle2 className="w-5 h-5 ml-auto text-[#22C55E]" />}
+                    </motion.button>
+                  );
+                })}
               </div>
-
-              {/* Practice Mode Explainer Area - Optional */}
-              <AnimatePresence>
-                {user.mode === 'practice' && answers[currentIdx] && (
-                  <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="mt-8 bg-white/5 p-6 rounded-[2rem] border border-white/10 text-center font-bn italic"
-                  >
-                    {answers[currentIdx] === currentQ.answer ? (
-                      <div className="text-primary flex items-center justify-center gap-3 text-2xl font-black">
-                         <Check className="w-8 h-8" /> সঠিক উত্তর!
-                      </div>
-                    ) : (
-                      <div className="text-red-400 flex items-center justify-center gap-3 text-xl">
-                         সঠিক উত্তর হবে: <span className="font-black text-white px-4 py-2 bg-white/10 rounded-xl">{currentQ.answer}</span>
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
             </motion.div>
           </AnimatePresence>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between">
+            <button
+              onClick={goPrev}
+              disabled={currentIndex === 0}
+              className="flex items-center gap-2 px-6 py-4 rounded-xl font-black text-[14px] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{ background: "#112236", border: "1.5px solid #1e3a5f", color: "#64748b" }}
+            >
+              <ChevronLeft className="w-5 h-5" /> Previous
+            </button>
+            <span className="text-[13px] font-black text-[#334155]">
+              {answeredCount}/{questions.length} answered
+            </span>
+            <button
+              onClick={goNext}
+              disabled={currentIndex === questions.length - 1}
+              className="flex items-center gap-2 px-6 py-4 rounded-xl font-black text-[14px] text-white transition-all hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{ background: "#22C55E", boxShadow: "0 4px 14px rgba(34,197,94,0.2)" }}
+            >
+              Next <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Footer Navigation Box */}
-        <div className="flex items-center justify-between mt-12">
-          <button
-            onClick={handlePrev}
-            disabled={currentIdx === 0}
-            className={`h-14 md:h-20 px-5 md:px-12 rounded-[1.5rem] md:rounded-[2rem] font-bn font-black italic text-lg md:text-xl transition-all flex items-center gap-2 md:gap-4 ${currentIdx === 0 ? 'bg-white/5 text-slate-600 cursor-not-allowed border border-white/5' : 'bg-slate-800 text-white hover:bg-slate-700 border border-slate-700 shadow-xl shadow-black/20 group'}`}
-          >
-            <ChevronLeft className={`w-5 h-5 md:w-8 md:h-8 ${currentIdx === 0 ? '' : 'group-hover:-translate-x-2 transition-transform'}`} /> <span className="hidden sm:inline">আগের প্রশ্ন</span><span className="inline sm:hidden">আগে</span>
-          </button>
+        {/* Question Navigator */}
+        <div
+          className="rounded-2xl p-5 h-fit sticky top-28"
+          style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+        >
+          <p className="text-[10px] font-black uppercase tracking-widest text-[#334155] mb-4">
+            Question Navigator
+          </p>
+          <div className="grid grid-cols-5 gap-2">
+            {questions.map((_, idx) => {
+              const isAnswered = answers[idx] !== undefined;
+              const isCurrent = idx === currentIndex;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => jumpTo(idx)}
+                  className="w-full aspect-square rounded-xl font-black text-[13px] transition-all"
+                  style={
+                    isCurrent
+                      ? { background: "#22C55E", color: "white", boxShadow: "0 4px 12px rgba(34,197,94,0.3)" }
+                      : isAnswered
+                      ? { background: "rgba(34,197,94,0.12)", border: "1.5px solid rgba(34,197,94,0.35)", color: "#22C55E" }
+                      : { background: "#112236", border: "1.5px solid #1e3a5f", color: "#475569" }
+                  }
+                >
+                  {idx + 1}
+                </button>
+              );
+            })}
+          </div>
 
-          {!isLast ? (
-            <button
-              onClick={handleNext}
-              className="h-14 md:h-20 px-5 md:px-12 rounded-[1.5rem] md:rounded-[2rem] bg-white text-slate-900 hover:bg-slate-100 font-bn font-black italic text-lg md:text-xl transition-all flex items-center gap-2 md:gap-4 shadow-xl shadow-white/10 group"
-            >
-              <span className="hidden sm:inline">পরের প্রশ্ন</span><span className="inline sm:hidden">পরে</span> <ChevronRight className="w-5 h-5 md:w-8 md:h-8 group-hover:translate-x-2 transition-transform" />
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              className="h-14 md:h-20 px-6 md:px-16 rounded-[1.5rem] md:rounded-[2rem] btn-primary hover:scale-105 font-bn font-black italic text-lg md:text-2xl transition-all flex items-center gap-2 md:gap-4 shadow-2xl shadow-primary/40 group active:scale-95"
-            >
-              <span className="hidden sm:inline">ফলাফল দেখুন</span><span className="inline sm:hidden">ফলাফল</span> <CheckCircle2 className="w-5 h-5 md:w-8 md:h-8" />
-            </button>
-          )}
+          <div className="mt-6 pt-5 border-t border-[#1e3a5f]">
+            <div className="flex justify-between font-black text-[12px] mb-3">
+              <span style={{ color: "#334155" }}>Answered</span>
+              <span style={{ color: "#22C55E" }}>{answeredCount}/{questions.length}</span>
+            </div>
+            <div className="h-2 rounded-full overflow-hidden" style={{ background: "#112236" }}>
+              <div
+                className="h-full rounded-full transition-all"
+                style={{ width: (answeredCount / questions.length) * 100 + "%", background: "#22C55E" }}
+              />
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Confirm Modal */}
+      <AnimatePresence>
+        {showConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6"
+            style={{ background: "rgba(6,13,20,0.85)", backdropFilter: "blur(12px)" }}
+            onClick={() => setShowConfirm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md rounded-2xl p-10 text-center"
+              style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+            >
+              <AlertCircle className="w-12 h-12 mx-auto mb-5 text-yellow-400" />
+              <h3 className="text-[24px] font-black font-bn text-white italic mb-3">
+                কুইজ জমা দিতে চান?
+              </h3>
+              <p className="text-[15px] font-bn text-[#64748b] italic mb-8">
+                আপনি <span className="text-white font-black">{answeredCount}</span> টি প্রশ্নের উত্তর দিয়েছেন।
+                {answeredCount < questions.length && (
+                  <span className="block mt-1 text-yellow-400">
+                    {questions.length - answeredCount} টি প্রশ্ন বাকি আছে।
+                  </span>
+                )}
+              </p>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setShowConfirm(false)}
+                  className="flex-1 py-4 rounded-xl font-black text-[15px] font-bn transition-all"
+                  style={{ background: "#112236", border: "1.5px solid #1e3a5f", color: "#64748b" }}
+                >
+                  ফিরে যান
+                </button>
+                <button
+                  onClick={handleSubmit}
+                  className="flex-1 py-4 rounded-xl font-black text-[15px] font-bn text-white transition-all hover:scale-105"
+                  style={{ background: "#22C55E", boxShadow: "0 4px 20px rgba(34,197,94,0.3)" }}
+                >
+                  হ্যাঁ, জমা দিন
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

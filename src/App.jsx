@@ -8,6 +8,7 @@ import SurveyPopup from './components/SurveyPopup';
 import { ToastProvider } from './components/Toast';
 import { ComingSoonProvider } from './components/ComingSoonModal';
 import PageViewTracker from './components/PageViewTracker';
+import GoogleAd from './components/GoogleAd';
 
 const Home         = lazy(() => import('./pages/Home'));
 const Categories   = lazy(() => import('./pages/Categories'));
@@ -55,6 +56,11 @@ function App() {
 
             {/* Page Content */}
             <div className="flex-1 px-4 md:px-10 pt-6 pb-8 md:pb-6 w-full max-w-[1400px] mx-auto">
+              {/* Top Banner Ad */}
+              <div className="mb-8">
+                <GoogleAd slot="2280555349" />
+              </div>
+              
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/"                    element={<Home />} />
