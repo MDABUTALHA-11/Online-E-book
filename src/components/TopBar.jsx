@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Bell, UserCircle2, LogIn, UserPlus, X, Zap } from 'lucide-react';
+import { Search, Bell, UserCircle2, LogIn, UserPlus, X, Zap, LogOut, ChevronRight, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -16,14 +16,23 @@ export default function TopBar() {
     { id: 3, title: 'VIP মেম্বারশিপ অফার!', desc: '৫০% ডিসকাউন্টে আজই ভিআইপি মেম্বার হয়ে আনলিমিটেড নোট ডাউনলোড করুন।', time: '৫ ঘণ্টা আগে', type: 'promo' },
   ];
 
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
-    const handle = (e) => {
-      if (dropRef.current && !dropRef.current.contains(e.target)) setProfileOpen(false);
-      if (notiRef.current && !notiRef.current.contains(e.target)) setNotiOpen(false);
+    const fetchUser = () => {
+      const savedUser = JSON.parse(localStorage.getItem('user'));
+      setUser(savedUser);
     };
-    document.addEventListener('mousedown', handle);
-    return () => document.removeEventListener('mousedown', handle);
+    fetchUser();
+    window.addEventListener('storage', fetchUser);
+    return () => window.removeEventListener('storage', fetchUser);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    setProfileOpen(false);
+  };
 
   return (
     <div className="flex items-center gap-4 h-[68px]">
@@ -121,11 +130,19 @@ export default function TopBar() {
         <div className="relative" ref={dropRef}>
           <button
             onClick={() => setProfileOpen(v => !v)}
-            className="flex items-center gap-2 h-10 px-4 rounded-xl font-bold text-[13px] text-[#64748b] hover:text-white transition-colors"
-            style={{ background: '#0d1b2a', border: '1.5px solid #1e3a5f' }}
+            className="flex items-center gap-2 h-10 px-4 rounded-xl font-bold text-[13px] transition-all overflow-hidden"
+            style={{ 
+              background: user ? 'rgba(34,197,94,0.1)' : '#0d1b2a', 
+              border: user ? '1.5px solid rgba(34,197,94,0.3)' : '1.5px solid #1e3a5f',
+              color: user ? '#22C55E' : '#64748b'
+            }}
           >
-            <UserCircle2 className="w-[18px] h-[18px]" />
-            <span className="hidden sm:inline">Account</span>
+            {user?.photo ? (
+              <img src={user.photo} alt="P" className="w-5 h-5 rounded-md object-cover" />
+            ) : (
+              <UserCircle2 className="w-[18px] h-[18px]" />
+            )}
+            <span className="hidden sm:inline font-bn font-black italic">{user ? user.name.split(' ')[0] : 'Account'}</span>
           </button>
 
           {/* Dropdown */}
@@ -135,41 +152,84 @@ export default function TopBar() {
               style={{ background: '#0d1b2a', border: '1px solid #1e3a5f', boxShadow: '0 24px 60px rgba(0,0,0,0.5)' }}
             >
               {/* Header */}
-              <div className="relative px-5 py-5" style={{ background: '#112236', borderBottom: '1px solid #1e3a5f' }}>
-                <button onClick={() => setProfileOpen(false)} className="absolute top-3 right-3 text-[#334155] hover:text-white transition-colors">
+              {/* Header */}
+              <div className="relative px-5 py-6" style={{ background: '#112236', borderBottom: '1px solid #1e3a5f' }}>
+                <button onClick={() => setProfileOpen(false)} className="absolute top-4 right-4 text-[#334155] hover:text-white transition-colors">
                   <X className="w-4 h-4" />
                 </button>
-                <div className="w-11 h-11 rounded-xl bg-[#22C55E]/15 border border-[#22C55E]/20 flex items-center justify-center mb-3">
-                  <UserCircle2 className="w-6 h-6 text-[#22C55E]" />
+                
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 rounded-[2rem] bg-[#22C55E]/10 border-2 border-[#22C55E]/20 flex items-center justify-center mb-4 overflow-hidden shadow-xl">
+                    {user?.photo ? (
+                      <img src={user.photo} alt="Profile" className="w-full h-full object-cover" />
+                    ) : (
+                      <UserCircle2 className="w-10 h-10 text-[#22C55E]" />
+                    )}
+                  </div>
+                  <h3 className="font-black text-white text-[20px] italic font-bn leading-tight">{user ? user.name : 'আপনার প্রোফাইল নেই'}</h3>
+                  <p className="text-[#22C55E] text-[11px] font-black uppercase tracking-[0.2em] mt-1 font-en">{user ? (user.level || 'Student') : 'Guest User'}</p>
+                  
+                  {user?.bio && (
+                    <div className="mt-4 p-3 rounded-xl bg-[#060d14]/40 border border-[#1e3a5f]/30 w-full">
+                       <p className="text-slate-400 text-[13px] font-bn leading-snug font-bold italic m-0 line-clamp-3">
+                          "{user.bio}"
+                       </p>
+                    </div>
+                  )}
                 </div>
-                <p className="font-black text-white text-[18px] italic">আপনার প্রোফাইল তৈরি করুন</p>
-                <p className="text-[#64748b] text-[14px] mt-1 font-bn leading-snug font-bold italic">
-                  নোট সেভ করুন, কুইজে অংশ নিন এবং লিডারবোর্ডে থাকুন।
-                </p>
               </div>
 
-              {/* Actions */}
+              {/* User Actions */}
               <div className="p-4 flex flex-col gap-2.5">
-                <Link
-                  to="/register"
-                  onClick={() => setProfileOpen(false)}
-                  className="flex items-center gap-2.5 w-full h-[48px] px-4 rounded-xl font-black text-[16px] text-white no-underline transition-all italic font-bn"
-                  style={{ background: '#22C55E', boxShadow: '0 8px 20px rgba(34,197,94,0.3)' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#16a34a'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#22C55E'}
-                >
-                  <UserPlus className="w-5 h-5" />
-                  প্রোফাইল তৈরি করুন (ফ্রি)
-                </Link>
-                <Link
-                  to="/subscription"
-                  onClick={() => setProfileOpen(false)}
-                  className="flex items-center gap-2.5 w-full h-[44px] px-4 rounded-xl font-bold text-[13.5px] text-[#64748b] no-underline transition-all hover:text-white"
-                  style={{ background: '#112236', border: '1px solid #1e3a5f' }}
-                >
-                  <LogIn className="w-4 h-4" />
-                  লগ ইন করুন
-                </Link>
+                {!user ? (
+                  <>
+                    <Link
+                      to="/register"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2.5 w-full h-[48px] px-4 rounded-xl font-black text-[16px] text-white no-underline transition-all italic font-bn"
+                      style={{ background: '#22C55E', boxShadow: '0 8px 20px rgba(34,197,94,0.3)' }}
+                    >
+                      <UserPlus className="w-5 h-5" />
+                      প্রোফাইল তৈরি করুন (ফ্রি)
+                    </Link>
+                    <Link
+                      to="/subscription"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-3 w-full h-[44px] px-4 rounded-xl font-black text-[14px] text-[#64748b] no-underline transition-all hover:text-white"
+                      style={{ background: '#112236', border: '1px solid #1e3a5f' }}
+                    >
+                      <LogIn className="w-5 h-5" />
+                      লগ ইন করুন
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/subscription"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-3 w-full h-[48px] px-4 rounded-xl font-black text-[15px] text-white no-underline transition-all italic font-bn"
+                      style={{ background: '#22C55E', boxShadow: '0 8px 20px rgba(34,197,94,0.3)' }}
+                    >
+                      <Zap className="w-5 h-5" />
+                      VIP মেম্বারশিপ নিন
+                    </Link>
+                    <div className="grid grid-cols-2 gap-2">
+                       <Link
+                         to="/register"
+                         onClick={() => setProfileOpen(false)}
+                         className="flex items-center justify-center gap-2 h-11 rounded-xl font-black text-[13px] text-slate-400 bg-[#112236] border border-[#1e3a5f] no-underline hover:text-white font-bn italic"
+                       >
+                         <Settings className="w-4 h-4" /> এডিট
+                       </Link>
+                       <button
+                         onClick={handleLogout}
+                         className="flex items-center justify-center gap-2 h-11 rounded-xl font-black text-[13px] text-red-400 bg-red-400/5 border border-red-400/20 hover:bg-red-400/10 font-bn italic"
+                       >
+                         <LogOut className="w-4 h-4" /> লগ আউট
+                       </button>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Benefits */}

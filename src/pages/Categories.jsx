@@ -126,7 +126,7 @@ export default function Categories() {
           <Link to="/" className="bg-white font-black text-[13.5px] px-6 py-3 rounded-xl no-underline transition-all hover:bg-slate-50" style={{ color:'#16a34a' }}>
             হোমে ফিরুন
           </Link>
-          <a href="#" className="font-black text-[13.5px] px-6 py-3 rounded-xl no-underline" style={{ background:'rgba(255,255,255,0.15)', color:'white', border:'1.5px solid rgba(255,255,255,0.2)' }}>
+          <a href="mailto:feedback@shaifly.com" className="font-black text-[13.5px] px-6 py-3 rounded-xl no-underline" style={{ background:'rgba(255,255,255,0.15)', color:'white', border:'1.5px solid rgba(255,255,255,0.2)' }}>
             মতামত দিন
           </a>
         </div>

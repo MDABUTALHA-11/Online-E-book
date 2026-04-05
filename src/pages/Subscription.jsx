@@ -2,8 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, Star, Zap, ShieldCheck, Mail, ArrowRight, UserPlus, Heart } from 'lucide-react';
 import usePageSEO from '../hooks/usePageSEO';
+import vipCardImg from '../assets/vip_card.png';
+import { useBkash } from '../components/BkashModal';
+import { useToast } from '../components/Toast';
 
 const Subscription = () => {
+  const { openBkash } = useBkash();
+  const { showToast } = useToast();
   usePageSEO({
     title: 'সাবস্ক্রিপশন — Shaifly Library',
     description: 'শাইফলির VIP মেম্বারশিপ নিয়ে আপনার রেজাল্টকে নিয়ে যান এক অনন্য উচ্চতায়।',
@@ -88,12 +93,15 @@ const Subscription = () => {
               className="lg:w-1/2 flex justify-center"
             >
               <div className="relative group">
-                <div className="absolute inset-0 blur-[100px] rounded-full transition-all duration-1000" style={{ background: 'rgba(34,197,94,0.2)' }} />
-                <img 
-                  src="https://images.unsplash.com/photo-1546410531-bea5aad675ce?q=80&w=1400&auto=format&fit=crop" 
-                  alt="VIP Subscription" 
-                  className="relative w-full max-w-md md:max-w-lg object-cover h-[400px] md:h-[500px] rounded-[3rem] border border-[#1e3a5f]"
-                />
+                <div className="absolute inset-0 blur-[120px] rounded-full opacity-40 animate-pulse" style={{ background: 'rgba(34,197,94,0.3)' }} />
+                <div className="relative group/card cursor-pointer">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#22C55E]/10 to-[#10b981]/10 rounded-[3rem] blur opacity-75 group-hover/card:opacity-100 transition duration-500" />
+                  <img 
+                    src={vipCardImg} 
+                    alt="Shaifly VIP Member Card" 
+                    className="relative w-full max-w-[500px] md:max-w-xl object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -149,8 +157,17 @@ const Subscription = () => {
                   ))}
                 </div>
 
-                <button className={`h-14 md:h-16 rounded-2xl text-[16px] md:text-lg font-bn font-black transition-all flex items-center justify-center w-full ${plan.btnStyle}`}>
-                  শুরু করুন <ArrowRight className="w-5 h-5 ml-2" />
+                <button 
+                  onClick={() => {
+                    if (plan.price === '৳০') {
+                       showToast('আপনি আমাদের Free Plan-এ যোগ দিয়েছেন!');
+                    } else {
+                      openBkash(plan);
+                    }
+                  }}
+                  className={`h-14 md:h-16 rounded-2xl text-[16px] md:text-lg font-bn font-black transition-all flex items-center justify-center w-full ${plan.btnStyle}`}
+                >
+                  {plan.price === '৳০' ? 'শুরু করুন' : 'বিকাশ পেমেন্ট'} <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
               </div>
             </motion.div>

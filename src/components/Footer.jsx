@@ -4,10 +4,10 @@ import { Facebook, Youtube, Linkedin, Mail, Heart, BookOpen, Zap, Trophy, ArrowU
 import GoogleAd from './GoogleAd';
 
 const socialLinks = [
-  { icon: Facebook,  href: '#', label: 'Facebook'  },
-  { icon: Youtube,   href: '#', label: 'YouTube'   },
-  { icon: Linkedin,  href: '#', label: 'LinkedIn'  },
-  { icon: Mail,      href: '#', label: 'Email'     },
+  { icon: Facebook,  href: 'https://facebook.com/shaifly', label: 'Facebook'  },
+  { icon: Youtube,   href: 'https://youtube.com/shaifly',  label: 'YouTube'   },
+  { icon: Linkedin,  href: 'https://linkedin.com/company/shaifly', label: 'LinkedIn'  },
+  { icon: Mail,      href: 'mailto:support@shaifly.com', label: 'Email'     },
 ];
 
 const quickLinks = [
@@ -20,10 +20,10 @@ const quickLinks = [
 ];
 
 const supportLinks = [
-  { label: 'Privacy Policy',     href: '#' },
-  { label: 'Terms & Conditions', href: '#' },
-  { label: 'Contact Support',    href: '#' },
-  { label: 'Cookie Policy',      href: '#' },
+  { label: 'Privacy Policy',     href: '/privacy' },
+  { label: 'Terms & Conditions', href: '/terms'   },
+  { label: 'Contact Support',    href: 'mailto:support@shaifly.com' },
+  { label: 'Cookie Policy',      href: '/cookies' },
 ];
 
 const stats = [
@@ -199,11 +199,11 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-4 text-[12px] font-black text-[#334155] font-en">
-              <a href="#" className="hover:text-[#475569] transition-colors">Privacy</a>
+              <Link to="/privacy" className="hover:text-[#475569] transition-colors no-underline">Privacy</Link>
               <span className="w-1 h-1 rounded-full bg-[#1e3a5f]" />
-              <a href="#" className="hover:text-[#475569] transition-colors">Terms</a>
+              <Link to="/terms" className="hover:text-[#475569] transition-colors no-underline">Terms</Link>
               <span className="w-1 h-1 rounded-full bg-[#1e3a5f]" />
-              <a href="#" className="hover:text-[#475569] transition-colors">Cookies</a>
+              <Link to="/cookies" className="hover:text-[#475569] transition-colors no-underline">Cookies</Link>
             </div>
           </div>
         </div>

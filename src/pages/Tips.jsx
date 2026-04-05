@@ -4,6 +4,8 @@ import { Lightbulb, Clock, CheckCircle, Target, ArrowRight, Brain, BookOpen, Gra
 import { Link } from 'react-router-dom';
 import usePageSEO from '../hooks/usePageSEO';
 
+import { tipsData } from '../data/tips';
+
 const Tips = () => {
   usePageSEO({
     title: 'পড়ার কৌশল — Shaifly Library',
@@ -15,100 +17,7 @@ const Tips = () => {
 
   const categories = ['All', 'SSC', 'HSC', 'Study Hacks', 'Health'];
 
-  const tips = [
-    {
-      title: 'রুটিন মাফিক পড়ালেখা করুন',
-      desc: 'প্রতিদিন নির্দিষ্ট সময়ে পড়ার অভ্যাস গড়ে তুলুন। রুটিন থাকলে পড়ার প্রতি মনোযোগ বাড়ে এবং সময়ের সঠিক ব্যবহার নিশ্চিত হয়। সকালে ঘুম থেকে উঠে প্রথম ২ ঘণ্টা কঠিন বিষয় পড়ুন।',
-      icon: Clock,
-      category: 'Study Hacks',
-      tag: 'Time Management',
-      color: 'rgba(59,130,246,0.1)',
-      iconBg: '#3b82f6',
-    },
-    {
-      title: 'নিজস্ব শর্টনোট তৈরি করুন',
-      desc: 'পড়ার পাশাপাশি নিজের ভাষায় একটি নোট রাখুন। গুরুত্বপূর্ণ তথ্যগুলো নিজের কথায় লিখে রাখলে মনে রাখতে সুবিধা হয় এবং পরীক্ষার আগে রিভিশন দিতে সময় বাঁচে।',
-      icon: PenTool,
-      category: 'Study Hacks',
-      tag: 'Note Taking',
-      color: 'rgba(16,185,129,0.1)',
-      iconBg: '#10b981',
-    },
-    {
-      title: 'বিগত বছরের প্রশ্ন সমাধান করুন',
-      desc: 'বিগত ১০ বছরের প্রশ্নগুলো সমাধান করলে পরীক্ষার প্যাটার্ন সম্পর্কে স্পষ্ট ধারণা পাওয়া যায়। এটি আত্মবিশ্বাস বৃদ্ধি করে এবং কমন প্রশ্ন চেনার দক্ষতা তৈরি হয়।',
-      icon: Target,
-      category: 'SSC',
-      tag: 'Practice',
-      color: 'rgba(244,63,94,0.1)',
-      iconBg: '#f43f5e',
-    },
-    {
-      title: 'পর্যাপ্ত ঘুম ও বিশ্রাম নিন',
-      desc: 'মস্তিষ্ককে সজীব রাখতে প্রতিদিন ৭-৮ ঘণ্টা ঘুম প্রয়োজন। একটানা দীর্ঘসময় না পড়ে প্রতি ৪৫ মিনিটে ১০ মিনিট বিরতি নিন। এতে মনের একাগ্রতা বজায় থাকে।',
-      icon: Moon,
-      category: 'Health',
-      tag: 'Well-being',
-      color: 'rgba(168,85,247,0.1)',
-      iconBg: '#a855f7',
-    },
-    {
-      title: 'Pomodoro পদ্ধতিতে পড়ুন',
-      desc: '২৫ মিনিট গভীর মনোযোগ দিয়ে পড়ুন, তারপর ৫ মিনিট বিরতি নিন। ৪টি চক্র পার হলে ১৫-৩০ মিনিটের বড় বিরতি নিন। এই পদ্ধতিতে মনোযোগ বহুগুণে বৃদ্ধি পায়।',
-      icon: Zap,
-      category: 'Study Hacks',
-      tag: 'Productivity',
-      color: 'rgba(234,179,8,0.1)',
-      iconBg: '#eab308',
-    },
-    {
-      title: 'গ্রুপ স্টাডি করুন',
-      desc: 'বন্ধুদের সাথে গ্রুপ স্টাডি করুন। একে অপরকে পড়িয়ে দেওয়া হলো বোঝার সেরা উপায়। কঠিন অধ্যায়গুলো আলোচনা করলে সহজেই বোঝা যায় এবং নতুন দৃষ্টিভঙ্গি পাওয়া যায়।',
-      icon: Heart,
-      category: 'HSC',
-      tag: 'Collaboration',
-      color: 'rgba(236,72,153,0.1)',
-      iconBg: '#ec4899',
-    },
-    {
-      title: 'দুর্বল বিষয়কে প্রাধান্য দিন',
-      desc: 'যে বিষয়ে দুর্বল সেটিকে বেশি সময় দিন। শক্তিশালী বিষয় পড়া সহজ মনে হলেও দুর্বল বিষয়ে উন্নতি না করলে ফলাফলে পিছিয়ে পড়বেন।',
-      icon: BarChart2,
-      category: 'SSC',
-      tag: 'Strategy',
-      color: 'rgba(99,102,241,0.1)',
-      iconBg: '#6366f1',
-    },
-    {
-      title: 'স্বাস্থ্যকর সকালের রুটিন মানুন',
-      desc: 'সকালে ঘুম থেকে উঠে হালকা ব্যায়াম করুন, প্রচুর পানি পান করুন এবং পুষ্টিকর খাবার খান। সুস্বাস্থ্য মেধার বিকাশে সবচেয়ে বড় ভূমিকা রাখে।',
-      icon: Coffee,
-      category: 'Health',
-      tag: 'Morning Routine',
-      color: 'rgba(249,115,22,0.1)',
-      iconBg: '#f97316',
-    },
-    {
-      title: 'লক্ষ্য নির্ধারণ করুন',
-      desc: 'প্রতিদিন, প্রতি সপ্তাহ ও প্রতি মাসের জন্য আলাদা আলাদা লক্ষ্য নির্ধারণ করুন। ছোট ছোট লক্ষ্য অর্জন অনুপ্রেরণা বাড়ায়। একটি ডায়েরিতে লিখে রাখুন এবং নিয়মিত পর্যালোচনা করুন।',
-      icon: Star,
-      category: 'HSC',
-      tag: 'Goal Setting',
-      color: 'rgba(20,184,166,0.1)',
-      iconBg: '#14b8a6',
-    },
-    {
-      title: 'Focus Music ব্যবহার করুন',
-      desc: 'পড়ার সময় Lo-fi বা প্রকৃতির শব্দ (বৃষ্টি, পাখির গান) চালু রাখলে মনোযোগ বাড়ে। তবে গান শুনলে বাংলা বা ইংরেজি গান এড়িয়ে চলুন, কারণ এগুলো মনোযোগ বিচ্ছিন্ন করে।',
-      icon: Headphones,
-      category: 'Study Hacks',
-      tag: 'Focus',
-      color: 'rgba(6,182,212,0.1)',
-      iconBg: '#06b6d4',
-    },
-  ];
-
-  const filtered = activeCategory === 'All' ? tips : tips.filter(t => t.category === activeCategory);
+  const filtered = activeCategory === 'All' ? tipsData : tipsData.filter(t => t.category === activeCategory);
 
   return (
     <div className="min-h-screen pb-20 text-[#f1f5f9]">
@@ -187,34 +96,43 @@ const Tips = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {filtered.map((tip, index) => (
-            <motion.div
-              key={tip.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.07, duration: 0.4 }}
-              className="group relative rounded-[2rem] p-7 md:p-10 transition-all duration-300 hover:-translate-y-2 overflow-hidden"
-              style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+            <Link
+              key={tip.id}
+              to={`/tips/${tip.id}`}
+              className="no-underline"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: tip.color }} />
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.07, duration: 0.4 }}
+                className="group relative rounded-[2rem] p-7 md:p-10 transition-all duration-300 hover:-translate-y-2 overflow-hidden h-full"
+                style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: tip.color }} />
 
-              <div className="flex gap-5 md:gap-6 items-start relative z-10">
-                <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" style={{ background: tip.iconBg }}>
-                  <tip.icon className="w-6 h-6 md:w-8 md:h-8" />
+                <div className="flex gap-5 md:gap-6 items-start relative z-10">
+                  <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" style={{ background: tip.iconBg }}>
+                    <tip.icon className="w-6 h-6 md:w-8 md:h-8" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="inline-block text-[10px] font-black en-font tracking-[0.2em] uppercase mb-4 px-3 py-1 rounded-full text-white" style={{ background: '#112236', border: '1px solid #1e3a5f' }}>
+                      {tip.tag}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bn font-black mb-3 text-white italic group-hover:text-[#22C55E] transition-colors leading-tight">
+                      {tip.title}
+                    </h3>
+                    <p className="text-[14px] md:text-base leading-relaxed font-bn italic mb-6" style={{ color: '#64748b' }}>
+                      {tip.desc}
+                    </p>
+                    
+                    <div className="flex items-center gap-2 text-[#22C55E] text-[12px] font-black uppercase tracking-widest group-hover:gap-4 transition-all">
+                       READ TIP <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <span className="inline-block text-[10px] font-black en-font tracking-[0.2em] uppercase mb-4 px-3 py-1 rounded-full text-white" style={{ background: '#112236', border: '1px solid #1e3a5f' }}>
-                    {tip.tag}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-bn font-black mb-3 text-white italic group-hover:text-[#22C55E] transition-colors leading-tight">
-                    {tip.title}
-                  </h3>
-                  <p className="text-[14px] md:text-base leading-relaxed font-bn italic" style={{ color: '#64748b' }}>
-                    {tip.desc}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 

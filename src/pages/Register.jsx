@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Mail, School, MapPin, ShieldCheck, ArrowRight, Camera, Sparkles, CheckCircle2 } from 'lucide-react';
+import { User, Mail, School, MapPin, ShieldCheck, ArrowRight, Camera, Sparkles, CheckCircle2, PencilLine, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import usePageSEO from '../hooks/usePageSEO';
 
@@ -12,8 +12,11 @@ const Register = () => {
     email: '',
     school: '',
     location: '',
-    level: 'SSC'
+    level: 'SSC',
+    bio: '',
+    photo: null
   });
+  const fileInputRef = React.useRef(null);
 
   usePageSEO({
     title: 'প্রোফাইল তৈরি করুন — Shaifly Library',
@@ -25,9 +28,24 @@ const Register = () => {
     e.preventDefault();
     if (step < 2) setStep(step + 1);
     else {
-      // Mock registration
-      localStorage.setItem('user', JSON.stringify(formData));
+      // Get existing user data or create new
+      const existingUser = JSON.parse(localStorage.getItem('user') || '{}');
+      const newUser = { ...existingUser, ...formData };
+      localStorage.setItem('user', JSON.stringify(newUser));
+      // Dispatch a storage event to update TopBar
+      window.dispatchEvent(new Event('storage'));
       navigate('/');
+    }
+  };
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, photo: reader.result });
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -48,10 +66,29 @@ const Register = () => {
           
           {/* Header */}
           <div className="text-center mb-10 relative">
-            <div className="w-20 h-20 bg-[#112236] border border-[#1e3a5f] rounded-[2rem] mx-auto flex items-center justify-center mb-6 shadow-xl group cursor-pointer relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#22C55E]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <Camera className="w-8 h-8 text-[#22C55E] group-hover:scale-110 transition-transform" />
+            <div 
+              onClick={() => fileInputRef.current?.click()}
+              className="w-24 h-24 bg-[#112236] border border-[#1e3a5f] rounded-[2.5rem] mx-auto flex items-center justify-center mb-6 shadow-xl group cursor-pointer relative overflow-hidden transition-all hover:border-[#22C55E]/40"
+            >
+                {formData.photo ? (
+                  <img src={formData.photo} alt="Profile" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-[#22C55E]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Camera className="w-9 h-9 text-[#22C55E] group-hover:scale-110 transition-transform" />
+                  </>
+                )}
+                <div className="absolute bottom-0 right-0 p-1.5 bg-[#22C55E] text-white rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity">
+                   <PencilLine className="w-3.5 h-3.5" />
+                </div>
             </div>
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              className="hidden" 
+              accept="image/*" 
+              onChange={handlePhotoUpload} 
+            />
             <h1 className="text-3xl md:text-5xl font-bn font-black text-white mb-3 italic tracking-tighter">
                 প্রোফাইল <span className="text-[#22C55E]">তৈরি</span> করুন
             </h1>
@@ -142,6 +179,20 @@ const Register = () => {
                      HSC
                    </button>
                 </div>
+
+                 {/* Bio Field */}
+                 <div className="space-y-2">
+                   <label className="text-[12px] font-black uppercase tracking-[0.2em] text-[#334155] ml-4 font-en">About Your Story</label>
+                   <div className="relative group">
+                     <PencilLine className="absolute left-5 top-5 w-5 h-5 text-[#334155] group-focus-within:text-[#22C55E] transition-colors" />
+                     <textarea 
+                       placeholder="আপনার সম্পর্কে কিছু বলুন..."
+                       className="w-full h-32 pl-14 pr-6 py-5 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[#112236] transition-all resize-none no-scrollbar"
+                       value={formData.bio}
+                       onChange={e => setFormData({...formData, bio: e.target.value})}
+                     />
+                   </div>
+                 </div>
               </motion.div>
             )}
 

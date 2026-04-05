@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import SurveyPopup from './components/SurveyPopup';
 import { ToastProvider } from './components/Toast';
 import { ComingSoonProvider } from './components/ComingSoonModal';
+import { BkashProvider } from './components/BkashModal';
 import PageViewTracker from './components/PageViewTracker';
 import GoogleAd from './components/GoogleAd';
 
@@ -24,6 +25,10 @@ const QuizStart       = lazy(() => import('./pages/quiz/QuizStart'));
 const QuizPlay        = lazy(() => import('./pages/quiz/QuizPlay'));
 const QuizResult      = lazy(() => import('./pages/quiz/QuizResult'));
 const QuizLeaderboard = lazy(() => import('./pages/quiz/QuizLeaderboard'));
+const Privacy         = lazy(() => import('./pages/Privacy'));
+const Terms           = lazy(() => import('./pages/Terms'));
+const Cookies         = lazy(() => import('./pages/Cookies'));
+const TipDetail       = lazy(() => import('./pages/TipDetail'));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ background: '#060d14' }}>
@@ -38,6 +43,7 @@ function App() {
   return (
     <ToastProvider>
       <ComingSoonProvider>
+        <BkashProvider>
         {/* Root: deep black background */}
         <div className="App relative flex min-h-screen font-en overflow-x-hidden" style={{ background: '#060d14', color: '#f1f5f9' }}>
           <PageViewTracker />
@@ -75,6 +81,10 @@ function App() {
                   <Route path="/quiz/play"           element={<QuizPlay />} />
                   <Route path="/quiz/result"         element={<QuizResult />} />
                   <Route path="/quiz/leaderboard"    element={<QuizLeaderboard />} />
+                  <Route path="/privacy"             element={<Privacy />} />
+                  <Route path="/terms"               element={<Terms />} />
+                  <Route path="/cookies"             element={<Cookies />} />
+                  <Route path="/tips/:tipId"         element={<TipDetail />} />
                   <Route path="*"                    element={<NotFound />} />
                 </Routes>
               </Suspense>
@@ -88,6 +98,7 @@ function App() {
 
           <SurveyPopup />
         </div>
+        </BkashProvider>
       </ComingSoonProvider>
     </ToastProvider>
   );
