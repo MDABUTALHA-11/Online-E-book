@@ -29,6 +29,7 @@ const Privacy         = lazy(() => import('./pages/Privacy'));
 const Terms           = lazy(() => import('./pages/Terms'));
 const Cookies         = lazy(() => import('./pages/Cookies'));
 const TipDetail       = lazy(() => import('./pages/TipDetail'));
+const AdminPayments   = lazy(() => import('./pages/AdminPayments'));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ background: '#060d14' }}>
@@ -85,6 +86,7 @@ function App() {
                   <Route path="/terms"               element={<Terms />} />
                   <Route path="/cookies"             element={<Cookies />} />
                   <Route path="/tips/:tipId"         element={<TipDetail />} />
+                  <Route path="/admin/payments"      element={<AdminPayments />} />
                   <Route path="*"                    element={<NotFound />} />
                 </Routes>
               </Suspense>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   Home, LayoutGrid, BookOpen, GraduationCap,
   FlaskConical, Palette, Briefcase, Star,
-  Lightbulb, TrendingUp, Zap,
+  Lightbulb, TrendingUp, Zap, ShieldCheck,
 } from 'lucide-react';
 
 const navSections = [
@@ -29,6 +29,12 @@ const navSections = [
     items: [
       { name: 'Quiz',     path: '/quiz',  icon: Star },
       { name: 'Library',  path: '/tips',  icon: Lightbulb },
+    ],
+  },
+  {
+    label: 'ADMIN',
+    items: [
+      { name: 'Payments', path: '/admin/payments', icon: ShieldCheck },
     ],
   },
 ];
