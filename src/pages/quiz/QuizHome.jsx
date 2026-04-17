@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import { Trophy, Clock, Zap, Users, Activity, FlaskConical, Sigma, Dna, BookOpen, Sparkles, ArrowRight, Star, Microscope, Calculator } from 'lucide-react';
 import { useQuizCount } from '../../hooks/useQuizCount';
+import GoogleAd from '../../components/GoogleAd';
+
+// Custom Assets
+import QuizBannerImg from '../../assets/quiz_banner.png';
+import TrophyCtaImg from '../../assets/trophy_cta.png';
 
 const quizSubjects = [
   {
@@ -11,7 +16,7 @@ const quizSubjects = [
     titleBn: 'পদার্থবিজ্ঞান',
     desc: 'বলবিদ্যা, আলো, তাপ ও তরঙ্গ',
     badge: 'SSC',
-    badgeColor: '#0ea5e9',
+    badgeColor: '#22C55E',
     icon: Zap,
   },
   {
@@ -47,7 +52,7 @@ const quizSubjects = [
     titleBn: 'পদার্থবিজ্ঞান ১ম পত্র',
     desc: 'ভেক্টর, গতিবিদ্যা, কাজ ও শক্তি',
     badge: 'HSC',
-    badgeColor: '#0ea5e9',
+    badgeColor: '#22C55E',
     icon: Zap,
   },
   {
@@ -125,7 +130,7 @@ export default function QuizHome() {
     <div className="min-h-screen pb-40 text-[#f1f5f9]">
 
       {/* ── Hero Section ──────────────────────────────────────────── */}
-      <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden mb-12 flex flex-col md:flex-row items-center" style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}>
+      <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden mb-12 flex flex-col md:flex-row items-center" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
         {/* Animated Glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -150,7 +155,7 @@ export default function QuizHome() {
           {/* Stats strip */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl">
             {statItems.map((s) => (
-              <div key={s.label} className="flex flex-col gap-1 p-4 rounded-xl" style={{ background: '#112236', border: '1px solid #1e3a5f' }}>
+              <div key={s.label} className="flex flex-col gap-1 p-4 rounded-xl" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--bg-border)' }}>
                 <s.icon className="w-4 h-4 text-[#22C55E]" />
                 <span className="text-white font-black text-[18px] sf-headline italic">{s.value}</span>
                 <span className="text-slate-600 text-[9px] uppercase font-black tracking-widest">{s.label}</span>
@@ -159,28 +164,33 @@ export default function QuizHome() {
           </div>
         </div>
 
-        {/* Right decoration photo if needed - matching Home banner style */}
-        <div className="relative w-full md:w-[40%] h-64 md:h-auto overflow-hidden block">
+        {/* Right decoration photo */}
+        <div className="relative w-full md:w-[45%] h-64 md:h-[450px] overflow-hidden block">
           <img
-            src="https://images.unsplash.com/photo-1434031216a60-a53bbb567f19?q=80&w=1400&auto=format&fit=crop"
-            className="w-full h-full object-cover grayscale opacity-30 hover:grayscale-0 hover:opacity-60 transition-all duration-700"
+            src={QuizBannerImg}
+            className="w-full h-full object-cover grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition-all duration-700 transform scale-110 group-hover:scale-100"
             alt="Quiz Banner"
           />
-          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0d1b2a] via-[#0d1b2a]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/70 to-transparent" />
         </div>
+      </div>
+
+      {/* Ad Unit */}
+      <div className="mb-12">
+        <GoogleAd slot="2280555349" />
       </div>
 
       {/* ── HSC Section ─────────────────────────────── */}
       <div className="space-y-8 mb-16">
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center gap-4">
-            <div className="w-1.5 h-10 bg-sky-500 rounded-full" />
+            <div className="w-1.5 h-10 bg-emerald-500 rounded-full" />
             <h2 className="text-3xl md:text-5xl sf-headline text-white italic">
-              HSC <span className="text-sky-500">Group</span>
+              HSC <span className="text-emerald-500">Group</span>
             </h2>
           </div>
           <div className="h-[1px] flex-1 bg-white/5 mx-8 hidden md:block"></div>
-          <span className="text-sky-500 text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-sky-500/10 border border-sky-500/20 rounded-full">
+          <span className="text-emerald-500 text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
             First Paper 1.0
           </span>
         </div>
@@ -191,9 +201,9 @@ export default function QuizHome() {
               key={subj.id}
               onClick={() => handleStart(subj.id)}
               className="group relative cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
-              style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+              style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
               onMouseEnter={e => e.currentTarget.style.borderColor = subj.badgeColor + '66'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = '#1e3a5f'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--bg-border)'}
             >
               <div className="h-[3px] w-full" style={{ background: subj.badgeColor }} />
               <div className="p-7 md:p-8 flex items-start gap-5">
@@ -211,7 +221,7 @@ export default function QuizHome() {
                   <h3 className="text-2xl md:text-3xl sf-headline text-white italic mb-1 tracking-tight leading-tight">{subj.titleBn}</h3>
                   <p className="text-[14px] font-bn text-slate-500 italic mb-4 leading-relaxed">{subj.desc}</p>
                   <div className="flex items-center gap-3">
-                    <span className="flex items-center gap-1.5 text-[11px] font-black italic text-slate-500 bg-[#112236] px-3 py-1.5 rounded-lg border border-[#1e3a5f]">
+                    <span className="flex items-center gap-1.5 text-[11px] font-black italic text-slate-500 bg-[var(--bg-elevated)] px-3 py-1.5 rounded-lg border border-[var(--bg-border)]">
                       <Clock className="w-3 h-3" /> 30m
                     </span>
                     <span className="flex items-center gap-1.5 text-[11px] font-black italic px-3 py-1.5 rounded-lg"
@@ -250,9 +260,9 @@ export default function QuizHome() {
               key={subj.id}
               onClick={() => handleStart(subj.id)}
               className="group relative cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
-              style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+              style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
               onMouseEnter={e => e.currentTarget.style.borderColor = subj.badgeColor + '66'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = '#1e3a5f'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--bg-border)'}
             >
               <div className="h-[3px] w-full" style={{ background: subj.badgeColor }} />
               <div className="p-7 md:p-8 flex items-start gap-5">
@@ -270,7 +280,7 @@ export default function QuizHome() {
                   <h3 className="text-2xl md:text-3xl sf-headline text-white italic mb-1 tracking-tight leading-tight">{subj.titleBn}</h3>
                   <p className="text-[14px] font-bn text-slate-500 italic mb-4 leading-relaxed">{subj.desc}</p>
                   <div className="flex items-center gap-3">
-                    <span className="flex items-center gap-1.5 text-[11px] font-black italic text-slate-500 bg-[#112236] px-3 py-1.5 rounded-lg border border-[#1e3a5f]">
+                    <span className="flex items-center gap-1.5 text-[11px] font-black italic text-slate-500 bg-[var(--bg-elevated)] px-3 py-1.5 rounded-lg border border-[var(--bg-border)]">
                       <Clock className="w-3 h-3" /> 30m
                     </span>
                     <span className="flex items-center gap-1.5 text-[11px] font-black italic px-3 py-1.5 rounded-lg"
@@ -289,8 +299,15 @@ export default function QuizHome() {
       </div>
 
       {/* ── Footer Leaderboard CTA ──────────────────────────────────────── */}
-      <div className="mt-20 p-8 md:p-16 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10" style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#22C55E]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="mt-20 p-8 md:p-16 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
+        <div className="absolute right-0 top-0 w-80 h-full opacity-20 overflow-hidden">
+          <img 
+            src={TrophyCtaImg} 
+            alt="Trophy" 
+            className="w-full h-full object-cover transform translate-x-10 translate-y-4 rotate-6"
+            style={{ filter: 'grayscale(1) brightness(1.5)' }}
+          />
+        </div>
 
         <div className="text-center md:text-left z-10">
           <div className="flex items-center gap-3 mb-4 justify-center md:justify-start text-[#22C55E] animate-pulse">

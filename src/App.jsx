@@ -18,6 +18,7 @@ const Tips         = lazy(() => import('./pages/Tips'));
 const Subscription = lazy(() => import('./pages/Subscription'));
 const Register     = lazy(() => import('./pages/Register'));
 const SubjectPage  = lazy(() => import('./pages/SubjectPage'));
+const Appointment  = lazy(() => import('./pages/Appointment'));
 const NotFound     = lazy(() => import('./pages/NotFound'));
 
 const QuizHome        = lazy(() => import('./pages/quiz/QuizHome'));
@@ -32,9 +33,9 @@ const TipDetail       = lazy(() => import('./pages/TipDetail'));
 const AdminPayments   = lazy(() => import('./pages/AdminPayments'));
 
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center" style={{ background: '#060d14' }}>
+  <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg-app)' }}>
     <div className="flex flex-col items-center gap-4">
-      <div className="w-12 h-12 border-4 border-[#1e3a5f] border-t-[#22C55E] rounded-full animate-spin" />
+      <div className="w-12 h-12 border-4 border-[var(--bg-border)] border-t-[#22C55E] rounded-full animate-spin" />
       <span className="text-[#22C55E] font-bn font-bold text-sm">দয়া করে অপেক্ষা করুন...</span>
     </div>
   </div>
@@ -46,7 +47,7 @@ function App() {
       <ComingSoonProvider>
         <BkashProvider>
         {/* Root: deep black background */}
-        <div className="App relative flex min-h-screen font-en overflow-x-hidden" style={{ background: '#060d14', color: '#f1f5f9' }}>
+        <div className="App relative flex min-h-screen font-en overflow-x-hidden" style={{ background: 'var(--bg-app)', color: '#f1f5f9' }}>
           <PageViewTracker />
           {/* Desktop Sidebar */}
           <aside className="sidebar-desktop">
@@ -77,6 +78,7 @@ function App() {
                   <Route path="/subscription"        element={<Subscription />} />
                   <Route path="/register"            element={<Register />} />
                   <Route path="/subject/:subjectId"  element={<SubjectPage />} />
+                  <Route path="/appointment"         element={<Appointment />} />
                   <Route path="/quiz"                element={<QuizHome />} />
                   <Route path="/quiz/start"          element={<QuizStart />} />
                   <Route path="/quiz/play"           element={<QuizPlay />} />

@@ -93,11 +93,11 @@ const AdminPayments = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#060d14' }}>
+      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: 'var(--bg-app)' }}>
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md p-8 md:p-12 rounded-[2.5rem] bg-[#0d1b2a] border border-[#1e3a5f] shadow-2xl text-center"
+          className="w-full max-w-md p-8 md:p-12 rounded-[2.5rem] bg-[var(--bg-surface)] border border-[var(--bg-border)] shadow-2xl text-center"
         >
           <div className="w-20 h-20 bg-[#22C55E]/10 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-[#22C55E]/20">
              <Lock className="w-10 h-10 text-[#22C55E]" />
@@ -111,7 +111,7 @@ const AdminPayments = () => {
                 <input 
                   type="password" 
                   placeholder="পাসওয়ার্ড দিন..."
-                  className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[#112236] border border-[#1e3a5f] text-white outline-none focus:border-[#22C55E]/40 transition-all font-en font-black italic"
+                  className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--bg-border)] text-white outline-none focus:border-[#22C55E]/40 transition-all font-en font-black italic"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                 />
@@ -140,11 +140,11 @@ const AdminPayments = () => {
            </div>
            
            <div className="flex items-center gap-4">
-              <div className="bg-[#0d1b2a] border border-[#1e3a5f] p-4 rounded-2xl flex flex-col items-center min-w-[120px]">
+              <div className="bg-[var(--bg-surface)] border border-[var(--bg-border)] p-4 rounded-2xl flex flex-col items-center min-w-[120px]">
                  <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1 font-en">Total</span>
                  <span className="text-2xl font-en font-black text-white">{payments.length}</span>
               </div>
-              <div className="bg-[#0d1b2a] border border-[#1e3a5f] p-4 rounded-2xl flex flex-col items-center min-w-[120px]">
+              <div className="bg-[var(--bg-surface)] border border-[var(--bg-border)] p-4 rounded-2xl flex flex-col items-center min-w-[120px]">
                  <span className="text-[#22C55E] text-[10px] font-black uppercase tracking-widest mb-1 font-en">Pending</span>
                  <span className="text-2xl font-en font-black text-[#22C55E]">{payments.filter(p => p.status === 'pending').length}</span>
               </div>
@@ -158,7 +158,7 @@ const AdminPayments = () => {
               <input 
                 type="text" 
                 placeholder="নাম, ট্রানজেকশন আইডি বা নম্বর দিয়ে খুঁজুন..." 
-                className="w-full h-16 pl-16 pr-6 rounded-3xl bg-[#0d1b2a] border border-[#1e3a5f] text-white italic font-bn font-black outline-none focus:border-[#22C55E]/40 transition-all"
+                className="w-full h-16 pl-16 pr-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--bg-border)] text-white italic font-bn font-black outline-none focus:border-[#22C55E]/40 transition-all"
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
               />
@@ -169,7 +169,7 @@ const AdminPayments = () => {
                  <select 
                    value={filterStatus}
                    onChange={e => setFilterStatus(e.target.value)}
-                   className="w-full h-16 pl-14 pr-6 rounded-3xl bg-[#0d1b2a] border border-[#1e3a5f] text-white font-bn font-black italic outline-none cursor-pointer appearance-none"
+                   className="w-full h-16 pl-14 pr-6 rounded-3xl bg-[var(--bg-surface)] border border-[var(--bg-border)] text-white font-bn font-black italic outline-none cursor-pointer appearance-none"
                  >
                     <option value="all">সব পেমেন্ট</option>
                     <option value="pending">পেন্ডিং</option>
@@ -179,7 +179,7 @@ const AdminPayments = () => {
               </div>
               <button 
                 onClick={() => window.location.reload()}
-                className="w-16 h-16 rounded-3xl bg-[#0d1b2a] border border-[#1e3a5f] flex items-center justify-center text-slate-500 hover:text-white hover:bg-[#1e3a5f] transition-all"
+                className="w-16 h-16 rounded-3xl bg-[var(--bg-surface)] border border-[var(--bg-border)] flex items-center justify-center text-slate-500 hover:text-white hover:bg-[var(--bg-border)] transition-all"
               >
                  <RefreshCw className="w-6 h-6" />
               </button>
@@ -190,7 +190,7 @@ const AdminPayments = () => {
         <div className="grid grid-cols-1 gap-6">
            {loading ? (
              <div className="py-20 text-center">
-                <div className="w-12 h-12 border-4 border-[#1e3a5f] border-t-[#22C55E] rounded-full animate-spin mx-auto mb-4" />
+                <div className="w-12 h-12 border-4 border-[var(--bg-border)] border-t-[#22C55E] rounded-full animate-spin mx-auto mb-4" />
                 <p className="text-slate-500 font-bn font-black italic">লোড হচ্ছে...</p>
              </div>
            ) : filteredPayments.length > 0 ? (
@@ -200,7 +200,7 @@ const AdminPayments = () => {
                  layout
                  initial={{ opacity: 0, y: 20 }}
                  animate={{ opacity: 1, y: 0 }}
-                 className="p-8 md:p-10 rounded-[3rem] bg-[#0d1b2a] border border-[#1e3a5f] relative overflow-hidden group hover:border-[#22C55E]/30 transition-all"
+                 className="p-8 md:p-10 rounded-[3rem] bg-[var(--bg-surface)] border border-[var(--bg-border)] relative overflow-hidden group hover:border-[#22C55E]/30 transition-all"
                >
                  {/* Status Badge */}
                  <div className={`absolute top-0 right-0 px-8 py-3 rounded-bl-[2rem] text-[10px] font-black uppercase tracking-widest font-en shadow-xl ${
@@ -214,7 +214,7 @@ const AdminPayments = () => {
                  <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* User Info */}
                     <div className="flex items-start gap-5">
-                       <div className="w-14 h-14 rounded-2xl bg-[#112236] border border-[#1e3a5f] flex items-center justify-center text-[#22C55E] shrink-0">
+                       <div className="w-14 h-14 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--bg-border)] flex items-center justify-center text-[#22C55E] shrink-0">
                           <User className="w-7 h-7" />
                        </div>
                        <div>
@@ -226,19 +226,25 @@ const AdminPayments = () => {
 
                     {/* Payment Info */}
                     <div className="flex items-start gap-5">
-                       <div className="w-14 h-14 rounded-2xl bg-[#112236] border border-[#1e3a5f] flex items-center justify-center text-[#22C55E] shrink-0">
+                       <div className="w-14 h-14 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--bg-border)] flex items-center justify-center text-[#22C55E] shrink-0">
                           <CreditCard className="w-7 h-7" />
                        </div>
                        <div>
                           <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1 font-en">Payment Details</p>
                           <h3 className="text-xl font-en font-black italic text-white leading-tight mb-1">{p.tid}</h3>
                           <p className="text-slate-400 font-bn font-bold text-[14px] italic">{p.planName} — {p.amount}</p>
+                          {p.studentProblem && (
+                            <div className="mt-4 p-4 rounded-xl bg-[#22C55E]/5 border border-[#22C55E]/10">
+                               <p className="text-[#22C55E] text-[10px] font-black uppercase tracking-widest mb-2 font-en">Student Problem:</p>
+                               <p className="text-white font-bn italic text-[14px] leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all">{p.studentProblem}</p>
+                            </div>
+                          )}
                        </div>
                     </div>
 
                     {/* Contact Info */}
                     <div className="flex items-start gap-5">
-                       <div className="w-14 h-14 rounded-2xl bg-[#112236] border border-[#1e3a5f] flex items-center justify-center text-[#22C55E] shrink-0">
+                       <div className="w-14 h-14 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--bg-border)] flex items-center justify-center text-[#22C55E] shrink-0">
                           <Phone className="w-7 h-7" />
                        </div>
                        <div>
@@ -271,7 +277,7 @@ const AdminPayments = () => {
                </motion.div>
              ))
            ) : (
-             <div className="py-32 text-center bg-[#0d1b2a] border border-[#1e3a5f] rounded-[3rem] border-dashed">
+             <div className="py-32 text-center bg-[var(--bg-surface)] border border-[var(--bg-border)] rounded-[3rem] border-dashed">
                 <AlertCircle className="w-16 h-16 text-slate-500 mx-auto mb-6 opacity-20" />
                 <h3 className="text-3xl font-bn font-black text-slate-600 italic">কোনো পেমেন্ট রেকর্ড পাওয়া যায়নি</h3>
              </div>

@@ -27,7 +27,7 @@ export const ComingSoonProvider = ({ children }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeComingSoon}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+              className="absolute inset-0 bg-[var(--bg-surface)]/60 backdrop-blur-md"
             />
 
             {/* Modal Content */}
@@ -94,7 +94,7 @@ export const ComingSoonProvider = ({ children }) => {
               {/* Action Button */}
               <button 
                 onClick={closeComingSoon}
-                className="w-full bg-slate-900 hover:bg-primary text-white py-5 rounded-2xl text-xl font-bn font-black tracking-widest uppercase transition-all duration-500 flex items-center justify-center gap-4 group shadow-2xl"
+                className="w-full bg-[var(--bg-surface)] hover:bg-primary text-white py-5 rounded-2xl text-xl font-bn font-black tracking-widest uppercase transition-all duration-500 flex items-center justify-center gap-4 group shadow-2xl"
               >
                 ঠিক আছে <ChevronRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
               </button>

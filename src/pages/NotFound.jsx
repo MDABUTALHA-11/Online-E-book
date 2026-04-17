@@ -19,8 +19,8 @@ const NotFound = () => {
           className="relative inline-block mb-12"
         >
           <div className="absolute inset-0 rounded-full blur-[100px]" style={{ background: 'rgba(34,197,94,0.1)' }} />
-          <h1 className="text-[10rem] md:text-[15rem] leading-none font-black en-font select-none" style={{ color: '#0d1b2a', textShadow: '0 0 40px rgba(34,197,94,0.2)' }}>404</h1>
-          <AlertCircle className="w-24 h-24 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-2" style={{ background: '#112236', color: '#22C55E', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', border: '2px solid #1e3a5f' }} />
+          <h1 className="text-[10rem] md:text-[15rem] leading-none font-black en-font select-none" style={{ color: 'var(--bg-surface)', textShadow: '0 0 40px rgba(34,197,94,0.2)' }}>404</h1>
+          <AlertCircle className="w-24 h-24 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-2" style={{ background: 'var(--bg-elevated)', color: '#22C55E', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', border: '2px solid var(--bg-border)' }} />
         </motion.div>
 
         <h2 className="text-4xl md:text-6xl font-bn font-black mb-6 italic text-white">
@@ -35,14 +35,14 @@ const NotFound = () => {
           <Link to="/" className="rounded-2xl px-12 h-16 w-full sm:w-auto hover:scale-105 transition-transform flex items-center justify-center gap-3 text-[16px] font-bold text-white" style={{ background: '#22C55E', boxShadow: '0 10px 30px rgba(34,197,94,0.2)' }}>
             <Home className="w-5 h-5" /> হোম পেজ
           </Link>
-          <Link to="/categories" className="rounded-2xl px-12 h-16 w-full sm:w-auto transition-all flex items-center justify-center gap-3 text-[16px] font-bold" style={{ background: '#112236', border: '1.5px solid #1e3a5f', color: '#22C55E' }}>
+          <Link to="/categories" className="rounded-2xl px-12 h-16 w-full sm:w-auto transition-all flex items-center justify-center gap-3 text-[16px] font-bold" style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)', color: '#22C55E' }}>
             <Search className="w-5 h-5" /> সকল বিষয়সমূহ
           </Link>
         </div>
 
         <div className="mt-24 flex items-center justify-center gap-8" style={{ color: '#64748b' }}>
           <div className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2" style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-2" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
                  <Compass className="w-6 h-6" />
               </div>
               <span className="text-xs font-bold uppercase tracking-widest">Navigator</span>

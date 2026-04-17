@@ -32,7 +32,7 @@ export default function Categories() {
     <div className="min-h-screen pb-12" style={{ color:'#f1f5f9' }}>
 
       {/* ── Hero ── */}
-      <div className="relative rounded-2xl overflow-hidden mb-7 px-8 py-12" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+      <div className="relative rounded-2xl overflow-hidden mb-7 px-8 py-12" style={{ background:'var(--bg-surface)', border:'1px solid var(--bg-border)' }}>
         <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background:'rgba(34,197,94,0.06)', filter:'blur(60px)' }} />
         <div className="relative z-10 text-center">
           <Link to="/" className="inline-flex items-center gap-1.5 text-[12px] font-black uppercase tracking-widest no-underline mb-4 transition-colors group"
@@ -59,18 +59,18 @@ export default function Categories() {
       </div>
 
       {/* ── Search + Filter ── */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-7 p-4 rounded-2xl" style={{ background:'#0d1b2a', border:'1px solid #1e3a5f' }}>
+      <div className="flex flex-col sm:flex-row gap-3 mb-7 p-4 rounded-2xl" style={{ background:'var(--bg-surface)', border:'1px solid var(--bg-border)' }}>
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color:'#334155' }} />
           <input
             type="text"
             placeholder="বিষয় খুঁজুন..."
             className="w-full h-[44px] pl-11 pr-4 rounded-xl text-[13.5px] font-bn placeholder:text-[#334155] outline-none transition-all"
-            style={{ background:'#112236', border:'1.5px solid #1e3a5f', color:'#f1f5f9' }}
+            style={{ background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)', color:'#f1f5f9' }}
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             onFocus={e => e.target.style.borderColor = 'rgba(34,197,94,0.4)'}
-            onBlur={e => e.target.style.borderColor = '#1e3a5f'}
+            onBlur={e => e.target.style.borderColor = 'var(--bg-border)'}
           />
         </div>
         <div className="flex items-center gap-1.5 flex-wrap">
@@ -79,7 +79,7 @@ export default function Categories() {
               className="h-[44px] px-5 rounded-xl font-black text-[13px] transition-all whitespace-nowrap"
               style={activeTab === tab
                 ? { background:'#22C55E', color:'white', boxShadow:'0 4px 12px rgba(34,197,94,0.25)' }
-                : { background:'#112236', border:'1.5px solid #1e3a5f', color:'#64748b' }
+                : { background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)', color:'#64748b' }
               }
             >
               {tab}
@@ -90,11 +90,11 @@ export default function Categories() {
 
       {/* ── Count ── */}
       <div className="flex items-center gap-3 mb-5">
-        <div className="h-px flex-1" style={{ background:'#1e3a5f' }} />
+        <div className="h-px flex-1" style={{ background:'var(--bg-border)' }} />
         <span className="font-bold text-[11px] uppercase tracking-widest whitespace-nowrap" style={{ color:'#334155' }}>
           {filteredCategories.length} টি বিষয় পাওয়া গেছে
         </span>
-        <div className="h-px flex-1" style={{ background:'#1e3a5f' }} />
+        <div className="h-px flex-1" style={{ background:'var(--bg-border)' }} />
       </div>
 
       {/* ── Grid ── */}

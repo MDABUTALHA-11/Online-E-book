@@ -63,7 +63,11 @@ export const BkashProvider = ({ children }) => {
         userEmail: user.email || 'N/A',
         status: 'pending',
         createdAt: serverTimestamp(),
-        method: 'bkash'
+        method: 'bkash',
+        // Support for appointment data
+        type: plan.type || 'subscription',
+        subject: plan.subject || null,
+        studentProblem: plan.studentProblem || null
       });
       
       setStep(3); // Success step
@@ -88,7 +92,7 @@ export const BkashProvider = ({ children }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeBkash}
-              className="absolute inset-0 bg-slate-950/80 backdrop-blur-xl"
+              className="absolute inset-0 bg-[var(--bg-app)]/80 backdrop-blur-xl"
             />
 
             {/* Modal Content */}
@@ -96,7 +100,7 @@ export const BkashProvider = ({ children }) => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-[#0d1b2a] border border-[#1e3a5f] rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden"
+              className="relative w-full max-w-lg bg-[var(--bg-surface)] border border-[var(--bg-border)] rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden"
             >
               {/* bKash Header Accent */}
               <div className="h-3 w-full bg-[#D12053]" />
@@ -104,7 +108,7 @@ export const BkashProvider = ({ children }) => {
               {/* Close Button */}
               <button 
                 onClick={closeBkash}
-                className="absolute top-6 right-6 w-10 h-10 bg-[#112236] rounded-2xl flex items-center justify-center text-slate-400 hover:text-white hover:scale-110 shadow-lg transition-all duration-300 z-50"
+                className="absolute top-6 right-6 w-10 h-10 bg-[var(--bg-elevated)] rounded-2xl flex items-center justify-center text-slate-400 hover:text-white hover:scale-110 shadow-lg transition-all duration-300 z-50"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -123,7 +127,7 @@ export const BkashProvider = ({ children }) => {
                     </div>
 
                     <div className="space-y-4 mb-10">
-                       <div className="bg-[#112236] p-6 rounded-3xl border border-[#1e3a5f] relative overflow-hidden group">
+                       <div className="bg-[var(--bg-elevated)] p-6 rounded-3xl border border-[var(--bg-border)] relative overflow-hidden group">
                           <div className="absolute top-0 right-0 p-3 bg-[#D12053]/10 text-[#D12053] text-[10px] font-black uppercase tracking-widest rounded-bl-2xl">
                              {BKASH_TYPE}
                           </div>
@@ -145,8 +149,8 @@ export const BkashProvider = ({ children }) => {
                             `উপরে দেওয়া নম্বরে সঠিক ${plan?.price} টাকা পাঠান`,
                             'ট্রানজেকশন সফল হলে Transaction ID কপি করুন'
                           ].map((text, i) => (
-                            <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-[#060d14]/50 border border-[#1e3a5f]/30">
-                               <div className="w-6 h-6 rounded-full bg-[#1e3a5f] flex items-center justify-center text-[10px] font-black text-white shrink-0 mt-0.5">{i+1}</div>
+                            <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-[var(--bg-app)]/50 border border-[var(--bg-border)]/30">
+                               <div className="w-6 h-6 rounded-full bg-[var(--bg-border)] flex items-center justify-center text-[10px] font-black text-white shrink-0 mt-0.5">{i+1}</div>
                                <p className="text-[14px] font-bn font-bold italic text-slate-400">{text}</p>
                             </div>
                           ))}
@@ -183,7 +187,7 @@ export const BkashProvider = ({ children }) => {
                               required
                               type="text" 
                               placeholder="উদাহরণ: ABC123DEF4"
-                              className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-en font-black italic text-[16px] outline-none focus:border-[#D12053]/40 transition-all placeholder:text-slate-700"
+                              className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[var(--bg-elevated)] border-[1.5px] border-[var(--bg-border)] text-white font-en font-black italic text-[16px] outline-none focus:border-[#D12053]/40 transition-all placeholder:text-slate-700"
                               value={tid}
                               onChange={e => setTid(e.target.value)}
                             />
@@ -198,7 +202,7 @@ export const BkashProvider = ({ children }) => {
                               required
                               type="tel" 
                               placeholder="আপনার বিকাশ নম্বরটি দিন..."
-                              className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#D12053]/40 transition-all placeholder:text-slate-700"
+                              className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[var(--bg-elevated)] border-[1.5px] border-[var(--bg-border)] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#D12053]/40 transition-all placeholder:text-slate-700"
                               value={phone}
                               onChange={e => setPhone(e.target.value)}
                             />
@@ -248,7 +252,7 @@ export const BkashProvider = ({ children }) => {
                      </p>
                      <button 
                        onClick={closeBkash}
-                       className="w-full h-16 bg-[#112236] border border-[#1e3a5f] text-white rounded-2xl text-xl font-bn font-black italic hover:bg-[#1e3a5f] transition-all"
+                       className="w-full h-16 bg-[var(--bg-elevated)] border border-[var(--bg-border)] text-white rounded-2xl text-xl font-bn font-black italic hover:bg-[var(--bg-border)] transition-all"
                      >
                        বন্ধ করুন
                      </button>

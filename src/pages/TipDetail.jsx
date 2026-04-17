@@ -34,7 +34,7 @@ const TipDetail = () => {
           alt={tip.title} 
           className="w-full h-full object-cover transition-transform duration-1000 scale-105 hover:scale-100 grayscale hover:grayscale-0" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060d14] via-[#060d14]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-app)] via-[var(--bg-app)]/40 to-transparent" />
         
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-16 max-w-7xl mx-auto">
            <motion.div 
@@ -68,8 +68,8 @@ const TipDetail = () => {
           transition={{ delay: 0.3 }}
           className="space-y-10"
         >
-          <div className="p-8 md:p-12 rounded-[2.5rem] bg-[#0d1b2a] border border-[#1e3a5f] shadow-2xl relative overflow-hidden" 
-               style={{ background: 'linear-gradient(135deg, #0d1b2a 0%, #060d14 100%)' }}>
+          <div className="p-8 md:p-12 rounded-[2.5rem] bg-[var(--bg-surface)] border border-[var(--bg-border)] shadow-2xl relative overflow-hidden" 
+               style={{ background: 'linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-app) 100%)' }}>
             <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-[80px]" style={{ background: tip.color }} />
             
             <p className="text-xl md:text-3xl font-bn italic text-[#22C55E] leading-relaxed mb-10 border-l-4 border-[#22C55E] pl-6">
@@ -88,12 +88,12 @@ const TipDetail = () => {
                </p>
             </div>
             
-            <div className="mt-16 pt-8 border-t border-[#1e3a5f] flex flex-wrap gap-4 items-center justify-between">
+            <div className="mt-16 pt-8 border-t border-[var(--bg-border)] flex flex-wrap gap-4 items-center justify-between">
                <div className="flex items-center gap-2 text-[#64748b] text-sm font-black italic">
                   <Clock className="w-4 h-4" /> পড়ার সময়: ৩ মিনিট
                </div>
                <div className="flex gap-3">
-                  <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#112236] border border-[#1e3a5f] hover:bg-[#22C55E]/10 transition-all text-[#22C55E] font-black text-xs uppercase tracking-widest font-en shadow-sm">
+                  <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--bg-elevated)] border border-[var(--bg-border)] hover:bg-[#22C55E]/10 transition-all text-[#22C55E] font-black text-xs uppercase tracking-widest font-en shadow-sm">
                      <Share2 className="w-4 h-4" /> Share Tip
                   </button>
                   <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#22C55E] text-white hover:scale-105 transition-all font-black text-xs uppercase tracking-widest font-en shadow-lg">
@@ -121,8 +121,8 @@ const TipDetail = () => {
 
         {/* Sidebar */}
         <aside className="space-y-8">
-          <div className="p-8 rounded-[2rem] bg-[#0d1b2a] border border-[#1e3a5f] h-fit sticky top-28">
-             <h3 className="text-xl font-black italic text-white mb-6 font-bn border-b border-[#1e3a5f] pb-4">অন্যান্য টিপস</h3>
+          <div className="p-8 rounded-[2rem] bg-[var(--bg-surface)] border border-[var(--bg-border)] h-fit sticky top-28">
+             <h3 className="text-xl font-black italic text-white mb-6 font-bn border-b border-[var(--bg-border)] pb-4">অন্যান্য টিপস</h3>
              <div className="space-y-5">
                 {tipsData.filter(t => t.id !== tipId).slice(0, 4).map((t) => (
                   <Link 
@@ -130,7 +130,7 @@ const TipDetail = () => {
                     to={`/tips/${t.id}`}
                     className="flex gap-4 group no-underline"
                   >
-                     <div className="w-16 h-12 rounded-xl overflow-hidden shrink-0 border border-[#1e3a5f]">
+                     <div className="w-16 h-12 rounded-xl overflow-hidden shrink-0 border border-[var(--bg-border)]">
                         <img src={t.ghibliImage} alt={t.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                      </div>
                      <div>
@@ -144,16 +144,16 @@ const TipDetail = () => {
              </div>
              <Link 
                to="/tips" 
-               className="mt-8 flex items-center justify-center gap-2 w-full py-4 rounded-xl font-black text-xs text-[#22C55E] bg-[#112236] hover:bg-[#22C55E]/10 border border-[#1e3a5f] transition-all no-underline"
+               className="mt-8 flex items-center justify-center gap-2 w-full py-4 rounded-xl font-black text-xs text-[#22C55E] bg-[var(--bg-elevated)] hover:bg-[#22C55E]/10 border border-[var(--bg-border)] transition-all no-underline"
              >
                 সকল টিপস দেখুন <CheckCircle2 className="w-4 h-4" />
              </Link>
           </div>
 
-          <div className="p-8 rounded-[2rem] bg-gradient-to-br from-[#1e3a5f]/30 to-[#060d14] border border-[#1e3a5f]">
+          <div className="p-8 rounded-[2rem] bg-gradient-to-br from-[var(--bg-border)]/30 to-[var(--bg-app)] border border-[var(--bg-border)]">
              <h3 className="text-lg font-black italic text-white mb-4 font-bn">Shaifly Pro</h3>
              <p className="text-[13px] text-slate-500 italic mb-6 font-bn">আনলিমিটেড নোটস, প্রিমিয়াম কুইজ এবং এক্সক্লুসিভ সাজেশন পেতে আজই প্রো-তে সাবস্ক্রাইব করুন।</p>
-             <Link to="/subscription" className="block text-center py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs tracking-widest transition-all no-underline shadow-lg">UPGRADE NOW</Link>
+             <Link to="/subscription" className="block text-center py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs tracking-widest transition-all no-underline shadow-lg">UPGRADE NOW</Link>
           </div>
         </aside>
       </div>

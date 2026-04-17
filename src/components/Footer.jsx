@@ -24,6 +24,7 @@ const supportLinks = [
   { label: 'Terms & Conditions', href: '/terms'   },
   { label: 'Contact Support',    href: 'mailto:support@shaifly.com' },
   { label: 'Cookie Policy',      href: '/cookies' },
+  { label: 'Sitemap',            href: '/categories' },
 ];
 
 const stats = [
@@ -35,16 +36,16 @@ const stats = [
 
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden" style={{ background: '#060d14' }}>
+    <footer className="relative w-full overflow-hidden" style={{ background: 'var(--bg-app)' }}>
 
       {/* ── Ambient Glow Orbs ── */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[300px] rounded-full pointer-events-none"
         style={{ background: 'rgba(34,197,94,0.04)', filter: 'blur(100px)' }} />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[250px] rounded-full pointer-events-none"
-        style={{ background: 'rgba(14,165,233,0.03)', filter: 'blur(100px)' }} />
+        style={{ background: 'rgba(34,197,94,0.03)', filter: 'blur(100px)' }} />
 
       {/* ── Top Divider ── */}
-      <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, #1e3a5f 30%, #22C55E 50%, #1e3a5f 70%, transparent)' }} />
+      <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, var(--bg-border) 30%, #22C55E 50%, var(--bg-border) 70%, transparent)' }} />
 
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 pt-16 pb-10">
         {/* Global Footer Ad */}
@@ -58,7 +59,7 @@ export default function Footer() {
             <div
               key={label}
               className="flex items-center gap-4 px-5 py-4 rounded-2xl group transition-all hover:-translate-y-0.5"
-              style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+              style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
             >
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors group-hover:bg-[rgba(34,197,94,0.15)]"
                 style={{ background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.15)' }}>
@@ -117,9 +118,9 @@ export default function Footer() {
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a key={label} href={href} aria-label={label}
                   className="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 hover:scale-110 group"
-                  style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+                  style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#22C55E'; e.currentTarget.style.borderColor = '#22C55E'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = '#0d1b2a'; e.currentTarget.style.borderColor = '#1e3a5f'; }}>
+                  onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.borderColor = 'var(--bg-border)'; }}>
                   <Icon className="w-4 h-4 text-[#475569] group-hover:text-white transition-colors" />
                 </a>
               ))}
@@ -138,9 +139,9 @@ export default function Footer() {
                   <Link to={to}
                     className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-[#475569] no-underline transition-all group hover:pl-5"
                     style={{ letterSpacing: '0.01em' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#0d1b2a'; e.currentTarget.style.color = '#f1f5f9'; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = '#f1f5f9'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#475569'; }}>
-                    <span className="w-1 h-1 rounded-full bg-[#1e3a5f] group-hover:bg-[#22C55E] transition-colors shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[var(--bg-border)] group-hover:bg-[#22C55E] transition-colors shrink-0" />
                     {label}
                   </Link>
                 </li>
@@ -151,17 +152,17 @@ export default function Footer() {
           {/* Support Links */}
           <div>
             <div className="flex items-center gap-2 mb-7">
-              <div className="w-1 h-4 rounded-full bg-[#0ea5e9]" />
-              <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-[#0ea5e9]">Support</h4>
+              <div className="w-1 h-4 rounded-full bg-[#22C55E]" />
+              <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-[#22C55E]">Support</h4>
             </div>
             <ul className="flex flex-col gap-1">
               {supportLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href}
                     className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-[#475569] no-underline transition-all group hover:pl-5"
-                    onMouseEnter={e => { e.currentTarget.style.background = '#0d1b2a'; e.currentTarget.style.color = '#f1f5f9'; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = '#f1f5f9'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#475569'; }}>
-                    <span className="w-1 h-1 rounded-full bg-[#1e3a5f] group-hover:bg-[#0ea5e9] transition-colors shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[var(--bg-border)] group-hover:bg-[#22C55E] transition-colors shrink-0" />
                     {label}
                   </a>
                 </li>
@@ -169,7 +170,7 @@ export default function Footer() {
             </ul>
 
             {/* Contact Card */}
-            <div className="mt-8 p-4 rounded-2xl" style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}>
+            <div className="mt-8 p-4 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
               <p className="text-[11px] font-black uppercase tracking-widest text-[#334155] mb-2">যোগাযোগ করুন</p>
               <a href="mailto:support@shaifly.com"
                 className="text-[14px] font-black text-white font-en hover:text-[#22C55E] transition-colors no-underline flex items-center gap-2">
@@ -180,11 +181,42 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ── Trust Seal & Newsletter ── */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 p-8 rounded-[2.5rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
+          <div className="flex flex-col justify-center">
+            <h4 className="text-white font-black font-bn text-xl mb-4 italic">নতুন নোট ও সাজেশন পেতে আমাদের সাথে থাকুন</h4>
+            <div className="flex gap-2">
+              <input 
+                type="email" 
+                placeholder="আপনার ইমেইল দিন..." 
+                className="flex-1 h-[48px] px-4 rounded-xl text-[13px] font-bn outline-none"
+                style={{ background: 'var(--bg-elevated)', border: '1px solid var(--bg-border)', color: '#f1f5f9' }}
+              />
+              <button 
+                className="h-[48px] px-6 rounded-xl font-black text-[12px] text-white uppercase tracking-widest transition-all hover:scale-105"
+                style={{ background: '#22C55E', boxShadow: '0 4px 12px rgba(34,197,94,0.2)' }}
+              >
+                Join Now
+              </button>
+            </div>
+          </div>
+          <div className="flex items-center justify-center md:justify-end gap-6">
+            <div className="text-right hidden md:block">
+              <p className="text-white font-black font-bn italic text-lg leading-none mb-1">যাচাইকৃত শিক্ষা প্ল্যাটফর্ম</p>
+              <p className="text-[#334155] text-[10px] font-black uppercase tracking-widest">Verified Academic Library</p>
+            </div>
+            <div className="w-16 h-16 rounded-full border-4 border-[#22C55E]/20 flex items-center justify-center rotate-12 relative">
+               <div className="absolute inset-0 border border-white/5 rounded-full" />
+               <Award className="w-8 h-8 text-[#22C55E]" />
+            </div>
+          </div>
+        </div>
+
         {/* ── Bottom Bar ── */}
         <div className="mt-14 pt-6 relative">
           {/* Gradient separator */}
           <div className="absolute top-0 left-0 right-0 h-px"
-            style={{ background: 'linear-gradient(90deg, transparent, #1e3a5f 20%, #1e3a5f 80%, transparent)' }} />
+            style={{ background: 'linear-gradient(90deg, transparent, var(--bg-border) 20%, var(--bg-border) 80%, transparent)' }} />
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-[12px] font-black text-[#334155] tracking-wide font-en">
@@ -200,9 +232,9 @@ export default function Footer() {
 
             <div className="flex items-center gap-4 text-[12px] font-black text-[#334155] font-en">
               <Link to="/privacy" className="hover:text-[#475569] transition-colors no-underline">Privacy</Link>
-              <span className="w-1 h-1 rounded-full bg-[#1e3a5f]" />
+              <span className="w-1 h-1 rounded-full bg-[var(--bg-border)]" />
               <Link to="/terms" className="hover:text-[#475569] transition-colors no-underline">Terms</Link>
-              <span className="w-1 h-1 rounded-full bg-[#1e3a5f]" />
+              <span className="w-1 h-1 rounded-full bg-[var(--bg-border)]" />
               <Link to="/cookies" className="hover:text-[#475569] transition-colors no-underline">Cookies</Link>
             </div>
           </div>

@@ -60,11 +60,11 @@ export default function TopBar() {
           onChange={e => setQ(e.target.value)}
           className="w-full h-[44px] rounded-xl pl-11 pr-5 text-[14px] font-medium text-white placeholder:text-[#334155] outline-none transition-all"
           style={{
-            background: '#0d1b2a',
-            border: '1.5px solid #1e3a5f',
+            background: 'var(--bg-surface)',
+            border: '1.5px solid var(--bg-border)',
           }}
-          onFocus={e => { e.target.style.border = '1.5px solid #22C55E40'; e.target.style.background = '#112236'; }}
-          onBlur={e => { e.target.style.border = '1.5px solid #1e3a5f'; e.target.style.background = '#0d1b2a'; }}
+          onFocus={e => { e.target.style.border = '1.5px solid #22C55E40'; e.target.style.background = 'var(--bg-elevated)'; }}
+          onBlur={e => { e.target.style.border = '1.5px solid var(--bg-border)'; e.target.style.background = 'var(--bg-surface)'; }}
         />
         {/* Green glow when has value */}
         {q && (
@@ -80,11 +80,11 @@ export default function TopBar() {
         <div className="relative" ref={notiRef}>
           <button
             onClick={() => setNotiOpen(!notiOpen)}
-            className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all ${notiOpen ? 'text-[#22C55E] bg-[#112236]' : 'text-[#64748b] hover:text-white bg-[#0d1b2a]'} border-1.5`}
-            style={{ border: notiOpen ? '1.5px solid rgba(34,197,94,0.4)' : '1.5px solid #1e3a5f' }}
+            className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all ${notiOpen ? 'text-[#22C55E] bg-[var(--bg-elevated)]' : 'text-[#64748b] hover:text-white bg-[var(--bg-surface)]'} border-1.5`}
+            style={{ border: notiOpen ? '1.5px solid rgba(34,197,94,0.4)' : '1.5px solid var(--bg-border)' }}
           >
             <Bell className={`w-[20px] h-[20px] ${notiOpen ? 'animate-none' : 'animate-swing'}`} />
-            <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#060d14] animate-pulse" />
+            <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[var(--bg-app)] animate-pulse" />
           </button>
 
           {/* Notification Dropdown */}
@@ -95,16 +95,16 @@ export default function TopBar() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                 className="absolute right-0 top-14 w-[320px] z-[200] rounded-2xl overflow-hidden backdrop-blur-3xl shadow-[0_24px_60px_rgba(0,0,0,0.6)]"
-                style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+                style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
               >
-                <div className="px-5 py-4 border-b border-[#1e3a5f] flex justify-between items-center bg-[#112236]">
+                <div className="px-5 py-4 border-b border-[var(--bg-border)] flex justify-between items-center bg-[var(--bg-elevated)]">
                   <h3 className="text-white font-black text-[18px] italic font-bn m-0">নোটিফিকেশন</h3>
                   <span className="bg-[#22C55E]/20 text-[#22C55E] text-[10px] font-black px-2 py-0.5 rounded-lg uppercase tracking-wider font-en">3 New</span>
                 </div>
                 
                 <div className="max-h-[380px] overflow-y-auto no-scrollbar">
                   {notifications.map((n) => (
-                    <div key={n.id} className="px-5 py-4 border-b border-[#1e3a5f] hover:bg-white/5 transition-colors cursor-pointer group">
+                    <div key={n.id} className="px-5 py-4 border-b border-[var(--bg-border)] hover:bg-white/5 transition-colors cursor-pointer group">
                       <div className="flex justify-between items-start mb-1">
                         <h4 className="text-[#22C55E] font-black text-[15px] italic font-bn group-hover:underline">{n.title}</h4>
                         <span className="text-[#334155] text-[10px] font-bold italic font-bn whitespace-nowrap ml-2">{n.time}</span>
@@ -116,7 +116,7 @@ export default function TopBar() {
                   ))}
                 </div>
                 
-                <div className="p-3 text-center bg-[#112236]">
+                <div className="p-3 text-center bg-[var(--bg-elevated)]">
                   <button className="text-[#64748b] hover:text-white text-[12px] font-black uppercase tracking-widest transition-colors font-en italic">
                     View All Notifications
                   </button>
@@ -132,8 +132,8 @@ export default function TopBar() {
             onClick={() => setProfileOpen(v => !v)}
             className="flex items-center gap-2 h-10 px-4 rounded-xl font-bold text-[13px] transition-all overflow-hidden"
             style={{ 
-              background: user ? 'rgba(34,197,94,0.1)' : '#0d1b2a', 
-              border: user ? '1.5px solid rgba(34,197,94,0.3)' : '1.5px solid #1e3a5f',
+              background: user ? 'rgba(34,197,94,0.1)' : 'var(--bg-surface)', 
+              border: user ? '1.5px solid rgba(34,197,94,0.3)' : '1.5px solid var(--bg-border)',
               color: user ? '#22C55E' : '#64748b'
             }}
           >
@@ -149,11 +149,11 @@ export default function TopBar() {
           {profileOpen && (
             <div
               className="absolute right-0 top-14 w-[290px] z-[200] rounded-2xl overflow-hidden"
-              style={{ background: '#0d1b2a', border: '1px solid #1e3a5f', boxShadow: '0 24px 60px rgba(0,0,0,0.5)' }}
+              style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)', boxShadow: '0 24px 60px rgba(0,0,0,0.5)' }}
             >
               {/* Header */}
               {/* Header */}
-              <div className="relative px-5 py-6" style={{ background: '#112236', borderBottom: '1px solid #1e3a5f' }}>
+              <div className="relative px-5 py-6" style={{ background: 'var(--bg-elevated)', borderBottom: '1px solid var(--bg-border)' }}>
                 <button onClick={() => setProfileOpen(false)} className="absolute top-4 right-4 text-[#334155] hover:text-white transition-colors">
                   <X className="w-4 h-4" />
                 </button>
@@ -170,7 +170,7 @@ export default function TopBar() {
                   <p className="text-[#22C55E] text-[11px] font-black uppercase tracking-[0.2em] mt-1 font-en">{user ? (user.level || 'Student') : 'Guest User'}</p>
                   
                   {user?.bio && (
-                    <div className="mt-4 p-3 rounded-xl bg-[#060d14]/40 border border-[#1e3a5f]/30 w-full">
+                    <div className="mt-4 p-3 rounded-xl bg-[var(--bg-app)]/40 border border-[var(--bg-border)]/30 w-full">
                        <p className="text-slate-400 text-[13px] font-bn leading-snug font-bold italic m-0 line-clamp-3">
                           "{user.bio}"
                        </p>
@@ -196,7 +196,7 @@ export default function TopBar() {
                       to="/subscription"
                       onClick={() => setProfileOpen(false)}
                       className="flex items-center gap-3 w-full h-[44px] px-4 rounded-xl font-black text-[14px] text-[#64748b] no-underline transition-all hover:text-white"
-                      style={{ background: '#112236', border: '1px solid #1e3a5f' }}
+                      style={{ background: 'var(--bg-elevated)', border: '1px solid var(--bg-border)' }}
                     >
                       <LogIn className="w-5 h-5" />
                       লগ ইন করুন
@@ -217,7 +217,7 @@ export default function TopBar() {
                        <Link
                          to="/register"
                          onClick={() => setProfileOpen(false)}
-                         className="flex items-center justify-center gap-2 h-11 rounded-xl font-black text-[13px] text-slate-400 bg-[#112236] border border-[#1e3a5f] no-underline hover:text-white font-bn italic"
+                         className="flex items-center justify-center gap-2 h-11 rounded-xl font-black text-[13px] text-slate-400 bg-[var(--bg-elevated)] border border-[var(--bg-border)] no-underline hover:text-white font-bn italic"
                        >
                          <Settings className="w-4 h-4" /> এডিট
                        </Link>

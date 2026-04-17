@@ -125,7 +125,7 @@ const QuizResult = () => {
   const isPass = percentage >= 40;
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 relative overflow-hidden pt-32 pb-40">
+    <div className="min-h-screen bg-[var(--bg-app)] flex items-center justify-center p-6 relative overflow-hidden pt-32 pb-40">
       {/* Background Decorator */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#22C55E]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
 
@@ -133,7 +133,7 @@ const QuizResult = () => {
         initial={{ opacity: 0, scale: 0.95, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         className="w-full max-w-3xl p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative z-10 text-center"
-        style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+        style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
       >
         {/* Animated Trophy Icon */}
         <div className="relative mb-10">
@@ -159,7 +159,7 @@ const QuizResult = () => {
 
         {/* Results Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12">
-           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: '#112236', border: '1.5px solid #1e3a5f' }}>
+           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}>
               <Activity className="w-8 h-8 text-[#22C55E] mb-3 opacity-50" />
               <div className="text-3xl md:text-4xl sf-headline text-white italic">{result.score}<span className="text-xl text-slate-700 italic">/{result.total}</span></div>
               <div className="sf-label text-[10px] tracking-widest text-slate-600 uppercase mt-2">Score</div>
@@ -174,7 +174,7 @@ const QuizResult = () => {
               <div className="sf-label text-[10px] tracking-widest uppercase text-white/70 mt-2">Accuracy</div>
            </div>
 
-           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: '#112236', border: '1.5px solid #1e3a5f' }}>
+           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}>
               <Award className="w-8 h-8 text-indigo-400 mb-3 opacity-50" />
               <div className="text-3xl md:text-4xl sf-headline text-indigo-400 italic">#{result.rank}</div>
               <div className="sf-label text-[10px] tracking-widest uppercase text-slate-600 mt-2">Rank</div>
@@ -182,10 +182,10 @@ const QuizResult = () => {
         </div>
 
         {/* Buttons Action Area */}
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-12 pt-10 border-t border-[#1e3a5f]">
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-12 pt-10 border-t border-[var(--bg-border)]">
            <button 
              onClick={() => navigate('/quiz')}
-             className="w-full h-16 rounded-2xl bg-[#112236] hover:bg-[#1a2e4a] border border-[#1e3a5f] text-slate-400 hover:text-white transition-all sf-headline text-lg italic flex items-center justify-center gap-3"
+             className="w-full h-16 rounded-2xl bg-[var(--bg-elevated)] hover:bg-[#1a2e4a] border border-[var(--bg-border)] text-slate-400 hover:text-white transition-all sf-headline text-lg italic flex items-center justify-center gap-3"
            >
              <Home className="w-5 h-5" /> ঘরে ফিরুন
            </button>

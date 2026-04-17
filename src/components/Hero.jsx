@@ -24,7 +24,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 px-6 pt-32 pb-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--bg-app)] px-6 pt-32 pb-20">
       {/* Dynamic Background Effects */}
       <div className="absolute inset-0 z-0">
         <video 
@@ -34,7 +34,7 @@ const Hero = () => {
         >
           <source src="/Video/grok-video-e5127828-4598-4ebd-97c3-72763c67b0cb.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-app)]/20 via-[var(--bg-app)]/80 to-[var(--bg-app)]" />
       </div>
 
       {/* Floating Blobs */}

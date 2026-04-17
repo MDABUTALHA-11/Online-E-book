@@ -35,10 +35,10 @@ const SurveyPopup = () => {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: -20 }}
-          className="bg-[#0d1b2a] border border-[#1e3a5f] w-full max-w-xl rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-14 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative overflow-hidden"
+          className="bg-[var(--bg-surface)] border border-[var(--bg-border)] w-full max-w-xl rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-14 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative overflow-hidden"
         >
           {/* Progress Indicator */}
-          <div className="absolute top-0 left-0 w-full h-2 bg-[#112236]">
+          <div className="absolute top-0 left-0 w-full h-2 bg-[var(--bg-elevated)]">
              <motion.div 
                className="h-full bg-gradient-to-r from-[#EF4444] to-[#22C55E] rounded-full transition-all duration-500"
                initial={{ width: '25%' }}
@@ -73,7 +73,7 @@ const SurveyPopup = () => {
                   <button
                     key={item.id}
                     onClick={() => nextStep({ class: item.id })}
-                    className={`flex flex-col items-center justify-center p-12 rounded-[2.5rem] border-2 border-[#1e3a5f] ${item.bg} ${item.border} transition-all group relative overflow-hidden`}
+                    className={`flex flex-col items-center justify-center p-12 rounded-[2.5rem] border-2 border-[var(--bg-border)] ${item.bg} ${item.border} transition-all group relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <item.icon className={`w-16 h-16 mb-4 ${item.color} group-hover:scale-110 transition-transform relative z-10`} />
@@ -95,7 +95,7 @@ const SurveyPopup = () => {
                   <button
                     key={item.id}
                     onClick={() => nextStep({ science: item.id })}
-                    className={`flex flex-col items-center justify-center p-12 rounded-[2.5rem] border-2 border-[#1e3a5f] ${item.bg} ${item.border} transition-all group relative overflow-hidden`}
+                    className={`flex flex-col items-center justify-center p-12 rounded-[2.5rem] border-2 border-[var(--bg-border)] ${item.bg} ${item.border} transition-all group relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <item.icon className={`w-16 h-16 mb-4 ${item.color} group-hover:scale-110 transition-transform relative z-10`} />

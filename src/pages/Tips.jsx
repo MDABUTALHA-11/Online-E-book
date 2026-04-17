@@ -24,7 +24,7 @@ const Tips = () => {
       {/* Hero Section */}
       <section className="relative pt-8 md:pt-16 pb-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[150px] -mr-80 -mt-80 animate-pulse-soft pointer-events-none" style={{ background: 'rgba(34,197,94,0.05)' }} />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] -ml-40 animate-pulse-soft delay-1000 pointer-events-none" style={{ background: 'rgba(14,165,233,0.05)' }} />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] -ml-40 animate-pulse-soft delay-1000 pointer-events-none" style={{ background: 'rgba(34,197,94,0.05)' }} />
 
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -53,7 +53,7 @@ const Tips = () => {
                     style={
                       activeCategory === cat
                         ? { background: '#22C55E', color: 'white', border: '1px solid #22C55E', boxShadow: '0 4px 12px rgba(34,197,94,0.3)' }
-                        : { background: '#112236', color: '#64748b', border: '1px solid #1e3a5f' }
+                        : { background: 'var(--bg-elevated)', color: '#64748b', border: '1px solid var(--bg-border)' }
                     }
                   >
                     {cat}
@@ -69,13 +69,13 @@ const Tips = () => {
               transition={{ delay: 0.2 }}
               className="hidden lg:flex items-center justify-center p-8"
             >
-               <div className="w-full aspect-square rounded-[3rem] overflow-hidden relative" style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}>
+               <div className="w-full aspect-square rounded-[3rem] overflow-hidden relative" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
                 <img
                   src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1400&auto=format&fit=crop"
                   alt="Student Study Tips"
                   className="w-full h-full object-cover opacity-70 mix-blend-luminosity"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060d14] to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-app)] to-transparent pointer-events-none" />
                 <div className="absolute inset-0" style={{ background: 'rgba(34,197,94,0.1)', mixBlendMode: 'overlay' }} />
               </div>
             </motion.div>
@@ -87,11 +87,11 @@ const Tips = () => {
       <div className="container mx-auto max-w-7xl relative z-20">
         {/* Count Info */}
         <div className="flex items-center gap-4 mb-12 mt-8 md:mt-16">
-          <div className="h-px flex-1" style={{ background: '#1e3a5f' }} />
+          <div className="h-px flex-1" style={{ background: 'var(--bg-border)' }} />
           <span className="font-black en-font text-xs tracking-[0.2em] uppercase whitespace-nowrap" style={{ color: '#64748b' }}>
             Showing {filtered.length} Expert Tips
           </span>
-          <div className="h-px flex-1" style={{ background: '#1e3a5f' }} />
+          <div className="h-px flex-1" style={{ background: 'var(--bg-border)' }} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -107,7 +107,7 @@ const Tips = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.07, duration: 0.4 }}
                 className="group relative rounded-[2rem] p-7 md:p-10 transition-all duration-300 hover:-translate-y-2 overflow-hidden h-full"
-                style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+                style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: tip.color }} />
 
@@ -116,7 +116,7 @@ const Tips = () => {
                     <tip.icon className="w-6 h-6 md:w-8 md:h-8" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="inline-block text-[10px] font-black en-font tracking-[0.2em] uppercase mb-4 px-3 py-1 rounded-full text-white" style={{ background: '#112236', border: '1px solid #1e3a5f' }}>
+                    <span className="inline-block text-[10px] font-black en-font tracking-[0.2em] uppercase mb-4 px-3 py-1 rounded-full text-white" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--bg-border)' }}>
                       {tip.tag}
                     </span>
                     <h3 className="text-xl md:text-2xl font-bn font-black mb-3 text-white italic group-hover:text-[#22C55E] transition-colors leading-tight">
@@ -137,7 +137,7 @@ const Tips = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-20 md:mt-32 grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-[3rem] lg:rounded-[4rem] overflow-hidden shadow-2xl relative" style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}>
+        <div className="mt-20 md:mt-32 grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-[3rem] lg:rounded-[4rem] overflow-hidden shadow-2xl relative" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
           <div className="p-10 md:p-20 flex flex-col justify-center relative z-10">
             <div className="w-16 h-16 rounded-3xl flex items-center justify-center mb-8" style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)' }}>
               <Brain className="w-8 h-8 text-[#22C55E]" />
@@ -152,18 +152,18 @@ const Tips = () => {
               <Link to="/subscription" className="h-[54px] px-8 rounded-2xl text-[15px] font-bn font-black text-white flex items-center justify-center gap-3 transition-all hover:scale-105" style={{ background: '#22C55E', boxShadow: '0 6px 20px rgba(34,197,94,0.35)' }}>
                 VIP মেম্বার হন <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link to="/categories" className="h-[54px] px-8 rounded-2xl text-[15px] flex items-center justify-center transition-all bg-[#112236] text-[#22C55E] font-bn italic" style={{ border: '1.5px solid #1e3a5f' }}>
+              <Link to="/categories" className="h-[54px] px-8 rounded-2xl text-[15px] flex items-center justify-center transition-all bg-[var(--bg-elevated)] text-[#22C55E] font-bn italic" style={{ border: '1.5px solid var(--bg-border)' }}>
                 নোটস দেখুন
               </Link>
             </div>
           </div>
-          <div className="hidden lg:block relative overflow-hidden bg-[#060d14]">
+          <div className="hidden lg:block relative overflow-hidden bg-[var(--bg-app)]">
             <img
               src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1400&auto=format&fit=crop"
               alt="Study Books"
               className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0d1b2a] via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-surface)] via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </div>

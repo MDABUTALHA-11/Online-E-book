@@ -1,3 +1,5 @@
+# Shaifly - SSC & HSC একাডেমিক নোট এবং গাইড লাইব্রেরি
+
 <!DOCTYPE html>
 <html lang="bn">
   <head>
@@ -17,12 +19,11 @@
     
     <!-- Google Adsense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9116809033361281" crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-9116809033361281">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CDN for Reliability -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,16 +32,15 @@
         theme: {
           extend: {
             colors: {
-              primary: '#22C55E',
-              secondary: '#10b981',
+              primary: '#10b981',
+              secondary: '#3b82f6',
               accent: '#facc15',
-              navy: '#040a06',
+              navy: '#0f172a',
             },
             fontFamily: {
               bn: ['Mina', 'sans-serif'],
               en: ['Outfit', 'sans-serif'],
               body: ['Hind Siliguri', 'sans-serif'],
-              brand: ['Bungee', 'cursive'],
             }
           }
         }

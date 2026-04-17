@@ -101,7 +101,7 @@ const QuizPlay = () => {
       {/* Top Bar */}
       <div
         className="sticky top-0 z-50 flex items-center justify-between px-5 py-4 mb-8 rounded-2xl"
-        style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+        style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
       >
         <div className="flex flex-col gap-1 min-w-0">
           <span className="text-[10px] font-black uppercase tracking-widest text-[#22C55E]">
@@ -117,7 +117,7 @@ const QuizPlay = () => {
           style={
             isCritical
               ? { background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }
-              : { background: "#112236", color: "#22C55E", border: "1px solid #1e3a5f" }
+              : { background: "var(--bg-elevated)", color: "#22C55E", border: "1px solid var(--bg-border)" }
           }
         >
           <Clock className="w-4 h-4" />
@@ -135,7 +135,7 @@ const QuizPlay = () => {
       </div>
 
       {/* Progress Bar */}
-      <div className="h-1.5 rounded-full mb-8 overflow-hidden" style={{ background: "#112236" }}>
+      <div className="h-1.5 rounded-full mb-8 overflow-hidden" style={{ background: "var(--bg-elevated)" }}>
         <motion.div
           className="h-full rounded-full"
           style={{ background: "#22C55E" }}
@@ -155,7 +155,7 @@ const QuizPlay = () => {
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.25 }}
               className="rounded-2xl p-7 md:p-10 mb-6"
-              style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+              style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
             >
               <div className="flex items-center gap-3 mb-6">
                 <span
@@ -164,7 +164,7 @@ const QuizPlay = () => {
                 >
                   {currentIndex + 1}
                 </span>
-                <div className="h-px flex-1" style={{ background: "#1e3a5f" }} />
+                <div className="h-px flex-1" style={{ background: "var(--bg-border)" }} />
               </div>
 
               <h2 className="text-[20px] md:text-[26px] font-black font-bn text-white leading-relaxed mb-9 italic">
@@ -184,7 +184,7 @@ const QuizPlay = () => {
                       style={
                         isSelected
                           ? { background: "rgba(34,197,94,0.12)", border: "2px solid #22C55E", color: "#22C55E", boxShadow: "0 4px 20px rgba(34,197,94,0.15)" }
-                          : { background: "#112236", border: "1.5px solid #1e3a5f", color: "#94a3b8" }
+                          : { background: "var(--bg-elevated)", border: "1.5px solid var(--bg-border)", color: "#94a3b8" }
                       }
                     >
                       <span
@@ -192,7 +192,7 @@ const QuizPlay = () => {
                         style={
                           isSelected
                             ? { background: "#22C55E", color: "white" }
-                            : { background: "#0d1b2a", color: "#475569", border: "1px solid #1e3a5f" }
+                            : { background: "var(--bg-surface)", color: "#475569", border: "1px solid var(--bg-border)" }
                         }
                       >
                         {letter}
@@ -212,7 +212,7 @@ const QuizPlay = () => {
               onClick={goPrev}
               disabled={currentIndex === 0}
               className="flex items-center gap-2 px-6 py-4 rounded-xl font-black text-[14px] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              style={{ background: "#112236", border: "1.5px solid #1e3a5f", color: "#64748b" }}
+              style={{ background: "var(--bg-elevated)", border: "1.5px solid var(--bg-border)", color: "#64748b" }}
             >
               <ChevronLeft className="w-5 h-5" /> Previous
             </button>
@@ -233,7 +233,7 @@ const QuizPlay = () => {
         {/* Question Navigator */}
         <div
           className="rounded-2xl p-5 h-fit sticky top-28"
-          style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+          style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
         >
           <p className="text-[10px] font-black uppercase tracking-widest text-[#334155] mb-4">
             Question Navigator
@@ -252,7 +252,7 @@ const QuizPlay = () => {
                       ? { background: "#22C55E", color: "white", boxShadow: "0 4px 12px rgba(34,197,94,0.3)" }
                       : isAnswered
                       ? { background: "rgba(34,197,94,0.12)", border: "1.5px solid rgba(34,197,94,0.35)", color: "#22C55E" }
-                      : { background: "#112236", border: "1.5px solid #1e3a5f", color: "#475569" }
+                      : { background: "var(--bg-elevated)", border: "1.5px solid var(--bg-border)", color: "#475569" }
                   }
                 >
                   {idx + 1}
@@ -261,12 +261,12 @@ const QuizPlay = () => {
             })}
           </div>
 
-          <div className="mt-6 pt-5 border-t border-[#1e3a5f]">
+          <div className="mt-6 pt-5 border-t border-[var(--bg-border)]">
             <div className="flex justify-between font-black text-[12px] mb-3">
               <span style={{ color: "#334155" }}>Answered</span>
               <span style={{ color: "#22C55E" }}>{answeredCount}/{questions.length}</span>
             </div>
-            <div className="h-2 rounded-full overflow-hidden" style={{ background: "#112236" }}>
+            <div className="h-2 rounded-full overflow-hidden" style={{ background: "var(--bg-elevated)" }}>
               <div
                 className="h-full rounded-full transition-all"
                 style={{ width: (answeredCount / questions.length) * 100 + "%", background: "#22C55E" }}
@@ -293,7 +293,7 @@ const QuizPlay = () => {
               exit={{ scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-md rounded-2xl p-10 text-center"
-              style={{ background: "#0d1b2a", border: "1px solid #1e3a5f" }}
+              style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
             >
               <AlertCircle className="w-12 h-12 mx-auto mb-5 text-yellow-400" />
               <h3 className="text-[24px] font-black font-bn text-white italic mb-3">
@@ -311,7 +311,7 @@ const QuizPlay = () => {
                 <button
                   onClick={() => setShowConfirm(false)}
                   className="flex-1 py-4 rounded-xl font-black text-[15px] font-bn transition-all"
-                  style={{ background: "#112236", border: "1.5px solid #1e3a5f", color: "#64748b" }}
+                  style={{ background: "var(--bg-elevated)", border: "1.5px solid var(--bg-border)", color: "#64748b" }}
                 >
                   ফিরে যান
                 </button>

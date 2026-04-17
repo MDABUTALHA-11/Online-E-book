@@ -100,7 +100,7 @@ export const books = [
   // --- PHYSICS CHAPTERS ---
   // SSC
   { id: 'p_ssc1', subject: 'physics', level: 'SSC', title: "১ম অধ্যায়: ভৌত রাশি এবং পরিমাপ", author: "শাইফলি টিম", fileSize: "2.5 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
-  { id: 'p_ssc2', subject: 'physics', level: 'SSC', title: "২য় অধ্যায়: গতি", author: "শাইফলি টিম", fileSize: "3.2 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
+  { id: 'p_ssc2', subject: 'physics', level: 'SSC', title: "২য় অধ্যায়: গতি", author: "শাইফলি টিম", fileSize: "12.8 MB", image: "/Book-Image/motion_chapter_cover.png", pdfUrl: "/Physics/PDF/Motion_Blueprint.pdf" },
   { id: 'p_ssc3', subject: 'physics', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "শাইফলি টিম", fileSize: "2.8 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
   { id: 'p_ssc4', subject: 'physics', level: 'SSC', title: "৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি", author: "শাইফলি টিম", fileSize: "3.5 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
   { id: 'p_ssc5', subject: 'physics', level: 'SSC', title: "৫ম অধ্যায়: পদার্থের অবস্থা ও চাপ", author: "শাইফলি টিম", fileSize: "4.1 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },

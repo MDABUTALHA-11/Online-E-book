@@ -13,7 +13,7 @@ export default function CategoryCard({ category }) {
       <motion.div
         whileHover={{ y: -4, borderColor: category.themeColor + '40' }}
         className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-2 sm:gap-4 p-4 sm:p-5 rounded-2xl transition-all duration-300 text-center sm:text-left relative overflow-hidden"
-        style={{ background: '#0d1b2a', border: '1.5px solid #1e3a5f' }}
+        style={{ background: 'var(--bg-surface)', border: '1.5px solid var(--bg-border)' }}
       >
         {/* Glow Background Effect */}
         <div 

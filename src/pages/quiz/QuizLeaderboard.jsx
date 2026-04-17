@@ -85,7 +85,7 @@ const QuizLeaderboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 pt-32 md:pt-48 pb-40 overflow-hidden relative">
+    <div className="min-h-screen bg-[var(--bg-app)] pt-32 md:pt-48 pb-40 overflow-hidden relative">
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none -mt-80 animate-pulse-soft" />
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -116,7 +116,7 @@ const QuizLeaderboard = () => {
         </div>
 
         {/* Board */}
-        <div className="bg-slate-900/50 backdrop-blur-3xl rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-2xl overflow-hidden p-6 md:p-12 min-h-[400px]">
+        <div className="bg-[var(--bg-surface)]/50 backdrop-blur-3xl rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-2xl overflow-hidden p-6 md:p-12 min-h-[400px]">
            {loading ? (
              <div className="flex flex-col items-center justify-center h-full py-32 opacity-70">
                <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />

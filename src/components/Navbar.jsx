@@ -45,7 +45,7 @@ const Navbar = () => {
 
   const getGlassStyle = () => {
     if (scrolled) {
-      return 'bg-slate-950/90 backdrop-blur-xl py-3 px-6 md:px-8 rounded-full shadow-[0_20px_40px_-10px_rgba(16,185,129,0.3)] border border-primary/20 ring-1 ring-white/10';
+      return 'bg-[var(--bg-app)]/90 backdrop-blur-xl py-3 px-6 md:px-8 rounded-full shadow-[0_20px_40px_-10px_rgba(16,185,129,0.3)] border border-primary/20 ring-1 ring-white/10';
     }
     if (isLightAtTop) {
       return 'bg-white/40 backdrop-blur-md py-5 px-6 md:px-8 border border-white/50 shadow-sm rounded-3xl';
@@ -106,7 +106,7 @@ const Navbar = () => {
       </nav>
 
       {/* Full-Screen Mobile Menu Overlay - Moved outside generic nav container for pristine coordinate space */}
-      <div className={`md:hidden fixed inset-0 w-full h-screen bg-slate-950/98 backdrop-blur-3xl z-[110] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-start justify-center overflow-y-auto pb-10 ${
+      <div className={`md:hidden fixed inset-0 w-full h-screen bg-[var(--bg-app)]/98 backdrop-blur-3xl z-[110] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-start justify-center overflow-y-auto pb-10 ${
         isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full pointer-events-none'
       }`}>
           <div className="flex flex-col items-center gap-8 w-full max-w-sm px-10 min-h-max pt-20">

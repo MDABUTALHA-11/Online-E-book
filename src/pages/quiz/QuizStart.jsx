@@ -32,7 +32,7 @@ const QuizStart = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 pt-32 pb-40 relative overflow-hidden">
+    <div className="min-h-screen bg-[var(--bg-app)] flex items-center justify-center p-6 pt-32 pb-40 relative overflow-hidden">
        {/* Background Decorators */}
        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#22C55E]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
        
@@ -40,7 +40,7 @@ const QuizStart = () => {
          initial={{ opacity: 0, scale: 0.95, y: 30 }}
          animate={{ opacity: 1, scale: 1, y: 0 }}
          className="w-full max-w-xl p-8 md:p-14 rounded-[2rem] shadow-2xl relative z-10"
-         style={{ background: '#0d1b2a', border: '1px solid #1e3a5f' }}
+         style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
        >
          <div className="relative mb-10 text-center">
             <div className="w-20 h-20 bg-[#22C55E]/10 rounded-2xl mx-auto flex items-center justify-center border border-[#22C55E]/20 shadow-lg rotate-6" >
@@ -89,9 +89,9 @@ const QuizStart = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full h-16 pl-14 pr-6 rounded-xl font-bn text-xl italic transition-all outline-none text-white shadow-inner"
-                  style={{ background: '#112236', border: '1.5px solid #1e3a5f' }}
+                  style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}
                   onFocus={e => e.currentTarget.style.borderColor = 'rgba(34,197,94,0.4)'}
-                  onBlur={e => e.currentTarget.style.borderColor = '#1e3a5f'}
+                  onBlur={e => e.currentTarget.style.borderColor = 'var(--bg-border)'}
                 />
               </div>
            </div>
@@ -110,9 +110,9 @@ const QuizStart = () => {
                   value={formData.school}
                   onChange={(e) => setFormData({ ...formData, school: e.target.value })}
                   className="w-full h-16 pl-14 pr-6 rounded-xl font-bn text-xl italic transition-all outline-none text-white shadow-inner"
-                  style={{ background: '#112236', border: '1.5px solid #1e3a5f' }}
+                  style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}
                   onFocus={e => e.currentTarget.style.borderColor = 'rgba(34,197,94,0.4)'}
-                  onBlur={e => e.currentTarget.style.borderColor = '#1e3a5f'}
+                  onBlur={e => e.currentTarget.style.borderColor = 'var(--bg-border)'}
                 />
               </div>
            </div>

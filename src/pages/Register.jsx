@@ -53,13 +53,13 @@ const Register = () => {
     <div className="min-h-screen pb-24 pt-10 md:pt-20 flex items-center justify-center relative overflow-hidden">
       {/* Dynamic Background Glows */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#22C55E]/5 rounded-full blur-[120px] pointer-events-none animate-pulse-soft" />
-      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none animate-pulse-soft delay-700" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none animate-pulse-soft delay-700" />
 
       <div className="container mx-auto px-4 max-w-xl relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#0d1b2a] border border-[#1e3a5f] rounded-[3rem] p-8 md:p-12 shadow-2xl backdrop-blur-xl relative overflow-hidden"
+          className="bg-[var(--bg-surface)] border border-[var(--bg-border)] rounded-[3rem] p-8 md:p-12 shadow-2xl backdrop-blur-xl relative overflow-hidden"
         >
           {/* Decorative Elements */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#22C55E]/10 to-transparent rounded-bl-[100px] pointer-events-none" />
@@ -68,7 +68,7 @@ const Register = () => {
           <div className="text-center mb-10 relative">
             <div 
               onClick={() => fileInputRef.current?.click()}
-              className="w-24 h-24 bg-[#112236] border border-[#1e3a5f] rounded-[2.5rem] mx-auto flex items-center justify-center mb-6 shadow-xl group cursor-pointer relative overflow-hidden transition-all hover:border-[#22C55E]/40"
+              className="w-24 h-24 bg-[var(--bg-elevated)] border border-[var(--bg-border)] rounded-[2.5rem] mx-auto flex items-center justify-center mb-6 shadow-xl group cursor-pointer relative overflow-hidden transition-all hover:border-[#22C55E]/40"
             >
                 {formData.photo ? (
                   <img src={formData.photo} alt="Profile" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
@@ -99,8 +99,8 @@ const Register = () => {
 
           {/* Stepper */}
           <div className="flex items-center justify-center gap-3 mb-10 px-10">
-             <div className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${step >= 1 ? 'bg-[#22C55E]' : 'bg-[#1e3a5f]'}`} />
-             <div className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${step >= 2 ? 'bg-[#22C55E]' : 'bg-[#1e3a5f]'}`} />
+             <div className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${step >= 1 ? 'bg-[#22C55E]' : 'bg-[var(--bg-border)]'}`} />
+             <div className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${step >= 2 ? 'bg-[#22C55E]' : 'bg-[var(--bg-border)]'}`} />
           </div>
 
           <form onSubmit={handleNext} className="space-y-6">
@@ -118,7 +118,7 @@ const Register = () => {
                       required
                       type="text" 
                       placeholder="আপনার পূর্ণ নাম লিখুন..."
-                      className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[#112236] transition-all"
+                      className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[var(--bg-elevated)] border-[1.5px] border-[var(--bg-border)] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[var(--bg-elevated)] transition-all"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
                     />
@@ -134,7 +134,7 @@ const Register = () => {
                       required
                       type="email" 
                       placeholder="ইমেইল এড্রেস (ঐচ্ছিক নয়)..."
-                      className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[#112236] transition-all"
+                      className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[var(--bg-elevated)] border-[1.5px] border-[var(--bg-border)] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[var(--bg-elevated)] transition-all"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
                     />
@@ -155,7 +155,7 @@ const Register = () => {
                       required
                       type="text" 
                       placeholder="আপনার শিক্ষা প্রতিষ্ঠানের নাম..."
-                      className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[#112236] transition-all"
+                      className="w-full h-16 pl-14 pr-6 rounded-2xl bg-[var(--bg-elevated)] border-[1.5px] border-[var(--bg-border)] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[var(--bg-elevated)] transition-all"
                       value={formData.school}
                       onChange={e => setFormData({...formData, school: e.target.value})}
                     />
@@ -167,14 +167,14 @@ const Register = () => {
                    <button 
                      type="button"
                      onClick={() => setFormData({...formData, level: 'SSC'})}
-                     className={`h-16 rounded-2xl font-bn font-black italic text-lg transition-all border-2 ${formData.level === 'SSC' ? 'bg-[#22C55E] text-white border-[#22C55E]' : 'bg-[#112236] text-[#64748b] border-[#1e3a5f]'}`}
+                     className={`h-16 rounded-2xl font-bn font-black italic text-lg transition-all border-2 ${formData.level === 'SSC' ? 'bg-[#22C55E] text-white border-[#22C55E]' : 'bg-[var(--bg-elevated)] text-[#64748b] border-[var(--bg-border)]'}`}
                    >
                      SSC
                    </button>
                    <button 
                      type="button"
                      onClick={() => setFormData({...formData, level: 'HSC'})}
-                     className={`h-16 rounded-2xl font-bn font-black italic text-lg transition-all border-2 ${formData.level === 'HSC' ? 'bg-[#22C55E] text-white border-[#22C55E]' : 'bg-[#112236] text-[#64748b] border-[#1e3a5f]'}`}
+                     className={`h-16 rounded-2xl font-bn font-black italic text-lg transition-all border-2 ${formData.level === 'HSC' ? 'bg-[#22C55E] text-white border-[#22C55E]' : 'bg-[var(--bg-elevated)] text-[#64748b] border-[var(--bg-border)]'}`}
                    >
                      HSC
                    </button>
@@ -187,7 +187,7 @@ const Register = () => {
                      <PencilLine className="absolute left-5 top-5 w-5 h-5 text-[#334155] group-focus-within:text-[#22C55E] transition-colors" />
                      <textarea 
                        placeholder="আপনার সম্পর্কে কিছু বলুন..."
-                       className="w-full h-32 pl-14 pr-6 py-5 rounded-2xl bg-[#112236] border-[1.5px] border-[#1e3a5f] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[#112236] transition-all resize-none no-scrollbar"
+                       className="w-full h-32 pl-14 pr-6 py-5 rounded-2xl bg-[var(--bg-elevated)] border-[1.5px] border-[var(--bg-border)] text-white font-bn font-black italic text-[16px] outline-none focus:border-[#22C55E]/40 focus:bg-[var(--bg-elevated)] transition-all resize-none no-scrollbar"
                        value={formData.bio}
                        onChange={e => setFormData({...formData, bio: e.target.value})}
                      />
@@ -217,7 +217,7 @@ const Register = () => {
             </div>
 
             {/* Footer Info */}
-            <div className="bg-[#112236]/50 rounded-2xl p-4 flex items-center gap-3 border border-[#1e3a5f]/50">
+            <div className="bg-[var(--bg-elevated)]/50 rounded-2xl p-4 flex items-center gap-3 border border-[var(--bg-border)]/50">
                <ShieldCheck className="w-5 h-5 text-[#22C55E] shrink-0" />
                <p className="text-[12px] font-bn italic font-bold text-slate-500 leading-tight">
                   আপনার তথ্যগুলো সম্পূর্ণ নিরাপদ। আমরা কোনো স্প্যাম মেইল পাঠাই না।
