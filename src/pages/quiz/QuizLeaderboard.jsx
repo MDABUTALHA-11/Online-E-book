@@ -4,6 +4,7 @@ import { Trophy, Medal, MapPin, Search, ArrowRight, Activity, Zap, Loader2, Book
 import { useLocation, useNavigate } from 'react-router-dom';
 import { db } from '../../lib/firebase';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { quizSubjects } from './QuizHome';
 
 const QuizLeaderboard = () => {
   const [scores, setScores] = useState([]);
@@ -13,7 +14,8 @@ const QuizLeaderboard = () => {
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
-  const subjectId = params.get('subject') || 'physics';
+  const initialSubject = params.get('subject') || 'physics';
+  const [activeSubject, setActiveSubject] = useState(initialSubject);
 
   useEffect(() => {
     // Load current user profile from storage
@@ -24,12 +26,10 @@ const QuizLeaderboard = () => {
     const q = query(scoresRef, orderBy('score', 'desc'));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      // Deduplicate by name + school, keeping highest score
       const uniqueMap = new Map();
-      
       snapshot.forEach((doc) => {
         const data = doc.data();
-        if ((data.subject || 'physics') === subjectId) {
+        if ((data.subject || 'physics') === activeSubject) {
           const key = `${data.name}-${data.school}`;
           if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
             uniqueMap.set(key, data);
@@ -40,11 +40,10 @@ const QuizLeaderboard = () => {
       let finalScores = Array.from(uniqueMap.values()).sort((a, b) => b.score - a.score);
       
       if (finalScores.length === 0) {
-        // Fallback to local storage if firebase fails or is empty initially
         const local = JSON.parse(localStorage.getItem('scores')) || [];
         const localUniqueMap = new Map();
         local.forEach((data) => {
-          if ((data.subject || 'physics') === subjectId) {
+          if ((data.subject || 'physics') === activeSubject) {
             const key = `${data.name}-${data.school}`;
             if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
               localUniqueMap.set(key, data);
@@ -61,7 +60,7 @@ const QuizLeaderboard = () => {
       const local = JSON.parse(localStorage.getItem('scores')) || [];
       const localUniqueMap = new Map();
       local.forEach((data) => {
-        if ((data.subject || 'physics') === subjectId) {
+        if ((data.subject || 'physics') === activeSubject) {
           const key = `${data.name}-${data.school}`;
           if (!localUniqueMap.has(key) || localUniqueMap.get(key).score < data.score) {
             localUniqueMap.set(key, data);
@@ -73,7 +72,13 @@ const QuizLeaderboard = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [activeSubject]);
+
+  const handleSubjectChange = (id) => {
+    setActiveSubject(id);
+    navigate(`/quiz/leaderboard?subject=${id}`);
+    setLoading(true);
+  };
 
   const getRankBadge = (idx) => {
     switch(idx) {
@@ -97,12 +102,22 @@ const QuizLeaderboard = () => {
            <h1 className="text-5xl md:text-[6rem] font-bn font-black text-white italic leading-none mb-6 tracking-tighter">
              সেরাদের <span className="text-yellow-400 italic">তালিকা</span>
            </h1>
-           <div className="inline-flex items-center gap-2 px-5 py-2 mb-6 rounded-full border border-primary/20 bg-primary/10 text-primary font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-             <BookOpen className="w-4 h-4" /> {subjectId.replace('-', ' ')}
-           </div>
-           <p className="text-2xl text-slate-400 font-bn italic leading-relaxed">
+           <p className="text-2xl text-slate-400 font-bn italic leading-relaxed mb-12">
              SSC Super Group Quiz-এর সকল প্রতিযোগীর লাইভ র‍্যাঙ্কিং। যারা সেরা, তাদের নাম সবসময় উপরে!
            </p>
+
+           {/* Subject Selector Tabs */}
+           <div className="flex overflow-x-auto no-scrollbar gap-3 pb-4 mb-4 justify-start md:justify-center">
+              {quizSubjects.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => handleSubjectChange(s.id)}
+                  className={`flex-shrink-0 px-6 py-3 rounded-2xl font-bn font-black italic text-[15px] transition-all border ${activeSubject === s.id ? 'bg-[#22C55E] text-white border-[#22C55E] shadow-[0_10px_30px_rgba(34,197,94,0.3)]' : 'bg-white/5 text-slate-400 border-white/10 hover:bg-white/10'}`}
+                >
+                  {s.titleBn}
+                </button>
+              ))}
+           </div>
         </div>
 
         {/* Action Button Section */}

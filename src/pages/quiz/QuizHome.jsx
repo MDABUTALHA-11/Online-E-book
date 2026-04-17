@@ -9,7 +9,7 @@ import GoogleAd from '../../components/GoogleAd';
 import QuizBannerImg from '../../assets/quiz_banner.png';
 import TrophyCtaImg from '../../assets/trophy_cta.png';
 
-const quizSubjects = [
+export const quizSubjects = [
   {
     id: 'physics',
     titleEn: 'Physics',
