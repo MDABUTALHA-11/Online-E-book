@@ -193,6 +193,44 @@ const Subscription = () => {
            ))}
         </div>
 
+        {/* ══ WHY GO PREMIUM SECTION ══ */}
+        <div className="mt-24 mb-24 p-8 md:p-16 rounded-[3rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-white font-bn font-black text-[32px] md:text-[48px] italic mb-8 leading-tight">
+              আপনার পড়াশোনাকে আরও <span className="text-[#22C55E]">কার্যকর করে তুলুন</span>
+            </h2>
+            <div className="space-y-6 text-[#64748b] font-bn text-[18px] md:text-[20px] leading-relaxed italic">
+              <p>
+                আমরা জানি, একজন শিক্ষার্থীর জন্য পরীক্ষার আগের সময়টা কতটা মূল্যবান। শাইফলির ভিআইপি মেম্বারশিপ এমনভাবে ডিজাইন করা হয়েছে যেন আপনি কোনো অপ্রয়োজনীয় সময় নষ্ট না করেই আপনার কাঙ্ক্ষিত টপিকে পৌঁছাতে পারেন। সাধারণ ফ্রি ইউজার হিসেবে আপনি নোটগুলো অনলাইনে পড়ার সুযোগ পেলেও, ভিআইপি মেম্বার হিসেবে আপনি পাচ্ছেন হাই-রেজোলিউশন পিডিএফ (PDF) ডাউনলোডের সুবিধা। এতে ইন্টারনেটের সংযোগ ছাড়াই আপনি আপনার নোটগুলো যেকোনো সময় অফলাইনে পড়তে পারবেন।
+              </p>
+              <p>
+                এছাড়া আমাদের প্রিমিয়াম টিপস এবং সাজেশন শিটগুলো তৈরি করেছেন দেশের সেরা অভিজ্ঞ শিক্ষকরা। বিজ্ঞানের জটিল বিষয়গুলো যেমন—ফিজিক্সের ক্যালকুলেশন বা কেমিস্ট্রির মেকানিজম—শিখতে আমাদের ভিআইপি গাইডগুলো আপনাকে একধাপ এগিয়ে রাখবে। শাইফলিতে সাবস্ক্রাইব করা মানে শুধুমাত্র একটি সেবা কেনা নয়, এটি আপনার ভবিষ্যতের একটি ছোট কিন্তু গুরুত্বপূর্ণ ইনভেস্টমেন্ট।
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ SUBSCRIPTION FAQ ══ */}
+        <div className="mb-24">
+           <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bn font-black text-white italic mb-4">সাধারণ কিছু <span style={{ color: '#22C55E' }}>জিজ্ঞাসা</span></h2>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { q: '১. পেমেন্ট করার কতক্ষণ পর মেম্বারশিপ একটিভ হবে?', a: 'বিকাশ পেমেন্ট করার ৩০ সেকেন্ড থেকে ১ মিনিটের মধ্যে আপনার অ্যাকাউন্ট অটোমেটিক VIP হিসেবে আপডেট হয়ে যাবে।' },
+                { q: '২. আমি কি পেমেন্ট করার পর টাকা ফেরত পাব?', a: 'সাধারণত ডিজিটাল পণ্যে রিফান্ড হয় না, তবে কোনো টেকনিক্যাল সমস্যার কারণে সুবিধা না পেলে আমরা ২৪ ঘণ্টার মধ্যে সমস্যার সমাধান বা রিফান্ড নিশ্চিত করি।' },
+                { q: '৩. VIP মেম্বারশিপের মেয়াদ কতদিন?', a: 'আমাদের প্রতিটি প্যাকেজের মেয়াদ ৩০ দিন। মেয়াদ শেষ হওয়ার আগে অ্যাপের মাধ্যমে নোটিফিকেশন পাঠিয়ে আপনাকে জানিয়ে দেওয়া হবে।' },
+                { q: '৪. আমি কি একই অ্যাকাউন্ট একাধিক ডিভাইসে ব্যবহার করতে পারব?', a: 'নিরাপত্তার স্বার্থে আমরা একটি অ্যাকাউন্ট সর্বোচ্চ দুটি ডিভাইসে লগইন করার অনুমতি দিই।' }
+              ].map((faq, i) => (
+                <div key={i} className="p-8 rounded-[2rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
+                   <h3 className="text-white font-black font-bn text-xl mb-3 italic">{faq.q}</h3>
+                   <p className="text-[#64748b] font-bn italic">{faq.a}</p>
+                </div>
+              ))}
+           </div>
+        </div>
+
         {/* Newsletter / CTA */}
         <div className="mt-20 md:mt-32 p-10 md:p-24 rounded-[3rem] md:rounded-[4rem] flex flex-col items-center text-center text-white relative overflow-hidden shadow-2xl" style={{ background: 'linear-gradient(135deg, var(--bg-surface), var(--bg-app))', border: '1px solid var(--bg-border)' }}>
            <div className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[100px] pointer-events-none" style={{ background: 'rgba(34,197,94,0.1)', transform: 'translate(40%, -40%)' }} />
