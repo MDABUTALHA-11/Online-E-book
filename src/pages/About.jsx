@@ -88,9 +88,6 @@ const About = () => {
              </div>
           </div>
 
-             </div>
-          </div>
-
           {/* Expert Contributors Section for E-E-A-T */}
           <div className="mb-24">
              <div className="text-center mb-16">
