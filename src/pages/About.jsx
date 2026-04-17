@@ -37,6 +37,7 @@ const About = () => {
     <div className="pt-8 md:pt-16 min-h-screen text-[#f1f5f9]">
       <section className="section-padding">
         <div className="container mx-auto">
+          {/* ── HERO SECTION ── */}
           <div className="flex flex-col lg:flex-row items-center gap-16 mb-24">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -56,8 +57,21 @@ const About = () => {
               </div>
             </motion.div>
             
-              <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-3xl" style={{ background: 'rgba(34,197,94,0.1)' }} />
-              <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full blur-3xl" style={{ background: 'rgba(34,197,94,0.1)' }} />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="lg:w-1/2 relative"
+            >
+              <div className="aspect-square rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#22C55E]/20 to-transparent border border-[var(--bg-border)] flex items-center justify-center relative group">
+                <BookOpen className="w-32 h-32 text-[#22C55E] opacity-20 group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-x-8 bottom-8 p-6 rounded-2xl bg-[var(--bg-surface)] border border-[var(--bg-border)] shadow-xl z-20">
+                   <p className="text-[#22C55E] text-[10px] font-black uppercase tracking-widest mb-1">Academic Authority</p>
+                   <p className="text-white font-bn font-black italic">SSC & HSC বোর্ড অনুমোদিত সিলেবাস ভিত্তিক নোট</p>
+                </div>
+              </div>
+              <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-3xl opacity-30" style={{ background: '#22C55E' }} />
+              <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full blur-3xl opacity-30" style={{ background: '#16a34a' }} />
             </motion.div>
           </div>
 
