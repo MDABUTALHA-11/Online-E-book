@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Youtube, Linkedin, Mail, Heart, BookOpen, Zap, Trophy, ArrowUpRight, GraduationCap, Star } from 'lucide-react';
+import { Facebook, Youtube, Linkedin, Mail, Heart, BookOpen, Zap, Trophy, ArrowUpRight, GraduationCap, Star, Award } from 'lucide-react';
 import GoogleAd from './GoogleAd';
 
 const socialLinks = [

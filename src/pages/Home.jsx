@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronRight, PlaySquare, FlaskConical, BookOpen, Calculator,
   Leaf, GraduationCap, Star, TrendingUp, Download, Eye, PenTool,
-  Quote, Heart, Award, Video, Clock
+  Quote, Heart, Award, Video, Clock, ArrowRight
 } from 'lucide-react';
 import usePageSEO from '../hooks/usePageSEO';
 import { useViewCount } from '../hooks/useViewCount';
