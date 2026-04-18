@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /Nav/
 
+# Sitemap link
 Sitemap: https://shaifly.com/sitemap.xml

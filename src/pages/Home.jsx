@@ -109,9 +109,9 @@ export default function Home() {
   const { count: totalViews } = useViewCount('total_site_views', 'stats');
 
   usePageSEO({
-    title: 'Shaifly — SSC & HSC একাডেমিক লাইব্রেরি',
-    description: 'বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা একাডেমিক হ্যান্ডনোট, গাইড ও কুইজ।',
-    keywords: 'SSC, HSC, Science, Handnote, Bangladesh Education, Shaifly',
+    title: 'Shaifly - Handnote SSC & Note SSC academic Library',
+    description: 'বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা একাডেমিক হ্যান্ডনোট, গাইড ও কুইজ। Specializing in Handnote SSC and Note SSC pdf download.',
+    keywords: 'handnote ssc, note ssc, ssc science notes, hsc library, shaifly, ssc guide pdf',
   });
 
   return (
