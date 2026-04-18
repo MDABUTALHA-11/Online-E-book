@@ -13,6 +13,8 @@ import GoogleAd from '../components/GoogleAd';
 import BannerImg from '../assets/banner.png';
 import CollaborationImg from '../assets/collaboration.png';
 import ScienceBg from '../assets/science_bg.png';
+import SmartStudentImg from '../assets/smart_student.png';
+import StudentsGroupImg from '../assets/students_group.png';
 
 /* ─── hero photos (Local Assets) ─── */
 const heroPhotos = [BannerImg, CollaborationImg, ScienceBg];
@@ -70,7 +72,7 @@ function NoteCard({ note, outline = false }) {
           }`}
         style={outline
           ? { background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }
-          : { background: '#22C55E', boxShadow: '0 4px 16px rgba(34,197,94,0.25)' }
+          : { background: '#EF4444', boxShadow: '0 4px 16px rgba(239,68,68,0.25)' }
         }
       >
         {outline ? <><ChevronRight className="w-3 h-3" /> View Details</> : <><Download className="w-3 h-3" /> Download</>}
@@ -80,21 +82,21 @@ function NoteCard({ note, outline = false }) {
 }
 
 /* ─── SectionHeader ─── */
-function SectionHeader({ title, icon: Icon }) {
+function SectionHeader({ title, icon: Icon, colorClass = "text-white" }) {
   return (
     <div className="flex justify-between items-end mb-8">
       <div className="flex items-center gap-4">
         {Icon && (
-          <div className="w-12 h-12 rounded-2xl bg-[#22C55E10] border border-[#22C55E20] flex items-center justify-center">
-            <Icon className="w-7 h-7 text-[#22C55E]" />
+          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+            <Icon className={`w-7 h-7 ${colorClass}`} />
           </div>
         )}
         <div>
-          <h2 className="text-white font-bn font-black text-[28px] md:text-[36px] italic tracking-tighter leading-none">{title}</h2>
-          <div className="w-12 h-1 bg-[#22C55E] mt-2 rounded-full opacity-50" />
+          <h2 className={`font-bn font-black text-[28px] md:text-[36px] italic tracking-tighter leading-none ${colorClass}`}>{title}</h2>
+          <div className={`w-12 h-1 mt-2 rounded-full opacity-50 ${colorClass.replace('text-', 'bg-')}`} />
         </div>
       </div>
-      <Link to="/categories" className="flex items-center gap-1.5 text-[#22C55E] text-[14px] font-black no-underline hover:underline italic bg-[#22C55E10] px-4 py-2 rounded-xl border border-[#22C55E15] transition-all hover:bg-[#22C55E20]">
+      <Link to="/categories" className={`flex items-center gap-1.5 text-[14px] font-black no-underline hover:underline italic bg-white/5 px-4 py-2 rounded-xl border border-white/10 transition-all hover:bg-white/10 ${colorClass}`}>
         সব দেখুন <ChevronRight className="w-4 h-4" />
       </Link>
     </div>
@@ -117,7 +119,7 @@ export default function Home() {
 
       {/* ══ HERO BANNER ══════════════════════════════ */}
       <div
-        className="relative rounded-2xl overflow-hidden mb-7 flex items-center"
+        className="relative rounded-2xl overflow-hidden mb-0 flex items-center"
         style={{ background: 'var(--bg-surface)', minHeight: '280px', border: '1px solid var(--bg-border)' }}
       >
         {/* Right photo */}
@@ -143,9 +145,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 px-8 md:px-12 py-10 max-w-lg">
           {/* Badge */}
-          <div
-            className="flex items-center gap-4 mb-5"
-          >
+          <div className="flex items-center gap-4 mb-5">
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest"
               style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)', color: '#22C55E' }}
@@ -153,7 +153,6 @@ export default function Home() {
               <GraduationCap className="w-3.5 h-3.5" />
               SSC · HSC · Bangladesh
             </div>
-            
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest"
               style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)', color: '#22C55E' }}
@@ -164,7 +163,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-white font-bn font-black leading-[0.95] mb-6 italic tracking-tighter" style={{ fontSize: 'clamp(34px,6vw,68px)' }}>
-            তোমার পরীক্ষার <span className="text-gradient-ssc">সেরা প্রস্তুতি</span><br />এখন এক জায়গায়!
+            তোমার পরীক্ষার <span className="text-combo-cyan">সেরা প্রস্তুতি</span><br />এখন এক জায়গায়!
           </h1>
           <p className="font-bn text-[18px] md:text-[20px] leading-relaxed mb-7 font-bold text-slate-400 italic">
             পদার্থ, রসায়ন, গণিত, জীববিজ্ঞান — সব বিষয়ের হ্যান্ডনোট সংগ্রহ করো এখনই।
@@ -188,6 +187,98 @@ export default function Home() {
             >
               <Star className="w-4 h-4" /> কুইজ দাও
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ══ SMART LEARNING HUB SHOWCASE (Refined & Accurate) ══════════════════════ */}
+      <div className="relative mt-20 mb-16 md:mb-20 px-4 md:px-0 z-10 group">
+        
+        {/* Subtle background glow highlights */}
+        <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#22C55E]/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#00DFD8]/10 blur-[100px] rounded-full pointer-events-none" />
+
+        <div 
+          className="relative rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center border border-[#22C55E]/15 overflow-visible"
+          style={{
+            background: 'linear-gradient(145deg, rgba(13,33,20,0.9) 0%, rgba(8,20,12,0.95) 100%)',
+            backdropFilter: 'blur(30px)',
+            boxShadow: '0 40px 100px -20px rgba(0,0,0,0.8)',
+          }}
+        >
+          {/* Animated Mesh Pattern */}
+          <div className="absolute inset-0 rounded-[3rem] opacity-[0.05] pointer-events-none" 
+               style={{ backgroundImage: 'radial-gradient(#22C55E 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+          {/* Left Content */}
+          <div className="relative z-10 flex-1 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6 border border-[#22C55E]/30 bg-[#22C55E]/10">
+              <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
+              <span className="text-[#22C55E] text-[10px] font-black uppercase tracking-[0.2em] font-en">Smart Learning Hub</span>
+            </div>
+            
+            <h2 className="text-white font-bn font-black italic text-[36px] md:text-[54px] leading-tight mb-6">
+              নিজেকে করো <br />
+              <span className="text-combo-red tracking-tighter">ভবিষ্যতের জন্য তৈরি!</span>
+            </h2>
+            
+            <p className="text-slate-400 font-bn text-[18px] md:text-[21px] max-w-lg mx-auto md:mx-0 italic mb-8 opacity-80">
+              আধুনিক সব রিসোর্স ও ইন্টারেক্টিভ কুইজ নিয়ে শাইফলি তোমার একাডেমিক যাত্রায় পাশে আছে সবসময়।
+            </p>
+
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-4">
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-4 transition-transform hover:scale-105">
+                <div className="w-10 h-10 rounded-xl bg-[#22C55E]/20 flex items-center justify-center">
+                  <Award className="w-5 h-5 text-[#22C55E]" />
+                </div>
+                <div>
+                  <div className="text-white font-black text-lg leading-none">১০k+</div>
+                  <div className="text-slate-500 text-[10px] uppercase font-bold tracking-widest mt-1">Users</div>
+                </div>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-4 transition-transform hover:scale-105">
+                <div className="w-10 h-10 rounded-xl bg-[#00DFD8]/20 flex items-center justify-center">
+                  <Star className="w-5 h-5 text-[#00DFD8]" />
+                </div>
+                <div>
+                  <div className="text-white font-black text-lg leading-none">৪.৯/৫</div>
+                  <div className="text-slate-500 text-[10px] uppercase font-bold tracking-widest mt-1">Rating</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content - The New Smart Student Image */}
+          <div className="relative w-full md:w-[40%] flex justify-center mt-12 md:mt-0">
+            {/* Background Halo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 md:w-96 md:h-96 bg-[#22C55E]/10 rounded-full blur-[60px] animate-pulse" />
+            
+            {/* The Image itself with pop-out effect */}
+            <div className="relative">
+              <img
+                src={SmartStudentImg}
+                alt="Smart Student"
+                className="w-auto h-[320px] md:h-[500px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-float"
+                style={{
+                  filter: 'drop-shadow(0 10px 30px rgba(34,197,94,0.3))',
+                }}
+              />
+              
+              {/* Floating micro-interactions */}
+              <div className="absolute top-[15%] -right-10 md:-right-20 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl animate-float-slow">
+                 <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-red-500" />
+                    <span className="text-white font-black text-[10px] font-en">LIVE QUIZ</span>
+                 </div>
+              </div>
+              
+              <div className="absolute bottom-[25%] -left-10 md:-left-20 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl animate-float" style={{ animationDelay: '1s' }}>
+                 <div className="flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-[#00DFD8]" />
+                    <span className="text-[#00DFD8] font-black text-[12px] font-bn">বেস্ট রেজাল্ট</span>
+                 </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -231,13 +322,12 @@ export default function Home() {
         </button>
       </div>
 
-      {/* ══ SUBJECT SHORTCUTS ════════════════════════ */}
       <div className="mb-9">
         <div className="flex justify-between items-center mb-5">
-          <h2 className="text-white font-black text-[20px] md:text-[22px] flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-fuchsia-400" /> <span className="text-gradient-ssc">বিষয়ভিত্তিক নোট</span>
+          <h2 className="text-combo-violet font-black text-[20px] md:text-[22px] flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-combo-violet" /> <span>বিষয়ভিত্তিক নোট</span>
           </h2>
-          <Link to="/categories" className="text-[#22C55E] text-[12px] font-black no-underline hover:underline flex items-center gap-1">
+          <Link to="/categories" className="text-combo-violet text-[12px] font-black no-underline hover:underline flex items-center gap-1">
             সব দেখুন <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -284,11 +374,11 @@ export default function Home() {
       >
         <div className="absolute right-0 top-0 w-64 h-full bg-[#22C55E]/5 blur-3xl pointer-events-none" />
         <div className="flex-1 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#22C55E] text-[10px] font-black uppercase tracking-widest mb-6 font-en">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-combo-green text-[10px] font-black uppercase tracking-widest mb-6 font-en">
             <Video className="w-3.5 h-3.5" /> 1-on-1 Live Support
           </div>
           <h2 className="text-white font-bn font-black text-[32px] md:text-[44px] italic mb-4 leading-tight">
-            পরীক্ষার আগের রাতে কোনো পড়া <span className="text-[#22C55E]">বুঝতে সমস্যা?</span>
+            পরীক্ষার আগের রাতে কোনো পড়া <span className="text-combo-green">বুঝতে সমস্যা?</span>
           </h2>
           <p className="text-slate-400 font-bn text-[18px] md:text-[20px] leading-relaxed italic max-w-2xl">
             আমাদের বিশেষজ্ঞ শিক্ষকদের কাছ থেকে সরাসরি জুম ভিডিও কলের মাধ্যমে আপনার যেকোনো জটিল টপিক বুঝে নিন।
@@ -312,7 +402,7 @@ export default function Home() {
 
       {/* ══ POPULAR NOTES ══ */}
       <div className="mb-9">
-        <SectionHeader title={`${activeFilter} Popular Notes`} icon={TrendingUp} />
+        <SectionHeader title={`${activeFilter} Popular Notes`} icon={TrendingUp} colorClass="text-combo-yellow" />
         <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
           {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').slice(0, 4).map(n => (
             <NoteCard key={n.id} note={n} />
@@ -327,7 +417,7 @@ export default function Home() {
 
       {/* ══ TRENDING ══ */}
       <div className="mb-9">
-        <SectionHeader title="Trending This Week" icon={Star} />
+        <SectionHeader title="Trending This Week" icon={Star} colorClass="text-combo-orange" />
         <div 
           className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 p-4 rounded-3xl relative overflow-hidden"
           style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
@@ -347,7 +437,7 @@ export default function Home() {
       <div className="mb-12 p-8 md:p-12 rounded-[2.5rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
         <div className="max-w-4xl">
           <h2 className="text-white font-bn font-black text-[32px] md:text-[44px] italic mb-6 leading-tight">
-            বাংলাদেশের শিক্ষার্থীদের জন্য <span className="text-[#22C55E]">সেরা ডিজিটাল লাইব্রেরি</span> কেন শাইফলি?
+            বাংলাদেশের শিক্ষার্থীদের জন্য <span className="text-combo-blue">সেরা ডিজিটাল লাইব্রেরি</span> কেন শাইফলি?
           </h2>
           <div className="space-y-6 text-slate-400 font-bn text-[17px] md:text-[19px] leading-relaxed italic">
             <p>
@@ -448,6 +538,49 @@ export default function Home() {
         >
           এখনই যোগ দিন →
         </Link>
+      </div>
+
+      {/* ══ STUDENT COMMUNITY SECTION (Pre-Footer) ══════════════════════ */}
+      <div className="mt-20 mb-16 relative group">
+        <div 
+          className="relative rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center overflow-hidden border border-white/10"
+          style={{ background: 'var(--bg-surface)' }}
+        >
+          {/* Decorative background glow */}
+          <div className="absolute -left-20 -top-20 w-80 h-80 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+          {/* Left Content */}
+          <div className="relative z-10 flex-1 text-center md:text-left">
+            <h2 className="text-white font-bn font-black text-[36px] md:text-[52px] leading-tight mb-6 italic tracking-tight">
+              যুক্ত হও হাজারো <br />
+              <span className="text-combo-violet">সফল শিক্ষার্থীদের দলে!</span>
+            </h2>
+            <p className="text-slate-400 font-bn text-[18px] md:text-[22px] max-w-lg mx-auto md:mx-0 italic mb-10 leading-relaxed font-bold">
+              বাংলাদেশের বিভিন্ন প্রান্তের SSC ও HSC শিক্ষার্থীরা শাইফলির রিসোর্স ব্যবহার করে তাদের সাফল্যের পথ সুগম করছে। আজই তোমার একাডেমিক যাত্রা শুরু করো।
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-8">
+              <div className="flex flex-col">
+                <span className="text-white font-black text-3xl leading-none italic font-en">৫০k+</span>
+                <span className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">Active Students</span>
+              </div>
+              <div className="w-px h-10 bg-white/10 hidden md:block" />
+              <div className="flex flex-col">
+                <span className="text-white font-black text-3xl leading-none italic font-en">১০০+</span>
+                <span className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">Colleges & Schools</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content - Student Group Image */}
+          <div className="relative w-full md:w-[45%] flex justify-center mt-12 md:mt-0">
+             <img 
+               src={StudentsGroupImg} 
+               alt="Successful Students" 
+               className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700"
+             />
+          </div>
+        </div>
       </div>
     </div>
   );

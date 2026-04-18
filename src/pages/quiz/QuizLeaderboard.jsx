@@ -8,7 +8,7 @@ import { quizSubjects } from './QuizHome';
 
 const QuizLeaderboard = () => {
   const [scores, setScores] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser] = useState(() => JSON.parse(localStorage.getItem('user')));
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,12 +17,7 @@ const QuizLeaderboard = () => {
   const initialSubject = params.get('subject') || 'physics';
   const [activeSubject, setActiveSubject] = useState(initialSubject);
 
-  useEffect(() => {
-    // Load current user profile from storage
-    const loggedUser = JSON.parse(localStorage.getItem('user'));
-    setCurrentUser(loggedUser);
-
-    const scoresRef = collection(db, 'quiz_scores');
+  useEffect(() => {    const scoresRef = collection(db, 'quiz_scores');
     const q = query(scoresRef, orderBy('score', 'desc'));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {

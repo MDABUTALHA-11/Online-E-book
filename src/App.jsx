@@ -33,7 +33,7 @@ const TipDetail       = lazy(() => import('./pages/TipDetail'));
 const AdminPayments   = lazy(() => import('./pages/AdminPayments'));
 
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg-app)' }}>
+  <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#000000', backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px)', backgroundSize: '18px 18px' }}>
     <div className="flex flex-col items-center gap-4">
       <div className="w-12 h-12 border-4 border-[var(--bg-border)] border-t-[#22C55E] rounded-full animate-spin" />
       <span className="text-[#22C55E] font-bn font-bold text-sm">দয়া করে অপেক্ষা করুন...</span>
@@ -47,7 +47,7 @@ function App() {
       <ComingSoonProvider>
         <BkashProvider>
         {/* Root: deep black background */}
-        <div className="App relative flex min-h-screen font-en overflow-x-hidden" style={{ background: 'var(--bg-app)', color: '#f1f5f9' }}>
+        <div className="App relative flex min-h-screen font-en overflow-x-hidden" style={{ backgroundColor: '#000000', backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px)', backgroundSize: '18px 18px', color: '#f1f5f9' }}>
           <PageViewTracker />
           {/* Desktop Sidebar */}
           <aside className="sidebar-desktop">

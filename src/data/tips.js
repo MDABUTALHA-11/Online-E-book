@@ -1,5 +1,9 @@
 import { Clock, PenTool, Target, Moon, Zap, Heart, BarChart2, Coffee, Star, Headphones } from 'lucide-react';
 
+import RoutineImg from '../assets/tips/routine.png';
+import NotesImg from '../assets/tips/notes.png';
+import LibraryImg from '../assets/tips/library.png';
+
 export const tipsData = [
   {
     id: 'routine-study',
@@ -11,7 +15,7 @@ export const tipsData = [
     tag: 'Time Management',
     color: 'rgba(59,130,246,0.1)',
     iconBg: '#3b82f6',
-    ghibliImage: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1200&auto=format&fit=crop' // Cozy Desk
+    ghibliImage: RoutineImg
   },
   {
     id: 'short-notes',
@@ -23,7 +27,7 @@ export const tipsData = [
     tag: 'Note Taking',
     color: 'rgba(16,185,129,0.1)',
     iconBg: '#10b981',
-    ghibliImage: 'https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1200&auto=format&fit=crop' // Journaling
+    ghibliImage: NotesImg
   },
   {
     id: 'past-papers',
@@ -35,7 +39,7 @@ export const tipsData = [
     tag: 'Practice',
     color: 'rgba(244,63,94,0.1)',
     iconBg: '#f43f5e',
-    ghibliImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1200&auto=format&fit=crop' // Library
+    ghibliImage: LibraryImg
   },
   {
     id: 'sleep-rest',
@@ -47,7 +51,7 @@ export const tipsData = [
     tag: 'Well-being',
     color: 'rgba(168,85,247,0.1)',
     iconBg: '#a855f7',
-    ghibliImage: 'https://images.unsplash.com/photo-1510255428458-1f5d2109633e?q=80&w=1200&auto=format&fit=crop' // Cozy Window
+    ghibliImage: 'https://images.unsplash.com/photo-1510255428458-1f5d2109633e?q=80&w=1200' // Still good
   },
   {
     id: 'pomodoro-technique',
@@ -59,7 +63,7 @@ export const tipsData = [
     tag: 'Productivity',
     color: 'rgba(234,179,8,0.1)',
     iconBg: '#eab308',
-    ghibliImage: 'https://images.unsplash.com/photo-1584982240751-670f5e3e269c?q=80&w=1200&auto=format&fit=crop' // Lo-fi Desk
+    ghibliImage: RoutineImg // Reusing the cozy desk
   },
   {
     id: 'group-study',
@@ -71,7 +75,7 @@ export const tipsData = [
     tag: 'Collaboration',
     color: 'rgba(236,72,153,0.1)',
     iconBg: '#ec4899',
-    ghibliImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop' // Group in Cafe
+    ghibliImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200'
   },
   {
     id: 'weak-subjects',
@@ -83,7 +87,7 @@ export const tipsData = [
     tag: 'Strategy',
     color: 'rgba(99,102,241,0.1)',
     iconBg: '#6366f1',
-    ghibliImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop' // Study Room
+    ghibliImage: LibraryImg
   },
   {
     id: 'morning-routine',
@@ -95,7 +99,7 @@ export const tipsData = [
     tag: 'Morning Routine',
     color: 'rgba(249,115,22,0.1)',
     iconBg: '#f97316',
-    ghibliImage: 'https://images.unsplash.com/photo-1544233726-9f1d2b27be8b?q=80&w=1200&auto=format&fit=crop' // Steaming Cup
+    ghibliImage: RoutineImg
   },
   {
     id: 'goal-setting',
@@ -107,7 +111,7 @@ export const tipsData = [
     tag: 'Goal Setting',
     color: 'rgba(20,184,166,0.1)',
     iconBg: '#14b8a6',
-    ghibliImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1200&auto=format&fit=crop' // Book & Glasses
+    ghibliImage: NotesImg
   },
   {
     id: 'focus-music',
@@ -119,6 +123,6 @@ export const tipsData = [
     tag: 'Focus',
     color: 'rgba(6,182,212,0.1)',
     iconBg: '#06b6d4',
-    ghibliImage: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop' // Headphones on Table
+    ghibliImage: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200'
   },
 ];

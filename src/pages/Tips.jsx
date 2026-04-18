@@ -6,6 +6,9 @@ import usePageSEO from '../hooks/usePageSEO';
 
 import { tipsData } from '../data/tips';
 
+import RoutineImg from '../assets/tips/routine.png';
+import LibraryImg from '../assets/tips/library.png';
+
 const Tips = () => {
   usePageSEO({
     title: 'পড়ার কৌশল — Shaifly Library',
@@ -71,7 +74,7 @@ const Tips = () => {
             >
                <div className="w-full aspect-square rounded-[3rem] overflow-hidden relative" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1400&auto=format&fit=crop"
+                  src={LibraryImg}
                   alt="Student Study Tips"
                   className="w-full h-full object-cover opacity-70 mix-blend-luminosity"
                 />
@@ -159,7 +162,7 @@ const Tips = () => {
           </div>
           <div className="hidden lg:block relative overflow-hidden bg-[var(--bg-app)]">
             <img
-              src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1400&auto=format&fit=crop"
+              src={RoutineImg}
               alt="Study Books"
               className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity"
             />

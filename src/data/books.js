@@ -1,4 +1,4 @@
-export const categories = [
+﻿export const categories = [
   { id: 'biology', name: 'জীববিজ্ঞান', icon: 'dna', themeColor: '#22C55E', count: '35+ Notes', slug: 'biology' },
   { id: 'physics', name: 'পদার্থবিজ্ঞান', icon: 'atom', themeColor: '#0ea5e9', count: '40+ Notes', slug: 'physics' },
   { id: 'chemistry', name: 'রসায়ন', icon: 'flask-conical', themeColor: '#f59e0b', count: '30+ Notes', slug: 'chemistry' },
@@ -58,7 +58,7 @@ export const books = [
   // --- BIOLOGY CHAPTERS ---
   // SSC
   { id: 'b_ssc1', subject: 'biology', level: 'SSC', title: "১ম অধ্যায়: জীবন পাঠ", author: "শাইফলি টিম", fileSize: "2.5 MB", image: "/Book-Image/ghibli_1.png", pdfUrl: "#" },
-  { id: 'b_ssc2', subject: 'biology', level: 'SSC', title: "২য় অধ্যায়: জীবকোষ ও টিস্যু", author: "শাইফলি টিম", fileSize: "3.2 MB", image: "/Book-Image/ghibli_1.png", pdfUrl: "#" },
+  { id: 'b_ssc2', subject: 'biology', level: 'SSC', title: "২য় অধ্যায়: জীবকোষ ও টিস্যু", author: "শাইফলি টিম", fileSize: "20.0 MB", image: "/Biology/Image/cells_and_tissues_cover.png", pdfUrl: "/Biology/PDF/Cells_and_Tissues.pdf" },
   { id: 'b_ssc3', subject: 'biology', level: 'SSC', title: "৩য় অধ্যায়: কোষ বিভাজন", author: "শাইফলি টিম", fileSize: "2.8 MB", image: "/Book-Image/ghibli_1.png", pdfUrl: "#" },
   { id: 'b_ssc4', subject: 'biology', level: 'SSC', title: " ৪র্থ অধ্যায়: জীবনীশক্তি", author: "শাইফলি টিম", fileSize: "3.5 MB", image: "/Book-Image/ghibli_1.png", pdfUrl: "#" },
   { id: 'b_ssc5', subject: 'biology', level: 'SSC', title: "৫ম অধ্যায়: খাদ্য, পুষ্টি ও পরিপাক", author: "শাইফলি টিম", fileSize: "4.2 MB", image: "/Book-Image/ghibli_1.png", pdfUrl: "#" },
@@ -222,3 +222,4 @@ export const books = [
   { id: 's_ssc13', subject: 'science', level: 'SSC', title: "১৩শ অধ্যায়: সবাই কাছাকাছি", author: "শাইফলি টিম", fileSize: "4.2 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
   { id: 's_ssc14', subject: 'science', level: 'SSC', title: "১৪শ অধ্যায়: জীবন বাঁচাতে বিজ্ঞান", author: "শাইফলি টিম", fileSize: "2.9 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
 ];
+

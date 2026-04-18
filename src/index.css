@@ -18,9 +18,9 @@
   --bg-elevated:   #0d2114;   /* emerald elevated surface */
   --bg-border:     #132b1a;   /* subtle forest border */
 
-  --text-primary:  #f1f5f9;
-  --text-muted:    #64748b;
-  --text-dim:      #334155;
+  --text-primary:  #F8FAFC; /* Premium Off-White */
+  --text-muted:    #94A3B8; /* Slate Muted */
+  --text-dim:      #475569; /* Dark Slate Dim */
 
   --font-bn: 'Mina', sans-serif;
   --font-en: 'Bungee', cursive;
@@ -34,7 +34,14 @@ html { scroll-behavior:smooth; }
 
 body {
   font-family: var(--font-bn);
-  background-color: var(--bg-app);
+  /* ── Black background with white dot pattern ── */
+  background-color: #000000;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.6) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 18px 18px;
   color: var(--text-primary);
   line-height: 1.5;
   font-size: 18px;
@@ -49,14 +56,38 @@ body {
   font-style: italic;
 }
 
-/* Bold, Italicized Headline Style (Leaderboard Look) */
-.sf-headline {
+/* 7-Color Section Utilities */
+.text-combo-red    { color: #FF0000 !important; }
+.text-combo-orange { color: #FF7F00 !important; }
+.text-combo-yellow { color: #FFFF00 !important; }
+.text-combo-green  { color: #22C55E !important; }
+.text-combo-cyan   { color: #00DFD8 !important; }
+.text-combo-blue   { color: #3B82F6 !important; }
+.text-combo-violet { color: #7928CA !important; }
+
+/* Animation for those who want it */
+@keyframes textPulse {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.9; filter: brightness(1.2); }
+}
+.animate-combo { animation: textPulse 3s ease-in-out infinite; }
+
+h1, h2, h3, .sf-headline {
   font-family: var(--font-bn);
   font-weight: 900;
   font-style: italic;
   letter-spacing: -0.04em;
   line-height: 1.1;
   text-transform: none;
+}
+
+/* Ensure body text stays readable */
+p, span, li, a {
+  color: #F8FAFC !important;
+}
+
+.text-white {
+  color: #F8FAFC !important;
 }
 
 .sf-label {
@@ -150,6 +181,11 @@ body {
 }
 .animate-float { animation: float 4s ease-in-out infinite; }
 
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #22C55E, #4ade80);
@@ -167,17 +203,16 @@ body {
 .bg-gradient-arts { background: linear-gradient(135deg, #8A2387, #E94057); }
 .bg-gradient-commerce { background: linear-gradient(135deg, #00c6ff, #0072ff); }
 
-.text-gradient-ssc {
-  background: linear-gradient(135deg, #FF0080, #7928CA);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.text-gradient-hsc {
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.text-gradient-ssc, .text-gradient-hsc {
+  background: linear-gradient(
+    90deg, 
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #00DFD8, #0000FF, #7928CA
+  ) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: textRainbow 8s linear infinite !important;
 }
 
 /* ═══════════════════════════════════════
