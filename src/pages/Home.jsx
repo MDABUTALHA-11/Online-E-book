@@ -21,24 +21,24 @@ const heroPhotos = [BannerImg, CollaborationImg, ScienceBg];
 
 /* ─── note data ─── */
 const trendingNotes = [
-  { id:5, subject:'Premium Bundle', subjectBn:'প্রিমিয়াম', desc:'সকল বিষয়ের প্রিমিয়াম হ্যান্ডনোট একটি প্যাকেজে', path:'/subject/ssc', category: 'SSC' },
-  { id:6, subject:'Biology',        subjectBn:'জীববিজ্ঞান',  desc:'চিত্রসহ কোর্স ম্যাটেরিয়াল ও বিস্তারিত ব্যাখ্যা', path:'/subject/science', category: 'Science' },
-  { id:7, subject:'Higher Math',    subjectBn:'উচ্চতর গণিত', desc:'শর্ট সিলেবাস কমপ্লিট সল্যুশন ও প্র্যাকটিস সেট', path:'/subject/science', category: 'HSC' },
-  { id:8, subject:'English',        subjectBn:'ইংরেজি',       desc:'গ্র্যামার শর্টকাট ও রাইটিং স্পেশাল ট্রিকস', path:'/subject/ssc', category: 'SSC' },
+  { id:5, subject:'Premium Bundle', subjectBn:'প্রিমিয়াম', desc:'সকল বিষয়ের প্রিমিয়াম হ্যান্ডনোট একটি প্যাকেজে', path:'/subject/science', category: 'SSC' },
+  { id:6, subject:'Biology',        subjectBn:'জীববিজ্ঞান',  desc:'চিত্রসহ কোর্স ম্যাটেরিয়াল ও বিস্তারিত ব্যাখ্যা', path:'/subject/biology', category: 'Science' },
+  { id:7, subject:'Higher Math',    subjectBn:'উচ্চতর গণিত', desc:'শর্ট সিলেবাস কমপ্লিট সল্যুশন ও প্র্যাকটিস সেট', path:'/subject/higher-math', category: 'HSC' },
+  { id:8, subject:'English',        subjectBn:'ইংরেজি',       desc:'গ্র্যামার শর্টকাট ও রাইটিং স্পেশাল ট্রিকস', path:'/subject/science', category: 'SSC' },
 ];
 
 const popularNotes = [
-  { id:1, subject:'Physics',   subjectBn:'পদার্থবিজ্ঞান', desc:'চিরায়ত বলবিদ্যা, নিউটনিয়ান বলবিদ্যা সহ সব অধ্যায়ের পূর্ণ নোট', path:'/subject/science', category: 'Science' },
-  { id:2, subject:'Higher Math', subjectBn:'উচ্চতর গণিত', desc:'ত্রিকোণমিতি, ক্যালকুলাস ও ম্যাট্রিক্সের সম্পূর্ণ সমাধান', path:'/subject/science', category: 'HSC' },
-  { id:3, subject:'Chemistry', subjectBn:'রসায়নবিজ্ঞান', desc:'জৈব রসায়ন, অজৈব ও পরিমাণগত রসায়নের সম্পূর্ণ গাইড', path:'/subject/science', category: 'Science' },
-  { id:4, subject:'Biology',   subjectBn:'জীববিজ্ঞান', desc:'উদ্ভিদ শারীরতত্ত্ব, মানবদেহ ও জেনেটিক্সের বিস্তারিত নোট', path:'/subject/science', category: 'SSC' },
+  { id:1, subject:'Physics',   subjectBn:'পদার্থবিজ্ঞান', desc:'চিরায়ত বলবিদ্যা, নিউটনিয়ান বলবিদ্যা সহ সব অধ্যায়ের পূর্ণ নোট', path:'/subject/physics', category: 'Science' },
+  { id:2, subject:'Higher Math', subjectBn:'উচ্চতর গণিত', desc:'ত্রিকোণমিতি, ক্যালকুলাস ও ম্যাট্রিক্সের সম্পূর্ণ সমাধান', path:'/subject/higher-math', category: 'HSC' },
+  { id:3, subject:'Chemistry', subjectBn:'রসায়নবিজ্ঞান', desc:'জৈব রসায়ন, অজৈব ও পরিমাণগত রসায়নের সম্পূর্ণ গাইড', path:'/subject/chemistry', category: 'Science' },
+  { id:4, subject:'Biology',   subjectBn:'জীববিজ্ঞান', desc:'উদ্ভিদ শারীরতত্ত্ব, মানবদেহ ও জেনেটিক্সের বিস্তারিত নোট', path:'/subject/biology', category: 'SSC' },
 ];
 
 const subjectCards = [
-  { label:'Higher Math Handnote',  color:'var(--bg-surface)', border:'#22C55E30', icon:Calculator, path:'/subject/science' },
-  { label:'Physics Handnote',       color:'var(--bg-surface)', border:'#22C55E30', icon:FlaskConical, path:'/subject/science' },
-  { label:'Chemistry Handnote',     color:'var(--bg-surface)', border:'#22C55E30', icon:Leaf,       path:'/subject/science' },
-  { label:'Biology Handnote',       color:'var(--bg-surface)', border:'#22C55E30', icon:BookOpen,   path:'/subject/science' },
+  { label:'Higher Math Handnote',  color:'var(--bg-surface)', border:'#22C55E30', icon:Calculator, path:'/subject/higher-math' },
+  { label:'Physics Handnote',       color:'var(--bg-surface)', border:'#22C55E30', icon:FlaskConical, path:'/subject/physics' },
+  { label:'Chemistry Handnote',     color:'var(--bg-surface)', border:'#22C55E30', icon:Leaf,       path:'/subject/chemistry' },
+  { label:'Biology Handnote',       color:'var(--bg-surface)', border:'#22C55E30', icon:BookOpen,   path:'/subject/biology' },
 ];
 
 const filters = ['SSC','HSC','Science','Arts','Commerce'];

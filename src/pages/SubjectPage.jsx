@@ -6,23 +6,40 @@ import BookCard from '../components/BookCard';
 import { useViewCount } from '../hooks/useViewCount';
 import usePageSEO from '../hooks/usePageSEO';
 import GoogleAd from '../components/GoogleAd';
-import { Search, ArrowLeft, BookOpen, GraduationCap, Eye, Info, ChevronRight } from 'lucide-react';
+import { Search, ArrowLeft, BookOpen, GraduationCap, Eye, Info, ChevronRight, Quote } from 'lucide-react';
+
+import PhysicsImg from '../assets/scientists/physics.png';
+import ChemistryImg from '../assets/scientists/chemistry.png';
+import MathImg from '../assets/scientists/math.png';
+import BiologyImg from '../assets/scientists/biology.png';
+import HigherMathImg from '../assets/scientists/highermath.png';
+import NewtonImg from '../assets/scientists/newton.png';
 
 const SubjectPage = () => {
   const { subjectId } = useParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('All');
 
+  const scientistData = useMemo(() => ({
+    physics: { name: 'Albert Einstein', quote: 'কল্পনা জ্ঞানের চেয়েও বেশি গুরুত্বপূর্ণ।', image: PhysicsImg },
+    chemistry: { name: 'Niels Bohr', quote: 'বাস্তবতা হলো সেটিই যা কোনো কিছু বাস্তব বলে গণ্য করার পর থাকে।', image: ChemistryImg },
+    math: { name: 'Srinivasa Ramanujan', quote: 'আমার কাছে কোনো সমীকরণের অর্থ নেই যতক্ষণ না সেটি ঈশ্বরের চিন্তা প্রকাশ করে।', image: MathImg },
+    biology: { name: 'Charles Darwin', quote: 'যারা পরিবর্তনের সাথে খাপ খাওয়াতে পারে তারাই টিকে থাকে।', image: BiologyImg },
+    'higher-math': { name: 'Leonhard Euler', quote: 'গণিত হলো প্রকৃতির ভাষা এবং মহাবিশ্বের রহস্য উন্মোচনের চাবিকাঠি।', image: HigherMathImg },
+    science: { name: 'Isaac Newton', quote: 'আমি যদি অন্যদের চেয়ে বেশি দূরে দেখে থাকি, তবে তা মহাপুরুষদের কাঁধে দাঁড়িয়ে থাকার কারণে।', image: NewtonImg }
+  }), []);
+
   const subject = categories.find(c => c.slug === subjectId);
+  const scientist = (subjectId && scientistData[subjectId]) ? scientistData[subjectId] : scientistData.science;
   const subjectBooks = useMemo(() => books.filter(b => b.subject === subjectId), [subjectId]);
 
   usePageSEO({
-    title: subject ? `${subject.name} — Shaifly Library` : 'বিষয় পাওয়া যায়নি',
-    description: `SSC ও HSC শিক্ষার্থীদের জন্য ${subject?.name || ''} বিষয়ের সকল হ্যান্ডনোট।`,
-    keywords: `${subject?.name || ''} নোট, SSC, HSC, Shaifly`,
+    title: subject ? `${subject.name} - Shaifly Library` : 'Handnote - Shaifly',
+    description: subject ? `SSC ও HSC শিক্ষার্থীদের জন্য ${subject.name} বিষয়ের সকল হ্যান্ডনোট।` : 'একাডেমিক হ্যান্ডনোট লাইব্রেরি',
+    keywords: `${subject?.name || ''} Handnote, note ssc, handnote ssc`,
   });
 
-  const { count: viewCount, incrementView } = useViewCount(subjectId, 'subject_views');
+  const { count: viewCount, incrementView } = useViewCount(subjectId || 'default', 'subject_views');
 
   React.useEffect(() => {
     if (subjectId) { incrementView(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
@@ -44,8 +61,8 @@ const SubjectPage = () => {
       <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background:'var(--bg-surface)', border:'1px solid var(--bg-border)' }}>
         <Info className="w-8 h-8 text-[#334155]" />
       </div>
-      <h2 className="text-white text-xl font-black font-bn">বিষয়টি খুঁজে পাওয়া যায়নি!</h2>
-      <Link to="/categories" className="font-black text-[14px] px-6 py-3 rounded-xl no-underline text-white transition-all" style={{ background:'#22C55E' }}>ক্যাটাগরি দেখুন</Link>
+      <h2 className="text-white text-xl font-black font-bn uppercase tracking-widest">Subject Not Found!</h2>
+      <Link to="/categories" className="font-black text-[14px] px-6 py-3 rounded-xl no-underline text-white transition-all bg-primary">View Categories</Link>
     </div>
   );
 
@@ -60,40 +77,64 @@ const SubjectPage = () => {
     <div className="min-h-screen pb-12">
 
       <div className="flex items-center gap-2 mb-6 px-2 text-[12px] font-black uppercase tracking-widest text-slate-500 font-en italic">
-        <Link to="/" className="hover:text-[#22C55E] no-underline transition-colors">Home</Link>
+        <Link to="/" className="hover:text-primary no-underline transition-colors">Home</Link>
         <ChevronRight className="w-3 h-3" />
-        <Link to="/categories" className="hover:text-[#22C55E] no-underline transition-colors">Categories</Link>
-        <ChevronRight className="w-3 h-3 text-[#22C55E]" />
+        <Link to="/categories" className="hover:text-primary no-underline transition-colors">Categories</Link>
+        <ChevronRight className="w-3 h-3 text-primary" />
         <span className="text-white">{subject.name}</span>
       </div>
 
-      {/* ── Hero ── */}
-      <div className="relative rounded-2xl overflow-hidden mb-7 px-8 py-10 flex flex-col md:flex-row items-center gap-7" style={{ background:'var(--bg-surface)', border:'1px solid var(--bg-border)' }}>
-        <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background:'rgba(34,197,94,0.06)', filter:'blur(60px)' }} />
-
-        <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center shrink-0" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.2)' }}>
-          <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-[#22C55E]" />
-        </div>
-
-        <div className="relative z-10 text-center md:text-left">
-          <Link to="/categories" className="inline-flex items-center gap-2 text-[14px] font-black uppercase tracking-widest no-underline transition-colors mb-4 group font-en italic" style={{ color:'#64748b' }}
-            onMouseEnter={e=>e.currentTarget.style.color='#22C55E'} onMouseLeave={e=>e.currentTarget.style.color='#64748b'}>
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" /> সকল বিষয়
-          </Link>
-          <h1 className="text-white text-[42px] md:text-[72px] font-bn font-black leading-[0.9] mb-4 italic tracking-tighter">
-            {subject.name} <span style={{ color:'#22C55E' }}>লাইব্রেরি</span>
-          </h1>
-          <p className="text-[18px] md:text-[22px] font-bn leading-relaxed max-w-xl font-bold italic text-slate-400">
-            SSC ও HSC পরীক্ষার্থীদের জন্য {subject.name} বিষয়ের সকল হ্যান্ডনোট ও গাইড।
-          </p>
-          <div className="flex items-center gap-3 mt-4 flex-wrap justify-center md:justify-start">
-            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-black text-[#22C55E]" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.15)' }}>
-              <Eye className="w-3.5 h-3.5" /> {viewCount.toLocaleString()} Views
-            </div>
-            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-black text-[#22C55E]" style={{ background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.15)' }}>
-              <BookOpen className="w-3.5 h-3.5" /> {subjectBooks.length} Notes
-            </div>
+      {/* ── Hero Banner with Scientist (Ultra Stable) ── */}
+      <div className="relative rounded-[2.5rem] overflow-hidden mb-10 min-h-[320px] md:min-h-[420px] flex flex-col md:flex-row items-center border border-white/10" style={{ background:'var(--bg-surface)' }}>
+        
+        {/* Background Scientist Image */}
+        {scientist && (
+          <div className="absolute right-0 top-0 bottom-0 w-full md:w-[55%] z-0 h-full pointer-events-none select-none">
+             <img 
+               src={scientist.image} 
+               alt={scientist.name} 
+               className="w-full h-full object-cover object-center opacity-60 md:opacity-80 mix-blend-luminosity md:mix-blend-normal transform scale-110"
+             />
+             <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/80 md:via-[var(--bg-surface)]/30 to-transparent" />
           </div>
+        )}
+
+        {/* Content */}
+        <div className="relative z-10 p-8 md:p-16 max-w-2xl w-full">
+           <Link to="/categories" className="inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.2em] no-underline transition-colors mb-8 group font-en italic text-slate-500 hover:text-primary">
+             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Library
+           </Link>
+           
+           <h1 className="text-white text-[42px] md:text-[72px] font-bn font-black leading-[0.85] mb-8 italic tracking-tighter">
+             {subject.name} <span className="text-primary">লাইব্রেরি</span>
+           </h1>
+
+           {/* Quote Section */}
+           {scientist && (
+             <div className="mt-8 border-l-4 border-primary pl-6 py-2 bg-white/5 rounded-r-2xl pr-8">
+                <Quote className="w-8 h-8 text-primary opacity-20 mb-2 rotate-180" />
+                <p className="text-[20px] md:text-[28px] font-bn leading-relaxed font-bold italic text-white mb-2 tracking-tight">
+                  "{scientist.quote}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-8 bg-primary/40" />
+                  <span className="text-primary font-en font-black text-[12px] uppercase tracking-[0.3em] opacity-80">
+                     {scientist.name}
+                  </span>
+                </div>
+             </div>
+           )}
+
+           <div className="flex items-center gap-4 mt-12">
+              <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                 <Eye className="w-4 h-4 text-cyan-400" />
+                 <span className="text-white font-black text-[13px] font-en uppercase tracking-tighter">{viewCount.toLocaleString()} Views</span>
+              </div>
+              <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                 <BookOpen className="w-4 h-4 text-violet-400" />
+                 <span className="text-white font-black text-[13px] font-en uppercase tracking-tighter">{subjectBooks.length} Notes</span>
+              </div>
+           </div>
         </div>
       </div>
 

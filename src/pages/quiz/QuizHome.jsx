@@ -7,9 +7,11 @@ import GoogleAd from '../../components/GoogleAd';
 
 // Custom Assets
 import QuizBannerImg from '../../assets/quiz_banner.png';
+import QuizStudentsImg from '../../assets/quiz_students.png';
 import TrophyCtaImg from '../../assets/trophy_cta.png';
 
 export const quizSubjects = [
+// ... (rest of the code remains same until the return statement)
   {
     id: 'physics',
     titleEn: 'Physics',
@@ -165,13 +167,13 @@ export default function QuizHome() {
         </div>
 
         {/* Right decoration photo */}
-        <div className="relative w-full md:w-[45%] h-64 md:h-[450px] overflow-hidden block">
+        <div className="relative w-full md:w-[45%] h-64 md:h-[500px] overflow-hidden block">
           <img
-            src={QuizBannerImg}
-            className="w-full h-full object-cover grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition-all duration-700 transform scale-110 group-hover:scale-100"
-            alt="Quiz Banner"
+            src={QuizStudentsImg}
+            className="w-full h-full object-cover object-top transition-all duration-700 transform scale-110 group-hover:scale-100"
+            alt="Quiz Team"
           />
-          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/40 to-transparent" />
         </div>
       </div>
 
