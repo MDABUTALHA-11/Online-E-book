@@ -164,7 +164,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-white font-bn font-black leading-[0.95] mb-6 italic tracking-tighter" style={{ fontSize: 'clamp(34px,6vw,68px)' }}>
-            তোমার পরীক্ষার <span style={{ color: '#22C55E' }}>সেরা প্রস্তুতি</span><br />এখন এক জায়গায়!
+            তোমার পরীক্ষার <span className="text-gradient-ssc">সেরা প্রস্তুতি</span><br />এখন এক জায়গায়!
           </h1>
           <p className="font-bn text-[18px] md:text-[20px] leading-relaxed mb-7 font-bold text-slate-400 italic">
             পদার্থ, রসায়ন, গণিত, জীববিজ্ঞান — সব বিষয়ের হ্যান্ডনোট সংগ্রহ করো এখনই।
@@ -198,27 +198,33 @@ export default function Home() {
           className="flex items-center gap-1.5 p-1.5 rounded-2xl flex-wrap"
           style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
         >
-          {filters.map((f) => (
+          {filters.map((f) => {
+            const filterStyles = {
+              'SSC': 'bg-gradient-ssc',
+              'HSC': 'bg-gradient-hsc',
+              'Science': 'bg-gradient-science',
+              'Arts': 'bg-gradient-arts',
+              'Commerce': 'bg-gradient-commerce',
+            };
+            return (
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className="px-5 py-2.5 rounded-xl font-black text-[13px] transition-all duration-300 uppercase tracking-wider font-en"
+              className={`px-5 py-2.5 rounded-xl font-black text-[13px] transition-all duration-300 uppercase tracking-wider font-en ${activeFilter === f ? filterStyles[f] : ''}`}
               style={activeFilter === f
-                ? { background: '#22C55E', color: 'white', boxShadow: '0 4px 12px rgba(34,197,94,0.3)' }
+                ? { color: 'white', boxShadow: '0 4px 15px rgba(255,0,128,0.2)' }
                 : { color: '#475569', background: 'transparent' }
               }
             >
               {f}
             </button>
-          ))}
+          )})}
         </div>
 
         <button
           onClick={() => navigate('/quiz')}
-          className="flex items-center gap-2 font-black text-[14px] h-[44px] px-6 rounded-2xl text-white transition-all hover:-translate-y-0.5 shrink-0 mt-3 md:mt-0 w-full md:w-auto justify-center"
-          style={{ background: '#22C55E', boxShadow: '0 4px 16px rgba(34,197,94,0.28)' }}
-          onMouseEnter={e => e.currentTarget.style.background = '#16a34a'}
-          onMouseLeave={e => e.currentTarget.style.background = '#22C55E'}
+          className="flex items-center gap-2 font-black text-[14px] h-[44px] px-6 rounded-2xl text-white transition-all hover:-translate-y-0.5 shrink-0 mt-3 md:mt-0 w-full md:w-auto justify-center bg-gradient-ssc"
+          style={{ boxShadow: '0 4px 16px rgba(255,0,128,0.3)' }}
         >
           <PlaySquare className="w-4 h-4 fill-white text-white" />
           Start Quiz
@@ -229,7 +235,7 @@ export default function Home() {
       <div className="mb-9">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-white font-black text-[20px] md:text-[22px] flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-[#22C55E]" /> বিষয়ভিত্তিক নোট
+            <BookOpen className="w-5 h-5 text-fuchsia-400" /> <span className="text-gradient-ssc">বিষয়ভিত্তিক নোট</span>
           </h2>
           <Link to="/categories" className="text-[#22C55E] text-[12px] font-black no-underline hover:underline flex items-center gap-1">
             সব দেখুন <ChevronRight className="w-3.5 h-3.5" />
@@ -416,8 +422,8 @@ export default function Home() {
 
       {/* ══ PROFILE CTA BANNER ══════════════════════ */}
       <div
-        className="rounded-2xl px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #22C55E, #16a34a)', boxShadow: '0 10px 40px rgba(34,197,94,0.25)' }}
+        className="rounded-2xl px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden bg-gradient-hsc"
+        style={{ boxShadow: '0 10px 40px rgba(0,198,255,0.25)' }}
       >
         <div className="absolute right-0 top-0 w-64 h-full opacity-20 overflow-hidden">
           <img 

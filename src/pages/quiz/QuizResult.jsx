@@ -110,8 +110,8 @@ const QuizResult = () => {
         setResult(parsedData);
       }
       
-      // Clear answers storage from localStorage
-      localStorage.removeItem('quiz_answers');
+      // Removed clearing of quiz_answers to prevent React Strict Mode bug
+      // quiz_answers is now cleared in QuizStart.jsx instead.
     };
 
     saveAndCalculateRank();

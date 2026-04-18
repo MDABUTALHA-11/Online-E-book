@@ -159,6 +159,28 @@ body {
 }
 
 /* ═══════════════════════════════════════
+   BANGLADESHI STUDENT VIBES (SSC & HSC)
+═══════════════════════════════════════ */
+.bg-gradient-ssc { background: linear-gradient(135deg, #FF0080, #7928CA); }
+.bg-gradient-hsc { background: linear-gradient(135deg, #00DFD8, #007CF0); }
+.bg-gradient-science { background: linear-gradient(135deg, #FF4D4D, #F9CB28); }
+.bg-gradient-arts { background: linear-gradient(135deg, #8A2387, #E94057); }
+.bg-gradient-commerce { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+
+.text-gradient-ssc {
+  background: linear-gradient(135deg, #FF0080, #7928CA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-hsc {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════
    SURVEY OVERLAY
 ═══════════════════════════════════════ */
 .survey-overlay {

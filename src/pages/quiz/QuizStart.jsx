@@ -26,6 +26,7 @@ const QuizStart = () => {
     incrementCount();
     
     // Store user data
+    localStorage.removeItem("quiz_answers");
     localStorage.setItem("user", JSON.stringify({ ...formData, mode }));
     // Redirect to quiz play
     navigate(`/quiz/play?subject=${subjectId}`);

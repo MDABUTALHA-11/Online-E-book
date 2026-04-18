@@ -138,14 +138,14 @@ export default function QuizHome() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/20 text-[#22C55E] text-[10px] font-black uppercase tracking-[0.2em] mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-hsc text-white text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-[0_0_20px_rgba(0,198,255,0.4)]"
           >
-            <Activity className="w-3.5 h-3.5 animate-pulse" />
+            <Activity className="w-3.5 h-3.5 animate-pulse text-white" />
             LIVE EXAM SYSTEM
           </motion.div>
 
           <h1 className="text-4xl md:text-7xl sf-headline text-white mb-6 italic tracking-tighter leading-none">
-            SSC & HSC <span className="text-[#22C55E]">Group</span> Quiz
+            <span className="text-gradient-ssc">SSC</span> & <span className="text-gradient-hsc">HSC</span> Group Quiz
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-400 font-bn italic leading-relaxed max-w-2xl mb-10">
@@ -186,7 +186,7 @@ export default function QuizHome() {
           <div className="flex items-center gap-4">
             <div className="w-1.5 h-10 bg-emerald-500 rounded-full" />
             <h2 className="text-3xl md:text-5xl sf-headline text-white italic">
-              HSC <span className="text-emerald-500">Group</span>
+              <span className="text-gradient-hsc">HSC</span> Group
             </h2>
           </div>
           <div className="h-[1px] flex-1 bg-white/5 mx-8 hidden md:block"></div>
@@ -245,7 +245,7 @@ export default function QuizHome() {
           <div className="flex items-center gap-4">
             <div className="w-1.5 h-10 bg-[#22C55E] rounded-full" />
             <h2 className="text-3xl md:text-5xl sf-headline text-white italic">
-              SSC <span className="text-[#22C55E]">Group</span>
+              <span className="text-gradient-ssc">SSC</span> Group
             </h2>
           </div>
           <div className="h-[1px] flex-1 bg-white/5 mx-8 hidden md:block"></div>
@@ -314,13 +314,13 @@ export default function QuizHome() {
             <Trophy className="w-6 h-6" />
             <span className="sf-label text-xs tracking-[0.3em]">RANKINGS & REWARDS</span>
           </div>
-          <h2 className="text-3xl md:text-5xl sf-headline text-white italic mb-4">লিডারবোর্ডে তোমার <span className="text-[#22C55E]">নাম দেখতে চাও?</span></h2>
+          <h2 className="text-3xl md:text-5xl sf-headline text-white italic mb-4">লিডারবোর্ডে তোমার <span className="text-gradient-ssc">নাম দেখতে চাও?</span></h2>
           <p className="text-lg md:text-xl font-bn text-slate-500 italic max-w-xl">প্রোফাইল তৈরি করো এবং কুইজে অংশ নিয়ে নিজেকে প্রমান করো।</p>
         </div>
 
         <button
           onClick={() => navigate('/quiz/leaderboard')}
-          className="relative z-10 h-16 px-10 rounded-2xl bg-[#22C55E] hover:bg-[#16a34a] text-white sf-headline text-xl italic flex items-center justify-center gap-4 transition-all hover:scale-105 active:scale-95 shadow-lg border-b-4 border-[#15803d]"
+          className="relative z-10 h-16 px-10 rounded-2xl bg-gradient-ssc text-white sf-headline text-xl italic flex items-center justify-center gap-4 transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(255,0,128,0.3)] border-b-4 border-fuchsia-800"
         >
           লিডারবোর্ড দেখুন
           <ArrowRight className="w-6 h-6" />
