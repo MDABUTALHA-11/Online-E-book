@@ -3,11 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronRight, PlaySquare, FlaskConical, BookOpen, Calculator,
   Leaf, GraduationCap, Star, TrendingUp, Download, Eye, PenTool,
-  Quote, Heart, Award, Video, Clock, ArrowRight
+  Quote, Heart, Award, Video, Clock, ArrowRight, User, CheckCircle2, Zap, AlertCircle
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import usePageSEO from '../hooks/usePageSEO';
 import { useViewCount } from '../hooks/useViewCount';
 import GoogleAd from '../components/GoogleAd';
+import { bangla2ndQuestions } from '../data/bangla2ndQuestions';
 
 // Custom Assets
 import BannerImg from '../assets/banner.png';
@@ -108,6 +110,76 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState('Science');
   const { count: totalViews } = useViewCount('total_site_views', 'stats');
 
+  // Temporary Quiz Logic
+  const [quizPhase, setQuizPhase] = useState('idle'); // idle, registering, playing, result
+  const [regData, setRegData] = useState({ name: '', school: '' });
+  const [currentQIdx, setCurrentQIdx] = useState(0);
+  const [userAnswers, setUserAnswers] = useState({});
+  const [quizTimeLeft, setQuizTimeLeft] = useState(30 * 60);
+  const [liveTimeLeft, setLiveTimeLeft] = useState('');
+  const quizTimerRef = React.useRef(null);
+
+  // Live Countdown (2 days window)
+  React.useEffect(() => {
+    const targetDate = new Date('2026-04-23T16:32:00').getTime();
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance < 0) {
+        setLiveTimeLeft('Ended');
+        clearInterval(timer);
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        setLiveTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Quiz Timer
+  React.useEffect(() => {
+    if (quizPhase === 'playing') {
+      quizTimerRef.current = setInterval(() => {
+        setQuizTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(quizTimerRef.current);
+            setQuizPhase('result');
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      clearInterval(quizTimerRef.current);
+    }
+    return () => clearInterval(quizTimerRef.current);
+  }, [quizPhase]);
+
+  const formatQuizTime = (secs) => {
+    const m = Math.floor(secs / 60).toString().padStart(2, '0');
+    const s = (secs % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  };
+
+  const handleStartQuiz = () => {
+    if (regData.name && regData.school) {
+      setQuizPhase('playing');
+    } else {
+      alert('অনুগ্রহ করে নাম এবং স্কুলের নাম লিখুন।');
+    }
+  };
+
+  const calculateScore = () => {
+    let score = 0;
+    bangla2ndQuestions.forEach((q, idx) => {
+      if (userAnswers[idx] === q.answer) score++;
+    });
+    return score;
+  };
+
   usePageSEO({
     title: 'Shaifly - Handnote SSC & Note SSC academic Library',
     description: 'বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা একাডেমিক হ্যান্ডনোট, গাইড ও কুইজ। Specializing in Handnote SSC and Note SSC pdf download.',
@@ -190,6 +262,227 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ══ LIVE TEMPORARY QUIZ SECTION ══════════════════════ */}
+      {liveTimeLeft !== 'Ended' && (
+        <div className="relative mt-8 mb-12 group">
+          <div 
+            className="relative rounded-[2.5rem] p-8 md:p-12 overflow-hidden border border-[#FF3D71]/20"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255,61,113,0.05) 0%, rgba(20,20,30,0.95) 100%)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 20px 50px rgba(255,61,113,0.1)',
+            }}
+          >
+            {/* Background Effects */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#FF3D71]/10 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#6A5AE0]/10 blur-[80px] rounded-full pointer-events-none" />
+            
+            <div className="flex flex-col md:flex-row gap-10 items-center relative z-10">
+              {/* Left Side: Info & Countdown */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6 border border-[#FF3D71]/30 bg-[#FF3D71]/10">
+                  <span className="w-2 h-2 rounded-full bg-[#FF3D71] animate-ping" />
+                  <span className="text-[#FF3D71] text-[10px] font-black uppercase tracking-[0.2em] font-en">Live Special Event</span>
+                </div>
+                
+                <h2 className="text-white font-bn font-black italic text-[32px] md:text-[42px] leading-tight mb-4">
+                  SSC বাংলা ২য় পত্র <br />
+                  <span className="text-[#FF3D71] tracking-tighter">স্পেশাল লাইভ কুইজ!</span>
+                </h2>
+                
+                <p className="text-slate-400 font-bn text-[16px] md:text-[18px] max-w-lg mx-auto md:mx-0 italic mb-8">
+                  আগামীকালকের পরীক্ষার চূড়ান্ত প্রস্তুতির জন্য ৩০টি গুরুত্বপূর্ণ প্রশ্নের পরীক্ষা দাও এখনই।
+                </p>
+
+                <div className="flex flex-col gap-4 items-center md:items-start">
+                  <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10">
+                    <Clock className="w-5 h-5 text-[#FF3D71]" />
+                    <div>
+                      <div className="text-[#94a3b8] text-[10px] font-bold uppercase tracking-widest leading-none mb-1">Time Remaining to Participate</div>
+                      <div className="text-white font-black text-xl font-en">{liveTimeLeft}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Interactive Quiz Area */}
+              <div className="w-full md:w-[450px] min-h-[300px] flex flex-col">
+                <AnimatePresence mode="wait">
+                  {quizPhase === 'idle' && (
+                    <motion.div 
+                      key="idle"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-xl h-full flex flex-col items-center justify-center text-center"
+                    >
+                      <Zap className="w-16 h-16 text-[#FF3D71] mb-6 animate-pulse" />
+                      <h3 className="text-white font-black font-bn text-2xl mb-4 italic">আপনি কি প্রস্তুত?</h3>
+                      <p className="text-slate-400 font-bn text-[15px] mb-8">৩০ মিনিটে ৩০টি প্রশ্নের সঠিক উত্তর দিতে হবে।</p>
+                      <button 
+                        onClick={() => setQuizPhase('registering')}
+                        className="w-full py-4 rounded-xl bg-[#FF3D71] text-white font-black font-bn text-lg shadow-lg shadow-[#FF3D71]/20 transition-all hover:scale-[1.02]"
+                      >
+                        কুইজ শুরু করুন
+                      </button>
+                    </motion.div>
+                  )}
+
+                  {quizPhase === 'registering' && (
+                    <motion.div 
+                      key="registering"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-xl h-full"
+                    >
+                      <h3 className="text-white font-black font-bn text-xl mb-6 italic border-l-4 border-[#FF3D71] pl-3">আপনার তথ্য দিন</h3>
+                      <div className="space-y-4 mb-8">
+                        <div>
+                          <label className="block text-slate-500 font-bn text-[12px] mb-2 font-bold uppercase tracking-widest pl-1">আপনার নাম</label>
+                          <div className="relative">
+                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#FF3D71]" />
+                            <input 
+                              type="text" 
+                              placeholder="সম্পূর্ণ নাম লিখুন"
+                              className="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white font-bn focus:outline-none focus:border-[#FF3D71]/50 transition-all font-bold placeholder:opacity-30"
+                              value={regData.name}
+                              onChange={(e) => setRegData({...regData, name: e.target.value})}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-slate-500 font-bn text-[12px] mb-2 font-bold uppercase tracking-widest pl-1">স্কুল/মাদ্রাসার নাম</label>
+                          <div className="relative">
+                            <GraduationCap className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-combo-blue" />
+                            <input 
+                              type="text" 
+                              placeholder="প্রতিষ্ঠানের নাম লিখুন"
+                              className="w-full bg-[#0F172A] border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white font-bn focus:outline-none focus:border-combo-blue/50 transition-all font-bold placeholder:opacity-30"
+                              value={regData.school}
+                              onChange={(e) => setRegData({...regData, school: e.target.value})}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <button 
+                        onClick={handleStartQuiz}
+                        className="w-full py-4 rounded-xl bg-gradient-to-r from-[#FF3D71] to-[#6A5AE0] text-white font-black font-bn text-lg shadow-xl transition-all hover:-translate-y-0.5 active:scale-95"
+                      >
+                         পরীক্ষা শুরু করুন <ArrowRight className="inline w-5 h-5 ml-2" />
+                      </button>
+                    </motion.div>
+                  )}
+
+                  {quizPhase === 'playing' && (
+                    <motion.div 
+                      key="playing"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="bg-white/5 p-6 rounded-3xl border border-white/10 backdrop-blur-xl h-full flex flex-col"
+                    >
+                      <div className="flex justify-between items-center mb-6">
+                        <div className="bg-[#FF3D71]/10 border border-[#FF3D71]/20 px-3 py-1 rounded-lg text-[#FF3D71] font-black text-xs font-en flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5" />
+                          {formatQuizTime(quizTimeLeft)}
+                        </div>
+                        <div className="text-white/60 font-black text-xs uppercase tracking-widest font-en">
+                          Q {currentQIdx + 1} / {bangla2ndQuestions.length}
+                        </div>
+                      </div>
+
+                      {/* Question Content */}
+                      <div className="flex-1 flex flex-col">
+                        <h4 className="text-white font-bn font-black text-[18px] md:text-[20px] mb-6 leading-relaxed italic">
+                          {bangla2ndQuestions[currentQIdx].question}
+                        </h4>
+                        <div className="grid grid-cols-1 gap-2.5">
+                          {bangla2ndQuestions[currentQIdx].options.map((option, idx) => {
+                            const isSelected = userAnswers[currentQIdx] === option;
+                            const letter = ["ক", "খ", "গ", "ঘ"][idx];
+                            return (
+                              <button 
+                                key={idx}
+                                onClick={() => setUserAnswers({...userAnswers, [currentQIdx]: option})}
+                                className={`w-full flex items-center gap-3 p-3.5 rounded-xl text-left font-bn transition-all border ${
+                                  isSelected 
+                                    ? 'bg-[#FF3D71]/10 border-[#FF3D71]/50 text-white' 
+                                    : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
+                                }`}
+                              >
+                                <span className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs ${isSelected ? 'bg-[#FF3D71] text-white' : 'bg-white/5 text-slate-500'}`}>
+                                  {letter}
+                                </span>
+                                <span className="font-bold text-[15px]">{option}</span>
+                                {isSelected && <CheckCircle2 className="w-4 h-4 ml-auto text-[#FF3D71]" />}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Navigation */}
+                      <div className="flex gap-3 mt-8">
+                        <button 
+                          disabled={currentQIdx === 0}
+                          onClick={() => setCurrentQIdx(prev => prev - 1)}
+                          className="flex-1 py-3 rounded-xl border border-white/10 text-slate-500 font-black font-bn disabled:opacity-20"
+                        >
+                          পূর্ববর্তী
+                        </button>
+                        {currentQIdx < bangla2ndQuestions.length - 1 ? (
+                          <button 
+                            onClick={() => setCurrentQIdx(prev => prev + 1)}
+                            className="flex-1 py-3 rounded-xl bg-white/10 text-white font-black font-bn hover:bg-white/20"
+                          >
+                            পরবর্তী
+                          </button>
+                        ) : (
+                          <button 
+                            onClick={() => setQuizPhase('result')}
+                            className="flex-1 py-3 rounded-xl bg-[#22C55E] text-white font-black font-bn shadow-lg shadow-[#22C55E]/20"
+                          >
+                            জমা দিন
+                          </button>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {quizPhase === 'result' && (
+                    <motion.div 
+                      key="result"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="bg-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-xl h-full flex flex-col items-center justify-center text-center"
+                    >
+                      <div className="w-24 h-24 rounded-full bg-[#22C55E]/20 flex items-center justify-center mb-6 border-4 border-[#22C55E]/30">
+                        <Award className="w-12 h-12 text-[#22C55E]" />
+                      </div>
+                      <h3 className="text-white font-black font-bn text-3xl mb-2 italic">অভিনন্দন, {regData.name.split(' ')[0]}!</h3>
+                      <p className="text-slate-400 font-bn mb-1 opacity-60 uppercase text-[10px] tracking-[0.2em] font-bold">Your Performance</p>
+                      <div className="text-[54px] font-black font-en text-[#22C55E] leading-none mb-4 italic">
+                        {calculateScore()} <span className="text-white/20 text-2xl font-black italic">/ {bangla2ndQuestions.length}</span>
+                      </div>
+                      <p className="text-slate-400 font-bn text-[15px] mb-8 italic">
+                        {regData.school}-এর এই স্কোয়ারটি তোমার পরীক্ষার আত্মবিশ্বাস বাড়িয়ে দেবে।
+                      </p>
+                      <button 
+                        onClick={() => setQuizPhase('idle')}
+                        className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-white font-black font-bn hover:bg-white/10 transition-all"
+                      >
+                        আবার চেষ্টা করুন
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
 
       {/* ══ SMART LEARNING HUB SHOWCASE (Refined & Accurate) ══════════════════════ */}
       <div className="relative mt-20 mb-16 md:mb-20 px-4 md:px-0 z-10 group">
