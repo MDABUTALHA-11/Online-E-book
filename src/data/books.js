@@ -104,7 +104,7 @@ export const books = [
   { id: 'p_ssc3', subject: 'physics', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "শাইফলি টিম", fileSize: "1.1 MB", image: "/Physics/Image/physics_ch3_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch3_force.pdf" },
   { id: 'p_ssc4', subject: 'physics', level: 'SSC', title: "৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/physics_ch4_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch4_work_energy_power.pdf" },
   { id: 'p_ssc5', subject: 'physics', level: 'SSC', title: "৫ম অধ্যায়: পদার্থের অবস্থা ও চাপ", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/physics_ch5_cover.jpg", pdfUrl: "/Physics/PDF/Ch5-ssc-physics.pdf" },
-  { id: 'p_ssc6', subject: 'physics', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: বস্তুর ওপর তাপের প্রভাব", author: "শাইফলি টিম", fileSize: "3.8 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
+  { id: 'p_ssc6', subject: 'physics', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: বস্তুর ওপর তাপের প্রভাব", author: "শাইফলি টিম", fileSize: "0.9 MB", image: "/Physics/Image/physics_ch6_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch6_heat.pdf" },
   { id: 'p_ssc7', subject: 'physics', level: 'SSC', title: "৭ম অধ্যায়: তরঙ্গ ও শব্দ", author: "শাইফলি টিম", fileSize: "2.9 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
   { id: 'p_ssc8', subject: 'physics', level: 'SSC', title: "৮ম অধ্যায়: আলোর প্রতিফলন", author: "শাইফলি টিম", fileSize: "3.2 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
   { id: 'p_ssc9', subject: 'physics', level: 'SSC', title: "৯ম অধ্যায়: আলোর প্রতিসরণ", author: "শাইফলি টিম", fileSize: "3.4 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
