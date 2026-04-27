@@ -31,6 +31,8 @@ const Terms           = lazy(() => import('./pages/Terms'));
 const Cookies         = lazy(() => import('./pages/Cookies'));
 const TipDetail       = lazy(() => import('./pages/TipDetail'));
 const AdminPayments   = lazy(() => import('./pages/AdminPayments'));
+const AtAGlance       = lazy(() => import('./pages/AtAGlance'));
+
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#000000', backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px)', backgroundSize: '18px 18px' }}>
@@ -89,6 +91,8 @@ function App() {
                   <Route path="/cookies"             element={<Cookies />} />
                   <Route path="/tips/:tipId"         element={<TipDetail />} />
                   <Route path="/admin/payments"      element={<AdminPayments />} />
+                  <Route path="/at-a-glance"         element={<AtAGlance />} />
+
                   <Route path="*"                    element={<NotFound />} />
                 </Routes>
               </Suspense>

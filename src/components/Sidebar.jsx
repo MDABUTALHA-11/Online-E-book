@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   Home, LayoutGrid, BookOpen, GraduationCap,
   FlaskConical, Palette, Briefcase, Star,
-  Lightbulb, TrendingUp, Zap, ShieldCheck,
+  Lightbulb, TrendingUp, Zap, ShieldCheck, Image
 } from 'lucide-react';
 
 const navSections = [
@@ -28,7 +28,9 @@ const navSections = [
     label: 'EXTRAS',
     items: [
       { name: 'Quiz',     path: '/quiz',  icon: Star },
+      { name: 'এক নজরে অধ্যায়', path: '/at-a-glance', icon: Image },
       { name: 'Expert Help', path: '/appointment',icon: Zap },
+
       { name: 'Library',  path: '/tips',  icon: Lightbulb },
     ],
   },
