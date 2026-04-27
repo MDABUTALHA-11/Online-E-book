@@ -101,7 +101,7 @@ export const books = [
   // SSC
   { id: 'p_ssc1', subject: 'physics', level: 'SSC', title: "১ম অধ্যায়: ভৌত রাশি এবং পরিমাপ", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/physics_ch1_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch1_hand_notes.pdf" },
   { id: 'p_ssc2', subject: 'physics', level: 'SSC', title: "২য় অধ্যায়: গতি", author: "শাইফলি টিম", fileSize: "12.8 MB", image: "/Book-Image/motion_chapter_cover.png", pdfUrl: "/Physics/PDF/Motion_Blueprint.pdf" },
-  { id: 'p_ssc3', subject: 'physics', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "শাইফলি টিম", fileSize: "2.8 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
+  { id: 'p_ssc3', subject: 'physics', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "শাইফলি টিম", fileSize: "1.1 MB", image: "/Physics/Image/physics_ch3_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch3_force.pdf" },
   { id: 'p_ssc4', subject: 'physics', level: 'SSC', title: "৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/physics_ch4_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch4_work_energy_power.pdf" },
   { id: 'p_ssc5', subject: 'physics', level: 'SSC', title: "৫ম অধ্যায়: পদার্থের অবস্থা ও চাপ", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/physics_ch5_cover.jpg", pdfUrl: "/Physics/PDF/Ch5-ssc-physics.pdf" },
   { id: 'p_ssc6', subject: 'physics', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: বস্তুর ওপর তাপের প্রভাব", author: "শাইফলি টিম", fileSize: "3.8 MB", image: "/Book-Image/ghibli_2.png", pdfUrl: "#" },
