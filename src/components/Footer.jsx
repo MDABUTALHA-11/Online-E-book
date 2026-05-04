@@ -67,7 +67,7 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-white font-black text-[20px] leading-none italic tracking-tight">{value}</p>
-                <p className="text-[#334155] text-[11px] font-black uppercase tracking-widest mt-0.5">{label}</p>
+                <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest mt-0.5">{label}</p>
               </div>
             </div>
           ))}
@@ -92,7 +92,7 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className="text-[#475569] font-bn text-[15px] leading-[1.8] max-w-sm mb-8">
+            <p className="text-slate-400 font-bn text-[15px] leading-[1.8] max-w-sm mb-8">
               বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা একাডেমিক নোট শেয়ারিং প্ল্যাটফর্ম।
               আমাদের লক্ষ্য শিক্ষাকে সহজ, স্মার্ট ও প্রযুক্তি-নির্ভর করা।
             </p>
@@ -121,7 +121,7 @@ export default function Footer() {
                   style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#22C55E'; e.currentTarget.style.borderColor = '#22C55E'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.borderColor = 'var(--bg-border)'; }}>
-                  <Icon className="w-4 h-4 text-[#475569] group-hover:text-white transition-colors" />
+                  <Icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                 </a>
               ))}
             </div>
@@ -137,7 +137,7 @@ export default function Footer() {
               {quickLinks.map(({ label, to }) => (
                 <li key={label}>
                   <Link to={to}
-                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-[#475569] no-underline transition-all group hover:pl-5"
+                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-slate-400 no-underline transition-all group hover:pl-5"
                     style={{ letterSpacing: '0.01em' }}
                     onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = '#f1f5f9'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#475569'; }}>
@@ -159,7 +159,7 @@ export default function Footer() {
               {supportLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href}
-                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-[#475569] no-underline transition-all group hover:pl-5"
+                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-slate-400 no-underline transition-all group hover:pl-5"
                     onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = '#f1f5f9'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#475569'; }}>
                     <span className="w-1 h-1 rounded-full bg-[var(--bg-border)] group-hover:bg-[#22C55E] transition-colors shrink-0" />
@@ -171,7 +171,7 @@ export default function Footer() {
 
             {/* Contact Card */}
             <div className="mt-8 p-4 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-              <p className="text-[11px] font-black uppercase tracking-widest text-[#334155] mb-2">যোগাযোগ করুন</p>
+              <p className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-2">যোগাযোগ করুন</p>
               <a href="mailto:support@shaifly.com"
                 className="text-[14px] font-black text-white font-en hover:text-[#22C55E] transition-colors no-underline flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#22C55E]" />
@@ -203,7 +203,7 @@ export default function Footer() {
           <div className="flex items-center justify-center md:justify-end gap-6">
             <div className="text-right hidden md:block">
               <p className="text-white font-black font-bn italic text-lg leading-none mb-1">যাচাইকৃত শিক্ষা প্ল্যাটফর্ম</p>
-              <p className="text-[#334155] text-[10px] font-black uppercase tracking-widest">Verified Academic Library</p>
+              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Verified Academic Library</p>
             </div>
             <div className="w-16 h-16 rounded-full border-4 border-[#22C55E]/20 flex items-center justify-center rotate-12 relative">
                <div className="absolute inset-0 border border-white/5 rounded-full" />
@@ -219,18 +219,18 @@ export default function Footer() {
             style={{ background: 'linear-gradient(90deg, transparent, var(--bg-border) 20%, var(--bg-border) 80%, transparent)' }} />
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[12px] font-black text-[#334155] tracking-wide font-en">
+            <p className="text-[12px] font-black text-slate-500 tracking-wide font-en">
               © 2026 <span className="text-[#475569]">Shaifly Library</span>. All Rights Reserved.
             </p>
 
-            <div className="flex items-center gap-2 text-[12px] font-black text-[#334155] font-en">
+            <div className="flex items-center gap-2 text-[12px] font-black text-slate-500 font-en">
               Built with
               <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 animate-pulse" />
               for&nbsp;
               <span className="text-[#22C55E]">Bangladeshi Students</span>
             </div>
 
-            <div className="flex items-center gap-4 text-[12px] font-black text-[#334155] font-en">
+            <div className="flex items-center gap-4 text-[12px] font-black text-slate-500 font-en">
               <Link to="/privacy" className="hover:text-[#475569] transition-colors no-underline">Privacy</Link>
               <span className="w-1 h-1 rounded-full bg-[var(--bg-border)]" />
               <Link to="/terms" className="hover:text-[#475569] transition-colors no-underline">Terms</Link>

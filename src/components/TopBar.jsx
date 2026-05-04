@@ -52,13 +52,13 @@ export default function TopBar() {
 
       {/* ── Search bar ── */}
       <div className="flex-1 relative max-w-2xl">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#334155] pointer-events-none" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
         <input
           type="text"
           placeholder="Search notes, books, subjects..."
           value={q}
           onChange={e => setQ(e.target.value)}
-          className="w-full h-[44px] rounded-xl pl-11 pr-5 text-[14px] font-medium text-white placeholder:text-[#334155] outline-none transition-all"
+          className="w-full h-[44px] rounded-xl pl-11 pr-5 text-[14px] font-medium text-white placeholder:text-slate-500 outline-none transition-all"
           style={{
             background: 'var(--bg-surface)',
             border: '1.5px solid var(--bg-border)',
@@ -107,7 +107,7 @@ export default function TopBar() {
                     <div key={n.id} className="px-5 py-4 border-b border-[var(--bg-border)] hover:bg-white/5 transition-colors cursor-pointer group">
                       <div className="flex justify-between items-start mb-1">
                         <h4 className="text-[#22C55E] font-black text-[15px] italic font-bn group-hover:underline">{n.title}</h4>
-                        <span className="text-[#334155] text-[10px] font-bold italic font-bn whitespace-nowrap ml-2">{n.time}</span>
+                        <span className="text-slate-500 text-[10px] font-bold italic font-bn whitespace-nowrap ml-2">{n.time}</span>
                       </div>
                       <p className="text-slate-400 text-[13px] font-bn leading-snug font-bold italic m-0">
                         {n.desc}
@@ -154,7 +154,7 @@ export default function TopBar() {
               {/* Header */}
               {/* Header */}
               <div className="relative px-5 py-6" style={{ background: 'var(--bg-elevated)', borderBottom: '1px solid var(--bg-border)' }}>
-                <button onClick={() => setProfileOpen(false)} className="absolute top-4 right-4 text-[#334155] hover:text-white transition-colors">
+                <button onClick={() => setProfileOpen(false)} className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
                   <X className="w-4 h-4" />
                 </button>
                 
@@ -234,7 +234,7 @@ export default function TopBar() {
 
               {/* Benefits */}
               <div className="px-4 pb-4">
-                <p className="text-[10.5px] font-black text-[#334155] uppercase tracking-wider mb-2.5">সুবিধাসমূহ</p>
+                <p className="text-[10.5px] font-black text-slate-500 uppercase tracking-wider mb-2.5">সুবিধাসমূহ</p>
                 {['নোট সেভ ও ডাউনলোড করুন', 'কুইজে অংশ নিন ও লিডারবোর্ড দেখুন', 'পার্সোনালাইজড পড়াশোনার প্ল্যান'].map(b => (
                   <div key={b} className="flex items-center gap-2 text-[12px] text-[#64748b] font-bn mb-1.5">
                     <span className="w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black shrink-0 text-[#22C55E]" style={{ background: 'rgba(34,197,94,0.1)' }}>✓</span>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, FileText, User, ChevronRight, Bookmark, BookOpen, Eye, Award } from 'lucide-react';
+import { Download, BookOpen, Bookmark, BookmarkCheck } from 'lucide-react';
 import { useDownloadCount } from '../hooks/useDownloadCount';
 import { useViewCount } from '../hooks/useViewCount';
 import { useComingSoon } from './ComingSoonModal';
@@ -9,6 +9,8 @@ const BookCard = ({ book }) => {
   const { count: downloadCount, incrementCount } = useDownloadCount(book.id);
   const { count: viewCount, incrementView } = useViewCount(book.id, 'book_views');
   const { showComingSoon } = useComingSoon();
+  const [isSaved, setIsSaved] = React.useState(false); // Temporary local state for demonstration
+
   const isAvailable = book.pdfUrl && book.pdfUrl !== '#';
 
   React.useEffect(() => {
@@ -16,99 +18,76 @@ const BookCard = ({ book }) => {
   }, [book.id, incrementView]);
 
   const handleDownload = (e) => {
-    if (!isAvailable) { e.preventDefault(); showComingSoon(book.title); }
-    else incrementCount();
+    if (!isAvailable) {
+      e.preventDefault();
+      showComingSoon(book.title);
+    } else {
+      incrementCount();
+    }
+  };
+
+  const toggleSave = () => {
+    setIsSaved(!isSaved);
   };
 
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="flex flex-col overflow-hidden rounded-2xl transition-all duration-300"
-      style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
-      onMouseEnter={e => { e.currentTarget.style.border = '1px solid rgba(34,197,94,0.3)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(34,197,94,0.08)'; }}
-      onMouseLeave={e => { e.currentTarget.style.border = '1px solid var(--bg-border)'; e.currentTarget.style.boxShadow = 'none'; }}
+      className="vintage-card relative overflow-hidden group"
     >
-      {/* Book Cover */}
-      <div className="relative aspect-[16/9] overflow-hidden" style={{ background: 'var(--bg-elevated)' }}>
+      {/* Book Image Wrapper */}
+      <div className="relative w-full aspect-[3/4] mb-3 overflow-hidden rounded-xl shadow-md border border-[#dac09a]">
         <img
           src={book.image}
           alt={book.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          onError={e => { e.target.src = 'https://via.placeholder.com/600x338/0d1b2a/22C55E?text=Shaifly+Note'; }}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={e => { e.target.src = 'https://placehold.co/300x400/2c3e50/f7dc6f?text=PDF+Note'; }}
         />
-        {/* Gradient overlay at bottom */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(8,20,12,0.8) 0%, transparent 60%)' }} />
-        {/* Level badge */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-          <span
-            className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest text-white shadow-xl"
-            style={book.level === 'SSC'
-              ? { background: '#22C55E' }
-              : { background: 'var(--bg-elevated)', border: '1px solid #22C55E40', color: '#22C55E' }
-            }
-          >
-            {book.level}
-          </span>
-          {/* New/Verified Badge */}
-          <span className="px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-widest text-white block w-fit shadow-lg" style={{ background: 'linear-gradient(90deg, #f59e0b, #d97706)' }}>
-            NEW
-          </span>
-        </div>
-        <div className="absolute top-3 right-3 flex items-center gap-2">
-           <div className="flex items-center gap-1 px-2 py-1 rounded-lg text-[9px] font-bold text-white backdrop-blur-md" style={{ background: 'rgba(34,197,94,0.4)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <Award className="w-3 h-3" /> VERIFIED
-           </div>
-           <button className="w-8 h-8 rounded-lg flex items-center justify-center text-[#64748b] hover:text-[#22C55E] transition-colors" style={{ background: 'rgba(8,20,12,0.7)' }}>
-             <Bookmark className="w-4 h-4" />
-           </button>
-        </div>
+        <div className="pdf-label">PDF</div>
+        
+        {/* Availability Badge */}
+        {!isAvailable && (
+          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-amber-500 text-white text-[8px] font-black uppercase tracking-tighter shadow-lg">
+            Coming Soon
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="p-3 md:p-4 flex flex-col gap-2.5 md:gap-3 flex-1">
-        <h3 className="text-white font-black text-[13.5px] sm:text-[15px] font-bn leading-snug line-clamp-2">{book.title}</h3>
-
-        {/* Meta */}
-        <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-[9px] sm:text-[11px] font-bold" style={{ color: '#334155' }}>
-          <div className="flex items-center gap-1 min-w-0">
-            <User className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
-            <span className="truncate">{book.author?.split(' ')[0] || 'Shaifly'}</span>
-          </div>
-          <div className="flex items-center gap-1 shrink-0 px-1.5 border-x border-[var(--bg-border)]">
-            <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            <span>{book.fileSize || '3.5MB'}</span>
-          </div>
-          <div className="flex items-center gap-1 shrink-0 text-[#22C55E]">
-            <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            <span>{viewCount.toLocaleString()}</span>
-          </div>
+      <div className="w-full flex flex-col items-center px-0.5">
+        <h3 className="text-[#3e2e1c] font-black text-[13px] sm:text-[18px] md:text-[20px] font-bn leading-tight mb-1.5 italic text-center line-clamp-2 min-h-[2.6em] flex items-center justify-center">
+          {book.title}
+        </h3>
+        
+        {/* Info Pill */}
+        <div className="bg-[#f3ede5] px-2 sm:px-4 py-0.5 sm:py-1 rounded-full mb-3 border border-[#dac09a]/30">
+          <p className="text-[#6e5b41] text-[9px] sm:text-[11px] md:text-[13px] font-black italic tracking-tighter sm:tracking-tight">
+            {book.level} {book.part ? `· P${book.part}` : ''} · {book.fileSize || '3.5MB'}
+          </p>
         </div>
 
-        {/* Actions */}
-        <div className="flex gap-1.5 mt-auto pt-1">
-          <a
-            href={isAvailable ? book.pdfUrl : '#'}
-            target={isAvailable ? '_blank' : '_self'}
-            rel="noopener noreferrer"
-            onClick={isAvailable ? undefined : handleDownload}
-            className="flex-1 h-8 sm:h-10 rounded-xl text-[9px] sm:text-[11px] font-sans font-bold uppercase tracking-wider flex items-center justify-center gap-1 transition-all no-underline"
-            style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)', color: '#64748b' }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = '#22C55E'; e.currentTarget.style.color = '#22C55E'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--bg-border)'; e.currentTarget.style.color = '#64748b'; }}
-          >
-            <BookOpen className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" /> Read
-          </a>
+        {/* Action Row */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-3 w-full px-0.5">
           <a
             href={isAvailable ? book.pdfUrl : '#'}
             download
             onClick={handleDownload}
-            className="flex-1 h-8 sm:h-10 rounded-xl text-[9px] sm:text-[11px] font-sans font-bold uppercase tracking-wider flex items-center justify-center gap-1 text-white transition-all no-underline"
-            style={{ background: '#EF4444' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#DC2626'}
-            onMouseLeave={e => e.currentTarget.style.background = '#EF4444'}
+            className="flex-1 flex items-center justify-center gap-1 h-8 sm:h-11 rounded-full bg-[#2d5a42] text-white text-[10px] sm:text-[12px] md:text-[14px] font-black no-underline transition-all hover:bg-[#1f422d] shadow-[0_3px_0_#1b3927] sm:shadow-[0_5px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_1px_0_#1b3927] text-center"
           >
-            <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" /> <span className="hidden sm:inline">Download</span><span className="sm:hidden">Get It</span>
+            <Download className="w-3 h-3 sm:w-4 sm:h-4" /> <span>PDF</span>
           </a>
+          
+          <button
+            onClick={toggleSave}
+            className={`flex-1 flex items-center justify-center gap-1 h-8 sm:h-11 rounded-full border border-[#dac09a] sm:border-2 text-[10px] sm:text-[12px] md:text-[14px] font-black transition-all text-center ${
+              isSaved 
+                ? 'bg-[#e7cfaa] border-[#8b6a41] text-[#4b3720]' 
+                : 'bg-[#faf0dd] text-[#4b3720] hover:bg-[#e7cfaa]'
+            }`}
+          >
+            {isSaved ? <BookmarkCheck className="w-3 h-3 sm:w-4 sm:h-4" /> : <Bookmark className="w-3 h-3 sm:w-4 sm:h-4" />}
+            <span className="truncate">{isSaved ? 'সংগৃহীত' : 'সংগ্রহ'}</span>
+          </button>
         </div>
       </div>
     </motion.div>

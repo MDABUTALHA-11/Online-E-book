@@ -6,7 +6,7 @@ import BookCard from '../components/BookCard';
 import { useViewCount } from '../hooks/useViewCount';
 import usePageSEO from '../hooks/usePageSEO';
 import GoogleAd from '../components/GoogleAd';
-import { Search, ArrowLeft, BookOpen, GraduationCap, Eye, Info, ChevronRight, Quote } from 'lucide-react';
+import { Search, ArrowLeft, BookOpen, GraduationCap, Eye, Info, ChevronRight, Quote, Bookmark } from 'lucide-react';
 
 import PhysicsImg from '../assets/scientists/physics.png';
 import ChemistryImg from '../assets/scientists/chemistry.png';
@@ -183,28 +183,46 @@ const SubjectPage = () => {
         <GoogleAd slot="2280555349" />
       </div>
 
-      {/* ── Grid ── */}
-      <AnimatePresence mode="popLayout">
-        {filteredBooks.length > 0 ? (
-          <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-            {filteredBooks.map((book, i) => (
-              <motion.div layout key={book.id}
-                initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
-                transition={{ delay:i*0.04, duration:0.3 }}
-              >
-                <BookCard book={book} />
+      {/* ── Grid wrapped in Booklet ── */}
+      <div className="booklet-container mb-12">
+        <div className="relative z-10">
+          <div className="flex justify-between items-center mb-10 border-b-2 border-dashed border-white/10 pb-6">
+            <div>
+              <h2 className="text-white font-black text-[28px] md:text-[38px] italic leading-none">অধ্যায়ভিত্তিক সংগ্রহ</h2>
+              <p className="text-slate-400 text-[14px] md:text-[16px] font-bold mt-2 uppercase tracking-widest italic">{subject.name} · PDF Library</p>
+            </div>
+            <div className="bg-white/5 px-6 py-3 rounded-full border border-white/10 text-slate-300 font-black text-[14px] items-center gap-2 shadow-lg">
+               <Bookmark className="w-5 h-5 text-[#22C55E]" /> সংরক্ষিত: 0
+            </div>
+          </div>
+
+          <AnimatePresence mode="popLayout">
+            {filteredBooks.length > 0 ? (
+              <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                {filteredBooks.map((book, i) => (
+                  <motion.div layout key={book.id}
+                    initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
+                    transition={{ delay:i*0.04, duration:0.3 }}
+                  >
+                    <BookCard book={book} />
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }}
-            className="text-center py-20 rounded-2xl" style={{ background:'var(--bg-surface)', border:'1px dashed var(--bg-border)' }}
-          >
-            <BookOpen className="w-10 h-10 mx-auto mb-3" style={{ color:'var(--bg-border)' }} />
-            <h2 className="text-[#334155] text-lg font-black font-bn">দুঃখিত, কোনো নোট পাওয়া যায়নি।</h2>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ) : (
+              <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }}
+                className="text-center py-20 rounded-2xl" style={{ background:'rgba(0,0,0,0.03)', border:'1px dashed #c9a87c' }}
+              >
+                <BookOpen className="w-10 h-10 mx-auto mb-3 text-[#c9a87c]" />
+                <h2 className="text-[#6f5b44] text-lg font-black font-bn">দুঃখিত, কোনো নোট পাওয়া যায়নি।</h2>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="mt-8 text-center text-[#7f6a51] text-[12px] font-bold italic">
+            বইয়ের উপরে ক্লিক করে সরাসরি ডাউনলোড অথবা সংগ্রহে রাখুন
+          </div>
+        </div>
+      </div>
 
       {/* Subject Description for AdSense */}
       <div className="mt-12 p-8 md:p-12 rounded-[2rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>

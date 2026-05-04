@@ -50,35 +50,28 @@ function NoteCard({ note, outline = false }) {
   return (
     <Link
       to={note.path}
-      className="flex flex-col gap-2.5 p-3 sm:p-5 rounded-2xl no-underline group transition-all duration-300"
-      style={{
-        background: 'var(--bg-surface)',
-        border: '1px solid var(--bg-border)',
-      }}
-      onMouseEnter={e => { e.currentTarget.style.border = '1px solid rgba(34,197,94,0.35)'; e.currentTarget.style.boxShadow = '0 8px 30px rgba(34,197,94,0.08)'; }}
-      onMouseLeave={e => { e.currentTarget.style.border = '1px solid var(--bg-border)'; e.currentTarget.style.boxShadow = 'none'; }}
+      className="vintage-card group no-underline relative flex flex-col"
     >
-      <div className="flex items-center gap-2 mb-1">
-        <div className="w-1 h-8 sm:w-1.5 sm:h-10 rounded-full bg-[#22C55E] group-hover:h-12 transition-all duration-300" />
-        <div>
-          <h3 className="text-white font-black text-[15px] sm:text-[22px] group-hover:text-[#22C55E] transition-colors leading-none italic font-bn">{note.subject}</h3>
-          <p className="text-[#22C55E] text-[10px] sm:text-[13px] font-bold mt-0.5 sm:mt-1 font-bn opacity-80">{note.subjectBn}</p>
+      <div className="relative w-full aspect-[4/3] mb-3 overflow-hidden rounded-xl border border-[#dac09a] bg-[#f3ede5]">
+        <div className="absolute inset-0 flex items-center justify-center text-[#c9a87c] opacity-20 group-hover:scale-110 transition-transform duration-500">
+           <BookOpen className="w-16 h-16" />
+        </div>
+        <div className="pdf-label">PREVIEW</div>
+        <div className={`absolute top-2 left-2 px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-tighter text-white shadow-lg ${
+          note.category === 'SSC' ? 'bg-gradient-ssc' : 'bg-gradient-hsc'
+        }`}>
+          {note.category}
         </div>
       </div>
-      <p className="text-[#94a3b8] text-[11px] sm:text-[15px] font-bn leading-snug italic font-bold line-clamp-2">{note.desc}</p>
-      <button
-        className={`w-full h-[34px] sm:h-[40px] rounded-xl font-black text-[10px] sm:text-[12.5px] flex items-center justify-center gap-1.5 transition-all duration-200 mt-auto
-          ${outline
-            ? 'text-[#64748b] hover:text-[#22C55E] hover:border-[#22C55E]'
-            : 'text-white hover:-translate-y-0.5'
-          }`}
-        style={outline
-          ? { background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }
-          : { background: '#EF4444', boxShadow: '0 4px 16px rgba(239,68,68,0.25)' }
-        }
-      >
-        {outline ? <><ChevronRight className="w-3 h-3" /> View Details</> : <><Download className="w-3 h-3" /> Download</>}
-      </button>
+      <div className="w-full text-center flex flex-col h-full">
+        <h3 className="text-[#3e2e1c] font-black text-[15px] sm:text-[18px] font-bn leading-tight mb-1 italic group-hover:text-[#2d5a42] transition-colors">{note.subject}</h3>
+        <p className="text-[#6e5b41] text-[10px] sm:text-[12px] font-bold bg-[#f3ede5] px-3 py-0.5 rounded-full mb-4 italic truncate">{note.desc}</p>
+        <div className="mt-auto">
+          <button className="w-full flex items-center justify-center gap-1.5 h-9 rounded-full bg-[#2d5a42] text-white text-[10px] sm:text-[12px] font-black transition-all hover:bg-[#1f422d] shadow-[0_4px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_2px_0_#1b3927]">
+             {outline ? <><ChevronRight className="w-3.5 h-3.5" /> Details</> : <><Download className="w-3.5 h-3.5" /> Get Note</>}
+          </button>
+        </div>
+      </div>
     </Link>
   );
 }
@@ -86,19 +79,19 @@ function NoteCard({ note, outline = false }) {
 /* ─── SectionHeader ─── */
 function SectionHeader({ title, icon: Icon, colorClass = "text-white" }) {
   return (
-    <div className="flex justify-between items-end mb-8">
+    <div className="flex justify-between items-center mb-10 border-b-2 border-dashed border-[#c9a87c] pb-4">
       <div className="flex items-center gap-4">
         {Icon && (
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-            <Icon className={`w-7 h-7 ${colorClass}`} />
+          <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-lg">
+            <Icon className={`w-8 h-8 ${colorClass}`} />
           </div>
         )}
         <div>
-          <h2 className={`font-bn font-black text-[28px] md:text-[36px] italic tracking-tighter leading-none ${colorClass}`}>{title}</h2>
-          <div className={`w-12 h-1 mt-2 rounded-full opacity-50 ${colorClass.replace('text-', 'bg-')}`} />
+          <h2 className={`font-bn font-black text-[32px] md:text-[42px] italic tracking-tighter leading-none ${colorClass}`}>{title}</h2>
+          <p className="text-[#c9a87c] text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] mt-1 italic">Verified Academic Content</p>
         </div>
       </div>
-      <Link to="/categories" className={`flex items-center gap-1.5 text-[14px] font-black no-underline hover:underline italic bg-white/5 px-4 py-2 rounded-xl border border-white/10 transition-all hover:bg-white/10 ${colorClass}`}>
+      <Link to="/categories" className="bg-[#f3e1c7] px-5 py-2.5 rounded-full border border-[#b49464] text-[#2d2416] font-black text-[14px] flex items-center gap-2 hover:bg-[#e7cfaa] transition-all no-underline shadow-sm">
         সব দেখুন <ChevronRight className="w-4 h-4" />
       </Link>
     </div>
@@ -694,35 +687,34 @@ export default function Home() {
       </div>
 
       {/* ══ POPULAR NOTES ══ */}
-      <div className="mb-9">
-        <SectionHeader title={`${activeFilter} Popular Notes`} icon={TrendingUp} colorClass="text-combo-yellow" />
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-          {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').slice(0, 4).map(n => (
-            <NoteCard key={n.id} note={n} />
-          ))}
-          {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').length === 0 && (
-            <div className="col-span-full py-12 text-center text-slate-500 font-bn text-xl italic bg-[var(--bg-surface)] rounded-2xl border border-dashed border-[var(--bg-border)]">
-              এই ক্যাটাগরিতে বর্তমানে কোনো নোট নেই। শীঘ্রই আসছে...
-            </div>
-          )}
+      <div className="booklet-container mb-16">
+        <div className="relative z-10">
+          <SectionHeader title={`${activeFilter} Popular Notes`} icon={TrendingUp} colorClass="text-[#22C55E]" />
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').slice(0, 4).map(n => (
+              <NoteCard key={n.id} note={n} />
+            ))}
+            {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').length === 0 && (
+              <div className="col-span-full py-16 text-center text-[#6f5b44] font-bn text-xl italic bg-[rgba(0,0,0,0.02)] rounded-[2rem] border-2 border-dashed border-[#c9a87c]">
+                এই ক্যাটাগরিতে বর্তমানে কোনো নোট নেই। শীঘ্রই আসছে...
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       {/* ══ TRENDING ══ */}
-      <div className="mb-9">
-        <SectionHeader title="Trending This Week" icon={Star} colorClass="text-combo-orange" />
-        <div 
-          className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 p-4 rounded-3xl relative overflow-hidden"
-          style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
-        >
-          {/* Background Illustration */}
-          <img 
-            src={ScienceBg} 
-            alt="Science Background" 
-            className="absolute -right-20 -bottom-20 w-80 h-80 opacity-5 pointer-events-none transform rotate-12"
-          />
+      <div className="booklet-container mb-16">
+        <div className="relative z-10">
+          <SectionHeader title="Trending This Week" icon={Star} colorClass="text-combo-orange" />
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            {trendingNotes.map(n => <NoteCard key={n.id} note={n} outline />)}
+          </div>
           
-          {trendingNotes.map(n => <NoteCard key={n.id} note={n} outline />)}
+          {/* Subtle decoration */}
+          <div className="absolute -right-10 -bottom-10 w-48 h-48 opacity-10 pointer-events-none transform rotate-12">
+             <Star className="w-full h-full text-combo-orange fill-combo-orange" />
+          </div>
         </div>
       </div>
 

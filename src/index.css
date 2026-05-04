@@ -24,6 +24,13 @@
 
   --font-bn: 'Mina', sans-serif;
   --font-en: 'Bungee', cursive;
+
+  /* Booklet Theme (Vintage/Paper) */
+  --booklet-bg: #fef9ed;
+  --booklet-border: #c8aa7a;
+  --booklet-binder: #b89b74;
+  --booklet-shadow: rgba(90, 60, 30, 0.25);
+  --paper-white: #ffffff;
 }
 
 /* ═══════════════════════════════════════
@@ -43,11 +50,17 @@ body {
   );
   background-size: 18px 18px;
   color: var(--text-primary);
-  line-height: 1.5;
-  font-size: 18px;
+  font-size: 18px; /* Desktop default */
+  line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   font-style: italic; /* Global italic for all text */
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Larger base for mobile readability */
+  }
 }
 
 /* Ensure Bangla text classes also follow the italic style */
@@ -82,12 +95,24 @@ h1, h2, h3, .sf-headline {
 }
 
 /* Ensure body text stays readable */
+/* Ensure body text stays readable */
 p, span, li, a {
-  color: #F8FAFC !important;
+  color: #F8FAFC;
+  font-size: 1.1rem; /* Bumping up by 10% */
+}
+
+@media (max-width: 768px) {
+  p, span, li, a {
+    font-size: 1rem; /* Solid readable size on mobile */
+  }
 }
 
 .text-white {
   color: #F8FAFC !important;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
 .sf-label {
@@ -265,4 +290,89 @@ p, span, li, a {
   }
 
   .main-content { margin-left: 260px; }
+}
+/* ═══════════════════════════════════════
+   BOOKLET & VINTAGE PDF CARD SYSTEM
+═══════════════════════════════════════ */
+
+.booklet-container {
+  background: transparent;
+  border-radius: 2.5rem 2.5rem 2rem 2rem;
+  box-shadow: none;
+  padding: 2rem;
+  position: relative;
+  border: 1px solid rgba(200, 170, 122, 0.2);
+  transition: all 0.2s ease;
+  width: 100%;
+  color: var(--text-primary);
+  z-index: 10;
+}
+
+.booklet-container h1, .booklet-container h2, .booklet-container h3, .booklet-container p, .booklet-container span {
+  color: var(--text-primary);
+}
+
+/* Ring binder effect */
+.booklet-container::before, .booklet-container::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 12px;
+  background: repeating-linear-gradient(180deg, 
+    var(--booklet-binder) 0px, var(--booklet-binder) 10px, 
+    #dbbc8c 10px, #dbbc8c 14px,
+    #8b6f4c 14px, #8b6f4c 16px);
+  opacity: 0.8;
+  z-index: 2;
+  box-shadow: inset 2px 0 5px rgba(0,0,0,0.3), 2px 0 8px rgba(90, 50, 10, 0.4);
+}
+
+.booklet-container::before { left: 1.2rem; border-radius: 20px 0 0 20px; }
+.booklet-container::after { right: 1.2rem; border-radius: 0 20px 20px 0; box-shadow: inset -2px 0 5px rgba(0,0,0,0.3), -2px 0 8px rgba(90, 50, 10, 0.4); }
+
+.vintage-card {
+  background: #fffcf2;
+  border-radius: 1.3rem;
+  padding: 1.2rem 0.9rem 1rem;
+  box-shadow: 0 8px 14px rgba(90, 55, 20, 0.15), 0 2px 4px rgba(0,0,0,0.08);
+  border: 1px solid #dbc5a0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.25s;
+  color: #3e2e1c !important; /* Ensure dark text on ivory card */
+}
+
+.vintage-card h3, .vintage-card p, .vintage-card span, .vintage-card div {
+  color: #3e2e1c !important;
+}
+
+.vintage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 24px rgba(100, 65, 25, 0.22), 0 0 0 2px #deb887;
+}
+
+.vintage-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid #dac09a;
+}
+
+.pdf-label {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(200, 70, 50, 0.9);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(2px);
 }
