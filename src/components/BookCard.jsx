@@ -1,33 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, BookOpen, Bookmark, BookmarkCheck } from 'lucide-react';
-import { useDownloadCount } from '../hooks/useDownloadCount';
-import { useViewCount } from '../hooks/useViewCount';
+import { BookOpen, Eye } from 'lucide-react';
+import { useReadCount } from '../hooks/useReadCount';
 import { useComingSoon } from './ComingSoonModal';
 
 const BookCard = ({ book }) => {
-  const { count: downloadCount, incrementCount } = useDownloadCount(book.id);
-  const { count: viewCount, incrementView } = useViewCount(book.id, 'book_views');
+  const { count: readCount, incrementReadCount } = useReadCount(book.id);
   const { showComingSoon } = useComingSoon();
-  const [isSaved, setIsSaved] = React.useState(false); // Temporary local state for demonstration
 
   const isAvailable = book.pdfUrl && book.pdfUrl !== '#';
 
-  React.useEffect(() => {
-    incrementView();
-  }, [book.id, incrementView]);
-
-  const handleDownload = (e) => {
+  const handleRead = (e) => {
     if (!isAvailable) {
       e.preventDefault();
       showComingSoon(book.title);
     } else {
-      incrementCount();
+      incrementReadCount();
     }
-  };
-
-  const toggleSave = () => {
-    setIsSaved(!isSaved);
   };
 
   return (
@@ -61,33 +50,22 @@ const BookCard = ({ book }) => {
         
         {/* Info Pill */}
         <div className="bg-[#f3ede5] px-2 sm:px-4 py-0.5 sm:py-1 rounded-full mb-3 border border-[#dac09a]/30">
-          <p className="text-[#6e5b41] text-[9px] sm:text-[11px] md:text-[13px] font-black italic tracking-tighter sm:tracking-tight">
-            {book.level} {book.part ? `· P${book.part}` : ''} · {book.fileSize || '3.5MB'}
+          <p className="text-[#6e5b41] text-[9px] sm:text-[11px] md:text-[13px] font-black italic tracking-tighter sm:tracking-tight flex items-center gap-1">
+            {book.level} {book.part ? `· P${book.part}` : ''} · {book.fileSize || '3.5MB'} · <Eye className="w-3 h-3 sm:w-4 sm:h-4" /> {readCount}
           </p>
         </div>
 
         {/* Action Row */}
-        <div className="flex items-center justify-center gap-1.5 sm:gap-3 w-full px-0.5">
+        <div className="flex items-center justify-center w-full px-0.5">
           <a
             href={isAvailable ? book.pdfUrl : '#'}
-            download
-            onClick={handleDownload}
-            className="flex-1 flex items-center justify-center gap-1 h-8 sm:h-11 rounded-full bg-[#2d5a42] text-white text-[10px] sm:text-[12px] md:text-[14px] font-black no-underline transition-all hover:bg-[#1f422d] shadow-[0_3px_0_#1b3927] sm:shadow-[0_5px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_1px_0_#1b3927] text-center"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleRead}
+            className="flex-1 flex items-center justify-center gap-2 h-9 sm:h-11 rounded-xl bg-[#2d5a42] text-white text-[11px] sm:text-[14px] md:text-[16px] font-black no-underline transition-all hover:bg-[#1f422d] shadow-[0_3px_0_#1b3927] sm:shadow-[0_5px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_1px_0_#1b3927] text-center"
           >
-            <Download className="w-3 h-3 sm:w-4 sm:h-4" /> <span>PDF</span>
+            <BookOpen className="w-3.5 h-3.5 sm:w-5 sm:h-5" /> <span>পড়ুন</span>
           </a>
-          
-          <button
-            onClick={toggleSave}
-            className={`flex-1 flex items-center justify-center gap-1 h-8 sm:h-11 rounded-full border border-[#dac09a] sm:border-2 text-[10px] sm:text-[12px] md:text-[14px] font-black transition-all text-center ${
-              isSaved 
-                ? 'bg-[#e7cfaa] border-[#8b6a41] text-[#4b3720]' 
-                : 'bg-[#faf0dd] text-[#4b3720] hover:bg-[#e7cfaa]'
-            }`}
-          >
-            {isSaved ? <BookmarkCheck className="w-3 h-3 sm:w-4 sm:h-4" /> : <Bookmark className="w-3 h-3 sm:w-4 sm:h-4" />}
-            <span className="truncate">{isSaved ? 'সংগৃহীত' : 'সংগ্রহ'}</span>
-          </button>
         </div>
       </div>
     </motion.div>

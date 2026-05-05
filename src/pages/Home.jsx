@@ -68,7 +68,7 @@ function NoteCard({ note, outline = false }) {
         <p className="text-[#6e5b41] text-[10px] sm:text-[12px] font-bold bg-[#f3ede5] px-3 py-0.5 rounded-full mb-4 italic truncate">{note.desc}</p>
         <div className="mt-auto">
           <button className="w-full flex items-center justify-center gap-1.5 h-9 rounded-full bg-[#2d5a42] text-white text-[10px] sm:text-[12px] font-black transition-all hover:bg-[#1f422d] shadow-[0_4px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_2px_0_#1b3927]">
-             {outline ? <><ChevronRight className="w-3.5 h-3.5" /> Details</> : <><Download className="w-3.5 h-3.5" /> Get Note</>}
+             {outline ? <><ChevronRight className="w-3.5 h-3.5" /> Details</> : <><BookOpen className="w-3.5 h-3.5" /> নোট দেখুন</>}
           </button>
         </div>
       </div>
@@ -101,7 +101,6 @@ function SectionHeader({ title, icon: Icon, colorClass = "text-white" }) {
 export default function Home() {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('Science');
-  const { count: totalViews } = useViewCount('total_site_views', 'stats');
 
   // Temporary Quiz Logic
   const [quizPhase, setQuizPhase] = useState('idle'); // idle, registering, playing, result
@@ -175,7 +174,7 @@ export default function Home() {
 
   usePageSEO({
     title: 'Shaifly - Handnote SSC & Note SSC academic Library',
-    description: 'বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা একাডেমিক হ্যান্ডনোট, গাইড ও কুইজ। Specializing in Handnote SSC and Note SSC pdf download.',
+    description: 'বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা একাডেমিক হ্যান্ডনোট, গাইড ও কুইজ। Specializing in Handnote SSC and Note SSC online reading.',
     keywords: 'handnote ssc, note ssc, ssc science notes, hsc library, shaifly, ssc guide pdf',
   });
 
@@ -217,13 +216,6 @@ export default function Home() {
             >
               <GraduationCap className="w-3.5 h-3.5" />
               SSC · HSC · Bangladesh
-            </div>
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest"
-              style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)', color: '#22C55E' }}
-            >
-              <Eye className="w-3.5 h-3.5" />
-              {totalViews > 0 ? `${totalViews.toLocaleString()} Reads` : 'Loading...'}
             </div>
           </div>
 
@@ -753,7 +745,7 @@ export default function Home() {
           </div>
           <div className="p-6 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
             <h3 className="text-white font-black font-bn text-xl mb-3 italic">২. আমি কি নোটগুলো মোবাইল থেকে পড়তে পারব?</h3>
-            <p className="text-slate-500 font-bn italic">অবশ্যই! শাইফলি সম্পূর্ণ মোবাইল ফ্রেন্ডলি। আপনি যেকোনো স্মার্টফোন থেকে যেকোনো সময় আমাদের নোটগুলো পড়তে এবং প্রয়োজনে ডাউনলোড করতে পারবেন।</p>
+            <p className="text-slate-500 font-bn italic">অবশ্যই! শাইফলি সম্পূর্ণ মোবাইল ফ্রেন্ডলি। আপনি যেকোনো স্মার্টফোন থেকে যেকোনো সময় আমাদের নোটগুলো পড়তে পারবেন।</p>
           </div>
           <div className="p-6 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
             <h3 className="text-white font-black font-bn text-xl mb-3 italic">৩. কুইজে অংশ নেওয়ার জন্য কি কোনো ফি দিতে হবে?</h3>
@@ -813,7 +805,7 @@ export default function Home() {
             🎓 তোমার প্রোফাইল তৈরি করো — বিনামূল্যে!
           </p>
           <p className="text-white/80 text-[13.5px] font-bn">
-            নোট সেভ করো, কুইজে অংশ নাও এবং Shaifly-র লিডারবোর্ডে তোমার নাম রাখো।
+            কুইজে অংশ নাও এবং Shaifly-র লিডারবোর্ডে তোমার নাম রাখো।
           </p>
         </div>
         <Link

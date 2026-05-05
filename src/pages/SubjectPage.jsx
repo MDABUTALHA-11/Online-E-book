@@ -3,10 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { books, categories } from '../data/books';
 import BookCard from '../components/BookCard';
-import { useViewCount } from '../hooks/useViewCount';
 import usePageSEO from '../hooks/usePageSEO';
 import GoogleAd from '../components/GoogleAd';
-import { Search, ArrowLeft, BookOpen, GraduationCap, Eye, Info, ChevronRight, Quote, Bookmark } from 'lucide-react';
+import { Search, ArrowLeft, BookOpen, GraduationCap, Info, ChevronRight, Quote } from 'lucide-react';
 
 import PhysicsImg from '../assets/scientists/physics.png';
 import ChemistryImg from '../assets/scientists/chemistry.png';
@@ -39,10 +38,8 @@ const SubjectPage = () => {
     keywords: `${subject?.name || ''} Handnote, note ssc, handnote ssc`,
   });
 
-  const { count: viewCount, incrementView } = useViewCount(subjectId || 'default', 'subject_views');
-
   React.useEffect(() => {
-    if (subjectId) { incrementView(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    if (subjectId) { window.scrollTo({ top: 0, behavior: 'smooth' }); }
   }, [subjectId]);
 
   const filteredBooks = useMemo(() => {
@@ -125,16 +122,12 @@ const SubjectPage = () => {
              </div>
            )}
 
-           <div className="flex items-center gap-4 mt-12">
-              <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-                 <Eye className="w-4 h-4 text-cyan-400" />
-                 <span className="text-white font-black text-[13px] font-en uppercase tracking-tighter">{viewCount.toLocaleString()} Views</span>
-              </div>
-              <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-                 <BookOpen className="w-4 h-4 text-violet-400" />
-                 <span className="text-white font-black text-[13px] font-en uppercase tracking-tighter">{subjectBooks.length} Notes</span>
-              </div>
-           </div>
+            <div className="flex items-center gap-4 mt-12">
+               <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+                  <BookOpen className="w-4 h-4 text-violet-400" />
+                  <span className="text-white font-black text-[13px] font-en uppercase tracking-tighter">{subjectBooks.length} Notes</span>
+               </div>
+            </div>
         </div>
       </div>
 
@@ -191,8 +184,8 @@ const SubjectPage = () => {
               <h2 className="text-white font-black text-[28px] md:text-[38px] italic leading-none">অধ্যায়ভিত্তিক সংগ্রহ</h2>
               <p className="text-slate-400 text-[14px] md:text-[16px] font-bold mt-2 uppercase tracking-widest italic">{subject.name} · PDF Library</p>
             </div>
-            <div className="bg-white/5 px-6 py-3 rounded-full border border-white/10 text-slate-300 font-black text-[14px] items-center gap-2 shadow-lg">
-               <Bookmark className="w-5 h-5 text-[#22C55E]" /> সংরক্ষিত: 0
+            <div className="bg-white/5 px-6 py-3 rounded-full border border-white/10 text-slate-300 font-black text-[14px] items-center gap-2 shadow-lg hidden md:flex">
+               <BookOpen className="w-5 h-5 text-[#22C55E]" /> রিসোর্স সংখ্যা: {filteredBooks.length}
             </div>
           </div>
 
@@ -219,7 +212,7 @@ const SubjectPage = () => {
           </AnimatePresence>
 
           <div className="mt-8 text-center text-[#7f6a51] text-[12px] font-bold italic">
-            বইয়ের উপরে ক্লিক করে সরাসরি ডাউনলোড অথবা সংগ্রহে রাখুন
+            বইয়ের উপরে ক্লিক করে সরাসরি অনলাইন পড়তে পারেন
           </div>
         </div>
       </div>

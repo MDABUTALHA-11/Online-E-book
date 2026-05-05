@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { db } from '../lib/firebase';
-import { doc, onSnapshot, updateDoc, setDoc, getDoc, increment } from 'firebase/firestore';
+import { doc, onSnapshot, setDoc, increment } from 'firebase/firestore';
 
-export const useDownloadCount = (bookId) => {
+export const useReadCount = (bookId) => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!bookId) return;
     
-    const docRef = doc(db, "downloads", String(bookId));
+    const docRef = doc(db, "reading_counts", String(bookId));
     
     const unsubscribe = onSnapshot(docRef, (docSnap) => {
       if (docSnap.exists()) {
@@ -27,23 +27,20 @@ export const useDownloadCount = (bookId) => {
     return () => unsubscribe();
   }, [bookId]);
 
-  const incrementCount = async () => {
-    const docRef = doc(db, "downloads", String(bookId));
+  const incrementReadCount = async () => {
+    if (!bookId) return;
+    const docRef = doc(db, "reading_counts", String(bookId));
+    const globalRef = doc(db, "stats", "universal_readers");
+    
     try {
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        await updateDoc(docRef, {
-          count: increment(1)
-        });
-      } else {
-        await setDoc(docRef, {
-          count: 1
-        });
-      }
+      // Increment book specific count
+      await setDoc(docRef, { count: increment(1) }, { merge: true });
+      // Increment universal count
+      await setDoc(globalRef, { count: increment(1) }, { merge: true });
     } catch (error) {
       console.error("Error incrementing count:", error);
     }
   };
 
-  return { count, loading, incrementCount };
+  return { count, loading, incrementReadCount };
 };

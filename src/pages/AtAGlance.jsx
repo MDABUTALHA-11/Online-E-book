@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Image as ImageIcon, BookOpen, Clock, Download, ChevronRight, Bookmark, Filter } from 'lucide-react';
+import { Search, Image as ImageIcon, BookOpen, Clock, ChevronRight, Filter } from 'lucide-react';
 
 const onePageNotes = [
   { id: 1, title: 'Biology Chapter 3: Cell Division', titleBn: 'জীববিজ্ঞান ৩য় অধ্যায়: কোষ বিভাজন', subject: 'Biology', level: 'SSC', image: '/At-A-Glance/ssc_biology_ch3_note.jpg', date: '27 April 2026' },
@@ -28,15 +28,6 @@ export default function AtAGlance() {
                           note.title.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesLevel && matchesSubject && matchesSearch;
   });
-
-  const handleDownload = (imageUrl, title) => {
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = `${title.replace(/\s+/g, '_')}_Shaifly.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <div className="min-h-screen pb-16 px-4">
@@ -159,17 +150,14 @@ export default function AtAGlance() {
                     </div>
 
                     <div className="flex gap-3">
-                      <button 
-                        onClick={() => handleDownload(note.image, note.title)}
-                        className="flex-1 flex items-center justify-center gap-2 h-12 rounded-full bg-[#2d5a42] text-white text-[14px] md:text-[16px] font-black transition-all hover:bg-[#1f422d] shadow-[0_4px_0_#1b3927] active:translate-y-[1px]"
+                      <a 
+                        href={note.image}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 h-10 sm:h-12 rounded-full bg-[#2d5a42] text-white text-[12px] sm:text-[14px] md:text-[16px] font-black no-underline transition-all hover:bg-[#1f422d] shadow-[0_4px_0_#1b3927] active:translate-y-[1px]"
                       >
-                        <Download className="w-5 h-5" /> ডাউনলোড
-                      </button>
-                      <button 
-                        className="w-12 h-12 flex items-center justify-center rounded-full bg-[#faf0dd] border border-[#b5905c] text-[#4b3720] hover:bg-[#e7cfaa] transition-all"
-                      >
-                        <Bookmark className="w-5 h-5" />
-                      </button>
+                        <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" /> পড়ুন
+                      </a>
                     </div>
                   </div>
                 </motion.div>

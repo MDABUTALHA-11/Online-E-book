@@ -96,9 +96,6 @@ const TipDetail = () => {
                   <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--bg-elevated)] border border-[var(--bg-border)] hover:bg-[#22C55E]/10 transition-all text-[#22C55E] font-black text-xs uppercase tracking-widest font-en shadow-sm">
                      <Share2 className="w-4 h-4" /> Share Tip
                   </button>
-                  <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-[#22C55E] text-white hover:scale-105 transition-all font-black text-xs uppercase tracking-widest font-en shadow-lg">
-                     <Bookmark className="w-4 h-4" /> Save Later
-                  </button>
                </div>
             </div>
           </div>
