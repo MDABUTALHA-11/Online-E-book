@@ -57,7 +57,7 @@ export const books = [
 
   // --- BIOLOGY CHAPTERS ---
   // SSC
-  { id: 'b_ssc1', subject: 'biology', level: 'SSC', title: "১ম অধ্যায়: জীবন পাঠ", author: "শাইফলি টিম", fileSize: "15.4 MB", image: "/Book-Image/bio_ch1.png", pdfUrl: "/Biology/PDF/Modern_Biology_Blueprint.pdf" },
+  { id: 'b_ssc1', subject: 'biology', level: 'SSC', title: "১ম অধ্যায়: জীবন পাঠ", author: "শাইফলি টিম", fileSize: "20.9 MB", image: "/Biology/Image/life_blueprint_cover.png", pdfUrl: "/Biology/PDF/Life_s_Blueprint.pdf" },
   { id: 'b_ssc2', subject: 'biology', level: 'SSC', title: "২য় অধ্যায়: জীবকোষ ও টিস্যু", author: "শাইফলি টিম", fileSize: "20.0 MB", image: "/Biology/Image/cells_and_tissues_cover.png", pdfUrl: "/Biology/PDF/Cells_and_Tissues.pdf" },
   { id: 'b_ssc3', subject: 'biology', level: 'SSC', title: "৩য় অধ্যায়: কোষ বিভাজন", author: "শাইফলি টিম", fileSize: "20.9 MB", image: "/Biology/Image/cellular_blueprint_cover.png", pdfUrl: "/Biology/PDF/The_Cellular_Blueprint.pdf" },
   { id: 'b_ssc4', subject: 'biology', level: 'SSC', title: " ৪র্থ অধ্যায়: জীবনীশক্তি", author: "শাইফলি টিম", fileSize: "15.6 MB", image: "/Biology/Image/bioenergetics_visualized_cover.png", pdfUrl: "/Biology/PDF/Bioenergetics_Visualized.pdf" },
