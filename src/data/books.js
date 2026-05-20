@@ -101,7 +101,7 @@ export const books = [
   // SSC
   { id: 'p_ssc1', subject: 'physics', level: 'SSC', title: "১ম অধ্যায়: ভৌত রাশি এবং পরিমাপ", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/physics_measurement_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch1_hand_notes.pdf" },
   { id: 'p_ssc2', subject: 'physics', level: 'SSC', title: "২য় অধ্যায়: গতি", author: "শাইফলি টিম", fileSize: "13.4 MB", image: "/Physics/Image/motion_cover.png", pdfUrl: "/Physics/PDF/SSC_Motion_Masterclass.pdf" },
-  { id: 'p_ssc3', subject: 'physics', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "শাইফলি টিম", fileSize: "1.1 MB", image: "/Physics/Image/physics_ch3_cover.png", pdfUrl: "/Physics/PDF/ssc_physics_ch3_force.pdf" },
+  { id: 'p_ssc3', subject: 'physics', level: 'SSC', title: "৩য় অধ্যায়: বল", author: "শাইফলি টিম", fileSize: "15.0 MB", image: "/Physics/Image/force_blueprint_cover.png", pdfUrl: "/Physics/PDF/Force_Blueprint.pdf" },
   { id: 'p_ssc4', subject: 'physics', level: 'SSC', title: "৪র্থ অধ্যায়: কাজ, ক্ষমতা ও শক্তি", author: "শাইফলি টিম", fileSize: "10.4 MB", image: "/Physics/Image/work_power_cover.png", pdfUrl: "/Physics/PDF/Work_Power_Energy.pdf" },
   { id: 'p_ssc5', subject: 'physics', level: 'SSC', title: "৫ম অধ্যায়: পদার্থের অবস্থা ও চাপ", author: "শাইফলি টিম", fileSize: "0.5 MB", image: "/Physics/Image/matter_pressure_cover.png", pdfUrl: "/Physics/PDF/Ch5-ssc physic.pdf" },
   { id: 'p_ssc6', subject: 'physics', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: বস্তুর ওপর তাপের প্রভাব", author: "শাইফলি টিম", fileSize: "11.3 MB", image: "/Physics/Image/thermal_physics_cover.png", pdfUrl: "/Physics/PDF/Thermal_Physics_Visualized.pdf" },
@@ -151,10 +151,10 @@ export const books = [
   { id: 'c_ssc6', subject: 'chemistry', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: মোলের ধারণা ও রাসায়নিক গণনা", author: "শাইফলি টিম", fileSize: "10.4 MB", image: "/Chemistry/Image/mole_mastery_cover.png", pdfUrl: "/Chemistry/PDF/Mole_Mastery.pdf" },
   { id: 'c_ssc7', subject: 'chemistry', level: 'SSC', title: "৭ম অধ্যায়: রাসায়নিক বিক্রিয়া", author: "শাইফলি টিম", fileSize: "15.5 MB", image: "/Chemistry/Image/chemical_reactions_cover.png", pdfUrl: "/Chemistry/PDF/SSC_Chemical_Reactions_Masterclass.pdf" },
   { id: 'c_ssc8', subject: 'chemistry', level: 'SSC', title: "৮ম অধ্যায়: রসায়ন ও শক্তি", author: "শাইফলি টিম", fileSize: "13.9 MB", image: "/Chemistry/Image/chemical_energy_cover.png", pdfUrl: "/Chemistry/PDF/Chemical_Energy_Blueprint.pdf" },
-  { id: 'c_ssc9', subject: 'chemistry', level: 'SSC', title: "৯ম অধ্যায়: এসিড-ক্ষারক সমতা", author: "শাইফলি টিম", fileSize: "3.4 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
-  { id: 'c_ssc10', subject: 'chemistry', level: 'SSC', title: "১০ম অধ্যায়: খনিজ সম্পদ: ধাতু-অধাতু", author: "শাইফলি টিম", fileSize: "3.7 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
-  { id: 'c_ssc11', subject: 'chemistry', level: 'SSC', title: "১১শ অধ্যায়: খনিজ সম্পদ: জীবাশ্ম", author: "শাইফলি টিম", fileSize: "4.1 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
-  { id: 'c_ssc12', subject: 'chemistry', level: 'SSC', title: "১২শ অধ্যায়: আমাদের জীবনে রসায়ন", author: "শাইফলি টিম", fileSize: "3.0 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
+  { id: 'c_ssc9', subject: 'chemistry', level: 'SSC', title: "৯ম অধ্যায়: এসিড-ক্ষারক সমতা", author: "শাইফলি টিম", fileSize: "15.4 MB", image: "/Chemistry/Image/acid_base_mastery_cover.png", pdfUrl: "/Chemistry/PDF/SSC_Acid_Base_Mastery.pdf" },
+  { id: 'c_ssc10', subject: 'chemistry', level: 'SSC', title: "১০ম অধ্যায়: খনিজ সম্পদ: ধাতু-অধাতু", author: "শাইফলি টিম", fileSize: "25.0 MB", image: "/Chemistry/Image/mineral_resources_cover.png", pdfUrl: "/Chemistry/PDF/SSC_Mineral_Resources_Blueprint.pdf" },
+  { id: 'c_ssc11', subject: 'chemistry', level: 'SSC', title: "১১শ অধ্যায়: খনিজ সম্পদ: জীবাশ্ম", author: "শাইফলি টিম", fileSize: "14.9 MB", image: "/Chemistry/Image/fossil_fuel_cover.png", pdfUrl: "/Chemistry/PDF/Fossil_Fuel_Blueprint.pdf" },
+  { id: 'c_ssc12', subject: 'chemistry', level: 'SSC', title: "১২শ অধ্যায়: আমাদের জীবনে রসায়ন", author: "শাইফলি টিম", fileSize: "16.1 MB", image: "/Chemistry/Image/everyday_chemistry_cover.png", pdfUrl: "/Chemistry/PDF/Everyday_Chemistry_Blueprint.pdf" },
   // HSC Part 1
   { id: 'c_hsc1_1', subject: 'chemistry', level: 'HSC', part: 1, title: "০১. ল্যাবরেটরির নিরাপদ ব্যবহার", author: "শাইফলি নোট", fileSize: "3.2 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
   { id: 'c_hsc1_2', subject: 'chemistry', level: 'HSC', part: 1, title: "০২. গুণগত রসায়ন", author: "শাইফলি নোট", fileSize: "4.5 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
