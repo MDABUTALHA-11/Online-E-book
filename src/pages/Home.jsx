@@ -17,30 +17,31 @@ import CollaborationImg from '../assets/collaboration.png';
 import ScienceBg from '../assets/science_bg.png';
 import SmartStudentImg from '../assets/smart_student.png';
 import StudentsGroupImg from '../assets/students_group.png';
+import VideoMockupImg from '../assets/video_mockup.png';
 
 /* ─── hero photos (Local Assets) ─── */
 const heroPhotos = [BannerImg, CollaborationImg, ScienceBg];
 
 /* ─── note data ─── */
 const trendingNotes = [
-  { id:5, subject:'Premium Bundle', subjectBn:'প্রিমিয়াম', desc:'সকল বিষয়ের প্রিমিয়াম হ্যান্ডনোট একটি প্যাকেজে', path:'/subject/science', category: 'SSC' },
-  { id:6, subject:'Biology',        subjectBn:'জীববিজ্ঞান',  desc:'চিত্রসহ কোর্স ম্যাটেরিয়াল ও বিস্তারিত ব্যাখ্যা', path:'/subject/biology', category: 'Science' },
-  { id:7, subject:'Higher Math',    subjectBn:'উচ্চতর গণিত', desc:'শর্ট সিলেবাস কমপ্লিট সল্যুশন ও প্র্যাকটিস সেট', path:'/subject/higher-math', category: 'HSC' },
-  { id:8, subject:'English',        subjectBn:'ইংরেজি',       desc:'গ্র্যামার শর্টকাট ও রাইটিং স্পেশাল ট্রিকস', path:'/subject/science', category: 'SSC' },
+  { id:5, subject:'Premium Bundle', subjectBn:'প্রিমিয়াম বান্ডেল', desc:'সকল বিষয়ের প্রিমিয়াম হ্যান্ডনোট একটি প্যাকেজে', path:'/subject/science',     category: 'SSC',     accentColor: '#f59e0b', image: '/Book-Image/trend_bundle_realworld.png' },
+  { id:6, subject:'Biology',        subjectBn:'জীববিজ্ঞান',         desc:'চিত্রসহ কোর্স ম্যাটেরিয়াল ও বিস্তারিত ব্যাখ্যা',           path:'/subject/biology',     category: 'Science',  accentColor: '#22c55e', image: '/Book-Image/trend_biology_realworld.png' },
+  { id:7, subject:'Higher Math',    subjectBn:'উচ্চতর গণিত',        desc:'শর্ট সিলেবাস কমপ্লিট সল্যুশন ও প্র্যাকটিস সেট',             path:'/subject/higher-math', category: 'HSC',      accentColor: '#3b82f6', image: '/Book-Image/trend_math_realworld.png' },
+  { id:8, subject:'English',        subjectBn:'ইংরেজি',              desc:'গ্র্যামার শর্টকাট ও রাইটিং স্পেশাল ট্রিকস',                  path:'/subject/science',     category: 'SSC',      accentColor: '#ec4899', image: '/Book-Image/trend_english_realworld.png' },
 ];
 
 const popularNotes = [
-  { id:1, subject:'Physics',   subjectBn:'পদার্থবিজ্ঞান', desc:'চিরায়ত বলবিদ্যা, নিউটনিয়ান বলবিদ্যা সহ সব অধ্যায়ের পূর্ণ নোট', path:'/subject/physics', category: 'Science' },
-  { id:2, subject:'Higher Math', subjectBn:'উচ্চতর গণিত', desc:'ত্রিকোণমিতি, ক্যালকুলাস ও ম্যাট্রিক্সের সম্পূর্ণ সমাধান', path:'/subject/higher-math', category: 'HSC' },
-  { id:3, subject:'Chemistry', subjectBn:'রসায়নবিজ্ঞান', desc:'জৈব রসায়ন, অজৈব ও পরিমাণগত রসায়নের সম্পূর্ণ গাইড', path:'/subject/chemistry', category: 'Science' },
-  { id:4, subject:'Biology',   subjectBn:'জীববিজ্ঞান', desc:'উদ্ভিদ শারীরতত্ত্ব, মানবদেহ ও জেনেটিক্সের বিস্তারিত নোট', path:'/subject/biology', category: 'SSC' },
+  { id:1, subject:'Physics',     subjectBn:'পদার্থবিজ্ঞান', desc:'চিরায়ত বলবিদ্যা, নিউটনিয়ান বলবিদ্যা সহ সব অধ্যায়ের পূর্ণ নোট', path:'/subject/physics',     category: 'Science', accentColor: '#f97316', image: '/Book-Image/pop_physics_realworld.png' },
+  { id:2, subject:'Higher Math', subjectBn:'উচ্চতর গণিত',  desc:'ত্রিকোণমিতি, ক্যালকুলাস ও ম্যাট্রিক্সের সম্পূর্ণ সমাধান',     path:'/subject/higher-math', category: 'HSC',     accentColor: '#3b82f6', image: '/Book-Image/pop_math_realworld.png' },
+  { id:3, subject:'Chemistry',   subjectBn:'রসায়নবিজ্ঞান',  desc:'জৈব রসায়ন, অজৈব ও পরিমাণগত রসায়নের সম্পূর্ণ গাইড',           path:'/subject/chemistry',   category: 'Science', accentColor: '#a855f7', image: '/Book-Image/pop_chemistry_realworld.png' },
+  { id:4, subject:'Biology',     subjectBn:'জীববিজ্ঞান',   desc:'উদ্ভিদ শারীরতত্ত্ব, মানবদেহ ও জেনেটিক্সের বিস্তারিত নোট',    path:'/subject/biology',     category: 'SSC',     accentColor: '#22c55e', image: '/Book-Image/pop_biology_realworld.png' },
 ];
 
 const subjectCards = [
-  { label:'Higher Math Handnote',  color:'var(--bg-surface)', border:'#22C55E30', icon:Calculator, path:'/subject/higher-math' },
-  { label:'Physics Handnote',       color:'var(--bg-surface)', border:'#22C55E30', icon:FlaskConical, path:'/subject/physics' },
-  { label:'Chemistry Handnote',     color:'var(--bg-surface)', border:'#22C55E30', icon:Leaf,       path:'/subject/chemistry' },
-  { label:'Biology Handnote',       color:'var(--bg-surface)', border:'#22C55E30', icon:BookOpen,   path:'/subject/biology' },
+  { label:'Higher Math Handnote', labelBn:'উচ্চতর গণিত', desc:'ত্রিকোণমিতি, ক্যালকুলাস ও ম্যাট্রিক্সের সম্পূর্ণ সমাধান', border:'#3b82f680', icon:Calculator, path:'/subject/higher-math', image: '/Book-Image/higher_math_brush_cover.png' },
+  { label:'Physics Handnote',     labelBn:'পদার্থবিজ্ঞান',   desc:'নিউটনিয়ান বলবিদ্যা ও আধুনিক পদার্থবিজ্ঞানের পূর্ণ নোট', border:'#f97316a0', icon:FlaskConical, path:'/subject/physics',     image: '/Book-Image/physics_brush_cover.png' },
+  { label:'Chemistry Handnote',   labelBn:'রসায়নবিজ্ঞান',   desc:'জৈব, অজৈব ও পরিমাণগত রসায়নের সম্পূর্ণ গাইড',           border:'#a855f7a0', icon:Leaf,         path:'/subject/chemistry',  image: '/Book-Image/chemistry_brush_cover.png' },
+  { label:'Biology Handnote',     labelBn:'জীববিজ্ঞান',      desc:'উদ্ভিদ শারীরতত্ত্ব, মানবদেহ ও জেনেটিক্সের বিস্তারিত নোট', border:'#22c55ea0', icon:BookOpen,     path:'/subject/biology',    image: '/Book-Image/biology_brush_cover.png' },
 ];
 
 const filters = ['SSC','HSC','Science','Arts','Commerce'];
@@ -53,9 +54,17 @@ function NoteCard({ note, outline = false }) {
       className="vintage-card group no-underline relative flex flex-col"
     >
       <div className="relative w-full aspect-[4/3] mb-3 overflow-hidden rounded-xl border border-[#dac09a] bg-[#f3ede5]">
-        <div className="absolute inset-0 flex items-center justify-center text-[#c9a87c] opacity-20 group-hover:scale-110 transition-transform duration-500">
-           <BookOpen className="w-16 h-16" />
-        </div>
+        {note.image ? (
+          <img 
+            src={note.image} 
+            alt={note.subject} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-[#c9a87c] opacity-20 group-hover:scale-110 transition-transform duration-500">
+             <BookOpen className="w-16 h-16" />
+          </div>
+        )}
         <div className="pdf-label">PREVIEW</div>
         <div className={`absolute top-2 left-2 px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-tighter text-white shadow-lg ${
           note.category === 'SSC' ? 'bg-gradient-ssc' : 'bg-gradient-hsc'
@@ -63,7 +72,12 @@ function NoteCard({ note, outline = false }) {
           {note.category}
         </div>
       </div>
-      <div className="w-full text-center flex flex-col h-full">
+      <div className="w-full text-center flex flex-col h-full px-2 pb-2">
+        {/* Verified Academic Content badge under image */}
+        <div className="flex items-center justify-center gap-1 mb-2">
+          <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" />
+          <span className="text-[#22C55E] text-[9px] font-black uppercase tracking-wider">Verified Academic Content</span>
+        </div>
         <h3 className="text-[#3e2e1c] font-black text-[15px] sm:text-[18px] font-bn leading-tight mb-1 italic group-hover:text-[#2d5a42] transition-colors">{note.subject}</h3>
         <p className="text-[#6e5b41] text-[10px] sm:text-[12px] font-bold bg-[#f3ede5] px-3 py-0.5 rounded-full mb-4 italic truncate">{note.desc}</p>
         <div className="mt-auto">
@@ -181,55 +195,82 @@ export default function Home() {
   return (
     <div style={{ color: '#f1f5f9' }}>
 
-      {/* ══ HERO BANNER ══════════════════════════════ */}
-      <div
-        className="relative rounded-2xl overflow-hidden mb-0 flex items-center"
-        style={{ background: 'var(--bg-surface)', minHeight: '280px', border: '1px solid var(--bg-border)' }}
-      >
-        {/* Right photo */}
-        <div className="absolute right-0 top-0 bottom-0 w-[55%] z-0">
-          <img
-            src={BannerImg}
-            alt="Shaifly Academic Library"
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Gradient overlay for text legibility */}
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(to right, var(--bg-surface) 35%, rgba(8,20,12,0.4) 70%, transparent)' }}
-          />
+      {/* ══ MOTIVATIONAL BANGLA TEXT (above video hero) ══════════ */}
+      <div className="relative mb-0 overflow-hidden rounded-t-2xl" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0d2416 50%, #0a1628 100%)' }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(34,197,94,0.08) 0%, transparent 60%), radial-gradient(circle at 80% 50%, rgba(0,223,216,0.06) 0%, transparent 60%)' }} />
+        <div className="relative z-10 text-center py-8 px-4 md:px-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4" style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.25)' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
+            <span className="text-[#22C55E] text-[10px] font-black uppercase tracking-[0.25em]">অনুপ্রেরণার আলো</span>
+          </div>
+          <blockquote className="font-bn font-black italic leading-tight mb-3" style={{ fontSize: 'clamp(22px,4vw,46px)', background: 'linear-gradient(135deg, #ffffff 0%, #22C55E 50%, #00DFD8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            "স্বপ্ন দেখো, পরিশ্রম করো —
+          </blockquote>
+          <blockquote className="font-bn font-black italic leading-tight mb-4" style={{ fontSize: 'clamp(22px,4vw,46px)', background: 'linear-gradient(135deg, #00DFD8 0%, #ffffff 60%, #22C55E 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            সাফল্য তোমারই অপেক্ষা করছে!"
+          </blockquote>
+          <p className="text-slate-400 font-bn italic text-[15px] md:text-[17px]">
+            সূর্যের আলো যেমন চাঁদকে আলোকিত করে, তেমনি জ্ঞান তোমার ভবিষ্যৎকে উজ্জ্বল করবে।
+          </p>
         </div>
+      </div>
 
-        {/* Green glow blob top-right */}
+      {/* ══ HERO BANNER — Video Background ══════════════════════ */}
+      <div
+        className="relative overflow-hidden mb-0 flex items-end"
+        style={{ minHeight: '520px', border: '1px solid var(--bg-border)', borderTop: 'none', borderRadius: '0 0 1.5rem 1.5rem' }}
+      >
+        {/* ── Video Background ── */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ filter: 'brightness(0.65) saturate(1.2)' }}
+        >
+          <source src="/Video/Sun_illuminates_moon_reflects_Earth_202605230116.mp4" type="video/mp4" />
+        </video>
+
+        {/* ── Cinematic gradient overlay ── */}
         <div
-          className="absolute top-0 right-0 w-72 h-72 rounded-full pointer-events-none"
-          style={{ background: 'rgba(34,197,94,0.08)', filter: 'blur(60px)' }}
+          className="absolute inset-0 z-[1]"
+          style={{ background: 'linear-gradient(to top, rgba(5,15,10,0.97) 0%, rgba(5,15,10,0.6) 40%, rgba(5,15,10,0.15) 70%, transparent 100%)' }}
+        />
+        {/* Side vignette for text area */}
+        <div
+          className="absolute inset-0 z-[1]"
+          style={{ background: 'linear-gradient(to right, rgba(5,15,10,0.85) 0%, rgba(5,15,10,0.4) 55%, transparent 100%)' }}
         />
 
-        {/* Content */}
-        <div className="relative z-10 px-8 md:px-12 py-10 max-w-lg">
+        {/* ── Green glow accent ── */}
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none z-[1]"
+          style={{ background: 'rgba(34,197,94,0.06)', filter: 'blur(80px)' }} />
+
+        {/* ── Hero Content ── */}
+        <div className="relative z-10 px-8 md:px-14 py-12 max-w-2xl w-full">
           {/* Badge */}
           <div className="flex items-center gap-4 mb-5">
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest"
-              style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.2)', color: '#22C55E' }}
+              style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', color: '#22C55E' }}
             >
               <GraduationCap className="w-3.5 h-3.5" />
               SSC · HSC · Bangladesh
             </div>
           </div>
 
-          <h1 className="text-white font-bn font-black leading-[0.95] mb-6 italic tracking-tighter" style={{ fontSize: 'clamp(34px,6vw,68px)' }}>
+          <h1 className="text-white font-bn font-black leading-[0.95] mb-5 italic tracking-tighter drop-shadow-lg" style={{ fontSize: 'clamp(34px,6vw,72px)', textShadow: '0 4px 30px rgba(0,0,0,0.8)' }}>
             তোমার পরীক্ষার <span className="text-combo-cyan">সেরা প্রস্তুতি</span><br />এখন এক জায়গায়!
           </h1>
-          <p className="font-bn text-[18px] md:text-[20px] leading-relaxed mb-7 font-bold text-slate-400 italic">
+          <p className="font-bn text-[17px] md:text-[20px] leading-relaxed mb-7 font-bold text-slate-300 italic" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.6)' }}>
             পদার্থ, রসায়ন, গণিত, জীববিজ্ঞান — সব বিষয়ের হ্যান্ডনোট সংগ্রহ করো এখনই।
           </p>
           <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={() => navigate('/categories')}
-              className="flex items-center gap-2 font-black font-bn text-[15px] h-[48px] px-7 rounded-xl text-white transition-all hover:-translate-y-0.5"
-              style={{ background: '#22C55E', boxShadow: '0 6px 20px rgba(34,197,94,0.35)' }}
+              className="flex items-center gap-2 font-black font-bn text-[15px] h-[50px] px-8 rounded-xl text-white transition-all hover:-translate-y-0.5 hover:scale-105"
+              style={{ background: '#22C55E', boxShadow: '0 8px 25px rgba(34,197,94,0.4)' }}
               onMouseEnter={e => e.currentTarget.style.background = '#16a34a'}
               onMouseLeave={e => e.currentTarget.style.background = '#22C55E'}
             >
@@ -237,10 +278,10 @@ export default function Home() {
             </button>
             <button
               onClick={() => navigate('/quiz')}
-              className="flex items-center gap-2 font-black text-[14px] h-[48px] px-6 rounded-xl transition-all"
-              style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)', color: '#22C55E' }}
+              className="flex items-center gap-2 font-black text-[14px] h-[50px] px-6 rounded-xl transition-all hover:-translate-y-0.5"
+              style={{ background: 'rgba(255,255,255,0.08)', border: '1.5px solid rgba(34,197,94,0.4)', color: '#22C55E', backdropFilter: 'blur(10px)' }}
               onMouseEnter={e => e.currentTarget.style.borderColor = '#22C55E'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--bg-border)'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(34,197,94,0.4)'}
             >
               <Star className="w-4 h-4" /> কুইজ দাও
             </button>
@@ -600,8 +641,9 @@ export default function Home() {
         </button>
       </div>
 
+      {/* ══ বিষয়ভিত্তিক নোট — Brush Paint Cards ══════════════ */}
       <div className="mb-9">
-        <div className="flex justify-between items-center mb-5">
+        <div className="flex justify-between items-center mb-6">
           <h2 className="text-combo-violet font-black text-[20px] md:text-[22px] flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-combo-violet" /> <span>বিষয়ভিত্তিক নোট</span>
           </h2>
@@ -609,35 +651,74 @@ export default function Home() {
             সব দেখুন <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {subjectCards.map((sc, index) => (
             <Link
               key={sc.label}
               to={sc.path}
-              className="flex flex-col gap-3 p-4 rounded-2xl no-underline group transition-all duration-300 hover:-translate-y-2 animate-float"
-              style={{ 
-                background: sc.color, 
-                border: `1px solid ${sc.border}`,
-                animationDelay: `${index * 0.2}s` 
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.border = '1px solid rgba(34,197,94,0.4)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(34,197,94,0.15)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.border = `1px solid ${sc.border}`;
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+              className="no-underline group"
+              style={{ textDecoration: 'none' }}
             >
+              {/* ── Bootstrap-style card with dark glassmorphism ── */}
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3"
-                style={{ background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.15)' }}
+                className="flex flex-col rounded-2xl overflow-hidden transition-all duration-400 group-hover:-translate-y-3"
+                style={{
+                  width: '100%',
+                  background: 'linear-gradient(160deg, rgba(15,23,42,0.95) 0%, rgba(10,18,32,0.98) 100%)',
+                  border: `1.5px solid ${sc.border}`,
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+                  backdropFilter: 'blur(12px)',
+                  animationDelay: `${index * 0.15}s`,
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.boxShadow = `0 20px 50px rgba(0,0,0,0.6), 0 0 30px ${sc.border}`;
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.45)';
+                }}
               >
-                <sc.icon className="w-6 h-6 text-[#22C55E]" />
-              </div>
-              <div>
-                <p className="text-white font-black text-[14px] leading-snug group-hover:text-[#22C55E] transition-colors">{sc.label}</p>
-                <p className="text-[#22C55E] text-[9px] font-black mt-1 uppercase tracking-widest opacity-60">Verified Library</p>
+                {/* card-img-top */}
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                  <img
+                    src={sc.image}
+                    alt={sc.label}
+                    className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110"
+                    style={{ display: 'block' }}
+                  />
+                  {/* Paint texture overlay */}
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(8,15,30,0.85) 100%)' }} />
+                  {/* Subject Bangla label pill on image */}
+                  <div
+                    className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+                    style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)', border: `1px solid ${sc.border}` }}
+                  >
+                    <sc.icon className="w-3.5 h-3.5" style={{ color: sc.border.slice(0,7) }} />
+                    <span className="text-white font-black text-[11px] font-bn">{sc.labelBn}</span>
+                  </div>
+                </div>
+
+                {/* card-body */}
+                <div className="flex flex-col gap-3 p-4">
+                  <h3 className="text-white font-bn font-black text-[14px] sm:text-[16px] leading-snug mb-0 group-hover:text-[#22C55E] transition-colors">
+                    {sc.labelBn} হ্যান্ডনোট
+                  </h3>
+                  <p className="text-slate-400 font-bn text-[11px] sm:text-[12px] leading-relaxed italic" style={{ margin: 0 }}>
+                    {sc.desc}
+                  </p>
+                  {/* Verified badge */}
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <CheckCircle2 className="w-3 h-3 text-[#22C55E] shrink-0" />
+                    <span className="text-[#22C55E] text-[9px] font-black uppercase tracking-wider">Verified Academic Content</span>
+                  </div>
+                  {/* CTA */}
+                  <button
+                    className="w-full mt-1 flex items-center justify-center gap-1.5 h-9 rounded-xl text-white text-[11px] sm:text-[12px] font-black transition-all group-hover:scale-[1.03]"
+                    style={{ background: `linear-gradient(135deg, ${sc.border.slice(0,7)}cc, ${sc.border.slice(0,7)}88)`, border: `1px solid ${sc.border}` }}
+                  >
+                    <BookOpen className="w-3.5 h-3.5" /> নোট দেখুন
+                  </button>
+                </div>
               </div>
             </Link>
           ))}
@@ -678,35 +759,134 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ══ POPULAR NOTES ══ */}
-      <div className="booklet-container mb-16">
-        <div className="relative z-10">
-          <SectionHeader title={`${activeFilter} Popular Notes`} icon={TrendingUp} colorClass="text-[#22C55E]" />
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').slice(0, 4).map(n => (
-              <NoteCard key={n.id} note={n} />
-            ))}
-            {popularNotes.filter(n => n.category === activeFilter || activeFilter === 'Science').length === 0 && (
-              <div className="col-span-full py-16 text-center text-[#6f5b44] font-bn text-xl italic bg-[rgba(0,0,0,0.02)] rounded-[2rem] border-2 border-dashed border-[#c9a87c]">
-                এই ক্যাটাগরিতে বর্তমানে কোনো নোট নেই। শীঘ্রই আসছে...
+      {/* ══ POPULAR NOTES — Bootstrap Card Style ══ */}
+      <div className="mb-16">
+        <SectionHeader title={`Science Popular Notes`} icon={TrendingUp} colorClass="text-[#22C55E]" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {popularNotes.slice(0, 4).map((n, idx) => (
+            <Link key={n.id} to={n.path} className="no-underline group" style={{ textDecoration: 'none' }}>
+              <div
+                className="flex flex-col rounded-2xl overflow-hidden transition-all duration-300 group-hover:-translate-y-3"
+                style={{
+                  background: 'linear-gradient(160deg, rgba(13,20,38,0.97) 0%, rgba(8,14,28,0.99) 100%)',
+                  border: `1.5px solid ${n.accentColor}55`,
+                  boxShadow: '0 6px 28px rgba(0,0,0,0.5)',
+                }}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = `0 18px 45px rgba(0,0,0,0.65), 0 0 25px ${n.accentColor}40`}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = '0 6px 28px rgba(0,0,0,0.5)'}
+              >
+                {/* card-img-top */}
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                  <img
+                    src={n.image}
+                    alt={n.subject}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{ display: 'block' }}
+                  />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 45%, rgba(8,14,28,0.92) 100%)' }} />
+                  {/* Category pill */}
+                  <div
+                    className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider text-white"
+                    style={{ background: n.category === 'SSC' ? 'linear-gradient(135deg,#ec4899,#f43f5e)' : n.category === 'HSC' ? 'linear-gradient(135deg,#3b82f6,#6366f1)' : 'linear-gradient(135deg,#22c55e,#16a34a)', boxShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+                  >
+                    {n.category}
+                  </div>
+                  {/* Subject Bangla on image bottom */}
+                  <span className="absolute bottom-2.5 left-3 text-white font-bn font-black text-[12px]" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>{n.subjectBn}</span>
+                </div>
+
+                {/* card-body */}
+                <div className="flex flex-col gap-2 p-4">
+                  <h3 className="text-white font-bn font-black text-[14px] sm:text-[15px] leading-snug group-hover:text-[#22C55E] transition-colors" style={{ margin: 0 }}>
+                    {n.subjectBn} হ্যান্ডনোট
+                  </h3>
+                  <p className="text-slate-400 font-bn text-[10px] sm:text-[11px] leading-relaxed italic" style={{ margin: 0 }}>
+                    {n.desc}
+                  </p>
+                  {/* Verified badge */}
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <CheckCircle2 className="w-3 h-3 shrink-0" style={{ color: n.accentColor }} />
+                    <span className="text-[9px] font-black uppercase tracking-wider" style={{ color: n.accentColor }}>Verified Academic Content</span>
+                  </div>
+                  {/* CTA */}
+                  <button
+                    className="w-full mt-2 h-8 rounded-xl text-white text-[11px] font-black flex items-center justify-center gap-1.5 transition-all group-hover:opacity-90"
+                    style={{ background: `linear-gradient(135deg, ${n.accentColor}cc, ${n.accentColor}77)`, border: `1px solid ${n.accentColor}88` }}
+                  >
+                    <BookOpen className="w-3.5 h-3.5" /> নোট দেখুন
+                  </button>
+                </div>
               </div>
-            )}
-          </div>
+            </Link>
+          ))}
+          {popularNotes.length === 0 && (
+            <div className="col-span-full py-16 text-center text-slate-500 font-bn text-xl italic rounded-2xl border-2 border-dashed border-slate-700">
+              এই ক্যাটাগরিতে বর্তমানে কোনো নোট নেই। শীঘ্রই আসছে...
+            </div>
+          )}
         </div>
       </div>
 
-      {/* ══ TRENDING ══ */}
-      <div className="booklet-container mb-16">
-        <div className="relative z-10">
-          <SectionHeader title="Trending This Week" icon={Star} colorClass="text-combo-orange" />
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            {trendingNotes.map(n => <NoteCard key={n.id} note={n} outline />)}
-          </div>
-          
-          {/* Subtle decoration */}
-          <div className="absolute -right-10 -bottom-10 w-48 h-48 opacity-10 pointer-events-none transform rotate-12">
-             <Star className="w-full h-full text-combo-orange fill-combo-orange" />
-          </div>
+      {/* ══ TRENDING THIS WEEK — Bootstrap Card Style ══ */}
+      <div className="mb-16">
+        <SectionHeader title="Trending This Week" icon={Star} colorClass="text-combo-orange" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {trendingNotes.map((n, idx) => (
+            <Link key={n.id} to={n.path} className="no-underline group" style={{ textDecoration: 'none' }}>
+              <div
+                className="flex flex-col rounded-2xl overflow-hidden transition-all duration-300 group-hover:-translate-y-3"
+                style={{
+                  background: 'linear-gradient(160deg, rgba(20,12,5,0.97) 0%, rgba(15,9,4,0.99) 100%)',
+                  border: `1.5px solid ${n.accentColor}55`,
+                  boxShadow: '0 6px 28px rgba(0,0,0,0.5)',
+                }}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = `0 18px 45px rgba(0,0,0,0.65), 0 0 25px ${n.accentColor}40`}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = '0 6px 28px rgba(0,0,0,0.5)'}
+              >
+                {/* card-img-top */}
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                  <img
+                    src={n.image}
+                    alt={n.subject}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{ display: 'block' }}
+                  />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 45%, rgba(15,9,4,0.93) 100%)' }} />
+                  {/* Trending flame badge */}
+                  <div
+                    className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider text-white flex items-center gap-1"
+                    style={{ background: 'linear-gradient(135deg,#f59e0b,#ef4444)', boxShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+                  >
+                    🔥 {n.category}
+                  </div>
+                  {/* Subject Bangla on image bottom */}
+                  <span className="absolute bottom-2.5 left-3 text-white font-bn font-black text-[12px]" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>{n.subjectBn}</span>
+                </div>
+
+                {/* card-body */}
+                <div className="flex flex-col gap-2 p-4">
+                  <h3 className="text-white font-bn font-black text-[14px] sm:text-[15px] leading-snug transition-colors group-hover:text-[#f59e0b]" style={{ margin: 0 }}>
+                    {n.subjectBn}
+                  </h3>
+                  <p className="text-slate-400 font-bn text-[10px] sm:text-[11px] leading-relaxed italic" style={{ margin: 0 }}>
+                    {n.desc}
+                  </p>
+                  {/* Verified badge */}
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <CheckCircle2 className="w-3 h-3 shrink-0" style={{ color: n.accentColor }} />
+                    <span className="text-[9px] font-black uppercase tracking-wider" style={{ color: n.accentColor }}>Verified Academic Content</span>
+                  </div>
+                  {/* CTA */}
+                  <button
+                    className="w-full mt-2 h-8 rounded-xl text-white text-[11px] font-black flex items-center justify-center gap-1.5 transition-all group-hover:opacity-90"
+                    style={{ background: 'linear-gradient(135deg,#f59e0bcc,#ef444477)', border: '1px solid #f59e0b88' }}
+                  >
+                    <Star className="w-3 h-3" /> বিস্তারিত দেখুন
+                  </button>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 
