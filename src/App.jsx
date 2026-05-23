@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
@@ -10,6 +10,7 @@ import { ComingSoonProvider } from './components/ComingSoonModal';
 import { BkashProvider } from './components/BkashModal';
 import PageViewTracker from './components/PageViewTracker';
 import GoogleAd from './components/GoogleAd';
+import { shouldShowAds } from './lib/adUtils';
 
 const Home         = lazy(() => import('./pages/Home'));
 const Categories   = lazy(() => import('./pages/Categories'));
@@ -44,6 +45,9 @@ const PageLoader = () => (
 );
 
 function App() {
+  const location = useLocation();
+  const showAds = shouldShowAds(location.pathname);
+
   return (
     <ToastProvider>
       <ComingSoonProvider>
@@ -67,9 +71,11 @@ function App() {
             {/* Page Content */}
             <div className="flex-1 px-4 md:px-10 pt-6 pb-8 md:pb-6 w-full max-w-[1400px] mx-auto">
               {/* Top Banner Ad */}
-              <div className="mb-8">
-                <GoogleAd slot="2280555349" />
-              </div>
+              {showAds && (
+                <div className="mb-8">
+                  <GoogleAd slot="2280555349" />
+                </div>
+              )}
               
               <Suspense fallback={<PageLoader />}>
                 <Routes>

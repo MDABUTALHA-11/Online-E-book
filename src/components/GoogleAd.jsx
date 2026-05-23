@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { shouldShowAds } from '../lib/adUtils';
 
 /**
  * Reusable Google AdSense Component
@@ -7,13 +9,23 @@ import React, { useEffect } from 'react';
  * @param {boolean} responsive - Whether the ad should be responsive
  */
 const GoogleAd = ({ slot, format = 'auto', responsive = 'true' }) => {
+  const location = useLocation();
+  const isAllowed = shouldShowAds(location.pathname);
+
   useEffect(() => {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error('AdSense error:', e);
+    // Only initialize ads on allowed pages
+    if (isAllowed) {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error('AdSense error:', e);
+      }
     }
-  }, []);
+  }, [location.pathname, isAllowed]);
+
+  if (!isAllowed) {
+    return null;
+  }
 
   return (
     <div className="w-full my-8 flex justify-center overflow-hidden min-h-[90px] bg-white/5 rounded-xl border border-white/10">
@@ -30,3 +42,4 @@ const GoogleAd = ({ slot, format = 'auto', responsive = 'true' }) => {
 };
 
 export default GoogleAd;
+

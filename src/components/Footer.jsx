@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Facebook, Youtube, Linkedin, Mail, Heart, BookOpen, Zap, Trophy, ArrowUpRight, GraduationCap, Star, Award } from 'lucide-react';
 import GoogleAd from './GoogleAd';
+import { shouldShowAds } from '../lib/adUtils';
 
 const socialLinks = [
   { icon: Facebook,  href: 'https://facebook.com/shaifly', label: 'Facebook'  },
@@ -35,6 +36,9 @@ const stats = [
 ];
 
 export default function Footer() {
+  const location = useLocation();
+  const showAds = shouldShowAds(location.pathname);
+
   return (
     <footer className="relative w-full overflow-hidden" style={{ background: 'var(--bg-app)' }}>
 
@@ -49,9 +53,11 @@ export default function Footer() {
 
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 pt-16 pb-10">
         {/* Global Footer Ad */}
-        <div className="mb-16">
-          <GoogleAd slot="2280555349" />
-        </div>
+        {showAds && (
+          <div className="mb-16">
+            <GoogleAd slot="2280555349" />
+          </div>
+        )}
 
         {/* ── Stats Strip ── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-16">
