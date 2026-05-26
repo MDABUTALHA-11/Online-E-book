@@ -1,5 +1,5 @@
 export const categories = [
-  { id: 'biology', name: 'জীববিজ্ঞান', icon: 'dna', themeColor: '#22C55E', count: '35+ Notes', slug: 'biology' },
+  { id: 'biology', name: 'জীববিজ্ঞান', icon: 'dna', themeColor: '#14B8A6', count: '35+ Notes', slug: 'biology' },
   { id: 'physics', name: 'পদার্থবিজ্ঞান', icon: 'atom', themeColor: '#0ea5e9', count: '40+ Notes', slug: 'physics' },
   { id: 'chemistry', name: 'রসায়ন', icon: 'flask-conical', themeColor: '#f59e0b', count: '30+ Notes', slug: 'chemistry' },
   { id: 'higher-math', name: 'উচ্চতর গণিত', icon: 'calculator', themeColor: '#8b5cf6', count: '45+ Notes', slug: 'higher-math' },
@@ -165,6 +165,26 @@ export const books = [
   { id: 'c_hsc2_2', subject: 'chemistry', level: 'HSC', part: 2, title: "০২. জৈব রসায়ন", author: "শাইফলি নোট", fileSize: "17.6 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "/Chemistry/PDF/Organic_Chemistry_Essentials.pdf" },
   { id: 'c_hsc2_3', subject: 'chemistry', level: 'HSC', part: 2, title: "০৩. পরিমাণগত রসায়ন", author: "শাইফলি নোট", fileSize: "4.2 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
   { id: 'c_hsc2_4', subject: 'chemistry', level: 'HSC', part: 2, title: "০৪. তড়িৎ রসায়ন", author: "শাইফলি নোট", fileSize: "5.1 MB", image: "/Book-Image/ghibli_3.png", pdfUrl: "#" },
+
+  // --- MATH (GENERAL) CHAPTERS ---
+  // SSC
+  { id: 'm_ssc1', subject: 'math', level: 'SSC', title: "১ম অধ্যায়: বাস্তব সংখ্যা", author: "শাইফলি টিম", fileSize: "12.5 MB", image: "/Math/Image/real_numbers.png", pdfUrl: "#" },
+  { id: 'm_ssc2', subject: 'math', level: 'SSC', title: "২য় অধ্যায়: সেট ও ফাংশন", author: "শাইফলি টিম", fileSize: "10.8 MB", image: "/Math/Image/sets_functions.png", pdfUrl: "#" },
+  { id: 'm_ssc3', subject: 'math', level: 'SSC', title: "৩য় অধ্যায়: বীজগাণিতিক রাশি", author: "শাইফলি টিম", fileSize: "14.2 MB", image: "/Math/Image/algebraic_expressions.png", pdfUrl: "#" },
+  { id: 'm_ssc4', subject: 'math', level: 'SSC', title: "৪র্থ অধ্যায়: সূচক ও লগারিদম", author: "শাইফলি টিম", fileSize: "11.5 MB", image: "/Math/Image/exponents_logarithms.png", pdfUrl: "#" },
+  { id: 'm_ssc5', subject: 'math', level: 'SSC', title: "৫ম অধ্যায়: এক চলকবিশিষ্ট সমীকরণ", author: "শাইফলি টিম", fileSize: "9.6 MB", image: "/Math/Image/one_variable_equations.png", pdfUrl: "#" },
+  { id: 'm_ssc6', subject: 'math', level: 'SSC', title: "৬ষ্ঠ অধ্যায়: রেখা, কোণ ও ত্রিভুজ", author: "শাইফলি টিম", fileSize: "13.1 MB", image: "/Math/Image/lines_angles_triangles.png", pdfUrl: "#" },
+  { id: 'm_ssc7', subject: 'math', level: 'SSC', title: "৭ম অধ্যায়: ব্যবহারিক জ্যামিতি", author: "শাইফলি টিম", fileSize: "15.0 MB", image: "/Math/Image/practical_geometry.png", pdfUrl: "#" },
+  { id: 'm_ssc8', subject: 'math', level: 'SSC', title: "৮ম অধ্যায়: বৃত্ত", author: "শাইফলি টিম", fileSize: "16.4 MB", image: "/Math/Image/circle_geometry.png", pdfUrl: "#" },
+  { id: 'm_ssc9', subject: 'math', level: 'SSC', title: "৯ম অধ্যায়: ত্রিকোণমিতিক অনুপাত", author: "শাইফলি টিম", fileSize: "12.0 MB", image: "/Math/Image/trigonometric_ratios.png", pdfUrl: "#" },
+  { id: 'm_ssc10', subject: 'math', level: 'SSC', title: "১০ম অধ্যায়: দূরত্ব ও উচ্চতা", author: "শাইফলি টিম", fileSize: "10.5 MB", image: "/Math/Image/distance_height.png", pdfUrl: "#" },
+  { id: 'm_ssc11', subject: 'math', level: 'SSC', title: "১১শ অধ্যায়: বীজগাণিতিক অনুপাত ও সমানুপাত", author: "শাইফলি টিম", fileSize: "11.2 MB", image: "/Math/Image/ratios_proportions.png", pdfUrl: "#" },
+  { id: 'm_ssc12', subject: 'math', level: 'SSC', title: "১২শ অধ্যায়: দুই চলকবিশিষ্ট সরল সহসমীকরণ", author: "শাইফলি টিম", fileSize: "10.0 MB", image: "/Math/Image/simultaneous_equations.png", pdfUrl: "#" },
+  { id: 'm_ssc13', subject: 'math', level: 'SSC', title: "১৩শ অধ্যায়: সসীম ধারা", author: "শাইফলি টিম", fileSize: "12.8 MB", image: "/Math/Image/finite_series.png", pdfUrl: "#" },
+  { id: 'm_ssc14', subject: 'math', level: 'SSC', title: "১৪শ অধ্যায়: অনুপাত, সদৃশতা ও প্রতিসমতা", author: "শাইفলি টিম", fileSize: "11.9 MB", image: "/Math/Image/symmetry_similarity.png", pdfUrl: "#" },
+  { id: 'm_ssc15', subject: 'math', level: 'SSC', title: "১৫শ অধ্যায়: ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য", author: "শাইফলি টিম", fileSize: "14.5 MB", image: "/Math/Image/area_theorems.png", pdfUrl: "#" },
+  { id: 'm_ssc16', subject: 'math', level: 'SSC', title: "১৬শ অধ্যায়: পরিমিতি", author: "শাইফলি টিম", fileSize: "15.6 MB", image: "/Math/Image/mensuration_geometry.png", pdfUrl: "#" },
+  { id: 'm_ssc17', subject: 'math', level: 'SSC', title: "১৭শ অধ্যায়: পরিসংখ্যান", author: "শাইফলি টিম", fileSize: "13.7 MB", image: "/Math/Image/statistics_charts.png", pdfUrl: "#" },
 
   // --- HIGHER MATH CHAPTERS ---
   // SSC

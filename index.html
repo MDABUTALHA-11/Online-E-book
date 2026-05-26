@@ -2,6 +2,13 @@
 <html lang="bn">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -55,7 +62,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Mina:wght@400;700&family=Hind+Siliguri:wght@300;400;600;700&family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CDN for Reliability -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,16 +71,18 @@
         theme: {
           extend: {
             colors: {
-              primary: '#22C55E',
-              secondary: '#10b981',
-              accent: '#facc15',
-              navy: '#040a06',
+              primary: '#0F172A',
+              tealColor: '#14B8A6',
+              accent: '#F97316',
+              neutralBg: '#F8FAFC',
+              neutralText: '#64748B',
+              success: '#10B981',
+              navy: '#0F172A',
             },
             fontFamily: {
-              bn: ['Mina', 'sans-serif'],
-              en: ['Outfit', 'sans-serif'],
-              body: ['Hind Siliguri', 'sans-serif'],
-              brand: ['Bungee', 'cursive'],
+              headings: ['Poppins', 'sans-serif'],
+              body: ['Nunito Sans', 'sans-serif'],
+              bn: ['Hind Siliguri', 'Noto Sans Bengali', 'sans-serif'],
             }
           }
         }

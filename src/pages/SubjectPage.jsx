@@ -58,8 +58,8 @@ const SubjectPage = () => {
       <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ background:'var(--bg-surface)', border:'1px solid var(--bg-border)' }}>
         <Info className="w-8 h-8 text-[#334155]" />
       </div>
-      <h2 className="text-white text-xl font-black font-bn uppercase tracking-widest">Subject Not Found!</h2>
-      <Link to="/categories" className="font-black text-[14px] px-6 py-3 rounded-xl no-underline text-white transition-all bg-primary">View Categories</Link>
+      <h2 className="text-[#0F172A] text-xl font-black font-bn uppercase tracking-widest">Subject Not Found!</h2>
+      <Link to="/categories" className="font-black text-[14px] px-6 py-3 rounded-xl no-underline text-white transition-all bg-[#0F172A]">View Categories</Link>
     </div>
   );
 
@@ -74,15 +74,15 @@ const SubjectPage = () => {
     <div className="min-h-screen pb-12">
 
       <div className="flex items-center gap-2 mb-6 px-2 text-[12px] font-black uppercase tracking-widest text-slate-500 font-en italic">
-        <Link to="/" className="hover:text-primary no-underline transition-colors">Home</Link>
+        <Link to="/" className="hover:text-[#0F172A] no-underline transition-colors">Home</Link>
         <ChevronRight className="w-3 h-3" />
-        <Link to="/categories" className="hover:text-primary no-underline transition-colors">Categories</Link>
-        <ChevronRight className="w-3 h-3 text-primary" />
-        <span className="text-white">{subject.name}</span>
+        <Link to="/categories" className="hover:text-[#0F172A] no-underline transition-colors">Categories</Link>
+        <ChevronRight className="w-3 h-3 text-[#0F172A]" />
+        <span className="text-[#0F172A]">{subject.name}</span>
       </div>
 
-      {/* ── Hero Banner with Scientist (Ultra Stable) ── */}
-      <div className="relative rounded-[2.5rem] overflow-hidden mb-10 min-h-[320px] md:min-h-[420px] flex flex-col md:flex-row items-center border border-white/10" style={{ background:'var(--bg-surface)' }}>
+      {/* ── Hero Banner with Scientist ── */}
+      <div className="relative rounded-[2.5rem] overflow-hidden mb-10 min-h-[320px] md:min-h-[420px] flex flex-col md:flex-row items-center border border-[var(--bg-border)]" style={{ background:'var(--bg-surface)' }}>
         
         {/* Background Scientist Image */}
         {scientist && (
@@ -98,24 +98,24 @@ const SubjectPage = () => {
 
         {/* Content */}
         <div className="relative z-10 p-8 md:p-16 max-w-2xl w-full">
-           <Link to="/categories" className="inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.2em] no-underline transition-colors mb-8 group font-en italic text-slate-500 hover:text-primary">
+           <Link to="/categories" className="inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.2em] no-underline transition-colors mb-8 group font-en italic text-slate-500 hover:text-[#0F172A]">
              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Library
            </Link>
            
-           <h1 className="text-white text-[42px] md:text-[72px] font-bn font-black leading-[0.85] mb-8 italic tracking-tighter">
-             {subject.name} <span className="text-primary">লাইব্রেরি</span>
+           <h1 className="text-[#0F172A] text-[42px] md:text-[72px] font-bn font-black leading-[0.85] mb-8 italic tracking-tighter">
+             {subject.name} <span className="text-[#14B8A6]">লাইব্রেরি</span>
            </h1>
 
            {/* Quote Section */}
            {scientist && (
-             <div className="mt-8 border-l-4 border-primary pl-6 py-2 bg-white/5 rounded-r-2xl pr-8">
-                <Quote className="w-8 h-8 text-primary opacity-20 mb-2 rotate-180" />
-                <p className="text-[20px] md:text-[28px] font-bn leading-relaxed font-bold italic text-white mb-2 tracking-tight">
+             <div className="mt-8 border-l-4 border-[#14B8A6] pl-6 py-2 bg-[var(--bg-elevated)] rounded-r-2xl pr-8">
+                <Quote className="w-8 h-8 text-[#14B8A6] opacity-20 mb-2 rotate-180" />
+                <p className="text-[20px] md:text-[28px] font-bn leading-relaxed font-bold italic text-[#0F172A] mb-2 tracking-tight">
                   "{scientist.quote}"
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="h-px w-8 bg-primary/40" />
-                  <span className="text-primary font-en font-black text-[12px] uppercase tracking-[0.3em] opacity-80">
+                  <div className="h-px w-8 bg-[#14B8A6]/40" />
+                  <span className="text-[#14B8A6] font-en font-black text-[12px] uppercase tracking-[0.3em] opacity-80">
                      {scientist.name}
                   </span>
                 </div>
@@ -123,9 +123,9 @@ const SubjectPage = () => {
            )}
 
             <div className="flex items-center gap-4 mt-12">
-               <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-                  <BookOpen className="w-4 h-4 text-violet-400" />
-                  <span className="text-white font-black text-[13px] font-en uppercase tracking-tighter">{subjectBooks.length} Notes</span>
+               <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/60 border border-[var(--bg-border)] backdrop-blur-md">
+                  <BookOpen className="w-4 h-4 text-[#14B8A6]" />
+                  <span className="text-[#0F172A] font-black text-[13px] font-en uppercase tracking-tighter">{subjectBooks.length} Notes</span>
                </div>
             </div>
         </div>
@@ -139,10 +139,10 @@ const SubjectPage = () => {
             type="text"
             placeholder="অধ্যায় বা নোটের নাম দিয়ে সার্চ করুন..."
             className="w-full h-[44px] pl-11 pr-4 rounded-xl text-[13.5px] font-bn placeholder:text-[#334155] outline-none transition-all"
-            style={{ background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)', color:'#f1f5f9' }}
+            style={{ background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)', color:'#0F172A' }}
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
-            onFocus={e => e.target.style.borderColor = 'rgba(34,197,94,0.4)'}
+            onFocus={e => e.target.style.borderColor = '#14B8A6'}
             onBlur={e => e.target.style.borderColor = 'var(--bg-border)'}
           />
         </div>
@@ -151,7 +151,7 @@ const SubjectPage = () => {
             <button key={tab.id} onClick={() => setActiveTab(tab.id)}
               className="h-[44px] px-4 rounded-xl font-black text-[12.5px] transition-all whitespace-nowrap"
               style={activeTab === tab.id
-                ? { background:'#22C55E', color:'white', boxShadow:'0 4px 12px rgba(34,197,94,0.25)' }
+                ? { background:'#0F172A', color:'white', boxShadow:'0 4px 12px rgba(15,23,42,0.15)' }
                 : { background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)', color:'#64748b' }
               }
             >
@@ -179,13 +179,13 @@ const SubjectPage = () => {
       {/* ── Grid wrapped in Booklet ── */}
       <div className="booklet-container mb-12">
         <div className="relative z-10">
-          <div className="flex justify-between items-center mb-10 border-b-2 border-dashed border-white/10 pb-6">
+          <div className="flex justify-between items-center mb-10 border-b border-[var(--bg-border)] pb-6">
             <div>
-              <h2 className="text-white font-black text-[28px] md:text-[38px] italic leading-none">অধ্যায়ভিত্তিক সংগ্রহ</h2>
-              <p className="text-slate-400 text-[14px] md:text-[16px] font-bold mt-2 uppercase tracking-widest italic">{subject.name} · PDF Library</p>
+              <h2 className="text-[#0F172A] font-black text-[28px] md:text-[38px] leading-none">অধ্যায়ভিত্তিক সংগ্রহ</h2>
+              <p className="text-slate-500 text-[14px] md:text-[16px] font-bold mt-2 uppercase tracking-widest">{subject.name} · PDF Library</p>
             </div>
-            <div className="bg-white/5 px-6 py-3 rounded-full border border-white/10 text-slate-300 font-black text-[14px] items-center gap-2 shadow-lg hidden md:flex">
-               <BookOpen className="w-5 h-5 text-[#22C55E]" /> রিসোর্স সংখ্যা: {filteredBooks.length}
+            <div className="bg-white border border-[var(--bg-border)] px-6 py-3 rounded-full text-slate-700 font-black text-[14px] items-center gap-2 shadow-sm hidden md:flex">
+               <BookOpen className="w-5 h-5 text-[#14B8A6]" /> রিসোর্স সংখ্যা: {filteredBooks.length}
             </div>
           </div>
 
@@ -203,15 +203,15 @@ const SubjectPage = () => {
               </motion.div>
             ) : (
               <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }}
-                className="text-center py-20 rounded-2xl" style={{ background:'rgba(0,0,0,0.03)', border:'1px dashed #c9a87c' }}
+                className="text-center py-20 rounded-2xl border border-dashed border-[var(--bg-border)] bg-[var(--bg-elevated)]"
               >
-                <BookOpen className="w-10 h-10 mx-auto mb-3 text-[#c9a87c]" />
-                <h2 className="text-[#6f5b44] text-lg font-black font-bn">দুঃখিত, কোনো নোট পাওয়া যায়নি।</h2>
+                <BookOpen className="w-10 h-10 mx-auto mb-3 text-slate-400" />
+                <h2 className="text-slate-700 text-lg font-black font-bn">দুঃখিত, কোনো নোট পাওয়া যায়নি।</h2>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="mt-8 text-center text-[#7f6a51] text-[12px] font-bold italic">
+          <div className="mt-8 text-center text-slate-500 text-[12px] font-bold">
             বইয়ের উপরে ক্লিক করে সরাসরি অনলাইন পড়তে পারেন
           </div>
         </div>
@@ -219,18 +219,18 @@ const SubjectPage = () => {
 
       {/* Subject Description for AdSense */}
       <div className="mt-12 p-8 md:p-12 rounded-[2rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-        <h2 className="text-white font-bn font-black text-[24px] md:text-[32px] italic mb-6">
-          {subject.name} বিষয়ের <span className="text-[#22C55E]">সঠিক প্রস্তুতি ও কৌশল</span>
+        <h2 className="text-[#0F172A] font-bn font-black text-[24px] md:text-[32px] mb-6">
+          {subject.name} বিষয়ের <span className="text-[#F97316]">সঠিক প্রস্তুতি ও কৌশল</span>
         </h2>
-        <div className="space-y-5 text-[#64748b] font-bn text-[16px] md:text-[18px] leading-relaxed italic">
+        <div className="space-y-5 text-slate-600 font-bn text-[16px] md:text-[18px] leading-relaxed">
           <p>
             {subject.name} বিষয়টি SSC এবং HSC উভয় পর্যায়ের শিক্ষার্থীদের জন্য অত্যন্ত গুরুত্বপূর্ণ। সঠিক হ্যান্ডনোট এবং নিয়মিত চর্চা ছাড়া এই বিষয়ে এ-প্লাস পাওয়া কিছুটা কঠিন হতে পারে। শাইফলির এই লাইব্রেরিতে আমরা {subject.name} বিষয়ের প্রতিটি অধ্যায়কে সহজভাবে উপস্থাপন করেছি। 
           </p>
           <p>
-            আমাদের এখানে আপনি পাবেন অধ্যায়ভিত্তিক সৃজনশীল প্রশ্ন (CQ) এবং বহুনির্বাচনী প্রশ্নের (MCQ) শর্টকাট টেকনিক। বিশেষ করে জটিল গাণিতিক ব্যাখ্যা এবং গুরুত্বপূর্ণ সংজ্ঞাগুলো আমরা রঙিন ফন্টে এবং চিত্রের সহায়তায় বুঝিয়েছি। আপনি যদি পরীক্ষার আগে কম সময়ে পুরো সিলেবাস রিভিশন দিতে চান, তবে আমাদের এই হ্যান্ডনোটগুলো আপনার জন্য সেরা বন্ধু হিসেবে কাজ করবে।
+            Our here you will find chapter-wise creative questions (CQ) and multiple-choice questions (MCQ) shortcut techniques. Specializing in simplifying calculations and diagrams with visual indicators.
           </p>
           <p>
-            এছাড়াও, {subject.name} বিষয়ের প্রস্তুতির জন্য বিগত বছরের বোর্ড প্রশ্নগুলো সমাধান করা জরুরি। আমরা আমাদের নোটে সেই প্রশ্নগুলোর সহজ সমাধান অন্তর্ভুক্ত করেছি। শাইফলির সাথে নিয়মিত পড়াশোনা করুন এবং আপনার রেজাল্টকে নিয়ে যান এক অনন্য উচ্চতায়।
+            Additionally, past board exam questions are solved and embedded directly within the PDFs to provide the ultimate prep tool for SSC & HSC exam candidates in Bangladesh.
           </p>
         </div>
       </div>
@@ -238,16 +238,16 @@ const SubjectPage = () => {
       {/* ── CTA ── */}
       {filteredBooks.length > 0 && (
         <div className="mt-12 rounded-2xl px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-5 relative overflow-hidden" style={{ background:'var(--bg-surface)', border:'1px solid var(--bg-border)' }}>
-          <div className="absolute right-0 top-0 w-48 h-48 rounded-full pointer-events-none" style={{ background:'rgba(34,197,94,0.06)', filter:'blur(50px)' }} />
+          <div className="absolute right-0 top-0 w-48 h-48 rounded-full pointer-events-none" style={{ background:'rgba(20,184,166,0.06)', filter:'blur(50px)' }} />
           <div className="relative z-10">
-            <h3 className="text-white text-[20px] font-black font-bn mb-1">আরও নোট দেখতে চান?</h3>
-            <p className="text-[13.5px] font-bn" style={{ color:'#64748b' }}>সকল বিষয়ের নোট আমাদের লাইব্রেরিতে পাওয়া যাচ্ছে।</p>
+            <h3 className="text-[#0F172A] text-[20px] font-black font-bn mb-1">আরও নোট দেখতে চান?</h3>
+            <p className="text-[13.5px] font-bn text-slate-500">সকল বিষয়ের নোট আমাদের লাইব্রেরিতে পাওয়া যাচ্ছে।</p>
           </div>
           <div className="flex gap-3 shrink-0 relative z-10">
-            <Link to="/categories" className="flex items-center gap-2 font-black text-[13.5px] px-5 py-3 rounded-xl no-underline text-white" style={{ background:'#22C55E' }}>
+            <Link to="/categories" className="flex items-center gap-2 font-black text-[13.5px] px-5 py-3 rounded-xl no-underline text-white shadow-[0_4px_0_#B33B0E] bg-[#F97316]" style={{ background:'#F97316' }}>
               সব বিষয় <ChevronRight className="w-4 h-4" />
             </Link>
-            <Link to="/subscription" className="flex items-center gap-2 font-black text-[13.5px] px-5 py-3 rounded-xl no-underline" style={{ background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)', color:'#64748b' }}>
+            <Link to="/subscription" className="flex items-center gap-2 font-black text-[13.5px] px-5 py-3 rounded-xl no-underline text-[#0F172A]" style={{ background:'var(--bg-elevated)', border:'1.5px solid var(--bg-border)' }}>
               VIP মেম্বারশিপ
             </Link>
           </div>

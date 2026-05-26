@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { triggerConfetti } from '../lib/confetti';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ChevronRight, PlaySquare, FlaskConical, BookOpen, Calculator,
@@ -47,21 +48,42 @@ const subjectCards = [
 const filters = ['SSC','HSC','Science','Arts','Commerce'];
 
 /* ─── NoteCard ─── */
-function NoteCard({ note, outline = false }) {
+function NoteCard({ note, outline = false, index = 0 }) {
+  const [hovered, setHovered] = React.useState(false);
   return (
+    <motion.div
+      variants={{
+        hidden:  { opacity: 0, y: 28, scale: 0.97 },
+        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.4,0,0.2,1], delay: index * 0.1 } },
+      }}
+      whileHover={{ y: -8, scale: 1.04 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      style={{
+        boxShadow: hovered
+          ? '0 20px 45px rgba(20,184,166,0.2), 0 0 0 2px rgba(20,184,166,0.38)'
+          : '0 4px 16px rgba(15,23,42,0.05)',
+        transition: 'box-shadow 0.4s cubic-bezier(0.4,0,0.2,1)',
+        borderRadius: '1.25rem',
+        overflow: 'hidden',
+      }}
+    >
     <Link
       to={note.path}
       className="vintage-card group no-underline relative flex flex-col"
+      style={{ margin: 0, boxShadow: 'none', borderRadius: 0 }}
     >
       <div className="relative w-full aspect-[4/3] mb-3 overflow-hidden rounded-xl border border-[#dac09a] bg-[#f3ede5]">
         {note.image ? (
           <img 
             src={note.image} 
             alt={note.subject} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110" 
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-[#c9a87c] opacity-20 group-hover:scale-110 transition-transform duration-500">
+          <div className="absolute inset-0 flex items-center justify-center text-[#c9a87c] opacity-20">
              <BookOpen className="w-16 h-16" />
           </div>
         )}
@@ -71,9 +93,25 @@ function NoteCard({ note, outline = false }) {
         }`}>
           {note.category}
         </div>
+        {/* Quick Preview reveal on hover */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.22, ease: [0,0,0.2,1] }}
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ background: 'rgba(5,20,10,0.55)', backdropFilter: 'blur(4px)' }}
+            >
+              <div className="flex items-center gap-1.5 px-4 py-2 rounded-full text-white font-black text-[11px] uppercase tracking-wider" style={{ background: 'rgba(34,197,94,0.85)' }}>
+                <Eye className="w-3.5 h-3.5" /> Quick Preview
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       <div className="w-full text-center flex flex-col h-full px-2 pb-2">
-        {/* Verified Academic Content badge under image */}
         <div className="flex items-center justify-center gap-1 mb-2">
           <CheckCircle2 className="w-3.5 h-3.5 text-[#22C55E]" />
           <span className="text-[#22C55E] text-[9px] font-black uppercase tracking-wider">Verified Academic Content</span>
@@ -81,19 +119,30 @@ function NoteCard({ note, outline = false }) {
         <h3 className="text-[#3e2e1c] font-black text-[15px] sm:text-[18px] font-bn leading-tight mb-1 italic group-hover:text-[#2d5a42] transition-colors">{note.subject}</h3>
         <p className="text-[#6e5b41] text-[10px] sm:text-[12px] font-bold bg-[#f3ede5] px-3 py-0.5 rounded-full mb-4 italic truncate">{note.desc}</p>
         <div className="mt-auto">
-          <button className="w-full flex items-center justify-center gap-1.5 h-9 rounded-full bg-[#2d5a42] text-white text-[10px] sm:text-[12px] font-black transition-all hover:bg-[#1f422d] shadow-[0_4px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_2px_0_#1b3927]">
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            className="w-full flex items-center justify-center gap-1.5 h-9 rounded-full bg-[#2d5a42] text-white text-[10px] sm:text-[12px] font-black shadow-[0_4px_0_#1b3927] active:translate-y-[1px] active:shadow-[0_2px_0_#1b3927]"
+          >
              {outline ? <><ChevronRight className="w-3.5 h-3.5" /> Details</> : <><BookOpen className="w-3.5 h-3.5" /> নোট দেখুন</>}
-          </button>
+          </motion.button>
         </div>
       </div>
     </Link>
+    </motion.div>
   );
 }
 
 /* ─── SectionHeader ─── */
 function SectionHeader({ title, icon: Icon, colorClass = "text-white" }) {
   return (
-    <div className="flex justify-between items-center mb-10 border-b-2 border-dashed border-[#c9a87c] pb-4">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-30px' }}
+      transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+      className="flex justify-between items-center mb-10 border-b-2 border-dashed border-[#c9a87c] pb-4"
+    >
       <div className="flex items-center gap-4">
         {Icon && (
           <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-lg">
@@ -105,16 +154,28 @@ function SectionHeader({ title, icon: Icon, colorClass = "text-white" }) {
           <p className="text-[#c9a87c] text-[10px] md:text-[12px] font-bold uppercase tracking-[0.2em] mt-1 italic">Verified Academic Content</p>
         </div>
       </div>
-      <Link to="/categories" className="bg-[#f3e1c7] px-5 py-2.5 rounded-full border border-[#b49464] text-[#2d2416] font-black text-[14px] flex items-center gap-2 hover:bg-[#e7cfaa] transition-all no-underline shadow-sm">
-        সব দেখুন <ChevronRight className="w-4 h-4" />
-      </Link>
-    </div>
+      <motion.div whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
+        <Link to="/categories" className="bg-[#f3e1c7] px-5 py-2.5 rounded-full border border-[#b49464] text-[#2d2416] font-black text-[14px] flex items-center gap-2 hover:bg-[#e7cfaa] transition-all no-underline shadow-sm">
+          সব দেখুন <ChevronRight className="w-4 h-4" />
+        </Link>
+      </motion.div>
+    </motion.div>
   );
 }
 
 export default function Home() {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('Science');
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    setMousePos({
+      x: (clientX / innerWidth) - 0.5,
+      y: (clientY / innerHeight) - 0.5
+    });
+  };
 
   // Temporary Quiz Logic
   const [quizPhase, setQuizPhase] = useState('idle'); // idle, registering, playing, result
@@ -590,140 +651,154 @@ export default function Home() {
                     <span className="text-white font-black text-[10px] font-en">LIVE QUIZ</span>
                  </div>
               </div>
-              
-              <div className="absolute bottom-[25%] -left-10 md:-left-20 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl animate-float" style={{ animationDelay: '1s' }}>
+               <div className="absolute bottom-[25%] -left-10 md:-left-20 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl animate-float" style={{ animationDelay: '1s' }}>
                  <div className="flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-[#00DFD8]" />
                     <span className="text-[#00DFD8] font-black text-[12px] font-bn">বেস্ট রেজাল্ট</span>
                  </div>
-              </div>
+               </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* ══ FILTER BAR + QUIZ ════════════════════════ */}
-      <div className="flex items-center justify-between gap-3 mb-8 flex-wrap">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+        className="flex items-center justify-between gap-3 mb-8 flex-wrap"
+      >
         <div
           className="flex items-center gap-1.5 p-1.5 rounded-2xl flex-wrap"
           style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
         >
           {filters.map((f) => {
-            const filterStyles = {
-              'SSC': 'bg-gradient-ssc',
-              'HSC': 'bg-gradient-hsc',
-              'Science': 'bg-gradient-science',
-              'Arts': 'bg-gradient-arts',
-              'Commerce': 'bg-gradient-commerce',
-            };
+            const isSelected = activeFilter === f;
             return (
-            <button
-              key={f}
-              onClick={() => setActiveFilter(f)}
-              className={`px-5 py-2.5 rounded-xl font-black text-[13px] transition-all duration-300 uppercase tracking-wider font-en ${activeFilter === f ? filterStyles[f] : ''}`}
-              style={activeFilter === f
-                ? { color: 'white', boxShadow: '0 4px 15px rgba(255,0,128,0.2)' }
-                : { color: '#475569', background: 'transparent' }
-              }
-            >
-              {f}
-            </button>
-          )})}
+              <motion.button
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-5 py-2.5 rounded-xl font-black text-[13px] transition-all duration-300 uppercase tracking-wider font-en flex items-center gap-1.5 border"
+                style={isSelected
+                  ? { background: 'rgba(20, 184, 166, 0.1)', borderColor: '#14B8A6', color: '#14B8A6', boxShadow: '0 0 0 2px rgba(20,184,166,0.2)' }
+                  : { background: 'transparent', borderColor: 'transparent', color: 'var(--text-muted)' }
+                }
+              >
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.svg
+                      initial={{ scale: 0, rotate: -45 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      exit={{ scale: 0 }}
+                      className="w-3.5 h-3.5 text-[#14B8A6]"
+                      fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </motion.svg>
+                  )}
+                </AnimatePresence>
+                {f}
+              </motion.button>
+            );
+          })}
         </div>
 
-        <button
-          onClick={() => navigate('/quiz')}
-          className="flex items-center gap-2 font-black text-[14px] h-[44px] px-6 rounded-2xl text-white transition-all hover:-translate-y-0.5 shrink-0 mt-3 md:mt-0 w-full md:w-auto justify-center bg-gradient-ssc"
-          style={{ boxShadow: '0 4px 16px rgba(255,0,128,0.3)' }}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={(e) => { triggerConfetti(e); setTimeout(() => navigate('/quiz'), 300); }}
+          className="flex items-center gap-2 font-black text-[14px] h-[44px] px-6 rounded-2xl text-white shrink-0 mt-3 md:mt-0 w-full md:w-auto justify-center btn-gradient-shift"
+          style={{ background: 'var(--accent)', boxShadow: '0 4px 16px rgba(249,115,22,0.3)' }}
         >
           <PlaySquare className="w-4 h-4 fill-white text-white" />
           Start Quiz
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
-      {/* ══ বিষয়ভিত্তিক নোট — Brush Paint Cards ══════════════ */}
-      <div className="mb-9">
+      {/* ══ বিষয়ভিত্তিক নোট — Brush Paint Cards ════════════ */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-30px' }}
+        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        className="mb-9"
+
+      >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-combo-violet font-black text-[20px] md:text-[22px] flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-combo-violet" /> <span>বিষয়ভিত্তিক নোট</span>
           </h2>
-          <Link to="/categories" className="text-combo-violet text-[12px] font-black no-underline hover:underline flex items-center gap-1">
-            সব দেখুন <ChevronRight className="w-3.5 h-3.5" />
-          </Link>
+          <motion.div whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
+            <Link to="/categories" className="text-combo-violet text-[12px] font-black no-underline hover:underline flex items-center gap-1">
+              সব দেখুন <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {subjectCards.map((sc, index) => (
-            <Link
+            <motion.div
               key={sc.label}
-              to={sc.path}
-              className="no-underline group"
-              style={{ textDecoration: 'none' }}
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-20px' }}
+              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1], delay: index * 0.09 }}
+              whileHover={{ y: -12, scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
             >
-              {/* ── Bootstrap-style card with dark glassmorphism ── */}
-              <div
-                className="flex flex-col rounded-2xl overflow-hidden transition-all duration-400 group-hover:-translate-y-3"
-                style={{
-                  width: '100%',
-                  background: 'linear-gradient(160deg, rgba(15,23,42,0.95) 0%, rgba(10,18,32,0.98) 100%)',
-                  border: `1.5px solid ${sc.border}`,
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
-                  backdropFilter: 'blur(12px)',
-                  animationDelay: `${index * 0.15}s`,
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.boxShadow = `0 20px 50px rgba(0,0,0,0.6), 0 0 30px ${sc.border}`;
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.45)';
-                }}
+              <Link
+                to={sc.path}
+                className="no-underline group block"
+                style={{ textDecoration: 'none' }}
               >
-                {/* card-img-top */}
-                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
-                  <img
-                    src={sc.image}
-                    alt={sc.label}
-                    className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110"
-                    style={{ display: 'block' }}
-                  />
-                  {/* Paint texture overlay */}
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(8,15,30,0.85) 100%)' }} />
-                  {/* Subject Bangla label pill on image */}
-                  <div
-                    className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-                    style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)', border: `1px solid ${sc.border}` }}
-                  >
-                    <sc.icon className="w-3.5 h-3.5" style={{ color: sc.border.slice(0,7) }} />
-                    <span className="text-white font-black text-[11px] font-bn">{sc.labelBn}</span>
+                {/* Bootstrap-style card */}
+                <div
+                  className="flex flex-col rounded-2xl overflow-hidden"
+                  style={{
+                    width: '100%',
+                    background: 'linear-gradient(160deg, rgba(15,23,42,0.95) 0%, rgba(10,18,32,0.98) 100%)',
+                    border: `1.5px solid ${sc.border}`,
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+                    backdropFilter: 'blur(12px)',
+                    transition: 'box-shadow 0.4s cubic-bezier(0.4,0,0.2,1)',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 24px 55px rgba(0,0,0,0.6), 0 0 30px ${sc.border}`; }}
+                  onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.45)'; }}
+                >
+                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                    <img src={sc.image} alt={sc.label} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110" style={{ display: 'block' }} />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(8,15,30,0.85) 100%)' }} />
+                    <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)', border: `1px solid ${sc.border}` }}>
+                      <sc.icon className="w-3.5 h-3.5" style={{ color: sc.border.slice(0,7) }} />
+                      <span className="text-white font-black text-[11px] font-bn">{sc.labelBn}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-3 p-4">
+                    <h3 className="text-white font-bn font-black text-[14px] sm:text-[16px] leading-snug mb-0 group-hover:text-[#22C55E] transition-colors">{sc.labelBn} হ্যান্ডনোট</h3>
+                    <p className="text-slate-400 font-bn text-[11px] sm:text-[12px] leading-relaxed italic" style={{ margin: 0 }}>{sc.desc}</p>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <CheckCircle2 className="w-3 h-3 text-[#22C55E] shrink-0" />
+                      <span className="text-[#22C55E] text-[9px] font-black uppercase tracking-wider">Verified Academic Content</span>
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full mt-1 flex items-center justify-center gap-1.5 h-9 rounded-xl text-white text-[11px] sm:text-[12px] font-black"
+                      style={{ background: `linear-gradient(135deg, ${sc.border.slice(0,7)}cc, ${sc.border.slice(0,7)}88)`, border: `1px solid ${sc.border}` }}
+                    >
+                      <BookOpen className="w-3.5 h-3.5" /> নোট দেখুন
+                    </motion.button>
                   </div>
                 </div>
-
-                {/* card-body */}
-                <div className="flex flex-col gap-3 p-4">
-                  <h3 className="text-white font-bn font-black text-[14px] sm:text-[16px] leading-snug mb-0 group-hover:text-[#22C55E] transition-colors">
-                    {sc.labelBn} হ্যান্ডনোট
-                  </h3>
-                  <p className="text-slate-400 font-bn text-[11px] sm:text-[12px] leading-relaxed italic" style={{ margin: 0 }}>
-                    {sc.desc}
-                  </p>
-                  {/* Verified badge */}
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <CheckCircle2 className="w-3 h-3 text-[#22C55E] shrink-0" />
-                    <span className="text-[#22C55E] text-[9px] font-black uppercase tracking-wider">Verified Academic Content</span>
-                  </div>
-                  {/* CTA */}
-                  <button
-                    className="w-full mt-1 flex items-center justify-center gap-1.5 h-9 rounded-xl text-white text-[11px] sm:text-[12px] font-black transition-all group-hover:scale-[1.03]"
-                    style={{ background: `linear-gradient(135deg, ${sc.border.slice(0,7)}cc, ${sc.border.slice(0,7)}88)`, border: `1px solid ${sc.border}` }}
-                  >
-                    <BookOpen className="w-3.5 h-3.5" /> নোট দেখুন
-                  </button>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* ══ APPOINTMENT CTA ══ */}
       <div 
@@ -891,12 +966,19 @@ export default function Home() {
       </div>
 
       {/* ══ WHY SHAIFLY SECTION (ADSENSE FRIENDLY TEXT) ══ */}
-      <div className="mb-12 p-8 md:p-12 rounded-[2.5rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-12 p-8 md:p-12 rounded-[2.5rem]" 
+        style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
+      >
         <div className="max-w-4xl">
-          <h2 className="text-white font-bn font-black text-[32px] md:text-[44px] italic mb-6 leading-tight">
-            বাংলাদেশের শিক্ষার্থীদের জন্য <span className="text-combo-blue">সেরা ডিজিটাল লাইব্রেরি</span> কেন শাইফলি?
+          <h2 className="text-[var(--text-primary)] font-bn font-black text-[32px] md:text-[44px] italic mb-6 leading-tight">
+            বাংলাদেশের শিক্ষার্থীদের জন্য <span className="text-[#14B8A6]">সেরা ডিজিটাল লাইব্রেরি</span> কেন শাইফলি?
           </h2>
-          <div className="space-y-6 text-slate-400 font-bn text-[17px] md:text-[19px] leading-relaxed italic">
+          <div className="space-y-6 text-[var(--text-muted)] font-bn text-[17px] md:text-[19px] leading-relaxed italic">
             <p>
               শাইফলি (Shaifly) শুধুমাত্র একটি ওয়েবসাইট নয়, এটি একটি পূর্ণাঙ্গ একাডেমিক সমাধান। বাংলাদেশের বর্তমান প্রতিযোগিতামূলক শিক্ষা ব্যবস্থায় SSC এবং HSC শিক্ষার্থীদের জন্য মানসম্মত নোট এবং গাইড খুঁজে পাওয়া অনেক সময় ব্যয়বহুল এবং কষ্টসাধ্য হয়ে পড়ে। আমরা সেই সমস্যার সমাধান নিয়ে এসেছি। আমাদের লাইব্রেরিতে আপনি পাবেন অভিজ্ঞ শিক্ষকদের দ্বারা তৈরি পদার্থবিজ্ঞান, রসায়ন, উচ্চতর গণিত এবং জীববিজ্ঞানের হ্যান্ডনোট।
             </p>
@@ -908,7 +990,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Ad Unit */}
       <div className="mb-9">
@@ -916,24 +998,24 @@ export default function Home() {
       </div>
 
       {/* ══ FAQ SECTION ══ */}
-      <div className="mb-16">
+      <div className="mb-16 animate-fade-in">
         <SectionHeader title="Academic FAQs" icon={PenTool} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-6 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-            <h3 className="text-white font-black font-bn text-xl mb-3 italic">১. শাইফলির নোটগুলো কি বোর্ডের নতুন সিলেবাস অনুযায়ী?</h3>
-            <p className="text-slate-500 font-bn italic">হ্যাঁ, আমাদের সকল হ্যান্ডনোট এবং কুইজ বর্তমান শিক্ষা বোর্ড কর্তৃক প্রণীত সর্বশেষ সিলেবাস অনুসরণ করে তৈরি করা হয়েছে। প্রতি বছর আমরা নোটগুলো আপডেট করি।</p>
+            <h3 className="text-[var(--text-primary)] font-black font-bn text-xl mb-3 italic">১. শাইফলির নোটগুলো কি বোর্ডের নতুন সিলেবাস অনুযায়ী?</h3>
+            <p className="text-[var(--text-muted)] font-bn italic">হ্যাঁ, আমাদের সকল হ্যান্ডনোট এবং কুইজ বর্তমান শিক্ষা বোর্ড কর্তৃক প্রণীত সর্বশেষ সিলেবাস অনুসরণ করে তৈরি করা হয়েছে। প্রতি বছর আমরা নোটগুলো আপডেট করি।</p>
           </div>
           <div className="p-6 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-            <h3 className="text-white font-black font-bn text-xl mb-3 italic">২. আমি কি নোটগুলো মোবাইল থেকে পড়তে পারব?</h3>
-            <p className="text-slate-500 font-bn italic">অবশ্যই! শাইফলি সম্পূর্ণ মোবাইল ফ্রেন্ডলি। আপনি যেকোনো স্মার্টফোন থেকে যেকোনো সময় আমাদের নোটগুলো পড়তে পারবেন।</p>
+            <h3 className="text-[var(--text-primary)] font-black font-bn text-xl mb-3 italic">২. আমি কি নোটগুলো মোবাইল থেকে পড়তে পারব?</h3>
+            <p className="text-[var(--text-muted)] font-bn italic">অবশ্যই! শাইফলি সম্পূর্ণ মোবাইল ফ্রেন্ডলি। আপনি যেকোনো স্মার্টফোন থেকে যেকোনো সময় আমাদের নোটগুলো পড়তে পারবেন।</p>
           </div>
           <div className="p-6 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-            <h3 className="text-white font-black font-bn text-xl mb-3 italic">৩. কুইজে অংশ নেওয়ার জন্য কি কোনো ফি দিতে হবে?</h3>
-            <p className="text-slate-500 font-bn italic">না, শাইফলির সাধারণ কুইজ সেকশন সবার জন্য উন্মুক্ত। নিজের প্রোফাইল তৈরি করে আপনি লিডারবোর্ডে অংশ নিতে পারবেন একদম বিনামূল্যে।</p>
+            <h3 className="text-[var(--text-primary)] font-black font-bn text-xl mb-3 italic">৩. কুইজে অংশ নেওয়ার জন্য কি কোনো ফি দিতে হবে?</h3>
+            <p className="text-[var(--text-muted)] font-bn italic">না, শাইফলির সাধারণ কুইজ সেকশন সবার জন্য উন্মুক্ত। নিজের প্রোফাইল তৈরি করে আপনি লিডারবোর্ডে অংশ নিতে পারবেন একদম বিনামূল্যে।</p>
           </div>
           <div className="p-6 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-            <h3 className="text-white font-black font-bn text-xl mb-3 italic">৪. শাইফলির ভিআইপি মেম্বারশিপের সুবিধা কী?</h3>
-            <p className="text-slate-500 font-bn italic">ভিআইপি মেম্বাররা সকল বিষয়ের এক্সক্লুসিভ প্রিমিয়াম হ্যান্ডনোট, ভিডিও গাইড এবং পরীক্ষার আগে বিশেষ সাজেশন পেয়ে থাকেন।</p>
+            <h3 className="text-[var(--text-primary)] font-black font-bn text-xl mb-3 italic">৪. শাইফলির ভিআইপি মেম্বারশিপের সুবিধা কী?</h3>
+            <p className="text-[var(--text-muted)] font-bn italic">ভিআইপি মেম্বাররা সকল বিষয়ের এক্সক্লুসিভ প্রিমিয়াম হ্যান্ডনোট, ভিডিও গাইড এবং পরীক্ষার আগে বিশেষ সাজেশন পেয়ে থাকেন।</p>
           </div>
         </div>
       </div>
@@ -998,7 +1080,13 @@ export default function Home() {
       </div>
 
       {/* ══ STUDENT COMMUNITY SECTION (Pre-Footer) ══════════════════════ */}
-      <div className="mt-20 mb-16 relative group">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-20 mb-16 relative group"
+      >
         <div 
           className="relative rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row items-center overflow-hidden border border-white/10"
           style={{ background: 'var(--bg-surface)' }}
@@ -1009,22 +1097,22 @@ export default function Home() {
 
           {/* Left Content */}
           <div className="relative z-10 flex-1 text-center md:text-left">
-            <h2 className="text-white font-bn font-black text-[36px] md:text-[52px] leading-tight mb-6 italic tracking-tight">
+            <h2 className="text-[var(--text-primary)] font-bn font-black text-[36px] md:text-[52px] leading-tight mb-6 italic tracking-tight">
               যুক্ত হও হাজারো <br />
-              <span className="text-combo-violet">সফল শিক্ষার্থীদের দলে!</span>
+              <span className="text-[#14B8A6]">সফল শিক্ষার্থীদের দলে!</span>
             </h2>
-            <p className="text-slate-400 font-bn text-[18px] md:text-[22px] max-w-lg mx-auto md:mx-0 italic mb-10 leading-relaxed font-bold">
+            <p className="text-[var(--text-muted)] font-bn text-[18px] md:text-[22px] max-w-lg mx-auto md:mx-0 italic mb-10 leading-relaxed font-bold">
               বাংলাদেশের বিভিন্ন প্রান্তের SSC ও HSC শিক্ষার্থীরা শাইফলির রিসোর্স ব্যবহার করে তাদের সাফল্যের পথ সুগম করছে। আজই তোমার একাডেমিক যাত্রা শুরু করো।
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-8">
               <div className="flex flex-col">
-                <span className="text-white font-black text-3xl leading-none italic font-en">৫০k+</span>
-                <span className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">Active Students</span>
+                <span className="text-[var(--text-primary)] font-black text-3xl leading-none italic font-en">৫০k+</span>
+                <span className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest mt-1">Active Students</span>
               </div>
-              <div className="w-px h-10 bg-white/10 hidden md:block" />
+              <div className="w-px h-10 bg-[var(--bg-border)] hidden md:block" />
               <div className="flex flex-col">
-                <span className="text-white font-black text-3xl leading-none italic font-en">১০০+</span>
-                <span className="text-slate-500 text-[11px] uppercase tracking-widest mt-1">Colleges & Schools</span>
+                <span className="text-[var(--text-primary)] font-black text-3xl leading-none italic font-en">১০০+</span>
+                <span className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest mt-1">Colleges & Schools</span>
               </div>
             </div>
           </div>
@@ -1038,7 +1126,7 @@ export default function Home() {
              />
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

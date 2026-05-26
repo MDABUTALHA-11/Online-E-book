@@ -11,14 +11,13 @@ import QuizStudentsImg from '../../assets/quiz_students.png';
 import TrophyCtaImg from '../../assets/trophy_cta.png';
 
 export const quizSubjects = [
-// ... (rest of the code remains same until the return statement)
   {
     id: 'physics',
     titleEn: 'Physics',
     titleBn: 'পদার্থবিজ্ঞান',
     desc: 'বলবিদ্যা, আলো, তাপ ও তরঙ্গ',
     badge: 'SSC',
-    badgeColor: '#22C55E',
+    badgeColor: '#14B8A6',
     icon: Zap,
   },
   {
@@ -27,7 +26,7 @@ export const quizSubjects = [
     titleBn: 'রসায়নবিজ্ঞান',
     desc: 'জৈব, অজৈব ও পরিমাণগত রসায়ন',
     badge: 'SSC',
-    badgeColor: '#f59e0b',
+    badgeColor: '#F97316',
     icon: FlaskConical,
   },
   {
@@ -45,7 +44,7 @@ export const quizSubjects = [
     titleBn: 'জীববিজ্ঞান',
     desc: 'কোষ, শারীরতত্ত্ব ও জেনেটিক্স',
     badge: 'SSC',
-    badgeColor: '#22C55E',
+    badgeColor: '#14B8A6',
     icon: Dna,
   },
   {
@@ -54,7 +53,7 @@ export const quizSubjects = [
     titleBn: 'পদার্থবিজ্ঞান ১ম পত্র',
     desc: 'ভেক্টর, গতিবিদ্যা, কাজ ও শক্তি',
     badge: 'HSC',
-    badgeColor: '#22C55E',
+    badgeColor: '#14B8A6',
     icon: Zap,
   },
   {
@@ -63,7 +62,7 @@ export const quizSubjects = [
     titleBn: 'রসায়ন ১ম পত্র',
     desc: 'ল্যাবরেটরি, গুণগত রসায়ন ও পর্যায় সারণি',
     badge: 'HSC',
-    badgeColor: '#f59e0b',
+    badgeColor: '#F97316',
     icon: FlaskConical,
   },
   {
@@ -81,7 +80,7 @@ export const quizSubjects = [
     titleBn: 'জীববিজ্ঞান ১ম পত্র',
     desc: 'কোষ, টিস্যু, উদ্ভিদ ফিজিওলজি ও জিনতত্ত্ব',
     badge: 'HSC',
-    badgeColor: '#22C55E',
+    badgeColor: '#14B8A6',
     icon: Dna,
   },
   {
@@ -90,7 +89,7 @@ export const quizSubjects = [
     titleBn: 'আইসিটি',
     desc: 'বিশ্বগ্রাম, সংখ্যা পদ্ধতি ও নেটওয়ার্কিং',
     badge: 'HSC',
-    badgeColor: '#10b981',
+    badgeColor: '#14B8A6',
     icon: BookOpen,
   },
   {
@@ -99,7 +98,7 @@ export const quizSubjects = [
     titleBn: 'সাধারণ বিজ্ঞান',
     desc: 'পদার্থ, রসায়ন, জীববিজ্ঞানের মৌলিক ধারণা',
     badge: 'SSC',
-    badgeColor: '#10b981',
+    badgeColor: '#14B8A6',
     icon: Microscope,
   },
   {
@@ -129,28 +128,28 @@ export default function QuizHome() {
   };
 
   return (
-    <div className="min-h-screen pb-40 text-[#f1f5f9]">
+    <div className="min-h-screen pb-40 text-slate-800">
 
       {/* ── Hero Section ──────────────────────────────────────────── */}
       <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden mb-12 flex flex-col md:flex-row items-center" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
         {/* Animated Glow */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#14B8A6]/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative z-10 px-8 md:px-16 py-12 md:py-20 text-center md:text-left flex-1">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-hsc text-white text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-[0_0_20px_rgba(0,198,255,0.4)]"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-hsc text-white text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-[0_0_20px_rgba(0,198,255,0.2)]"
           >
             <Activity className="w-3.5 h-3.5 animate-pulse text-white" />
             LIVE EXAM SYSTEM
           </motion.div>
 
-          <h1 className="text-4xl md:text-7xl sf-headline text-white mb-6 italic tracking-tighter leading-none">
+          <h1 className="text-4xl md:text-7xl sf-headline text-[#0F172A] mb-6 italic tracking-tighter leading-none">
             <span className="text-gradient-ssc">SSC</span> & <span className="text-gradient-hsc">HSC</span> Group Quiz
           </h1>
 
-          <p className="text-xl md:text-2xl text-slate-400 font-bn italic leading-relaxed max-w-2xl mb-10">
+          <p className="text-xl md:text-2xl text-slate-500 font-bn italic leading-relaxed max-w-2xl mb-10">
             বিষয় বেছে নাও এবং চ্যালেঞ্জ শুরু করো। লাইভ টাইমার এবং লিডারবোর্ড সহ পরীক্ষার আসল পরিবেশ।
           </p>
 
@@ -158,9 +157,9 @@ export default function QuizHome() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl">
             {statItems.map((s) => (
               <div key={s.label} className="flex flex-col gap-1 p-4 rounded-xl" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--bg-border)' }}>
-                <s.icon className="w-4 h-4 text-[#22C55E]" />
-                <span className="text-white font-black text-[18px] sf-headline italic">{s.value}</span>
-                <span className="text-slate-600 text-[9px] uppercase font-black tracking-widest">{s.label}</span>
+                <s.icon className="w-4 h-4 text-[#14B8A6]" />
+                <span className="text-[#0F172A] font-black text-[18px] sf-headline italic">{s.value}</span>
+                <span className="text-slate-500 text-[9px] uppercase font-black tracking-widest">{s.label}</span>
               </div>
             ))}
           </div>
@@ -170,7 +169,7 @@ export default function QuizHome() {
         <div className="relative w-full md:w-[45%] h-64 md:h-[500px] overflow-hidden block">
           <img
             src={QuizStudentsImg}
-            className="w-full h-full object-cover object-top transition-all duration-700 transform scale-110 group-hover:scale-100"
+            className="w-full h-full object-cover object-top transition-all duration-700 transform scale-110"
             alt="Quiz Team"
           />
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[var(--bg-surface)] via-[var(--bg-surface)]/40 to-transparent" />
@@ -186,13 +185,13 @@ export default function QuizHome() {
       <div className="space-y-8 mb-16">
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center gap-4">
-            <div className="w-1.5 h-10 bg-emerald-500 rounded-full" />
-            <h2 className="text-3xl md:text-5xl sf-headline text-white italic">
+            <div className="w-1.5 h-10 bg-[#14B8A6] rounded-full" />
+            <h2 className="text-3xl md:text-5xl sf-headline text-[#0F172A] italic">
               <span className="text-gradient-hsc">HSC</span> Group
             </h2>
           </div>
-          <div className="h-[1px] flex-1 bg-white/5 mx-8 hidden md:block"></div>
-          <span className="text-emerald-500 text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+          <div className="h-[1px] flex-1 bg-[#0F172A]/10 mx-8 hidden md:block"></div>
+          <span className="text-[#14B8A6] text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-[#14B8A6]/10 border border-[#14B8A6]/20 rounded-full">
             First Paper 1.0
           </span>
         </div>
@@ -220,7 +219,7 @@ export default function QuizHome() {
                     style={{ background: subj.badgeColor + '15', border: `1px solid ${subj.badgeColor}30`, color: subj.badgeColor }}>
                     {subj.badge} Level
                   </div>
-                  <h3 className="text-2xl md:text-3xl sf-headline text-white italic mb-1 tracking-tight leading-tight">{subj.titleBn}</h3>
+                  <h3 className="text-2xl md:text-3xl sf-headline text-[#0F172A] italic mb-1 tracking-tight leading-tight">{subj.titleBn}</h3>
                   <p className="text-[14px] font-bn text-slate-500 italic mb-4 leading-relaxed">{subj.desc}</p>
                   <div className="flex items-center gap-3">
                     <span className="flex items-center gap-1.5 text-[11px] font-black italic text-slate-500 bg-[var(--bg-elevated)] px-3 py-1.5 rounded-lg border border-[var(--bg-border)]">
@@ -245,13 +244,13 @@ export default function QuizHome() {
       <div className="space-y-8">
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center gap-4">
-            <div className="w-1.5 h-10 bg-[#22C55E] rounded-full" />
-            <h2 className="text-3xl md:text-5xl sf-headline text-white italic">
+            <div className="w-1.5 h-10 bg-[#14B8A6] rounded-full" />
+            <h2 className="text-3xl md:text-5xl sf-headline text-[#0F172A] italic">
               <span className="text-gradient-ssc">SSC</span> Group
             </h2>
           </div>
-          <div className="h-[1px] flex-1 bg-white/5 mx-8 hidden md:block"></div>
-          <Link to="/categories" className="text-[#22C55E] text-xs font-black italic flex items-center gap-1 hover:underline">
+          <div className="h-[1px] flex-1 bg-[#0F172A]/10 mx-8 hidden md:block"></div>
+          <Link to="/categories" className="text-[#14B8A6] text-xs font-black italic flex items-center gap-1 hover:underline">
             ALL SSC QUIZZES <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -279,7 +278,7 @@ export default function QuizHome() {
                     style={{ background: subj.badgeColor + '15', border: `1px solid ${subj.badgeColor}30`, color: subj.badgeColor }}>
                     {subj.badge} Level
                   </div>
-                  <h3 className="text-2xl md:text-3xl sf-headline text-white italic mb-1 tracking-tight leading-tight">{subj.titleBn}</h3>
+                  <h3 className="text-2xl md:text-3xl sf-headline text-[#0F172A] italic mb-1 tracking-tight leading-tight">{subj.titleBn}</h3>
                   <p className="text-[14px] font-bn text-slate-500 italic mb-4 leading-relaxed">{subj.desc}</p>
                   <div className="flex items-center gap-3">
                     <span className="flex items-center gap-1.5 text-[11px] font-black italic text-slate-500 bg-[var(--bg-elevated)] px-3 py-1.5 rounded-lg border border-[var(--bg-border)]">
@@ -312,17 +311,17 @@ export default function QuizHome() {
         </div>
 
         <div className="text-center md:text-left z-10">
-          <div className="flex items-center gap-3 mb-4 justify-center md:justify-start text-[#22C55E] animate-pulse">
+          <div className="flex items-center gap-3 mb-4 justify-center md:justify-start text-[#F97316] animate-pulse">
             <Trophy className="w-6 h-6" />
             <span className="sf-label text-xs tracking-[0.3em]">RANKINGS & REWARDS</span>
           </div>
-          <h2 className="text-3xl md:text-5xl sf-headline text-white italic mb-4">লিডারবোর্ডে তোমার <span className="text-gradient-ssc">নাম দেখতে চাও?</span></h2>
+          <h2 className="text-3xl md:text-5xl sf-headline text-[#0F172A] italic mb-4">লিডারবোর্ডে তোমার <span className="text-gradient-ssc">নাম দেখতে চাও?</span></h2>
           <p className="text-lg md:text-xl font-bn text-slate-500 italic max-w-xl">প্রোফাইল তৈরি করো এবং কুইজে অংশ নিয়ে নিজেকে প্রমান করো।</p>
         </div>
 
         <button
           onClick={() => navigate('/quiz/leaderboard')}
-          className="relative z-10 h-16 px-10 rounded-2xl bg-gradient-ssc text-white sf-headline text-xl italic flex items-center justify-center gap-4 transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(255,0,128,0.3)] border-b-4 border-fuchsia-800"
+          className="relative z-10 h-16 px-10 rounded-2xl bg-gradient-ssc text-white sf-headline text-xl italic flex items-center justify-center gap-4 transition-all hover:scale-105 active:scale-95 shadow-[0_10px_30px_rgba(255,0,128,0.25)] border-b-4 border-fuchsia-800"
         >
           লিডারবোর্ড দেখুন
           <ArrowRight className="w-6 h-6" />
@@ -331,4 +330,3 @@ export default function QuizHome() {
     </div>
   );
 }
-

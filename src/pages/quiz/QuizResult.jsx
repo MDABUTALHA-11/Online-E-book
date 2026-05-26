@@ -109,9 +109,6 @@ const QuizResult = () => {
         parsedData.rank = myRank > 0 ? myRank : 1;
         setResult(parsedData);
       }
-      
-      // Removed clearing of quiz_answers to prevent React Strict Mode bug
-      // quiz_answers is now cleared in QuizStart.jsx instead.
     };
 
     saveAndCalculateRank();
@@ -127,7 +124,7 @@ const QuizResult = () => {
   return (
     <div className="min-h-screen bg-[var(--bg-app)] flex items-center justify-center p-6 relative overflow-hidden pt-32 pb-40">
       {/* Background Decorator */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#22C55E]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#14B8A6]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 30 }}
@@ -141,32 +138,32 @@ const QuizResult = () => {
              initial={{ scale: 0 }}
              animate={{ scale: 1 }}
              transition={{ type: 'spring', damping: 12, stiffness: 200, delay: 0.2 }}
-             className="w-28 h-28 md:w-36 md:h-36 mx-auto bg-[#22C55E]/10 rounded-[2.5rem] md:rounded-[3rem] shadow-lg flex items-center justify-center rotate-6 border border-[#22C55E]/20"
+             className="w-28 h-28 md:w-36 md:h-36 mx-auto bg-[#14B8A6]/10 rounded-[2.5rem] md:rounded-[3rem] shadow-lg flex items-center justify-center rotate-6 border border-[#14B8A6]/20"
            >
-             <Trophy className="w-14 h-14 md:w-18 md:h-18 text-[#22C55E] drop-shadow-md" />
+             <Trophy className="w-14 h-14 md:w-18 md:h-18 text-[#14B8A6] drop-shadow-md" />
            </motion.div>
         </div>
 
         <div className="mb-10 text-center">
-           <div className="sf-label text-[#22C55E] tracking-[0.3em] uppercase text-[11px] mb-4">EXAM COMPLETED</div>
-           <h1 className="text-4xl md:text-7xl sf-headline text-white mb-4 italic tracking-tighter leading-none">
-             অভিনন্দন, <span className="text-[#22C55E]">{result.name}</span>!
+           <div className="sf-label text-[#14B8A6] tracking-[0.3em] uppercase text-[11px] mb-4">EXAM COMPLETED</div>
+           <h1 className="text-4xl md:text-7xl sf-headline text-[#0F172A] mb-4 italic tracking-tighter leading-none">
+             অভিনন্দন, <span style={{ color: '#F97316' }}>{result.name}</span>!
            </h1>
-           <p className="text-xl md:text-2xl font-bn text-slate-400 italic">
-              সেরাদের তালিকায় তুমি এখন <span className="text-white font-black italic">#{result.rank}</span> অবস্থানে।
+           <p className="text-xl md:text-2xl font-bn text-slate-500 italic">
+              সেরাদের তালিকায় তুমি এখন <span className="text-[#0F172A] font-black italic">#{result.rank}</span> অবস্থানে।
            </p>
         </div>
 
         {/* Results Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12">
            <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}>
-              <Activity className="w-8 h-8 text-[#22C55E] mb-3 opacity-50" />
-              <div className="text-3xl md:text-4xl sf-headline text-white italic">{result.score}<span className="text-xl text-slate-700 italic">/{result.total}</span></div>
+              <Activity className="w-8 h-8 text-[#14B8A6] mb-3 opacity-50" />
+              <div className="text-3xl md:text-4xl sf-headline text-[#0F172A] italic">{result.score}<span className="text-xl text-slate-400 italic">/{result.total}</span></div>
               <div className="sf-label text-[10px] tracking-widest text-slate-600 uppercase mt-2">Score</div>
            </div>
 
            <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-xl" style={{ 
-             background: isGood ? '#22C55E' : (isPass ? '#eab308' : '#ef4444'),
+             background: isGood ? '#10B981' : (isPass ? '#eab308' : '#ef4444'),
              border: '1.5px solid rgba(255,255,255,0.2)'
            }}>
               <Zap className="w-8 h-8 text-white mb-3" />
@@ -185,22 +182,20 @@ const QuizResult = () => {
         <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-12 pt-10 border-t border-[var(--bg-border)]">
            <button 
              onClick={() => navigate('/quiz')}
-             className="w-full h-16 rounded-2xl bg-[var(--bg-elevated)] hover:bg-[#1a2e4a] border border-[var(--bg-border)] text-slate-400 hover:text-white transition-all sf-headline text-lg italic flex items-center justify-center gap-3"
+             className="w-full h-16 rounded-2xl bg-[var(--bg-elevated)] hover:bg-[#1a2e4a] border border-[var(--bg-border)] text-slate-500 hover:text-[#0F172A] transition-all sf-headline text-lg italic flex items-center justify-center gap-3"
            >
-             <Home className="w-5 h-5" /> ঘরে ফিরুন
+             <Home className="w-5 h-5" /> কুইজ হোমে ফিরুন
            </button>
            <button 
              onClick={() => navigate(`/quiz/leaderboard?subject=${result.subject}`)}
-             className="w-full h-16 rounded-2xl bg-[#22C55E] hover:bg-[#16a34a] text-white sf-headline text-lg italic flex items-center justify-center gap-3 shadow-lg border-b-4 border-[#15803d] hover:scale-[1.02] active:scale-95 transition-all"
+             className="w-full h-16 rounded-2xl bg-[#F97316] hover:bg-[#E85E2A] text-white sf-headline text-lg italic flex items-center justify-center gap-3 shadow-lg border-b-4 border-[#B33B0E] hover:scale-[1.02] active:scale-95 transition-all"
            >
              লিডারবোর্ড দেখুন <Award className="w-5 h-5" />
            </button>
-        </div>
+         </div>
       </motion.div>
     </div>
   );
 };
 
 export default QuizResult;
-
-

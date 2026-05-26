@@ -42,11 +42,11 @@ export default function AtAGlance() {
   });
 
   return (
-    <div className="min-h-screen pb-16 px-4">
+    <div className="min-h-screen pb-16 px-4 text-slate-800">
       {/* ── Header Section ── */}
-      <div className="relative mb-12 overflow-hidden rounded-[3rem] p-10 md:p-16 border border-white/5 shadow-2xl" 
+      <div className="relative mb-12 overflow-hidden rounded-[3rem] p-10 md:p-16 border border-[var(--bg-border)] shadow-2xl" 
            style={{ background: 'var(--bg-surface)' }}>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#14B8A6]/5 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-center md:items-end gap-10">
           <div className="text-center md:text-left">
@@ -54,27 +54,27 @@ export default function AtAGlance() {
               initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
               className="flex items-center justify-center md:justify-start gap-4 mb-6"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
-                <ImageIcon className="text-[#22C55E] w-6 h-6" />
+              <div className="w-12 h-12 rounded-2xl bg-[var(--bg-elevated)] flex items-center justify-center border border-[var(--bg-border)]">
+                <ImageIcon className="text-[#14B8A6] w-6 h-6" />
               </div>
-              <span className="text-slate-400 font-black text-[14px] md:text-[16px] tracking-[0.2em] uppercase italic">Study Visuals</span>
+              <span className="text-slate-500 font-black text-[14px] md:text-[16px] tracking-[0.2em] uppercase italic">Study Visuals</span>
             </motion.div>
 
             <motion.h1 
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              className="text-[42px] md:text-[68px] font-black text-white mb-6 italic font-bn leading-none"
+              className="text-[42px] md:text-[68px] font-black text-[#0F172A] mb-6 italic font-bn leading-none"
             >
-              এক নজরে <span className="text-[#22C55E]">অধ্যায়</span>
+              এক নজরে <span style={{ color: '#F97316' }}>অধ্যায়</span>
             </motion.h1>
-            <p className="text-slate-400 font-bn text-[18px] md:text-[22px] font-bold max-w-xl italic">এসএসসি ও এইচএসসি পরীক্ষার জন্য ১ পাতার শর্ট নোট ও গুরুত্বপূর্ণ ভিজ্যুয়াল গাইড।</p>
+            <p className="text-slate-550 font-bn text-[18px] md:text-[22px] font-bold max-w-xl italic">এসএসসি ও এইচএসসি পরীক্ষার জন্য ১ পাতার শর্ট নোট ও গুরুত্বপূর্ণ ভিজ্যুয়াল গাইড।</p>
           </div>
 
-          <div className="flex gap-3 bg-black/40 p-2 rounded-2xl border border-white/5 shadow-inner">
+          <div className="flex gap-3 bg-slate-100 p-2 rounded-2xl border border-[var(--bg-border)] shadow-inner">
             {levels.map(lvl => (
               <button 
                 key={lvl}
                 onClick={() => setActiveLevel(lvl)}
-                className={`px-8 py-3 rounded-xl text-[14px] md:text-[16px] font-black transition-all ${activeLevel === lvl ? 'bg-[#22C55E] text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                className={`px-8 py-3 rounded-xl text-[14px] md:text-[16px] font-black transition-all ${activeLevel === lvl ? 'bg-[#0F172A] text-white shadow-lg' : 'text-slate-500 hover:text-slate-800'}`}
               >
                 {lvl}
               </button>
@@ -87,17 +87,17 @@ export default function AtAGlance() {
       <div className="flex flex-col gap-8 mb-16">
         <div className="flex flex-col md:flex-row gap-5 items-center">
           <div className="relative flex-1 w-full">
-            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 w-6 h-6" />
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 w-6 h-6" />
             <input 
               type="text" 
               placeholder="নোট অনুসন্ধান করুন (ব্যাখ্যা, সূত্র, চিত্র)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#1e293b]/50 border border-white/10 rounded-full py-5 pl-16 pr-10 focus:outline-none focus:border-[#22C55E]/50 text-white font-bn text-[18px] md:text-[20px] transition-all shadow-sm"
+              className="w-full bg-white border border-[var(--bg-border)] rounded-full py-5 pl-16 pr-10 focus:outline-none focus:border-[#14B8A6]/50 text-[#0F172A] font-bn text-[18px] md:text-[20px] transition-all shadow-sm"
             />
           </div>
-          <div className="flex items-center gap-3 px-8 py-5 rounded-full bg-white/5 border border-white/10 text-slate-400 font-black text-[16px]">
-            <Filter className="w-5 h-5" />
+          <div className="flex items-center gap-3 px-8 py-5 rounded-full bg-white border border-[var(--bg-border)] text-slate-500 font-black text-[16px]">
+            <Filter className="w-5 h-5 text-slate-400" />
             <span>ফিল্টার</span>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function AtAGlance() {
             <button 
               key={sub}
               onClick={() => setActiveSubject(sub)}
-              className={`px-8 py-3 rounded-full font-black text-[14px] md:text-[16px] transition-all whitespace-nowrap border-2 ${activeSubject === sub ? 'bg-[#22C55E]/10 border-[#22C55E] text-[#22C55E]' : 'bg-transparent border-white/5 text-slate-400 hover:text-white hover:border-white/20'}`}
+              className={`px-8 py-3 rounded-full font-black text-[14px] md:text-[16px] transition-all whitespace-nowrap border-2 ${activeSubject === sub ? 'bg-[#14B8A6]/10 border-[#14B8A6] text-[#14B8A6]' : 'bg-transparent border-[var(--bg-border)] text-slate-500 hover:text-[#0F172A] hover:border-[#14B8A6]/30'}`}
             >
               {sub}
             </button>
@@ -118,13 +118,13 @@ export default function AtAGlance() {
       {/* ── Grid Gallery wrapped in Booklet ── */}
       <div className="booklet-container mb-20">
         <div className="relative z-10">
-          <div className="flex justify-between items-center mb-10 border-b-2 border-dashed border-white/10 pb-6">
+          <div className="flex justify-between items-center mb-10 border-b-2 border-dashed border-[var(--bg-border)] pb-6">
             <div>
-              <h2 className="text-white font-black text-[28px] md:text-[38px] italic leading-none">ভিজ্যুয়াল লাইব্রেরি</h2>
-              <p className="text-slate-400 text-[14px] md:text-[16px] font-bold mt-2 uppercase tracking-widest italic">Chapter Highlights · At A Glance</p>
+              <h2 className="text-[#0F172A] font-black text-[28px] md:text-[38px] italic leading-none">ভিজ্যুয়াল লাইব্রেরি</h2>
+              <p className="text-slate-500 text-[14px] md:text-[16px] font-bold mt-2 uppercase tracking-widest italic">Chapter Highlights · At A Glance</p>
             </div>
-            <div className="hidden md:flex bg-white/5 px-6 py-3 rounded-full border border-white/10 text-slate-300 font-black text-[14px] items-center gap-2">
-               <ImageIcon className="w-5 h-5 text-[#22C55E]" /> মোট রিসোর্স: {filteredNotes.length}
+            <div className="hidden md:flex bg-white px-6 py-3 rounded-full border border-[var(--bg-border)] text-slate-500 font-black text-[14px] items-center gap-2">
+               <ImageIcon className="w-5 h-5 text-[#14B8A6]" /> মোট রিসোর্স: {filteredNotes.length}
             </div>
           </div>
 

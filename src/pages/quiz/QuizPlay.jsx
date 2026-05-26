@@ -97,17 +97,17 @@ const QuizPlay = () => {
   const jumpTo = (idx) => setCurrentIndex(idx);
 
   return (
-    <div className="min-h-screen pb-40 text-[#f1f5f9]">
+    <div className="min-h-screen pb-40 text-slate-800">
       {/* Top Bar */}
       <div
         className="sticky top-0 z-50 flex items-center justify-between px-5 py-4 mb-8 rounded-2xl"
         style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
       >
         <div className="flex flex-col gap-1 min-w-0">
-          <span className="text-[10px] font-black uppercase tracking-widest text-[#22C55E]">
+          <span className="text-[10px] font-black uppercase tracking-widest text-[#14B8A6]">
             {subjectId.toUpperCase()} QUIZ
           </span>
-          <span className="text-white font-black text-[15px] font-bn italic">
+          <span className="text-[#0F172A] font-black text-[15px] font-bn italic">
             {currentIndex + 1} / {questions.length}
           </span>
         </div>
@@ -117,7 +117,7 @@ const QuizPlay = () => {
           style={
             isCritical
               ? { background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }
-              : { background: "var(--bg-elevated)", color: "#22C55E", border: "1px solid var(--bg-border)" }
+              : { background: "var(--bg-elevated)", color: "#14B8A6", border: "1px solid var(--bg-border)" }
           }
         >
           <Clock className="w-4 h-4" />
@@ -127,7 +127,7 @@ const QuizPlay = () => {
         <button
           onClick={() => setShowConfirm(true)}
           className="flex items-center gap-2 px-5 py-3 rounded-xl font-black text-[13px] text-white transition-all hover:scale-105"
-          style={{ background: "#22C55E", boxShadow: "0 4px 16px rgba(34,197,94,0.3)" }}
+          style={{ background: "#F97316", boxShadow: "0 4px 16px rgba(249,115,22,0.3)" }}
         >
           <Zap className="w-4 h-4" />
           জমা দিন
@@ -138,7 +138,7 @@ const QuizPlay = () => {
       <div className="h-1.5 rounded-full mb-8 overflow-hidden" style={{ background: "var(--bg-elevated)" }}>
         <motion.div
           className="h-full rounded-full"
-          style={{ background: "#22C55E" }}
+          style={{ background: "#14B8A6" }}
           animate={{ width: progress + "%" }}
           transition={{ duration: 0.3 }}
         />
@@ -160,14 +160,14 @@ const QuizPlay = () => {
               <div className="flex items-center gap-3 mb-6">
                 <span
                   className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-[14px] text-white"
-                  style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)" }}
+                  style={{ background: "rgba(20,184,166,0.12)", border: "1px solid rgba(20,184,166,0.25)" }}
                 >
                   {currentIndex + 1}
                 </span>
                 <div className="h-px flex-1" style={{ background: "var(--bg-border)" }} />
               </div>
 
-              <h2 className="text-[20px] md:text-[26px] font-black font-bn text-white leading-relaxed mb-9 italic">
+              <h2 className="text-[20px] md:text-[26px] font-black font-bn text-[#0F172A] leading-relaxed mb-9 italic">
                 {currentQ.question}
               </h2>
 
@@ -183,7 +183,7 @@ const QuizPlay = () => {
                       className="w-full flex items-center gap-4 px-6 py-5 rounded-xl text-left transition-all duration-200 font-bn font-black text-[16px] italic"
                       style={
                         isSelected
-                          ? { background: "rgba(34,197,94,0.12)", border: "2px solid #22C55E", color: "#22C55E", boxShadow: "0 4px 20px rgba(34,197,94,0.15)" }
+                          ? { background: "rgba(20,184,166,0.12)", border: "2px solid #14B8A6", color: "#14B8A6", boxShadow: "0 4px 20px rgba(20,184,166,0.12)" }
                           : { background: "var(--bg-elevated)", border: "1.5px solid var(--bg-border)", color: "#94a3b8" }
                       }
                     >
@@ -191,14 +191,14 @@ const QuizPlay = () => {
                         className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-[13px] shrink-0"
                         style={
                           isSelected
-                            ? { background: "#22C55E", color: "white" }
+                            ? { background: "#14B8A6", color: "white" }
                             : { background: "var(--bg-surface)", color: "#475569", border: "1px solid var(--bg-border)" }
                         }
                       >
                         {letter}
                       </span>
-                      <span className={isSelected ? "text-white" : ""}>{option}</span>
-                      {isSelected && <CheckCircle2 className="w-5 h-5 ml-auto text-[#22C55E]" />}
+                      <span className={isSelected ? "text-[#0F172A]" : ""}>{option}</span>
+                      {isSelected && <CheckCircle2 className="w-5 h-5 ml-auto text-[#14B8A6]" />}
                     </motion.button>
                   );
                 })}
@@ -216,14 +216,14 @@ const QuizPlay = () => {
             >
               <ChevronLeft className="w-5 h-5" /> Previous
             </button>
-            <span className="text-[13px] font-black text-[#334155]">
+            <span className="text-[13px] font-black text-slate-500">
               {answeredCount}/{questions.length} answered
             </span>
             <button
               onClick={goNext}
               disabled={currentIndex === questions.length - 1}
               className="flex items-center gap-2 px-6 py-4 rounded-xl font-black text-[14px] text-white transition-all hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed"
-              style={{ background: "#22C55E", boxShadow: "0 4px 14px rgba(34,197,94,0.2)" }}
+              style={{ background: "#0F172A", boxShadow: "0 4px 14px rgba(15,23,42,0.15)" }}
             >
               Next <ChevronRight className="w-5 h-5" />
             </button>
@@ -235,7 +235,7 @@ const QuizPlay = () => {
           className="rounded-2xl p-5 h-fit sticky top-28"
           style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
         >
-          <p className="text-[10px] font-black uppercase tracking-widest text-[#334155] mb-4">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4">
             Question Navigator
           </p>
           <div className="grid grid-cols-5 gap-2">
@@ -249,9 +249,9 @@ const QuizPlay = () => {
                   className="w-full aspect-square rounded-xl font-black text-[13px] transition-all"
                   style={
                     isCurrent
-                      ? { background: "#22C55E", color: "white", boxShadow: "0 4px 12px rgba(34,197,94,0.3)" }
+                      ? { background: "#14B8A6", color: "white", boxShadow: "0 4px 12px rgba(20,184,166,0.3)" }
                       : isAnswered
-                      ? { background: "rgba(34,197,94,0.12)", border: "1.5px solid rgba(34,197,94,0.35)", color: "#22C55E" }
+                      ? { background: "rgba(20,184,166,0.12)", border: "1.5px solid rgba(20,184,166,0.35)", color: "#14B8A6" }
                       : { background: "var(--bg-elevated)", border: "1.5px solid var(--bg-border)", color: "#475569" }
                   }
                 >
@@ -263,13 +263,13 @@ const QuizPlay = () => {
 
           <div className="mt-6 pt-5 border-t border-[var(--bg-border)]">
             <div className="flex justify-between font-black text-[12px] mb-3">
-              <span style={{ color: "#334155" }}>Answered</span>
-              <span style={{ color: "#22C55E" }}>{answeredCount}/{questions.length}</span>
+              <span className="text-slate-500">Answered</span>
+              <span className="text-[#14B8A6]">{answeredCount}/{questions.length}</span>
             </div>
             <div className="h-2 rounded-full overflow-hidden" style={{ background: "var(--bg-elevated)" }}>
               <div
                 className="h-full rounded-full transition-all"
-                style={{ width: (answeredCount / questions.length) * 100 + "%", background: "#22C55E" }}
+                style={{ width: (answeredCount / questions.length) * 100 + "%", background: "#14B8A6" }}
               />
             </div>
           </div>
@@ -284,7 +284,7 @@ const QuizPlay = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-6"
-            style={{ background: "rgba(6,13,20,0.85)", backdropFilter: "blur(12px)" }}
+            style={{ background: "rgba(15,23,42,0.45)", backdropFilter: "blur(12px)" }}
             onClick={() => setShowConfirm(false)}
           >
             <motion.div
@@ -295,14 +295,14 @@ const QuizPlay = () => {
               className="w-full max-w-md rounded-2xl p-10 text-center"
               style={{ background: "var(--bg-surface)", border: "1px solid var(--bg-border)" }}
             >
-              <AlertCircle className="w-12 h-12 mx-auto mb-5 text-yellow-400" />
-              <h3 className="text-[24px] font-black font-bn text-white italic mb-3">
+              <AlertCircle className="w-12 h-12 mx-auto mb-5 text-yellow-500" />
+              <h3 className="text-[24px] font-black font-bn text-[#0F172A] italic mb-3">
                 কুইজ জমা দিতে চান?
               </h3>
               <p className="text-[15px] font-bn text-[#64748b] italic mb-8">
-                আপনি <span className="text-white font-black">{answeredCount}</span> টি প্রশ্নের উত্তর দিয়েছেন।
+                আপনি <span className="text-[#0F172A] font-black">{answeredCount}</span> টি প্রশ্নের উত্তর দিয়েছেন।
                 {answeredCount < questions.length && (
-                  <span className="block mt-1 text-yellow-400">
+                  <span className="block mt-1 text-yellow-500">
                     {questions.length - answeredCount} টি প্রশ্ন বাকি আছে।
                   </span>
                 )}
@@ -318,7 +318,7 @@ const QuizPlay = () => {
                 <button
                   onClick={handleSubmit}
                   className="flex-1 py-4 rounded-xl font-black text-[15px] font-bn text-white transition-all hover:scale-105"
-                  style={{ background: "#22C55E", boxShadow: "0 4px 20px rgba(34,197,94,0.3)" }}
+                  style={{ background: "#F97316", boxShadow: "0 4px 20px rgba(249,115,22,0.3)" }}
                 >
                   হ্যাঁ, জমা দিন
                 </button>
