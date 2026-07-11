@@ -33,6 +33,7 @@ const Cookies         = lazy(() => import('./pages/Cookies'));
 const TipDetail       = lazy(() => import('./pages/TipDetail'));
 const AdminPayments   = lazy(() => import('./pages/AdminPayments'));
 const AtAGlance       = lazy(() => import('./pages/AtAGlance'));
+const PaymentResult   = lazy(() => import('./pages/PaymentResult'));
 
 
 const PageLoader = () => (
@@ -98,6 +99,10 @@ function App() {
                   <Route path="/tips/:tipId"         element={<TipDetail />} />
                   <Route path="/admin/payments"      element={<AdminPayments />} />
                   <Route path="/at-a-glance"         element={<AtAGlance />} />
+                  
+                  <Route path="/payment-success"     element={<PaymentResult status="success" />} />
+                  <Route path="/payment-fail"        element={<PaymentResult status="fail" />} />
+                  <Route path="/payment-cancel"      element={<PaymentResult status="cancel" />} />
 
                   <Route path="*"                    element={<NotFound />} />
                 </Routes>

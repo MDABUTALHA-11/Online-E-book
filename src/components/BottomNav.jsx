@@ -12,19 +12,19 @@ const BottomNav = () => {
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-[100] px-4 py-3 pb-[calc(12px+env(safe-area-inset-bottom))] bg-transparent pointer-events-none">
-      <div className="bg-white rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.05)] border border-slate-100 flex justify-between items-center relative h-16 px-2 pointer-events-auto">
+      <div className="bg-[var(--bg-surface)] rounded-lg shadow-[0_4px_25px_rgba(0,240,255,0.08)] border border-[var(--bg-border)] flex justify-between items-center relative h-15 px-2 pointer-events-auto">
         <NavItem to="/" icon={Home} label="Home" active={isActive('/')} />
         <NavItem to="/categories" icon={Users} label="Subjects" active={isActive('/categories')} />
         
-        {/* Protruding Quiz Button */}
+        {/* Protruding Hexagonal/Square Tech Quiz Button */}
         <div className="relative flex flex-col items-center justify-center h-full w-[20%]">
           <Link 
             to="/quiz" 
-            className="absolute -top-6 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-xl shadow-[#F97316]/40 bg-[#F97316] ring-[6px] ring-[#F8FAFC] transition-transform active:scale-95 group"
+            className="absolute -top-5 w-12 h-12 rounded-lg flex items-center justify-center text-white shadow-lg shadow-[var(--neon-violet)]/40 bg-[var(--neon-violet)] border border-[var(--primary)]/30 ring-[4px] ring-[var(--bg-app)] transition-transform active:scale-95 group"
           >
-            <FileEdit className="w-6 h-6 group-active:scale-90 transition-transform" />
+            <FileEdit className="w-5 h-5 group-active:scale-90 transition-transform" />
           </Link>
-          <span className={`text-[10px] absolute -bottom-1 font-bold ${isActive('/quiz') ? 'text-[#F97316]' : 'text-[#64748B] font-medium'}`}>Quiz</span>
+          <span className={`text-[9px] absolute -bottom-1 font-mono font-bold tracking-wider ${isActive('/quiz') ? 'text-[var(--neon-violet)]' : 'text-[var(--text-muted)]'}`}>Quiz</span>
         </div>
 
         <NavItem to="/tips" icon={CalendarDays} label="Library" active={isActive('/tips')} />
@@ -35,9 +35,9 @@ const BottomNav = () => {
 };
 
 const NavItem = ({ to, icon: Icon, label, active }) => (
-  <Link to={to} className="flex flex-col items-center justify-center h-full gap-1 w-[20%] pt-1 text-decoration-none">
-    <Icon className={`w-6 h-6 transition-transform ${active ? 'text-[#14B8A6]' : 'text-[#64748B]'}`} />
-    <span className={`text-[10px] ${active ? 'text-[#14B8A6] font-bold' : 'text-[#64748B] font-medium'}`}>{label}</span>
+  <Link to={to} className="flex flex-col items-center justify-center h-full gap-0.5 w-[20%] pt-1 text-decoration-none">
+    <Icon className={`w-5 h-5 transition-transform ${active ? 'text-[var(--primary)]' : 'text-[var(--text-muted)]'}`} />
+    <span className={`text-[9px] font-mono tracking-wider ${active ? 'text-[var(--primary)] font-bold' : 'text-[var(--text-muted)] font-medium'}`}>{label}</span>
   </Link>
 );
 

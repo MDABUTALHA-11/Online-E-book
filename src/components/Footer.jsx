@@ -44,12 +44,12 @@ export default function Footer() {
 
       {/* ── Ambient Glow Orbs ── */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[300px] rounded-full pointer-events-none"
-        style={{ background: 'rgba(20,184,166,0.04)', filter: 'blur(100px)' }} />
+        style={{ background: 'rgba(0,240,255,0.02)', filter: 'blur(100px)' }} />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[250px] rounded-full pointer-events-none"
-        style={{ background: 'rgba(249,115,22,0.03)', filter: 'blur(100px)' }} />
+        style={{ background: 'rgba(139,92,246,0.02)', filter: 'blur(100px)' }} />
 
       {/* ── Top Divider ── */}
-      <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, var(--bg-border) 30%, #14B8A6 50%, var(--bg-border) 70%, transparent)' }} />
+      <div className="h-[2px] w-full" style={{ background: 'linear-gradient(90deg, transparent, var(--bg-border) 20%, var(--primary) 50%, var(--bg-border) 80%, transparent)' }} />
 
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 pt-16 pb-10">
         {/* Global Footer Ad */}
@@ -64,16 +64,16 @@ export default function Footer() {
           {stats.map(({ icon: Icon, value, label }) => (
             <div
               key={label}
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl group transition-all hover:-translate-y-0.5"
-              style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
+              className="flex items-center gap-4 px-5 py-4 rounded-lg group transition-all hover:-translate-y-0.5 border border-[var(--bg-border)]"
+              style={{ background: 'var(--bg-surface)' }}
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors group-hover:bg-[rgba(20,184,166,0.15)]"
-                style={{ background: 'rgba(20,184,166,0.08)', border: '1px solid rgba(20,184,166,0.15)' }}>
-                <Icon className="w-5 h-5 text-[#14B8A6]" />
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors group-hover:bg-[rgba(0,240,255,0.15)] border border-[var(--bg-border)]"
+                style={{ background: 'rgba(0,240,255,0.05)' }}>
+                <Icon className="w-5 h-5 text-[var(--primary)]" />
               </div>
               <div>
-                <p className="text-[#0F172A] font-black text-[20px] leading-none italic tracking-tight">{value}</p>
-                <p className="text-slate-500 text-[11px] font-black uppercase tracking-widest mt-0.5">{label}</p>
+                <p className="text-[var(--text-primary)] font-black text-[20px] leading-none tracking-tight font-headings">{value}</p>
+                <p className="text-[var(--text-muted)] text-[9px] font-bold uppercase tracking-widest mt-1 font-mono">{label}</p>
               </div>
             </div>
           ))}
@@ -86,35 +86,35 @@ export default function Footer() {
           <div className="flex flex-col">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 mb-6 no-underline group w-fit">
-              <div className="relative w-12 h-12 shrink-0">
-                <div className="absolute inset-0 bg-[#14B8A6]/20 blur-xl rounded-full scale-125" />
+              <div className="relative w-10 h-10 shrink-0">
+                <div className="absolute inset-0 bg-[var(--primary)]/20 blur-lg rounded-sm scale-125" />
                 <img src="/favicon.ico" alt="Shaifly" className="w-full h-full object-contain relative z-10" />
               </div>
               <div>
-                <span className="text-[28px] font-black text-[#0F172A] tracking-tighter italic font-bn leading-none block">
-                  Shaifly<span className="text-[#F97316]">.</span>
+                <span className="text-[24px] font-black text-[var(--text-primary)] tracking-wider font-headings leading-none block">
+                  Shaifly<span className="text-[var(--primary)]">.</span>
                 </span>
-                <span className="text-[9px] font-black text-[#14B8A6] uppercase tracking-[0.4em] opacity-70">Library</span>
+                <span className="text-[9px] font-black text-[var(--primary)] uppercase tracking-[0.4em] font-mono opacity-70">Library</span>
               </div>
             </Link>
 
-            <p className="text-slate-550 font-bn text-[15px] leading-[1.8] max-w-sm mb-8">
+            <p className="text-[var(--text-muted)] font-bn text-[14px] leading-[1.8] max-w-sm mb-8 font-semibold">
               বাংলাদেশের SSC ও HSC শিক্ষার্থীদের জন্য সেরা academic নোট শেয়ারিং প্ল্যাটফর্ম।
               আমাদের লক্ষ্য শিক্ষাকে সহজ, স্মার্ট ও প্রযুক্তি-নির্ভর করা।
             </p>
 
             {/* CTA Card */}
-            <div className="rounded-2xl p-5 mb-8 relative overflow-hidden"
-              style={{ background: 'linear-gradient(135deg, rgba(20,184,166,0.08) 0%, rgba(20,184,166,0.02) 100%)', border: '1px solid rgba(20,184,166,0.2)' }}>
+            <div className="rounded-lg p-5 mb-8 relative overflow-hidden border border-[var(--primary)]/20"
+              style={{ background: 'linear-gradient(135deg, rgba(0,240,255,0.06) 0%, rgba(0,240,255,0.01) 100%)' }}>
               <div className="absolute top-0 right-0 w-24 h-24 rounded-full pointer-events-none"
-                style={{ background: 'rgba(20,184,166,0.06)', filter: 'blur(30px)' }} />
-              <p className="text-[13px] font-black text-[#F97316] uppercase tracking-widest mb-1">শুরু করতে প্রস্তুত?</p>
-              <p className="text-[#0F172A] font-black font-bn text-[17px] italic mb-4 leading-snug">
+                style={{ background: 'rgba(0,240,255,0.04)', filter: 'blur(30px)' }} />
+              <p className="text-[11px] font-bold text-[var(--primary)] uppercase tracking-wider mb-1 font-mono">READY TO COMMENCE?</p>
+              <p className="text-[var(--text-primary)] font-bold font-bn text-[16px] mb-4 leading-snug">
                 আজই নোট ডাউনলোড করুন — সম্পূর্ণ বিনামূল্যে!
               </p>
               <Link to="/categories"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-black text-[13px] text-white no-underline transition-all hover:scale-105"
-                style={{ background: '#F97316', boxShadow: '0 4px 16px rgba(249,115,22,0.3)' }}>
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-[12px] text-[#0A0E1A] no-underline transition-all hover:scale-105"
+                style={{ background: 'var(--accent)', boxShadow: '0 4px 12px rgba(0,255,136,0.3)' }}>
                 <Zap className="w-4 h-4" /> নোট খুঁজুন <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -123,11 +123,11 @@ export default function Footer() {
             <div className="flex gap-2.5">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a key={label} href={href} aria-label={label}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 hover:scale-110 group"
-                  style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#14B8A6'; e.currentTarget.style.borderColor = '#14B8A6'; }}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-300 hover:scale-110 border border-[var(--bg-border)]"
+                  style={{ background: 'var(--bg-surface)' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.borderColor = 'var(--bg-border)'; }}>
-                  <Icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                  <Icon className="w-4 h-4 text-[var(--text-muted)] hover:text-white transition-colors" />
                 </a>
               ))}
             </div>
@@ -136,18 +136,17 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <div className="flex items-center gap-2 mb-7">
-              <div className="w-1 h-4 rounded-full bg-[#14B8A6]" />
-              <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-[#14B8A6]">Quick Links</h4>
+              <div className="w-1 h-3 rounded-full bg-[var(--primary)]" />
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--primary)] font-mono">Quick Links</h4>
             </div>
             <ul className="flex flex-col gap-1">
               {quickLinks.map(({ label, to }) => (
                 <li key={label}>
                   <Link to={to}
-                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-slate-500 no-underline transition-all group hover:pl-5"
-                    style={{ letterSpacing: '0.01em' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = '#14B8A6'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#64748B'; }}>
-                    <span className="w-1 h-1 rounded-full bg-[var(--bg-border)] group-hover:bg-[#14B8A6] transition-colors shrink-0" />
+                    className="flex items-center gap-2 py-2 px-3 rounded-lg font-bn font-semibold text-[14px] text-[var(--text-muted)] no-underline transition-all group hover:pl-5"
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--primary)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-muted)'; }}>
+                    <span className="w-1 h-1 rounded-sm bg-[var(--bg-border)] group-hover:bg-[var(--primary)] transition-colors shrink-0" />
                     {label}
                   </Link>
                 </li>
@@ -158,17 +157,17 @@ export default function Footer() {
           {/* Support Links */}
           <div>
             <div className="flex items-center gap-2 mb-7">
-              <div className="w-1 h-4 rounded-full bg-[#14B8A6]" />
-              <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-[#14B8A6]">Support</h4>
+              <div className="w-1 h-3 rounded-full bg-[var(--primary)]" />
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--primary)] font-mono">Support</h4>
             </div>
             <ul className="flex flex-col gap-1">
               {supportLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href}
-                    className="flex items-center gap-2 py-2.5 px-3 rounded-xl font-bn font-bold text-[15px] text-slate-500 no-underline transition-all group hover:pl-5"
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = '#14B8A6'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#64748B'; }}>
-                    <span className="w-1 h-1 rounded-full bg-[var(--bg-border)] group-hover:bg-[#14B8A6] transition-colors shrink-0" />
+                    className="flex items-center gap-2 py-2 px-3 rounded-lg font-bn font-semibold text-[14px] text-[var(--text-muted)] no-underline transition-all group hover:pl-5"
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--bg-surface)'; e.currentTarget.style.color = 'var(--primary)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-muted)'; }}>
+                    <span className="w-1 h-1 rounded-sm bg-[var(--bg-border)] group-hover:bg-[var(--primary)] transition-colors shrink-0" />
                     {label}
                   </a>
                 </li>
@@ -176,11 +175,11 @@ export default function Footer() {
             </ul>
 
             {/* Contact Card */}
-            <div className="mt-8 p-4 rounded-2xl" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
-              <p className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-2">যোগাযোগ করুন</p>
+            <div className="mt-8 p-4 rounded-lg border border-[var(--bg-border)]" style={{ background: 'var(--bg-surface)' }}>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-dim)] mb-2 font-mono">CONTACT</p>
               <a href="mailto:support@shaifly.com"
-                className="text-[14px] font-black text-[#0F172A] font-en hover:text-[#14B8A6] transition-colors no-underline flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#14B8A6]" />
+                className="text-[13px] font-bold text-[var(--text-primary)] font-body hover:text-[var(--primary)] transition-colors no-underline flex items-center gap-2">
+                <Mail className="w-4 h-4 text-[var(--primary)]" />
                 support@shaifly.com
               </a>
             </div>
@@ -188,18 +187,18 @@ export default function Footer() {
         </div>
 
         {/* ── Trust Seal & Newsletter ── */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 p-8 rounded-[2.5rem]" style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}>
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 p-8 rounded-lg border border-[var(--bg-border)]" style={{ background: 'var(--bg-surface)' }}>
           <div className="flex flex-col justify-center">
-            <h4 className="text-[#0F172A] font-black font-bn text-xl mb-4 italic">নতুন নোট ও সাজেশন পেতে আমাদের সাথে থাকুন</h4>
+            <h4 className="text-[var(--text-primary)] font-bold font-bn text-lg mb-4">নতুন নোট ও সাজেশন পেতে আমাদের সাথে থাকুন</h4>
             <div className="flex gap-2">
               <input 
                 type="email" 
                 placeholder="আপনার ইমেইল দিন..." 
-                className="flex-1 h-[48px] px-4 rounded-xl text-[13px] font-bn outline-none text-[#0F172A] bg-[var(--bg-elevated)] border border-[var(--bg-border)]"
+                className="flex-1 h-[44px] px-4 rounded-lg text-[13px] font-bn font-semibold outline-none text-[var(--text-primary)] bg-[var(--bg-elevated)] border border-[var(--bg-border)]"
               />
               <button 
-                className="h-[48px] px-6 rounded-xl font-black text-[12px] text-white uppercase tracking-widest transition-all hover:scale-105"
-                style={{ background: '#F97316', boxShadow: '0 4px 12px rgba(249,115,22,0.2)' }}
+                className="h-[44px] px-6 rounded-lg font-bold text-[11px] text-[#0A0E1A] uppercase tracking-wider transition-all hover:scale-105 font-mono"
+                style={{ background: 'var(--accent)', boxShadow: '0 4px 10px rgba(0, 255, 136, 0.2)' }}
               >
                 Join Now
               </button>
@@ -207,40 +206,37 @@ export default function Footer() {
           </div>
           <div className="flex items-center justify-center md:justify-end gap-6">
             <div className="text-right hidden md:block">
-              <p className="text-[#0F172A] font-black font-bn italic text-lg leading-none mb-1">যাচাইকৃত শিক্ষা প্ল্যাটফর্ম</p>
-              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Verified Academic Library</p>
+              <p className="text-[var(--text-primary)] font-bold font-bn text-md leading-none mb-1">যাচাইকৃত শিক্ষা প্ল্যাটফর্ম</p>
+              <p className="text-[var(--text-dim)] text-[9px] font-bold uppercase tracking-wider font-mono">Verified Academic Library</p>
             </div>
-            <div className="w-16 h-16 rounded-full border-4 border-[#14B8A6]/20 flex items-center justify-center rotate-12 relative">
-               <div className="absolute inset-0 border border-white/5 rounded-full" />
-               <Award className="w-8 h-8 text-[#14B8A6]" />
+            <div className="w-14 h-14 rounded-lg border border-[var(--primary)]/30 flex items-center justify-center rotate-6 relative" style={{ background: 'rgba(0, 240, 255, 0.05)' }}>
+               <div className="absolute inset-0 border border-white/5 rounded-lg" />
+               <Award className="w-6 h-6 text-[var(--primary)]" />
             </div>
           </div>
         </div>
 
         {/* ── Bottom Bar ── */}
         <div className="mt-14 pt-6 relative">
-          {/* Gradient separator */}
-          <div className="absolute top-0 left-0 right-0 h-px"
-            style={{ background: 'linear-gradient(90deg, transparent, var(--bg-border) 20%, var(--bg-border) 80%, transparent)' }} />
-
+          <div className="circuit-line mb-6" />
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[12px] font-black text-slate-550 tracking-wide font-en">
-              © 2026 <span className="text-[#475569]">Shaifly Library</span>. All Rights Reserved.
+            <p className="text-[11px] font-bold text-[var(--text-muted)] tracking-wide font-mono">
+              © 2026 <span className="text-[var(--text-primary)]">Shaifly Library</span>. All Rights Reserved.
             </p>
 
-            <div className="flex items-center gap-2 text-[12px] font-black text-slate-550 font-en">
+            <div className="flex items-center gap-1.5 text-[11px] font-bold text-[var(--text-muted)] font-mono">
               Built with
-              <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 animate-pulse" />
+              <Heart className="w-3.5 h-3.5 text-[var(--neon-pink)] fill-[var(--neon-pink)] animate-pulse" />
               for&nbsp;
-              <span className="text-[#F97316]">Bangladeshi Students</span>
+              <span className="text-[var(--accent)]">Bangladeshi Students</span>
             </div>
 
-            <div className="flex items-center gap-4 text-[12px] font-black text-slate-550 font-en">
-              <Link to="/privacy" className="hover:text-[#475569] transition-colors no-underline">Privacy</Link>
+            <div className="flex items-center gap-4 text-[11px] font-bold text-[var(--text-muted)] font-mono">
+              <Link to="/privacy" className="hover:text-[var(--primary)] transition-colors no-underline">Privacy</Link>
               <span className="w-1 h-1 rounded-full bg-[var(--bg-border)]" />
-              <Link to="/terms" className="hover:text-[#475569] transition-colors no-underline">Terms</Link>
+              <Link to="/terms" className="hover:text-[var(--primary)] transition-colors no-underline">Terms</Link>
               <span className="w-1 h-1 rounded-full bg-[var(--bg-border)]" />
-              <Link to="/cookies" className="hover:text-[#475569] transition-colors no-underline">Cookies</Link>
+              <Link to="/cookies" className="hover:text-[var(--primary)] transition-colors no-underline">Cookies</Link>
             </div>
           </div>
         </div>

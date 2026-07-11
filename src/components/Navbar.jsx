@@ -8,7 +8,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Unified Dark Hero detection for Home, Categories, Subject, and Quiz pages
   const hasDarkHero = ['/', '/categories'].includes(location.pathname) || location.pathname.startsWith('/subject') || location.pathname.startsWith('/quiz');
   const isLightAtTop = !hasDarkHero;
 
@@ -37,27 +36,26 @@ const Navbar = () => {
 
   const getNavTextColor = (active = false) => {
     if (scrolled) {
-      return active ? 'text-primary' : 'text-slate-300 hover:text-white';
+      return active ? 'text-[var(--primary)] font-bold' : 'text-[var(--text-muted)] hover:text-[var(--primary)]';
     }
     if (isLightAtTop) {
-      return active ? 'text-primary drop-shadow-md' : 'text-slate-700 hover:text-slate-900 font-bold';
+      return active ? 'text-[var(--primary)] font-bold' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]';
     }
-    return active ? 'text-primary drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'text-slate-300 hover:text-white';
+    return active ? 'text-[var(--primary)] font-bold drop-shadow-[0_0_8px_var(--primary-glow)]' : 'text-[var(--text-dim)] hover:text-[var(--primary)]';
   };
 
   const getGlassStyle = () => {
     if (scrolled) {
-      return 'bg-[var(--bg-app)]/90 backdrop-blur-xl py-3 px-6 md:px-8 rounded-full shadow-[0_20px_40px_-10px_rgba(16,185,129,0.3)] border border-primary/20 ring-1 ring-white/10';
+      return 'bg-[var(--bg-surface)]/90 backdrop-blur-xl py-3 px-6 md:px-8 rounded-lg shadow-[0_4px_25px_rgba(0,240,255,0.08)] border border-[var(--primary)]/15';
     }
     if (isLightAtTop) {
-      return 'bg-white/40 backdrop-blur-md py-5 px-6 md:px-8 border border-white/50 shadow-sm rounded-3xl';
+      return 'bg-[var(--bg-surface)]/40 backdrop-blur-md py-4 px-6 md:px-8 border border-[var(--bg-border)] shadow-sm rounded-lg';
     }
-    return 'bg-transparent py-5 px-2 md:px-4 rounded-3xl';
+    return 'bg-transparent py-4 px-2 md:px-4 rounded-lg';
   };
 
   return (
     <>
-      {/* Navbar with slide-down entrance */}
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -71,17 +69,17 @@ const Navbar = () => {
             <motion.div
               whileHover={{ rotate: 12, scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-primary/20 backdrop-blur-md border border-primary/30 shadow-[0_0_20px_rgba(16,185,129,0.4)] overflow-hidden`}
+              className={`w-9 h-9 rounded-lg flex items-center justify-center bg-[var(--primary)]/10 backdrop-blur-md border border-[var(--primary)]/30 shadow-[0_0_12px_var(--primary-glow)] overflow-hidden`}
             >
-              <img src="/favicon.ico" alt="Logo" className="w-6 h-6 md:w-8 md:h-8 object-contain" />
+              <img src="/favicon.ico" alt="Logo" className="w-5 h-5 object-contain" />
             </motion.div>
-            <span className={`text-2xl md:text-3xl font-brand tracking-tight transition-colors duration-500 ${scrolled ? 'text-white' : (isLightAtTop ? 'text-slate-900' : 'text-white')} drop-shadow-md`}>
-              Shaifly<span className="text-primary">.</span>
+            <span className="text-xl md:text-2xl font-headings tracking-wider text-[var(--text-primary)]">
+              Shaifly<span className="text-[var(--primary)]">.</span>
             </span>
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link, i) => (
               <motion.div
                 key={link.name}
@@ -91,13 +89,13 @@ const Navbar = () => {
               >
                 <Link
                   to={link.path}
-                  className={`text-[11px] font-black en-font tracking-[0.2em] no-underline transition-all relative py-2 group ${getNavTextColor(isActive(link.path))}`}
+                  className={`text-[11px] font-bold font-mono tracking-[0.15em] no-underline transition-all relative py-2 group ${getNavTextColor(isActive(link.path))}`}
                 >
                   {link.name}
                   <motion.span
-                    className={`absolute bottom-0 left-0 h-[3px] bg-primary rounded-full`}
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[var(--primary)] rounded-sm`}
                     initial={false}
-                    animate={{ scaleX: isActive(link.path) ? 0.5 : 0, opacity: isActive(link.path) ? 1 : 0 }}
+                    animate={{ scaleX: isActive(link.path) ? 0.6 : 0, opacity: isActive(link.path) ? 1 : 0 }}
                     style={{ width: '100%', originX: 0 }}
                     transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                   />
@@ -110,12 +108,8 @@ const Navbar = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.55, duration: 0.4 }}
             >
-              <Link to="/tips" className={`btn btn-sm px-8 h-12 rounded-2xl en-font btn-gradient-shift transition-all ${
-                (scrolled || isLightAtTop) 
-                  ? 'btn-primary shadow-lg shadow-primary/20' 
-                  : 'bg-white text-slate-900 hover:bg-slate-100'
-              }`}>
-                TIPS <LayoutGrid className="w-4 h-4 ml-1" />
+              <Link to="/tips" className="flex items-center gap-1.5 px-6 h-9 rounded-lg font-mono text-[11px] font-bold text-[#0A0E1A] shadow-md shadow-[var(--primary)]/20 transition-all hover:scale-105 active:scale-95" style={{ background: 'var(--primary)' }}>
+                TIPS <LayoutGrid className="w-3.5 h-3.5" />
               </Link>
             </motion.div>
           </div>
@@ -124,19 +118,19 @@ const Navbar = () => {
           <div className="flex items-center gap-4 md:hidden">
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className={`w-10 h-10 flex items-center justify-center rounded-full transition-all border ${
-                (scrolled || isLightAtTop) ? 'bg-slate-100 border-slate-200 text-slate-900 shadow-inner' : 'bg-white/10 border-white/20 text-white backdrop-blur-md'
+              className={`w-9 h-9 flex items-center justify-center rounded-lg transition-all border ${
+                (scrolled || isLightAtTop) ? 'bg-[var(--bg-elevated)] border-[var(--bg-border)] text-[var(--text-primary)] shadow-sm' : 'bg-white/10 border-white/20 text-white backdrop-blur-md'
               }`}
               onClick={() => setIsOpen(!isOpen)}
             >
               <AnimatePresence mode="wait" initial={false}>
                 {isOpen ? (
                   <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <X className="w-5 h-5" />
+                    <X className="w-4 h-4" />
                   </motion.div>
                 ) : (
                   <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <Menu className="w-5 h-5" />
+                    <Menu className="w-4 h-4" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -161,15 +155,15 @@ const Navbar = () => {
               <Link to="/" className="no-underline group" onClick={() => setIsOpen(false)}>
                 <motion.div
                   whileHover={{ rotate: 6 }}
-                  className="w-20 h-20 bg-primary/10 backdrop-blur-2xl rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-primary/40 overflow-hidden border border-primary/20"
+                  className="w-16 h-16 bg-[var(--primary)]/10 backdrop-blur-2xl rounded-lg flex items-center justify-center mx-auto mb-4 shadow-xl shadow-[var(--primary)]/20 overflow-hidden border border-[var(--primary)]/20"
                 >
-                  <img src="/favicon.ico" alt="Logo" className="w-12 h-12 object-contain" />
+                  <img src="/favicon.ico" alt="Logo" className="w-10 h-10 object-contain" />
                 </motion.div>
-                <h2 className="text-5xl font-brand text-white text-center tracking-tight">Shaifly<span className="text-primary">.</span></h2>
-                <p className="text-center text-slate-500 text-[10px] tracking-[0.4em] uppercase mt-4">Academic Library</p>
+                <h2 className="text-3xl font-headings text-white text-center tracking-wider">Shaifly<span className="text-[var(--primary)]">.</span></h2>
+                <p className="text-center text-[var(--text-muted)] text-[9px] tracking-[0.4em] uppercase mt-2 font-mono">Academic Library</p>
               </Link>
               
-              <div className="w-full flex flex-col gap-4">
+              <div className="w-full flex flex-col gap-2">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
@@ -179,16 +173,16 @@ const Navbar = () => {
                   >
                     <Link
                       to={link.path}
-                      className={`text-5xl font-bn font-black no-underline flex items-center justify-between group py-4 border-b border-white/5 transition-all w-full ${
-                        isActive(link.path) ? 'text-primary' : 'text-white/60 hover:text-white'
+                      className={`text-2xl font-bn font-bold no-underline flex items-center justify-between group py-3.5 border-b border-white/5 transition-all w-full ${
+                        isActive(link.path) ? 'text-[var(--primary)]' : 'text-white/60 hover:text-white'
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
                       <span className="relative">
                         {link.name}
-                        {isActive(link.path) && <span className="absolute -left-8 top-1/2 -translate-y-1/2 w-3 h-3 bg-primary rounded-full shadow-[0_0_15px_rgba(16,185,129,1)]" />}
+                        {isActive(link.path) && <span className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 bg-[var(--primary)] rounded-sm shadow-[0_0_10px_var(--primary)] animate-pulse" />}
                       </span>
-                      <ChevronRight className="w-10 h-10 opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0" />
+                      <ChevronRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0 text-[var(--primary)]" />
                     </Link>
                   </motion.div>
                 ))}
@@ -200,18 +194,18 @@ const Navbar = () => {
                 transition={{ delay: 0.45, duration: 0.4 }}
                 className="w-full"
               >
-                <Link to="/tips" className="btn btn-primary w-full py-6 text-2xl rounded-3xl mt-6 shadow-2xl shadow-primary/30" onClick={() => setIsOpen(false)}>
-                  টিপস এন্ড ট্রিকস <ChevronRight className="ml-2 w-7 h-7" />
+                <Link to="/tips" className="flex items-center justify-center gap-2 w-full py-4 text-[16px] rounded-lg mt-6 shadow-xl shadow-[var(--primary)]/20 font-bn font-bold text-[#0A0E1A]" style={{ background: 'var(--primary)' }} onClick={() => setIsOpen(false)}>
+                  টিপস এন্ড ট্রিকস <ChevronRight className="w-5 h-5" />
                 </Link>
               </motion.div>
             </div>
             
             <motion.button
               whileTap={{ scale: 0.9, rotate: 90 }}
-              className="absolute top-12 right-12 text-white/40 hover:text-white transition-colors"
+              className="absolute top-8 right-8 text-white/40 hover:text-white transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              <X className="w-12 h-12" />
+              <X className="w-8 h-8" />
             </motion.button>
           </motion.div>
         )}
