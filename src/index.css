@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anek+Bangla:wght@400..800&family=Alkatra:wght@400..700&family=Audiowide&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,9 +31,9 @@
   --text-muted:    #6B7280;
   --text-dim:      #9CA3AF;
 
-  --font-headings: 'Orbitron', sans-serif;
-  --font-body: 'Space Grotesk', sans-serif;
-  --font-bn: 'Noto Sans Bengali', sans-serif;
+  --font-headings: 'Archivo Black', sans-serif;
+  --font-body: 'Archivo Black', sans-serif;
+  --font-bn: 'Anek Bangla', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Robotic Theme Tokens */
@@ -42,6 +42,12 @@
   --corner-accent: #00F0FF;
   --glow-spread: 20px;
   --scanline-speed: 3s;
+}
+
+.audiowide-regular {
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 html.dark {
@@ -119,7 +125,14 @@ body {
 /* ═══════════════════════════════════════
    TYPOGRAPHY — ROBOTIC SQUARE STYLE
    ═══════════════════════════════════════ */
-h1, h2, h3, .sf-headline {
+h1 {
+  font-family: var(--font-headings);
+  font-size: 28px !important;
+  line-height: 1.0 !important;
+  font-weight: 400 !important;
+}
+
+h2, h3, .sf-headline {
   font-family: var(--font-headings);
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -782,4 +795,41 @@ input:focus, button:focus-visible {
   background-size: 200% 100%;
   animation: circuitPulse 3s linear infinite;
   opacity: 0.3;
+}
+
+/* ═══════════════════════════════════════
+   GLOBAL BUTTON OVERRIDES — Big and Yellow
+   ═══════════════════════════════════════ */
+.page-container button:not(.nav-btn):not(.close-btn):not([class*="w-8"]):not([class*="h-8"]):not([class*="w-10"]):not([class*="h-10"]):not([class*="p-1"]):not([class*="p-2"]):not([class*="border-b"]) {
+  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%) !important;
+  color: #0A0E1A !important;
+  padding: 14px 28px !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  border-radius: 9999px !important;
+  border: 2px solid #D97706 !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-transform: uppercase !important;
+  height: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.page-container button:not(.nav-btn):not(.close-btn):not([class*="w-8"]):not([class*="h-8"]):not([class*="w-10"]):not([class*="h-10"]):not([class*="p-1"]):not([class*="p-2"]):not([class*="border-b"]) svg {
+  color: #0A0E1A !important;
+  fill: currentColor !important;
+}
+
+.page-container button:not(.nav-btn):not(.close-btn):not([class*="w-8"]):not([class*="h-8"]):not([class*="w-10"]):not([class*="h-10"]):not([class*="p-1"]):not([class*="p-2"]):not([class*="border-b"]):hover {
+  background: linear-gradient(135deg, #FDE047 0%, #D97706 100%) !important;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6) !important;
+  transform: translateY(-2px) scale(1.03) !important;
+  color: #0A0E1A !important;
+}
+
+.page-container button:not(.nav-btn):not(.close-btn):not([class*="w-8"]):not([class*="h-8"]):not([class*="w-10"]):not([class*="h-10"]):not([class*="p-1"]):not([class*="p-2"]):not([class*="border-b"]):active {
+  transform: translateY(1px) scale(0.98) !important;
 }

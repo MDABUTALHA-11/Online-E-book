@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Target, Award, ArrowRight, Activity, Zap, ShieldCheck, Trophy, Home } from 'lucide-react';
-import { physicsQuestions } from '../../data/physicsQuestions';
-import { chemistryQuestions } from '../../data/chemistryQuestions';
-import { higherMathQuestions } from '../../data/higherMathQuestions';
-import { biologyQuestions } from '../../data/biologyQuestions';
-import { scienceQuestions } from '../../data/scienceQuestions';
-import { mathQuestions } from '../../data/mathQuestions';
+import { Target, Award, ArrowRight, Activity, Zap, ShieldCheck, Trophy, Home, RefreshCw, Share2 } from 'lucide-react';
+import { getSubjectChapterQuestions, getSubjectMeta, getSubjectChapters } from '../../data/unifiedSubjectsData';
 import { db } from '../../lib/firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 
@@ -15,6 +10,25 @@ const QuizResult = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [result, setResult] = useState(null);
+  const [copied, setCopied] = useState(false);
+
+  const params = new URLSearchParams(location.search);
+  const subjectId = params.get('subject') || 'physics-ch1';
+  const xpEarned = parseInt(params.get('xp')) || 0;
+
+  // Resolve Subject Title
+  const parts = subjectId.split("-ch");
+  const subjSlug = parts[0];
+  const matchedSubj = getSubjectMeta(subjSlug);
+  const matchedChaps = getSubjectChapters(subjSlug);
+  const matchedChap = matchedChaps.find(c => c.id === subjectId);
+  
+  let subjectTitle = "পদার্থবিজ্ঞান কুইজ";
+  if (matchedSubj && matchedChap) {
+    subjectTitle = `${matchedSubj.nameBn} - অধ্যায় ${matchedChap.num}: ${matchedChap.titleBn}`;
+  } else if (matchedSubj) {
+    subjectTitle = matchedSubj.nameBn;
+  }
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -25,22 +39,14 @@ const QuizResult = () => {
       return;
     }
 
-    const params = new URLSearchParams(location.search);
-    const subjectId = params.get('subject') || 'physics';
-
-    const questionsMap = {
-      'physics': physicsQuestions,
-      'chemistry': chemistryQuestions,
-      'higher-math': higherMathQuestions,
-      'biology': biologyQuestions,
-      'science': scienceQuestions,
-      'math': mathQuestions,
-    };
-    const questions = questionsMap[subjectId] || physicsQuestions;
+    const parts = subjectId.split("-ch");
+    const subjSlug = parts[0];
+    const questions = getSubjectChapterQuestions(subjSlug, subjectId);
 
     // Calculate score
     let calculatedScore = 0;
     questions.forEach((q, index) => {
+      // Find option inside answers. We shuffled questions in Play, but answers are saved with originalIndex.
       if (answers[index] === q.answer) {
         calculatedScore++;
       }
@@ -57,7 +63,6 @@ const QuizResult = () => {
     };
     
     const saveAndCalculateRank = async () => {
-      // Check if already saved locally (React 18 Strict Mode prevents duplicate pushes)
       let scores = JSON.parse(localStorage.getItem("scores")) || [];
       const isDuplicate = scores.find(s => s.name === parsedData.name && s.score === parsedData.score && (parsedData.timestamp - s.timestamp < 5000));
       
@@ -80,7 +85,7 @@ const QuizResult = () => {
         const uniqueMap = new Map();
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          if ((data.subject || 'physics') === subjectId) {
+          if ((data.subject || 'physics-ch1') === subjectId) {
             const key = `${data.name}-${data.school}`;
             if (!uniqueMap.has(key) || uniqueMap.get(key).score < data.score) {
               uniqueMap.set(key, data);
@@ -88,7 +93,6 @@ const QuizResult = () => {
           }
         });
         
-        // Include current user in case they didn't get saved due to error
         const myKey = `${parsedData.name}-${parsedData.school}`;
         if (!uniqueMap.has(myKey) || uniqueMap.get(myKey).score < parsedData.score) {
           uniqueMap.set(myKey, parsedData);
@@ -113,24 +117,44 @@ const QuizResult = () => {
 
     saveAndCalculateRank();
 
-  }, [navigate, location.search]);
+  }, [navigate, subjectId]);
 
   if (!result) return null;
 
   const percentage = Math.round((result.score / result.total) * 100);
   const isGood = percentage >= 80;
   const isPass = percentage >= 40;
+  const wrongCount = result.total - result.score;
+
+  const handleNextChapter = () => {
+    const parts = subjectId.split("-ch");
+    const subjSlug = parts[0];
+    const chNum = parseInt(parts[1]);
+    const maxChapters = getSubjectChapters(subjSlug).length;
+    
+    if (chNum < maxChapters) {
+      navigate(`/quiz/play?subject=${subjSlug}-ch${chNum + 1}`);
+    } else {
+      navigate(`/subject/${subjSlug}`);
+    }
+  };
+
+  const handleShare = () => {
+    const text = `🎉 আমি এসএসসি পদার্থবিজ্ঞান কুইজের "${subjectTitle}" শেষ করেছি! স্কোর: ${result.score}/${result.total} (${percentage}%), অর্জন করেছি ${xpEarned} XP! আপনিও খেলুন Shaifly Library-তে!`;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
+  };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-app)] flex items-center justify-center p-6 relative overflow-hidden pt-32 pb-40">
+    <div className="min-h-screen bg-[var(--bg-app)] flex items-center justify-center p-6 relative overflow-hidden pt-32 pb-40 font-bn">
       {/* Background Decorator */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#14B8A6]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[150px] animate-pulse-soft -mt-80 pointer-events-none" />
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="w-full max-w-3xl p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative z-10 text-center"
-        style={{ background: 'var(--bg-surface)', border: '1px solid var(--bg-border)' }}
+        className="w-full max-w-3xl p-8 md:p-14 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl relative z-10 text-center bg-white border border-slate-200"
       >
         {/* Animated Trophy Icon */}
         <div className="relative mb-10">
@@ -138,61 +162,109 @@ const QuizResult = () => {
              initial={{ scale: 0 }}
              animate={{ scale: 1 }}
              transition={{ type: 'spring', damping: 12, stiffness: 200, delay: 0.2 }}
-             className="w-28 h-28 md:w-36 md:h-36 mx-auto bg-[#14B8A6]/10 rounded-[2.5rem] md:rounded-[3rem] shadow-lg flex items-center justify-center rotate-6 border border-[#14B8A6]/20"
+             className="w-28 h-28 md:w-36 md:h-36 mx-auto bg-[#2563EB]/10 rounded-[2.5rem] md:rounded-[3rem] shadow-lg flex items-center justify-center rotate-6 border border-[#2563EB]/20"
            >
-             <Trophy className="w-14 h-14 md:w-18 md:h-18 text-[#14B8A6] drop-shadow-md" />
+             <Trophy className="w-14 h-14 md:w-18 md:h-18 text-[#2563EB] drop-shadow-md" />
            </motion.div>
         </div>
 
         <div className="mb-10 text-center">
-           <div className="sf-label text-[#14B8A6] tracking-[0.3em] uppercase text-[11px] mb-4">EXAM COMPLETED</div>
-           <h1 className="text-4xl md:text-7xl sf-headline text-[#0F172A] mb-4 italic tracking-tighter leading-none">
-             অভিনন্দন, <span style={{ color: '#F97316' }}>{result.name}</span>!
+           <div className="text-[#2563EB] tracking-widest uppercase text-xs font-black mb-4">অধ্যায় সম্পন্ন হয়েছে</div>
+           <h1 className="text-4xl md:text-6xl font-black text-[#0F172A] mb-4 italic tracking-tighter leading-none">
+             🎉 অভিনন্দন, <span className="text-[#7C3AED]">{result.name}</span>!
            </h1>
-           <p className="text-xl md:text-2xl font-bn text-slate-500 italic">
-              সেরাদের তালিকায় তুমি এখন <span className="text-[#0F172A] font-black italic">#{result.rank}</span> অবস্থানে।
+           <p className="text-xl md:text-2xl text-slate-500 italic">
+              তুমি সফলভাবে এই অধ্যায় শেষ করেছো।
+           </p>
+           <p className="text-sm text-[#2563EB] font-bold mt-2">
+             {subjectTitle}
            </p>
         </div>
 
         {/* Results Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-12">
-           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}>
-              <Activity className="w-8 h-8 text-[#14B8A6] mb-3 opacity-50" />
-              <div className="text-3xl md:text-4xl sf-headline text-[#0F172A] italic">{result.score}<span className="text-xl text-slate-400 italic">/{result.total}</span></div>
-              <div className="sf-label text-[10px] tracking-widest text-slate-600 uppercase mt-2">Score</div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
+           {/* Correct Score */}
+           <div className="p-5 rounded-2xl flex flex-col items-center justify-center transition-all bg-slate-50 border border-slate-200 shadow-inner">
+              <span className="text-2xl md:text-3xl font-black text-[#22C55E]">{result.score}</span>
+              <span className="text-[10px] tracking-widest text-slate-400 uppercase font-black mt-2">সঠিক উত্তর</span>
            </div>
 
-           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-xl" style={{ 
-             background: isGood ? '#10B981' : (isPass ? '#eab308' : '#ef4444'),
-             border: '1.5px solid rgba(255,255,255,0.2)'
-           }}>
-              <Zap className="w-8 h-8 text-white mb-3" />
-              <div className="text-3xl md:text-4xl sf-headline text-white italic">{percentage}%</div>
-              <div className="sf-label text-[10px] tracking-widest uppercase text-white/70 mt-2">Accuracy</div>
+           {/* Wrong count */}
+           <div className="p-5 rounded-2xl flex flex-col items-center justify-center transition-all bg-slate-50 border border-slate-200 shadow-inner">
+              <span className="text-2xl md:text-3xl font-black text-[#EF4444]">{wrongCount}</span>
+              <span className="text-[10px] tracking-widest text-slate-400 uppercase font-black mt-2">ভুল উত্তর</span>
            </div>
 
-           <div className="p-6 md:p-8 rounded-2xl flex flex-col items-center justify-center transition-all shadow-inner" style={{ background: 'var(--bg-elevated)', border: '1.5px solid var(--bg-border)' }}>
-              <Award className="w-8 h-8 text-indigo-400 mb-3 opacity-50" />
-              <div className="text-3xl md:text-4xl sf-headline text-indigo-400 italic">#{result.rank}</div>
-              <div className="sf-label text-[10px] tracking-widest uppercase text-slate-600 mt-2">Rank</div>
+           {/* Accuracy */}
+           <div className="p-5 rounded-2xl flex flex-col items-center justify-center transition-all shadow-md text-white" style={{ background: isGood ? '#22C55E' : (isPass ? '#F59E0B' : '#EF4444') }}>
+              <span className="text-2xl md:text-3xl font-black">{percentage}%</span>
+              <span className="text-[10px] tracking-widest uppercase text-white/80 font-black mt-2">শতকরা ফলাফল</span>
+           </div>
+
+           {/* XP Earned */}
+           <div className="p-5 rounded-2xl flex flex-col items-center justify-center transition-all bg-yellow-400/10 border border-yellow-400/30 shadow-inner">
+              <span className="text-2xl md:text-3xl font-black text-yellow-600">+{xpEarned}</span>
+              <span className="text-[10px] tracking-widest uppercase text-yellow-600/80 font-black mt-2">অর্জিত XP</span>
            </div>
         </div>
 
+        {/* Global rank block */}
+        <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between mb-12">
+          <div className="text-left">
+            <h4 className="text-sm font-black text-slate-500">গ্লোবাল র‍্যাঙ্ক</h4>
+            <p className="text-2xl font-black text-slate-800 italic">সারাদেশের শিক্ষার্থীদের মধ্যে আপনি #{result.rank} অবস্থানে!</p>
+          </div>
+          <span className="px-5 py-2.5 rounded-xl bg-[#7C3AED] text-white font-black text-xs uppercase tracking-widest mt-4 sm:mt-0 shadow-md">
+            লিডারবোর্ড
+          </span>
+        </div>
+
+        {/* Share Feedback Toast */}
+        {copied && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-3 bg-green-500/10 border border-green-500/30 rounded-xl text-green-600 text-xs font-bold"
+          >
+            ফলাফল ক্লিপবোর্ডে কপি করা হয়েছে! বন্ধুদের সাথে শেয়ার করুন।
+          </motion.div>
+        )}
+
         {/* Buttons Action Area */}
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-12 pt-10 border-t border-[var(--bg-border)]">
-           <button 
-             onClick={() => navigate('/quiz')}
-             className="w-full h-16 rounded-2xl bg-[var(--bg-elevated)] hover:bg-[#1a2e4a] border border-[var(--bg-border)] text-slate-500 hover:text-[#0F172A] transition-all sf-headline text-lg italic flex items-center justify-center gap-3"
-           >
-             <Home className="w-5 h-5" /> কুইজ হোমে ফিরুন
-           </button>
-           <button 
-             onClick={() => navigate(`/quiz/leaderboard?subject=${result.subject}`)}
-             className="w-full h-16 rounded-2xl bg-[#F97316] hover:bg-[#E85E2A] text-white sf-headline text-lg italic flex items-center justify-center gap-3 shadow-lg border-b-4 border-[#B33B0E] hover:scale-[1.02] active:scale-95 transition-all"
-           >
-             লিডারবোর্ড দেখুন <Award className="w-5 h-5" />
-           </button>
+        <div className="flex flex-col sm:flex-row gap-4 mt-8 pt-8 border-t border-slate-200">
+            <button 
+              onClick={() => navigate(`/quiz/play?subject=${subjectId}`)}
+              className="flex-1 h-14 rounded-2xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 transition-all font-black text-sm flex items-center justify-center gap-2"
+            >
+              <RefreshCw className="w-4 h-4" /> আবার অনুশীলন
+            </button>
+            
+            <button 
+              onClick={handleShare}
+              className="flex-1 h-14 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white font-black text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
+            >
+              <Share2 className="w-4 h-4" /> ফলাফল শেয়ার করুন
+            </button>
+
+            {subjectId.includes("-ch") && (
+              <button 
+                onClick={handleNextChapter}
+                className="flex-1 h-14 rounded-2xl bg-[#22C55E] hover:bg-[#166534] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg border-b-4 border-green-900 transition-all"
+              >
+                পরবর্তী অধ্যায় <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
          </div>
+
+         <button 
+           onClick={() => {
+             const parts = subjectId.split("-ch");
+             navigate(`/subject/${parts[0]}`);
+           }}
+           className="mt-6 text-slate-400 hover:text-[#2563EB] text-xs font-bold flex items-center gap-1 mx-auto hover:underline transition-all"
+         >
+           <Home className="w-4.5 h-4.5" /> বিষয়ে ফিরে যান
+         </button>
       </motion.div>
     </div>
   );

@@ -28,7 +28,7 @@ const navSections = [
     label: 'EXTRAS',
     items: [
       { name: 'Quiz',     path: '/quiz',  icon: Star },
-      { name: 'এক নজরে অধ্যায়', path: '/at-a-glance', icon: Image },
+
       { name: 'Expert Help', path: '/appointment',icon: Zap },
       { name: 'Library',  path: '/tips',  icon: Lightbulb },
     ],

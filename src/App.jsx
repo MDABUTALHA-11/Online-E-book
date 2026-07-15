@@ -32,7 +32,7 @@ const Terms           = lazy(() => import('./pages/Terms'));
 const Cookies         = lazy(() => import('./pages/Cookies'));
 const TipDetail       = lazy(() => import('./pages/TipDetail'));
 const AdminPayments   = lazy(() => import('./pages/AdminPayments'));
-const AtAGlance       = lazy(() => import('./pages/AtAGlance'));
+
 const PaymentResult   = lazy(() => import('./pages/PaymentResult'));
 
 
@@ -70,7 +70,7 @@ function App() {
             </header>
 
             {/* Page Content */}
-            <div className="flex-1 px-4 md:px-10 pt-6 pb-8 md:pb-6 w-full max-w-[1400px] mx-auto">
+            <div className="flex-1 px-4 md:px-10 pt-6 pb-8 md:pb-6 w-full max-w-[1400px] mx-auto page-container">
               {/* Top Banner Ad */}
               {showAds && (
                 <div className="mb-8">
@@ -98,7 +98,7 @@ function App() {
                   <Route path="/cookies"             element={<Cookies />} />
                   <Route path="/tips/:tipId"         element={<TipDetail />} />
                   <Route path="/admin/payments"      element={<AdminPayments />} />
-                  <Route path="/at-a-glance"         element={<AtAGlance />} />
+
                   
                   <Route path="/payment-success"     element={<PaymentResult status="success" />} />
                   <Route path="/payment-fail"        element={<PaymentResult status="fail" />} />

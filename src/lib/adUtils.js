@@ -20,7 +20,7 @@ export const shouldShowAds = (pathname) => {
     '/categories',     // Category index page (lists subjects, study guides)
     '/about',          // About us page (has detailed E-E-A-T background, teams, stats)
     '/tips',           // Study tips and resources hub
-    '/at-a-glance',    // Visual one-page chapter summaries
+
     '/quiz'            // Quiz home landing page (lists quiz categories and info)
   ];
 
